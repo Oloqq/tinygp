@@ -17,7 +17,6 @@ CROSSOVER_PROB = 0
 minrandom: float
 maxrandom: float
 program: str
-PC: int
 varnumber: int
 fitnesscases: int
 randomnumber: int
@@ -35,23 +34,24 @@ class TinyGP:
     def __init__(self, filename: str, seed: int):
         self.fitness: list[float] = [0.0 for _ in range(POPSIZE)]
         self.x: list[float] = [0.0] * FSET_START
+        self.cursor = 0
 
         self.seed = seed
         if seed >= 0:
             random.seed(seed)
+
         self.setup_fitness(filename)
         for i in range(FSET_START):
-            self.x[i] = (maxrandom-minrandom) * random.random() + minrandom
+            self.x[i] = random.random() * (maxrandom-minrandom) + minrandom
 
         self.pop: list[str] = self.create_random_pop(POPSIZE, DEPTH, self.fitness)
         self.stats(self.fitness, self.pop, 0)
 
     def run(self) -> float:
-        global PC
         # print("run called")
-        primitive: str = ord(program[PC])
+        primitive: str = ord(program[self.cursor])
         # print(primitive, ord(primitive))
-        PC += 1
+        self.cursor += 1
         if ( primitive < FSET_START ):
             return(self.x[primitive])
         if primitive == ADD:
@@ -111,20 +111,16 @@ class TinyGP:
             exit(0)
 
     def fitness_function(self, Prog: str) -> float:
-        result: float
         fit = 0.0
-        global targets, PC, program
+        global targets, program
 
         for i in range(fitnesscases):
             for j in range(varnumber):
                 self.x[j] = targets[i][j]
             program = Prog
-            PC = 0
+            self.cursor = 0
             result = self.run()
-            # print(result)
-            fit += abs( result - targets[i][varnumber]);
-        # print(-fit)
-        # exit(5)
+            fit += abs( result - targets[i][varnumber])
         return(-fit)
 
     def grow(self, buffer: str, pos: int, max: int, depth: int) -> int:
