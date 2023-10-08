@@ -58,8 +58,8 @@ class TinyGP:
         for i in range(FSET_START):
             self.x[i] = random.random() * (self.params.maxrandom-self.params.minrandom) + self.params.minrandom
 
-        self.pop: list[str] = self.create_random_pop(POPSIZE, DEPTH, self.fitness)
-        self.stats(self.fitness, self.pop, 0)
+        self.population: list[str] = self.random_population(POPSIZE, DEPTH, self.fitness)
+        self.stats(0)
 
     def run(self) -> float:
         primitive: str = ord(self.program[self.cursor])
@@ -194,47 +194,41 @@ class TinyGP:
         return( a2);
 
     def create_random_indiv(self, depth: int) -> list[chr]:
-        ind: str
-        len_: int = self.grow( self.buffer, 0, MAX_LEN, depth )
-
-        while len_ < 0:
-            len_ = self.grow( self.buffer, 0, MAX_LEN, depth )
-
-        ind = deepcopy(self.buffer)
-
-        return ind
+        length: int = self.grow(self.buffer, 0, MAX_LEN, depth)
+        while length < 0:
+            length = self.grow(self.buffer, 0, MAX_LEN, depth)
+        return deepcopy(self.buffer)
 
 
-    def create_random_pop(self, n: int, depth: int, fitness: list[float] ) -> list[str]:
-        pop: list[str] = [""] * n
-        print("creating pop")
+    def random_population(self, n: int, depth: int, fitness: list[float] ) -> list[str]:
+        population: list[str] = [""] * n
+        print("creating population")
         for i in range(n):
-            pop[i] = self.create_random_indiv( depth )
-            fitness[i] = self.fitness_function( pop[i] )
-            # print(fitness[i])
-        print("pop created")
-        return pop
+            population[i] = self.create_random_indiv(depth)
+            fitness[i] = self.fitness_function(population[i])
+        print("population created")
+        return population
 
 
-    def stats(self, fitness: list[float], pop: list[str], gen: int):
-        i: int
+    def stats(self, gen: int):
         best = random.randint(0, POPSIZE - 1)
         node_count = 0
-        self.fbestpop = fitness[best]
+        self.fbestpop = self.fitness[best]
         favgpop = 0.0
 
         for i in range(POPSIZE):
-            node_count += self.traverse( pop[i], 0 )
-            favgpop += fitness[i]
-            if ( fitness[i] > self.fbestpop ):
+            node_count += self.traverse( self.population[i], 0 )
+            favgpop += self.fitness[i]
+            if ( self.fitness[i] > self.fbestpop ):
                 best = i
-                self.fbestpop = fitness[i]
+                self.fbestpop = self.fitness[i]
         avg_len = float(node_count) / POPSIZE
-        favgpop /= POPSIZE;
+        favgpop /= POPSIZE
         print("Generation="+str(gen)+" Avg Fitness="+str(-favgpop)+
                 " Best Fitness="+str(-self.fbestpop)+" Avg Size="+str(avg_len)+
-                "\nBest Individual: ");
-        self.print_indiv( pop[best], 0 );
+                "\nBest Individual: ")
+
+        self.print_indiv( self.population[best], 0 )
         print( "\n");
 
     def tournament(self, fitness: list[float], tsize: int ) -> int:
@@ -309,7 +303,7 @@ class TinyGP:
         parent: int
         newfit: float
         newind: str
-        self.stats( self.fitness, self.pop, 0 )
+        self.stats(0 )
         for gen in range(1, GENERATIONS):
             if (  self.fbestpop > -1e-5 ):
                 print("PROBLEM SOLVED\n");
@@ -318,15 +312,15 @@ class TinyGP:
                 if ( random.random() < CROSSOVER_PROB  ):
                     parent1 = self.tournament( self.fitness, TSIZE );
                     parent2 = self.tournament( self.fitness, TSIZE );
-                    newind = self.crossover( self.pop[parent1], self.pop[parent2] );
+                    newind = self.crossover( self.population[parent1], self.population[parent2] );
                 else:
                     parent = self.tournament( self.fitness, TSIZE );
-                    newind = self.mutation( self.pop[parent], PMUT_PER_NODE );
+                    newind = self.mutation( self.population[parent], PMUT_PER_NODE );
                 newfit = self.fitness_function( newind );
                 offspring = self.negative_tournament( self.fitness, TSIZE );
-                self.pop[offspring] = newind
+                self.population[offspring] = newind
                 self.fitness[offspring] = newfit;
-            self.stats( self.fitness, self.pop, gen );
+            self.stats(gen );
         print("PROBLEM *NOT* SOLVED\n");
         exit( 1 );
 
