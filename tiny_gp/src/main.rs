@@ -24,7 +24,7 @@ struct Params {
     min_random: f32,
     max_random: f32,
     varnumber: i32,
-    random_number: i32, // what is this
+    const_numbers: i32,
     max_len: usize,
     popsize: usize,
     depth: usize,
@@ -40,7 +40,7 @@ impl Default for Params {
             min_random: Default::default(),
             max_random: Default::default(),
             varnumber: Default::default(),
-            random_number: Default::default(),
+            const_numbers: Default::default(),
             max_len: 10000,
             popsize: 100000,
             depth: 5,
@@ -128,7 +128,7 @@ fn read_problem(data: String) -> Result<(Params, Vec<Case>), Berror> {
             min_random,
             max_random,
             varnumber,
-            random_number,
+            const_numbers: random_number,
             ..Default::default()
         },
         cases,
@@ -161,7 +161,8 @@ impl TinyGP {
 
     pub fn evolve(&mut self, generations: usize) {
         println!(
-            "-- TINY GP (Rust version) --\nGENERATIONS={generations}\n{}",
+            "-- TINY GP (Rust version) --\nGENERATIONS={}\n{}",
+            generations,
             self.params
         );
         self.stats()

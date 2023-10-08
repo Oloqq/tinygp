@@ -100,7 +100,7 @@ class TinyGP:
         self.targets: list[list[float]] = []
         self.varnumber: int
         self.fitnesscases: int
-        self.randomnumber: int
+        self.constnumbers: int
         self.buffer: Program = [0] * MAX_LEN
 
         self.generation = 0
@@ -136,7 +136,7 @@ class TinyGP:
             line = file.readline()
             tokens = line.split()
             self.varnumber = int(tokens[0])
-            self.randomnumber = int(tokens[1])
+            self.constnumbers = int(tokens[1])
             minrandom =	float(tokens[2])
             maxrandom =  float(tokens[3])
             self.fitnesscases = int(tokens[4])
@@ -173,7 +173,7 @@ class TinyGP:
         initial = pos != 0 and tmp == 0
 
         if depth == 0 or initial:
-            new_prim = random.randint(0, self.varnumber + self.randomnumber - 1)
+            new_prim = random.randint(0, self.varnumber + self.constnumbers - 1)
             buffer[pos] = new_prim
             return pos+1
         else:
@@ -293,7 +293,7 @@ class TinyGP:
             if ( random.random() < pmut ):
                 mutsite =  i
                 if parentcopy[mutsite] < FSET_START:
-                    parentcopy[mutsite] = random.randint(0, self.varnumber+self.randomnumber-1)
+                    parentcopy[mutsite] = random.randint(0, self.varnumber+self.constnumbers-1)
                 else:
                     if parentcopy[mutsite] in [ADD, SUB, MUL, DIV]:
                         parentcopy[mutsite] = random.randint(0, FSET_END - FSET_START) + FSET_START
