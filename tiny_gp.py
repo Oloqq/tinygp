@@ -15,10 +15,29 @@ PMUT_PER_NODE  = 0.05
 CROSSOVER_PROB = 0.5
 
 import random
+from datetime import datetime
 from copy import deepcopy
+from dataclasses import dataclass
+
+@dataclass
+class Params:
+    seed: int
+    minrandom: float
+    maxrandom: float
+
+    def __repr__(self) -> str:
+        return ("SEED="+str(self.seed)+"\nMAX_LEN="+str(MAX_LEN)+
+                "\nPOPSIZE="+str(POPSIZE)+"\nDEPTH="+str(DEPTH)+
+                "\nCROSSOVER_PROB="+str(CROSSOVER_PROB)+
+                "\nPMUT_PER_NODE="+str(PMUT_PER_NODE)+
+                "\nMIN_RANDOM="+str(self.minrandom)+
+                "\nMAX_RANDOM="+str(self.maxrandom)+
+                "\nGENERATIONS="+str(GENERATIONS)+
+                "\nTSIZE="+str(TSIZE)+
+                "\n----------------------------------\n")
 
 class TinyGP:
-    def __init__(self, filename: str, seed: int):
+    def __init__(self, filename: str, set_seed: int|None):
         self.fitness: list[float] = [0.0 for _ in range(POPSIZE)]
         self.x: list[float] = [0.0] * FSET_START
         self.cursor = 0
@@ -32,9 +51,13 @@ class TinyGP:
         self.program: str
         self.buffer: list[chr] = ['\0'] * MAX_LEN
 
-        self.seed = seed
-        if seed >= 0:
-            random.seed(seed)
+        if set_seed != None:
+            random.seed(set_seed)
+            self.params = Params(seed=set_seed, minrandom=0, maxrandom=0)
+        else:
+            set_seed = datetime.now().timestamp()
+            random.seed(set_seed)
+            self.params = Params(seed=set_seed, minrandom=0, maxrandom=0)
 
         self.setup_fitness(filename)
         for i in range(FSET_START):
@@ -280,19 +303,9 @@ class TinyGP:
                         parentcopy[mutsite] = chr(random.randint(0, FSET_END - FSET_START) + FSET_START)
         return( "".join(parentcopy) )
 
-    def print_parms(self):
-        print("-- TINY GP (Python version) --\n")
-        print("SEED="+str(self.seed)+"\nMAX_LEN="+str(MAX_LEN)+
-                "\nPOPSIZE="+str(POPSIZE)+"\nDEPTH="+str(DEPTH)+
-                "\nCROSSOVER_PROB="+str(CROSSOVER_PROB)+
-                "\nPMUT_PER_NODE="+str(PMUT_PER_NODE)+
-                "\nMIN_RANDOM="+str(self.minrandom)+
-                "\nMAX_RANDOM="+str(self.maxrandom)+
-                "\nGENERATIONS="+str(GENERATIONS)+
-                "\nTSIZE="+str(TSIZE)+
-                "\n----------------------------------\n")
-
     def evolve(self):
+        print("-- TINY GP (Python version) --\n")
+        print(self.params)
         gen: int = 0
         offspring: int
         parent1: int
@@ -300,7 +313,6 @@ class TinyGP:
         parent: int
         newfit: float
         newind: str
-        self.print_parms()
         self.stats( self.fitness, self.pop, 0 )
         for gen in range(1, GENERATIONS):
             if (  self.fbestpop > -1e-5 ):
@@ -324,16 +336,16 @@ class TinyGP:
 
 def main(args):
     if len(args) == 3:
-        s = int(args[1])
+        seed = int(args[1])
         filename = args[2]
     elif len(args) == 2:
-        s = -1
+        seed = None
         filename = args[1]
     else:
-        s = -1
+        seed = None
         filename = "problem.dat"
 
-    gp = TinyGP(filename, s)
+    gp = TinyGP(filename, seed)
     gp.evolve()
 
 import sys
