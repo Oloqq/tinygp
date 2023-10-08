@@ -33,7 +33,7 @@ buffer: list[chr] = ['\0'] * MAX_LEN
 
 import random
 
-class tiny_gp:
+class TinyGP:
     def __init__(self, fname: str, s: int):
         self.fitness: list[float] = [0.0 for _ in range(POPSIZE)]
         global seed, x
@@ -356,27 +356,20 @@ class tiny_gp:
         exit( 1 );
 
 def main(args):
-    fname = "problem.dat"
-    s = -1
-
-    if ( len(args) == 3 ):
+    if len(args) == 3:
         s = int(args[1])
-        fname = args[2]
-    elif ( len(args) == 2 ):
-        fname = args[1]
+        filename = args[2]
+    elif len(args) == 2:
+        s = -1
+        filename = args[1]
+    else:
+        s = -1
+        filename = "problem.dat"
 
-    gp = tiny_gp(fname, s)
+    gp = TinyGP(filename, s)
     gp.evolve()
 
 import sys
-
-def calc():
-    gp = tiny_gp("problem.dat", -1)
-    global program, PC
-    program = []
-    PC = 0
-    gp.run()
-
 
 if __name__ == "__main__":
     main(sys.argv)
