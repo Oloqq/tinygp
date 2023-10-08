@@ -19,6 +19,8 @@ from datetime import datetime
 from copy import deepcopy
 from dataclasses import dataclass
 
+Program = str
+
 @dataclass
 class Params:
     seed: int
@@ -69,7 +71,6 @@ class TinyGP:
         self.varnumber: int
         self.fitnesscases: int
         self.randomnumber: int
-        self.best_fitness = 0.0
         self.program: str
         self.buffer: list[chr] = ['\0'] * MAX_LEN
 
@@ -84,7 +85,7 @@ class TinyGP:
         for i in range(FSET_START):
             self.x[i] = random.random() * (self.params.maxrandom-self.params.minrandom) + self.params.minrandom
 
-        self.population: list[str] = self.random_population(POPSIZE, DEPTH, self.fitness)
+        self.population: list[Program] = self.random_population(POPSIZE, DEPTH, self.fitness)
 
     def run(self) -> float:
         primitive: str = ord(self.program[self.cursor])
@@ -234,27 +235,28 @@ class TinyGP:
         print("population created")
         return population
 
-
-    def stats(self):
+    def summarize_generation(self) -> float:
         best = random.randint(0, POPSIZE - 1)
         node_count = 0
-        self.best_fitness = self.fitness[best]
-        favgpop = 0.0
+        best_fitness = self.fitness[best]
+        average_fitness = 0.0
 
         for i in range(POPSIZE):
             node_count += self.traverse( self.population[i], 0 )
-            favgpop += self.fitness[i]
-            if ( self.fitness[i] > self.best_fitness ):
+            average_fitness += self.fitness[i]
+            if ( self.fitness[i] > best_fitness ):
                 best = i
-                self.best_fitness = self.fitness[i]
-        avg_len = float(node_count) / POPSIZE
-        favgpop /= POPSIZE
-        print("Generation="+str(self.generation)+" Avg Fitness="+str(-favgpop)+
-                " Best Fitness="+str(-self.best_fitness)+" Avg Size="+str(avg_len)+
-                "\nBest Individual: ")
+                best_fitness = self.fitness[i]
 
+        avg_len = float(node_count) / POPSIZE
+        average_fitness /= POPSIZE
+
+        print(f"Generation={self.generation} Avg Fitness={-average_fitness} \
+                Best Fitness={-best_fitness} Avg Size={avg_len}")
+        print("Best Individual: ")
         self.print_indiv( self.population[best], 0 )
-        print( "\n");
+        print()
+        return best_fitness
 
     def crossover(self, parent1: str, parent2: str) -> str:
         xo1start: int; xo1end: int; xo2start: int; xo2end: int
@@ -305,10 +307,10 @@ class TinyGP:
         newfit: float
         newind: str
 
-        self.stats()
+        best_fitness = self.summarize_generation()
 
         for self.generation in range(1, GENERATIONS):
-            if self.best_fitness > -1e-5:
+            if best_fitness > -1e-5:
                 print("PROBLEM SOLVED\n")
                 exit(0)
             for _ in range(POPSIZE):
@@ -323,7 +325,7 @@ class TinyGP:
                 offspring = negative_tournament( self.fitness, TOURNAMENT_SIZE )
                 self.population[offspring] = newind
                 self.fitness[offspring] = newfit
-            self.stats()
+            best_fitness = self.summarize_generation()
         print("PROBLEM *NOT* SOLVED\n")
         exit(1)
 
