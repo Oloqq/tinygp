@@ -24,7 +24,6 @@ fbestpop = 0.0
 favgpop = 0.0;
 avg_len: float
 
-targets: list[list[float]] = []
 
 buffer: list[chr] = ['\0'] * MAX_LEN
 
@@ -35,6 +34,7 @@ class TinyGP:
         self.fitness: list[float] = [0.0 for _ in range(POPSIZE)]
         self.x: list[float] = [0.0] * FSET_START
         self.cursor = 0
+        self.targets: list[list[float]] = []
 
         self.seed = seed
         if seed >= 0:
@@ -48,9 +48,7 @@ class TinyGP:
         self.stats(self.fitness, self.pop, 0)
 
     def run(self) -> float:
-        # print("run called")
         primitive: str = ord(program[self.cursor])
-        # print(primitive, ord(primitive))
         self.cursor += 1
         if ( primitive < FSET_START ):
             return(self.x[primitive])
@@ -87,20 +85,20 @@ class TinyGP:
             file = open(fname)
             line = file.readline()
             tokens = line.split()
-            global varnumber, minrandom, maxrandom, fitnesscases, targets, randomnumber
+            global varnumber, minrandom, maxrandom, fitnesscases, randomnumber
             varnumber = int(tokens[0])
             randomnumber = int(tokens[1])
             minrandom =	float(tokens[2])
             maxrandom =  float(tokens[3])
             fitnesscases = int(tokens[4])
-            targets = [[0.0] * (varnumber+1) for _ in range(fitnesscases)]
+            self.targets = [[0.0] * (varnumber+1) for _ in range(fitnesscases)]
             # if (varnumber + randomnumber >= FSET_START ):
             for i in range(fitnesscases):
                 line = file.readline()
                 tokens = line.split()
                 for j in range(varnumber + 1):
                     t = tokens[j]
-                    targets[i][j] = float(t)
+                    self.targets[i][j] = float(t)
             file.close()
         except FileExistsError as e:
             print("ERROR: Please provide a data file")
@@ -112,15 +110,15 @@ class TinyGP:
 
     def fitness_function(self, Prog: str) -> float:
         fit = 0.0
-        global targets, program
+        global program
 
         for i in range(fitnesscases):
             for j in range(varnumber):
-                self.x[j] = targets[i][j]
+                self.x[j] = self.targets[i][j]
             program = Prog
             self.cursor = 0
             result = self.run()
-            fit += abs( result - targets[i][varnumber])
+            fit += abs( result - self.targets[i][varnumber])
         return(-fit)
 
     def grow(self, buffer: str, pos: int, max: int, depth: int) -> int:
