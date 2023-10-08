@@ -12,19 +12,9 @@ GENERATIONS = 100
 TSIZE = 2
 PMUT_PER_NODE  = 0.05
 # CROSSOVER_PROB = 0.9
-CROSSOVER_PROB = 0
+CROSSOVER_PROB = 0.5
 
-minrandom: float
-maxrandom: float
 program: str
-varnumber: int
-fitnesscases: int
-randomnumber: int
-fbestpop = 0.0
-favgpop = 0.0;
-avg_len: float
-
-
 buffer: list[chr] = ['\0'] * MAX_LEN
 
 import random
@@ -35,6 +25,12 @@ class TinyGP:
         self.x: list[float] = [0.0] * FSET_START
         self.cursor = 0
         self.targets: list[list[float]] = []
+        self.minrandom: float
+        self.maxrandom: float
+        self.varnumber: int
+        self.fitnesscases: int
+        self.randomnumber: int
+        self.fbestpop = 0.0
 
         self.seed = seed
         if seed >= 0:
@@ -42,7 +38,7 @@ class TinyGP:
 
         self.setup_fitness(filename)
         for i in range(FSET_START):
-            self.x[i] = random.random() * (maxrandom-minrandom) + minrandom
+            self.x[i] = random.random() * (self.maxrandom-self.minrandom) + self.minrandom
 
         self.pop: list[str] = self.create_random_pop(POPSIZE, DEPTH, self.fitness)
         self.stats(self.fitness, self.pop, 0)
@@ -85,18 +81,16 @@ class TinyGP:
             file = open(fname)
             line = file.readline()
             tokens = line.split()
-            global varnumber, minrandom, maxrandom, fitnesscases, randomnumber
-            varnumber = int(tokens[0])
-            randomnumber = int(tokens[1])
-            minrandom =	float(tokens[2])
-            maxrandom =  float(tokens[3])
-            fitnesscases = int(tokens[4])
-            self.targets = [[0.0] * (varnumber+1) for _ in range(fitnesscases)]
-            # if (varnumber + randomnumber >= FSET_START ):
-            for i in range(fitnesscases):
+            self.varnumber = int(tokens[0])
+            self.randomnumber = int(tokens[1])
+            self.minrandom =	float(tokens[2])
+            self.maxrandom =  float(tokens[3])
+            self.fitnesscases = int(tokens[4])
+            self.targets = [[0.0] * (self.varnumber+1) for _ in range(self.fitnesscases)]
+            for i in range(self.fitnesscases):
                 line = file.readline()
                 tokens = line.split()
-                for j in range(varnumber + 1):
+                for j in range(self.varnumber + 1):
                     t = tokens[j]
                     self.targets[i][j] = float(t)
             file.close()
@@ -112,26 +106,18 @@ class TinyGP:
         fit = 0.0
         global program
 
-        for i in range(fitnesscases):
-            for j in range(varnumber):
+        for i in range(self.fitnesscases):
+            for j in range(self.varnumber):
                 self.x[j] = self.targets[i][j]
             program = Prog
             self.cursor = 0
             result = self.run()
-            fit += abs( result - self.targets[i][varnumber])
+            fit += abs( result - self.targets[i][self.varnumber])
         return(-fit)
 
     def grow(self, buffer: str, pos: int, max: int, depth: int) -> int:
         prim = random.randint(0, 1)
         one_child: int
-
-        # print(prim)
-        # # print(f"|{buffer}|")
-        # print("buf0: ", ord(buffer[0]))
-        # print(pos)
-        # print(max)
-        # print(depth)
-        # exit(5)
 
         if pos >= max:
             return -1
@@ -140,29 +126,24 @@ class TinyGP:
            prim = 1
 
         if ( prim == 0 or depth == 0 ):
-            prim = chr(random.randint(0, varnumber + randomnumber - 1))
+            prim = chr(random.randint(0, self.varnumber + self.randomnumber - 1))
             buffer[pos] = prim
             return pos+1
         else:
-            # print("ye")
             prim = chr((random.randint(0, FSET_END - FSET_START) + FSET_START))
-            # print(ord(prim))
-            # exit(5)
             if ord(prim) in [ADD, SUB, MUL, DIV]:
                 buffer[pos] = prim
-                # print(f"buf pos: {ord(buffer[pos])}")
                 one_child = self.grow(buffer, pos+1, max,depth-1)
                 if ( one_child < 0 ):
                     return( -1 )
                 return( self.grow( buffer, one_child, max,depth-1 ) )
-            # exit(5)
         raise Exception("grow should never get here")
 
     def print_indiv(self, buffer: str, buffercounter: int ) -> int:
         a1=0
         a2: int
         if ( ord(buffer[buffercounter]) < FSET_START ):
-            if ( ord(buffer[buffercounter]) < varnumber ):
+            if ( ord(buffer[buffercounter]) < self.varnumber ):
                 print( "X" + str(ord(buffer[buffercounter]) + 1) + " ", end="")
             else:
                 print( self.x[ord(buffer[buffercounter])], end="")
@@ -225,20 +206,19 @@ class TinyGP:
         i: int
         best = random.randint(0, POPSIZE - 1)
         node_count = 0
-        global fbestpop, favgpop, avg_len
-        fbestpop = fitness[best]
+        self.fbestpop = fitness[best]
         favgpop = 0.0
 
         for i in range(POPSIZE):
             node_count += self.traverse( pop[i], 0 )
             favgpop += fitness[i]
-            if ( fitness[i] > fbestpop ):
+            if ( fitness[i] > self.fbestpop ):
                 best = i
-                fbestpop = fitness[i]
+                self.fbestpop = fitness[i]
         avg_len = float(node_count) / POPSIZE
         favgpop /= POPSIZE;
         print("Generation="+str(gen)+" Avg Fitness="+str(-favgpop)+
-                " Best Fitness="+str(-fbestpop)+" Avg Size="+str(avg_len)+
+                " Best Fitness="+str(-self.fbestpop)+" Avg Size="+str(avg_len)+
                 "\nBest Individual: ");
         self.print_indiv( pop[best], 0 );
         print( "\n");
@@ -299,7 +279,7 @@ class TinyGP:
             if ( random.random() < pmut ):
                 mutsite =  i;
                 if ( ord(parentcopy[mutsite]) < FSET_START ):
-                    parentcopy[mutsite] = chr(random.randint(0, varnumber+randomnumber-1))
+                    parentcopy[mutsite] = chr(random.randint(0, self.varnumber+self.randomnumber-1))
                 else:
                     if ord(parentcopy[mutsite]) in [ADD, SUB, MUL, DIV]:
                         parentcopy[mutsite] = chr(random.randint(0, FSET_END - FSET_START) + FSET_START)
@@ -311,8 +291,8 @@ class TinyGP:
                 "\nPOPSIZE="+str(POPSIZE)+"\nDEPTH="+str(DEPTH)+
                 "\nCROSSOVER_PROB="+str(CROSSOVER_PROB)+
                 "\nPMUT_PER_NODE="+str(PMUT_PER_NODE)+
-                "\nMIN_RANDOM="+str(minrandom)+
-                "\nMAX_RANDOM="+str(maxrandom)+
+                "\nMIN_RANDOM="+str(self.minrandom)+
+                "\nMAX_RANDOM="+str(self.maxrandom)+
                 "\nGENERATIONS="+str(GENERATIONS)+
                 "\nTSIZE="+str(TSIZE)+
                 "\n----------------------------------\n")
@@ -328,7 +308,7 @@ class TinyGP:
         self.print_parms()
         self.stats( self.fitness, self.pop, 0 )
         for gen in range(1, GENERATIONS):
-            if (  fbestpop > -1e-5 ):
+            if (  self.fbestpop > -1e-5 ):
                 print("PROBLEM SOLVED\n");
                 exit( 0 );
             for _ in range(POPSIZE):
