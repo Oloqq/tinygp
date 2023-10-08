@@ -14,7 +14,6 @@ PMUT_PER_NODE  = 0.05
 # CROSSOVER_PROB = 0.9
 CROSSOVER_PROB = 0
 
-x: list[float] = [0.0] * FSET_START
 minrandom: float
 maxrandom: float
 program: str
@@ -24,7 +23,6 @@ fitnesscases: int
 randomnumber: int
 fbestpop = 0.0
 favgpop = 0.0;
-seed: int
 avg_len: float
 
 targets: list[list[float]] = []
@@ -34,17 +32,18 @@ buffer: list[chr] = ['\0'] * MAX_LEN
 import random
 
 class TinyGP:
-    def __init__(self, fname: str, s: int):
+    def __init__(self, filename: str, seed: int):
         self.fitness: list[float] = [0.0 for _ in range(POPSIZE)]
-        global seed, x
-        seed = s
-        if ( seed >= 0 ):
+        self.x: list[float] = [0.0] * FSET_START
+
+        self.seed = seed
+        if seed >= 0:
             random.seed(seed)
-        self.setup_fitness(fname)
+        self.setup_fitness(filename)
         for i in range(FSET_START):
-            x[i] = (maxrandom-minrandom) * random.random() + minrandom
+            self.x[i] = (maxrandom-minrandom) * random.random() + minrandom
+
         self.pop: list[str] = self.create_random_pop(POPSIZE, DEPTH, self.fitness)
-        # print(self.fitness[0])
         self.stats(self.fitness, self.pop, 0)
 
     def run(self) -> float:
@@ -54,7 +53,7 @@ class TinyGP:
         # print(primitive, ord(primitive))
         PC += 1
         if ( primitive < FSET_START ):
-            return(x[primitive])
+            return(self.x[primitive])
         if primitive == ADD:
             return( self.run() + self.run() )
         elif primitive == SUB:
@@ -114,11 +113,11 @@ class TinyGP:
     def fitness_function(self, Prog: str) -> float:
         result: float
         fit = 0.0
-        global x, targets, PC, program
+        global targets, PC, program
 
         for i in range(fitnesscases):
             for j in range(varnumber):
-                x[j] = targets[i][j]
+                self.x[j] = targets[i][j]
             program = Prog
             PC = 0
             result = self.run()
@@ -164,7 +163,6 @@ class TinyGP:
                 return( self.grow( buffer, one_child, max,depth-1 ) )
             # exit(5)
         raise Exception("grow should never get here")
-        return( 0 ); # // should never get here
 
     def print_indiv(self, buffer: str, buffercounter: int ) -> int:
         a1=0
@@ -173,7 +171,7 @@ class TinyGP:
             if ( ord(buffer[buffercounter]) < varnumber ):
                 print( "X" + str(ord(buffer[buffercounter]) + 1) + " ", end="")
             else:
-                print( x[ord(buffer[buffercounter])], end="")
+                print( self.x[ord(buffer[buffercounter])], end="")
             buffercounter += 1
             return( buffercounter )
         comp = ord(buffer[buffercounter])
@@ -315,7 +313,7 @@ class TinyGP:
 
     def print_parms(self):
         print("-- TINY GP (Python version) --\n")
-        print("SEED="+str(seed)+"\nMAX_LEN="+str(MAX_LEN)+
+        print("SEED="+str(self.seed)+"\nMAX_LEN="+str(MAX_LEN)+
                 "\nPOPSIZE="+str(POPSIZE)+"\nDEPTH="+str(DEPTH)+
                 "\nCROSSOVER_PROB="+str(CROSSOVER_PROB)+
                 "\nPMUT_PER_NODE="+str(PMUT_PER_NODE)+
