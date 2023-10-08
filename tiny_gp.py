@@ -19,7 +19,8 @@ from datetime import datetime
 from copy import deepcopy
 from dataclasses import dataclass
 
-Program = str
+Opcode = int
+Program = list[Opcode]
 
 @dataclass
 class Params:
@@ -38,27 +39,28 @@ class Params:
                 "\nTSIZE="+str(TOURNAMENT_SIZE)+
                 "\n----------------------------------\n")
 
+def random_operation() -> Opcode:
+    return random.randint(0, FSET_END - FSET_START) + FSET_START
+
 def tournament(fitness: list[float], tournament_size: int) -> int:
     best: int = random.randint(0, len(fitness) - 1)
-    competitor: int
-    fbest: float = -1.0e34
+    best_fitness: float = -1.0e34
 
     for _ in range(tournament_size):
         competitor = random.randint(0, len(fitness) - 1)
-        if fitness[competitor] > fbest:
-            fbest = fitness[competitor]
+        if fitness[competitor] > best_fitness:
+            best_fitness = fitness[competitor]
             best = competitor
     return best
 
 def negative_tournament( fitness: list[float], tsize: int ) -> int:
     worst = random.randint(0, len(fitness) - 1)
-    competitor: int
-    fworst = 1e34
+    worst_fitness = 1e34
 
     for _ in range(tsize):
         competitor = random.randint(0, len(fitness) - 1)
-        if ( fitness[competitor] < fworst ):
-            fworst = fitness[competitor]
+        if fitness[competitor] < worst_fitness:
+            worst_fitness = fitness[competitor]
             worst = competitor
     return worst
 
@@ -71,8 +73,8 @@ class TinyGP:
         self.varnumber: int
         self.fitnesscases: int
         self.randomnumber: int
-        self.program: str
-        self.buffer: list[chr] = ['\0'] * MAX_LEN
+        self.program: Program
+        self.buffer: Program = [0] * MAX_LEN
 
         self.generation = 0
 
@@ -88,7 +90,7 @@ class TinyGP:
         self.population: list[Program] = self.random_population(POPSIZE, DEPTH, self.fitness)
 
     def run(self) -> float:
-        primitive: str = ord(self.program[self.cursor])
+        primitive: Opcode = self.program[self.cursor]
         self.cursor += 1
         if ( primitive < FSET_START ):
             return(self.x[primitive])
@@ -108,11 +110,11 @@ class TinyGP:
         raise Exception("run should never get here")
 
     def traverse(self, buffer: str, buffercount: int ) -> int:
-        if ord(buffer[buffercount]) < FSET_START:
+        if buffer[buffercount] < FSET_START:
             buffercount += 1
-            return( buffercount )
+            return buffercount
 
-        if ord(buffer[buffercount]) in [ADD, SUB, MUL, DIV]:
+        if buffer[buffercount] in [ADD, SUB, MUL, DIV]:
             buffercount += 1
             return self.traverse(buffer, self.traverse(buffer, buffercount))
 
@@ -147,77 +149,72 @@ class TinyGP:
             exit(1)
         return Params(None, minrandom, maxrandom)
 
-    def fitness_function(self, Prog: str) -> float:
+    def fitness_function(self, prog: Program) -> float:
         fit = 0.0
-
         for i in range(self.fitnesscases):
             for j in range(self.varnumber):
                 self.x[j] = self.targets[i][j]
-            self.program = Prog
+            self.program = prog
             self.cursor = 0
             result = self.run()
             fit += abs( result - self.targets[i][self.varnumber])
-        return(-fit)
+        return -fit
 
     def grow(self, buffer: str, pos: int, max: int, depth: int) -> int:
-        prim = random.randint(0, 1)
-        one_child: int
-
         if pos >= max:
             return -1
 
-        if pos == 0:
-           prim = 1
+        tmp = random.randint(0, 1) # TEMP for keeping seed
+        initial = pos != 0 and tmp == 0
 
-        if ( prim == 0 or depth == 0 ):
-            prim = chr(random.randint(0, self.varnumber + self.randomnumber - 1))
-            buffer[pos] = prim
+        if depth == 0 or initial:
+            new_prim = random.randint(0, self.varnumber + self.randomnumber - 1)
+            buffer[pos] = new_prim
             return pos+1
         else:
-            prim = chr((random.randint(0, FSET_END - FSET_START) + FSET_START))
-            if ord(prim) in [ADD, SUB, MUL, DIV]:
-                buffer[pos] = prim
-                one_child = self.grow(buffer, pos+1, max,depth-1)
-                if ( one_child < 0 ):
-                    return( -1 )
-                return( self.grow( buffer, one_child, max,depth-1 ) )
-        raise Exception("grow should never get here")
+            new_prim = random_operation()
+            assert new_prim in [ADD, SUB, MUL, DIV]
+            buffer[pos] = new_prim
+            one_child = self.grow(buffer, pos+1, max, depth - 1)
+            if one_child < 0:
+                return -1
+            return self.grow(buffer, one_child, max, depth - 1)
 
     def print_indiv(self, buffer: str, buffercounter: int ) -> int:
         a1=0
         a2: int
-        if ord(buffer[buffercounter]) < FSET_START:
-            if ( ord(buffer[buffercounter]) < self.varnumber ):
-                print( "X" + str(ord(buffer[buffercounter]) + 1) + " ", end="")
+        if buffer[buffercounter] < FSET_START:
+            if buffer[buffercounter] < self.varnumber:
+                print( "X" + str(buffer[buffercounter] + 1) + " ", end="")
             else:
-                print( self.x[ord(buffer[buffercounter])], end="")
+                print( self.x[buffer[buffercounter]], end="")
             buffercounter += 1
-            return( buffercounter )
-        comp = ord(buffer[buffercounter])
+            return buffercounter
+        comp = buffer[buffercounter]
         if comp == ADD:
             print( "(", end="")
             buffercounter += 1
             a1=self.print_indiv( buffer, buffercounter )
-            print( " + ", end="");
+            print( " + ", end="")
         if comp == SUB:
-            print( "(", end="");
+            print( "(", end="")
             buffercounter += 1
-            a1=self.print_indiv( buffer, buffercounter );
-            print( " - ", end="");
+            a1=self.print_indiv( buffer, buffercounter )
+            print( " - ", end="")
         if comp == MUL:
-            print( "(", end="");
+            print( "(", end="")
             buffercounter += 1
-            a1=self.print_indiv( buffer, buffercounter );
-            print( " * ", end="");
+            a1=self.print_indiv( buffer, buffercounter )
+            print( " * ", end="")
         if comp == DIV:
-            print( "(", end="");
+            print( "(", end="")
             buffercounter += 1
-            a1=self.print_indiv( buffer, buffercounter );
-            print( " / ", end="");
+            a1=self.print_indiv( buffer, buffercounter )
+            print( " / ", end="")
 
-        a2=self.print_indiv( buffer, a1 );
-        print( ")", end="");
-        return( a2);
+        a2=self.print_indiv( buffer, a1 )
+        print( ")", end="")
+        return a2
 
     def create_random_indiv(self, depth: int) -> list[chr]:
         length: int = self.grow(self.buffer, 0, MAX_LEN, depth)
@@ -227,7 +224,7 @@ class TinyGP:
 
 
     def random_population(self, n: int, depth: int, fitness: list[float] ) -> list[str]:
-        population: list[str] = [""] * n
+        population: list[int] = [0] * n
         print("creating population")
         for i in range(n):
             population[i] = self.create_random_indiv(depth)
@@ -281,20 +278,20 @@ class TinyGP:
 
         return( offspring )
 
-    def mutation(self, parent: str, pmut: float ) -> str:
+    def mutation(self, parent: str, pmut: float ) -> Program:
         len = self.traverse( parent, 0 )
         mutsite: int
         parentcopy = list(parent)
 
         for i in range(len):
             if ( random.random() < pmut ):
-                mutsite =  i;
-                if ( ord(parentcopy[mutsite]) < FSET_START ):
-                    parentcopy[mutsite] = chr(random.randint(0, self.varnumber+self.randomnumber-1))
+                mutsite =  i
+                if parentcopy[mutsite] < FSET_START:
+                    parentcopy[mutsite] = random.randint(0, self.varnumber+self.randomnumber-1)
                 else:
-                    if ord(parentcopy[mutsite]) in [ADD, SUB, MUL, DIV]:
-                        parentcopy[mutsite] = chr(random.randint(0, FSET_END - FSET_START) + FSET_START)
-        return( "".join(parentcopy) )
+                    if parentcopy[mutsite] in [ADD, SUB, MUL, DIV]:
+                        parentcopy[mutsite] = random.randint(0, FSET_END - FSET_START) + FSET_START
+        return parentcopy
 
     def evolve(self):
         print("-- TINY GP (Python version) --\n")
