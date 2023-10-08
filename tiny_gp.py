@@ -14,10 +14,8 @@ PMUT_PER_NODE  = 0.05
 # CROSSOVER_PROB = 0.9
 CROSSOVER_PROB = 0.5
 
-program: str
-buffer: list[chr] = ['\0'] * MAX_LEN
-
 import random
+from copy import deepcopy
 
 class TinyGP:
     def __init__(self, filename: str, seed: int):
@@ -31,6 +29,8 @@ class TinyGP:
         self.fitnesscases: int
         self.randomnumber: int
         self.fbestpop = 0.0
+        self.program: str
+        self.buffer: list[chr] = ['\0'] * MAX_LEN
 
         self.seed = seed
         if seed >= 0:
@@ -44,7 +44,7 @@ class TinyGP:
         self.stats(self.fitness, self.pop, 0)
 
     def run(self) -> float:
-        primitive: str = ord(program[self.cursor])
+        primitive: str = ord(self.program[self.cursor])
         self.cursor += 1
         if ( primitive < FSET_START ):
             return(self.x[primitive])
@@ -63,14 +63,14 @@ class TinyGP:
                 return( num / den );
         raise Exception("run should never get here")
 
-    def traverse(self,  buffer: str, buffercount: int ) -> int:
-        if ( ord(buffer[buffercount]) < FSET_START ):
+    def traverse(self, buffer: str, buffercount: int ) -> int:
+        if ord(buffer[buffercount]) < FSET_START:
             buffercount += 1
             return( buffercount )
 
         if ord(buffer[buffercount]) in [ADD, SUB, MUL, DIV]:
             buffercount += 1
-            return( self.traverse( buffer, self.traverse( buffer, buffercount ) ) )
+            return self.traverse(buffer, self.traverse(buffer, buffercount))
 
         raise Exception("run should never get here")
 
@@ -104,12 +104,11 @@ class TinyGP:
 
     def fitness_function(self, Prog: str) -> float:
         fit = 0.0
-        global program
 
         for i in range(self.fitnesscases):
             for j in range(self.varnumber):
                 self.x[j] = self.targets[i][j]
-            program = Prog
+            self.program = Prog
             self.cursor = 0
             result = self.run()
             fit += abs( result - self.targets[i][self.varnumber])
@@ -142,7 +141,7 @@ class TinyGP:
     def print_indiv(self, buffer: str, buffercounter: int ) -> int:
         a1=0
         a2: int
-        if ( ord(buffer[buffercounter]) < FSET_START ):
+        if ord(buffer[buffercounter]) < FSET_START:
             if ( ord(buffer[buffercounter]) < self.varnumber ):
                 print( "X" + str(ord(buffer[buffercounter]) + 1) + " ", end="")
             else:
@@ -177,16 +176,12 @@ class TinyGP:
 
     def create_random_indiv(self, depth: int) -> list[chr]:
         ind: str
-        global buffer
-        len_: int = self.grow( buffer, 0, MAX_LEN, depth )
-        # print(f"len: {len_}")
+        len_: int = self.grow( self.buffer, 0, MAX_LEN, depth )
 
-        while (len_ < 0 ):
-            len_ = self.grow( buffer, 0, MAX_LEN, depth )
+        while len_ < 0:
+            len_ = self.grow( self.buffer, 0, MAX_LEN, depth )
 
-        from copy import deepcopy
-        ind = deepcopy(buffer)
-        # print(f"|{ind}|{buffer}|")
+        ind = deepcopy(self.buffer)
 
         return ind
 
