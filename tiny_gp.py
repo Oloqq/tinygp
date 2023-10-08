@@ -9,7 +9,7 @@ MAX_LEN = 10000
 POPSIZE = 1000
 DEPTH   = 5
 GENERATIONS = 100
-TSIZE = 2
+TOURNAMENT_SIZE = 2
 PMUT_PER_NODE  = 0.05
 # CROSSOVER_PROB = 0.9
 CROSSOVER_PROB = 0.5
@@ -33,8 +33,32 @@ class Params:
                 "\nMIN_RANDOM="+str(self.minrandom)+
                 "\nMAX_RANDOM="+str(self.maxrandom)+
                 "\nGENERATIONS="+str(GENERATIONS)+
-                "\nTSIZE="+str(TSIZE)+
+                "\nTSIZE="+str(TOURNAMENT_SIZE)+
                 "\n----------------------------------\n")
+
+def tournament(fitness: list[float], tournament_size: int) -> int:
+    best: int = random.randint(0, len(fitness) - 1)
+    competitor: int
+    fbest: float = -1.0e34
+
+    for _ in range(tournament_size):
+        competitor = random.randint(0, len(fitness) - 1)
+        if fitness[competitor] > fbest:
+            fbest = fitness[competitor]
+            best = competitor
+    return best
+
+def negative_tournament( fitness: list[float], tsize: int ) -> int:
+    worst = random.randint(0, len(fitness) - 1)
+    competitor: int
+    fworst = 1e34
+
+    for _ in range(tsize):
+        competitor = random.randint(0, len(fitness) - 1)
+        if ( fitness[competitor] < fworst ):
+            fworst = fitness[competitor]
+            worst = competitor
+    return worst
 
 class TinyGP:
     def __init__(self, filename: str, set_seed: int|None):
@@ -45,9 +69,11 @@ class TinyGP:
         self.varnumber: int
         self.fitnesscases: int
         self.randomnumber: int
-        self.fbestpop = 0.0
+        self.best_fitness = 0.0
         self.program: str
         self.buffer: list[chr] = ['\0'] * MAX_LEN
+
+        self.generation = 0
 
         set_seed = set_seed or datetime.now().timestamp()
         random.seed(set_seed)
@@ -59,7 +85,6 @@ class TinyGP:
             self.x[i] = random.random() * (self.params.maxrandom-self.params.minrandom) + self.params.minrandom
 
         self.population: list[str] = self.random_population(POPSIZE, DEPTH, self.fitness)
-        self.stats(0)
 
     def run(self) -> float:
         primitive: str = ord(self.program[self.cursor])
@@ -210,50 +235,26 @@ class TinyGP:
         return population
 
 
-    def stats(self, gen: int):
+    def stats(self):
         best = random.randint(0, POPSIZE - 1)
         node_count = 0
-        self.fbestpop = self.fitness[best]
+        self.best_fitness = self.fitness[best]
         favgpop = 0.0
 
         for i in range(POPSIZE):
             node_count += self.traverse( self.population[i], 0 )
             favgpop += self.fitness[i]
-            if ( self.fitness[i] > self.fbestpop ):
+            if ( self.fitness[i] > self.best_fitness ):
                 best = i
-                self.fbestpop = self.fitness[i]
+                self.best_fitness = self.fitness[i]
         avg_len = float(node_count) / POPSIZE
         favgpop /= POPSIZE
-        print("Generation="+str(gen)+" Avg Fitness="+str(-favgpop)+
-                " Best Fitness="+str(-self.fbestpop)+" Avg Size="+str(avg_len)+
+        print("Generation="+str(self.generation)+" Avg Fitness="+str(-favgpop)+
+                " Best Fitness="+str(-self.best_fitness)+" Avg Size="+str(avg_len)+
                 "\nBest Individual: ")
 
         self.print_indiv( self.population[best], 0 )
         print( "\n");
-
-    def tournament(self, fitness: list[float], tsize: int ) -> int:
-        best: int = random.randint(0, POPSIZE - 1)
-        competitor: int
-        fbest: float = -1.0e34
-
-        for _ in range(tsize):
-            competitor = random.randint(0, POPSIZE - 1)
-            if ( fitness[competitor] > fbest ):
-                fbest = fitness[competitor]
-                best = competitor
-        return( best )
-
-    def negative_tournament(self,  fitness: list[float], tsize: int ) -> int:
-        worst = random.randint(0, POPSIZE - 1)
-        competitor: int
-        fworst = 1e34
-
-        for _ in range(tsize):
-            competitor = random.randint(0, POPSIZE - 1)
-            if ( fitness[competitor] < fworst ):
-                fworst = fitness[competitor];
-                worst = competitor;
-        return( worst )
 
     def crossover(self, parent1: str, parent2: str) -> str:
         xo1start: int; xo1end: int; xo2start: int; xo2end: int
@@ -296,33 +297,35 @@ class TinyGP:
     def evolve(self):
         print("-- TINY GP (Python version) --\n")
         print(self.params)
-        gen: int = 0
+
         offspring: int
         parent1: int
         parent2: int
         parent: int
         newfit: float
         newind: str
-        self.stats(0 )
-        for gen in range(1, GENERATIONS):
-            if (  self.fbestpop > -1e-5 ):
-                print("PROBLEM SOLVED\n");
-                exit( 0 );
+
+        self.stats()
+
+        for self.generation in range(1, GENERATIONS):
+            if self.best_fitness > -1e-5:
+                print("PROBLEM SOLVED\n")
+                exit(0)
             for _ in range(POPSIZE):
-                if ( random.random() < CROSSOVER_PROB  ):
-                    parent1 = self.tournament( self.fitness, TSIZE );
-                    parent2 = self.tournament( self.fitness, TSIZE );
-                    newind = self.crossover( self.population[parent1], self.population[parent2] );
+                if random.random() < CROSSOVER_PROB:
+                    parent1 = tournament(self.fitness, TOURNAMENT_SIZE)
+                    parent2 = tournament(self.fitness, TOURNAMENT_SIZE)
+                    newind = self.crossover(self.population[parent1], self.population[parent2])
                 else:
-                    parent = self.tournament( self.fitness, TSIZE );
-                    newind = self.mutation( self.population[parent], PMUT_PER_NODE );
-                newfit = self.fitness_function( newind );
-                offspring = self.negative_tournament( self.fitness, TSIZE );
+                    parent = tournament( self.fitness, TOURNAMENT_SIZE )
+                    newind = self.mutation( self.population[parent], PMUT_PER_NODE )
+                newfit = self.fitness_function( newind )
+                offspring = negative_tournament( self.fitness, TOURNAMENT_SIZE )
                 self.population[offspring] = newind
-                self.fitness[offspring] = newfit;
-            self.stats(gen );
-        print("PROBLEM *NOT* SOLVED\n");
-        exit( 1 );
+                self.fitness[offspring] = newfit
+            self.stats()
+        print("PROBLEM *NOT* SOLVED\n")
+        exit(1)
 
 def main(args):
     if len(args) == 3:
