@@ -70,10 +70,6 @@ class Executor():
         self.cursor = 0
         self.x = x
 
-    def run(program: Program, x) -> float:
-        e = Executor(program, x)
-        return e.advance()
-
     def advance(self) -> float:
         primitive: Opcode = self.program[self.cursor]
         self.cursor += 1
@@ -94,6 +90,9 @@ class Executor():
             else:
                 return( num / den )
         raise Exception("run should never get here")
+
+def execute(program: Program, x) -> float:
+    return Executor(program, x).advance()
 
 class TinyGP:
     def __init__(self, filename: str, set_seed: int|None):
@@ -163,7 +162,7 @@ class TinyGP:
         for i in range(self.fitnesscases):
             for j in range(self.varnumber):
                 self.x[j] = self.targets[i][j]
-            result = Executor.run(prog, self.x)
+            result = execute(prog, self.x)
             fit += abs( result - self.targets[i][self.varnumber])
         return -fit
 
