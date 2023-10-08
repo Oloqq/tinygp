@@ -64,16 +64,45 @@ def negative_tournament( fitness: list[float], tsize: int ) -> int:
             worst = competitor
     return worst
 
+class Executor():
+    def __init__(self, program: Program, x):
+        self.program = program
+        self.cursor = 0
+        self.x = x
+
+    def run(program: Program, x) -> float:
+        e = Executor(program, x)
+        return e.advance()
+
+    def advance(self) -> float:
+        primitive: Opcode = self.program[self.cursor]
+        self.cursor += 1
+        if ( primitive < FSET_START ):
+            return(self.x[primitive])
+
+        if primitive == ADD:
+            return( self.advance() + self.advance() )
+        elif primitive == SUB:
+            return( self.advance() - self.advance() )
+        elif primitive == MUL:
+            return( self.advance() * self.advance() )
+        elif primitive == DIV:
+            num = self.advance()
+            den = self.advance()
+            if ( abs( den ) <= 0.001 ):
+                return( num )
+            else:
+                return( num / den )
+        raise Exception("run should never get here")
+
 class TinyGP:
     def __init__(self, filename: str, set_seed: int|None):
         self.fitness: list[float] = [0.0 for _ in range(POPSIZE)]
         self.x: list[float] = [0.0] * FSET_START
-        self.cursor = 0
         self.targets: list[list[float]] = []
         self.varnumber: int
         self.fitnesscases: int
         self.randomnumber: int
-        self.program: Program
         self.buffer: Program = [0] * MAX_LEN
 
         self.generation = 0
@@ -88,26 +117,6 @@ class TinyGP:
             self.x[i] = random.random() * (self.params.maxrandom-self.params.minrandom) + self.params.minrandom
 
         self.population: list[Program] = self.random_population(POPSIZE, DEPTH, self.fitness)
-
-    def run(self) -> float:
-        primitive: Opcode = self.program[self.cursor]
-        self.cursor += 1
-        if ( primitive < FSET_START ):
-            return(self.x[primitive])
-        if primitive == ADD:
-            return( self.run() + self.run() )
-        elif primitive == SUB:
-            return( self.run() - self.run() )
-        elif primitive == MUL:
-            return( self.run() * self.run() )
-        elif primitive == DIV:
-            num = self.run()
-            den = self.run()
-            if ( abs( den ) <= 0.001 ):
-                return( num )
-            else:
-                return( num / den );
-        raise Exception("run should never get here")
 
     def traverse(self, buffer: str, buffercount: int ) -> int:
         if buffer[buffercount] < FSET_START:
@@ -154,9 +163,7 @@ class TinyGP:
         for i in range(self.fitnesscases):
             for j in range(self.varnumber):
                 self.x[j] = self.targets[i][j]
-            self.program = prog
-            self.cursor = 0
-            result = self.run()
+            result = Executor.run(prog, self.x)
             fit += abs( result - self.targets[i][self.varnumber])
         return -fit
 
