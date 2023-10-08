@@ -42,8 +42,6 @@ class TinyGP:
         self.x: list[float] = [0.0] * FSET_START
         self.cursor = 0
         self.targets: list[list[float]] = []
-        self.minrandom: float
-        self.maxrandom: float
         self.varnumber: int
         self.fitnesscases: int
         self.randomnumber: int
@@ -51,17 +49,14 @@ class TinyGP:
         self.program: str
         self.buffer: list[chr] = ['\0'] * MAX_LEN
 
-        if set_seed != None:
-            random.seed(set_seed)
-            self.params = Params(seed=set_seed, minrandom=0, maxrandom=0)
-        else:
-            set_seed = datetime.now().timestamp()
-            random.seed(set_seed)
-            self.params = Params(seed=set_seed, minrandom=0, maxrandom=0)
+        set_seed = set_seed or datetime.now().timestamp()
+        random.seed(set_seed)
 
-        self.setup_fitness(filename)
+        self.params = self.read_problem(filename)
+        self.params.seed = set_seed
+
         for i in range(FSET_START):
-            self.x[i] = random.random() * (self.maxrandom-self.minrandom) + self.minrandom
+            self.x[i] = random.random() * (self.params.maxrandom-self.params.minrandom) + self.params.minrandom
 
         self.pop: list[str] = self.create_random_pop(POPSIZE, DEPTH, self.fitness)
         self.stats(self.fitness, self.pop, 0)
@@ -98,7 +93,7 @@ class TinyGP:
         raise Exception("run should never get here")
 
 
-    def setup_fitness(self, fname: str):
+    def read_problem(self, fname: str) -> Params:
         try:
             line: str
             file = open(fname)
@@ -106,8 +101,8 @@ class TinyGP:
             tokens = line.split()
             self.varnumber = int(tokens[0])
             self.randomnumber = int(tokens[1])
-            self.minrandom =	float(tokens[2])
-            self.maxrandom =  float(tokens[3])
+            minrandom =	float(tokens[2])
+            maxrandom =  float(tokens[3])
             self.fitnesscases = int(tokens[4])
             self.targets = [[0.0] * (self.varnumber+1) for _ in range(self.fitnesscases)]
             for i in range(self.fitnesscases):
@@ -119,11 +114,12 @@ class TinyGP:
             file.close()
         except FileExistsError as e:
             print("ERROR: Please provide a data file")
-            exit(0)
+            exit(1)
         except Exception as e:
             print("ERROR: Incorrect data format")
             print(e)
-            exit(0)
+            exit(1)
+        return Params(None, minrandom, maxrandom)
 
     def fitness_function(self, Prog: str) -> float:
         fit = 0.0
