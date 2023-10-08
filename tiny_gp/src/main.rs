@@ -13,29 +13,57 @@ struct Params {
     max_random: f32,
     varnumber: i32,
     random_number: i32, // what is this
+    max_len: usize,
+    popsize: usize,
+    depth: usize,
+    crossover_prob: f32,
+    pmut_per_node: f32,
+    tournament_size: usize,
 }
 
-const MAX_LEN: usize = 10000;
-const POPSIZE: usize = 100000;
-const DEPTH: usize = 5;
-const CROSSOVER_PROB: f32 = 0.9;
-const PMUT_PER_NODE: f32 = 0.05;
-const TOURNAMENT_SIZE: usize = 2;
+impl Default for Params {
+    fn default() -> Self {
+        Self {
+            seed: Default::default(),
+            min_random: Default::default(),
+            max_random: Default::default(),
+            varnumber: Default::default(),
+            random_number: Default::default(),
+            max_len: 10000,
+            popsize: 100000,
+            depth: 5,
+            crossover_prob: 0.9,
+            pmut_per_node: 0.05,
+            tournament_size: 2,
+        }
+    }
+}
 
 impl Display for Params {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let seed = self.seed;
-        let snr = self.min_random;
-        let sxr = self.max_random;
-        f.write_str(format!("SEED={seed}\nMAX_LEN={MAX_LEN})
-POPSIZE={POPSIZE}
-DEPTH={DEPTH})
-CROSSOVER_PROB={CROSSOVER_PROB})
-PMUT_PER_NODE={PMUT_PER_NODE})
-MIN_RANDOM={snr})
-MAX_RANDOM={sxr})
-TSIZE={TOURNAMENT_SIZE})
-----------------------------------\n").as_str())
+        f.write_str(
+            format!(
+                "SEED={}\nMAX_LEN={})
+POPSIZE={}
+DEPTH={})
+CROSSOVER_PROB={})
+PMUT_PER_NODE={})
+MIN_RANDOM={})
+MAX_RANDOM={})
+TSIZE={})
+----------------------------------\n",
+                self.seed,
+                self.max_len,
+                self.popsize,
+                self.depth,
+                self.crossover_prob,
+                self.pmut_per_node,
+                self.min_random,
+                self.max_random,
+                self.tournament_size
+            )
+            .as_str(),
+        )
     }
 }
 
@@ -67,6 +95,7 @@ fn read_problem(data: String) -> Result<(Params, Vec<Case>), Berror> {
             max_random,
             varnumber,
             random_number,
+            ..Default::default()
         },
         cases,
     ))
@@ -75,18 +104,35 @@ fn read_problem(data: String) -> Result<(Params, Vec<Case>), Berror> {
 struct TinyGP {
     params: Params,
     cases: Vec<Case>,
+    generation: i32,
 }
 
 impl TinyGP {
+    fn new(params: Params, cases: Vec<Case>) -> TinyGP {
+        TinyGP {
+            params,
+            cases,
+            generation: 0,
+        }
+    }
+
     pub fn from_problem(filename: &str) -> Result<TinyGP, Berror> {
         let content = fs::read_to_string(filename)?;
         println!("{content}");
         let (params, cases) = read_problem(content)?;
-        Ok(TinyGP { params, cases })
+        Ok(TinyGP::new(params, cases))
     }
 
     pub fn evolve(&self, generations: usize) {
-        println!("-- TINY GP (Rust version) --\nGENERATIONS={generations}\n{}", self.params);
+        println!(
+            "-- TINY GP (Rust version) --\nGENERATIONS={generations}\n{}",
+            self.params
+        );
+        self.stats()
+    }
+
+    fn stats(&self) {
+
     }
 }
 
