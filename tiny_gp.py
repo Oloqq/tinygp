@@ -300,15 +300,7 @@ class TinyGP:
         print("-- TINY GP (Python version) --\n")
         print(self.params)
 
-        offspring: int
-        parent1: int
-        parent2: int
-        parent: int
-        newfit: float
-        newind: str
-
         best_fitness = self.summarize_generation()
-
         for self.generation in range(1, GENERATIONS):
             if best_fitness > -1e-5:
                 print("PROBLEM SOLVED\n")
@@ -317,14 +309,13 @@ class TinyGP:
                 if random.random() < CROSSOVER_PROB:
                     parent1 = tournament(self.fitness, TOURNAMENT_SIZE)
                     parent2 = tournament(self.fitness, TOURNAMENT_SIZE)
-                    newind = self.crossover(self.population[parent1], self.population[parent2])
+                    child = self.crossover(self.population[parent1], self.population[parent2])
                 else:
                     parent = tournament( self.fitness, TOURNAMENT_SIZE )
-                    newind = self.mutation( self.population[parent], PMUT_PER_NODE )
-                newfit = self.fitness_function( newind )
-                offspring = negative_tournament( self.fitness, TOURNAMENT_SIZE )
-                self.population[offspring] = newind
-                self.fitness[offspring] = newfit
+                    child = self.mutation( self.population[parent], PMUT_PER_NODE )
+                child_index = negative_tournament( self.fitness, TOURNAMENT_SIZE )
+                self.population[child_index] = child
+                self.fitness[child_index] = self.fitness_function(child)
             best_fitness = self.summarize_generation()
         print("PROBLEM *NOT* SOLVED\n")
         exit(1)
