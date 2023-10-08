@@ -65,16 +65,16 @@ def negative_tournament( fitness: list[float], tsize: int ) -> int:
     return worst
 
 class Executor():
-    def __init__(self, program: Program, x):
+    def __init__(self, program: Program, variables):
         self.program = program
         self.cursor = 0
-        self.x = x
+        self.variables = variables
 
     def advance(self) -> float:
         primitive: Opcode = self.program[self.cursor]
         self.cursor += 1
         if ( primitive < FSET_START ):
-            return(self.x[primitive])
+            return(self.variables[primitive])
 
         if primitive == ADD:
             return( self.advance() + self.advance() )
@@ -97,7 +97,6 @@ def execute(program: Program, x) -> float:
 class TinyGP:
     def __init__(self, filename: str, set_seed: int|None):
         self.fitness: list[float] = [0.0 for _ in range(POPSIZE)]
-        self.x: list[float] = [0.0] * FSET_START
         self.targets: list[list[float]] = []
         self.varnumber: int
         self.fitnesscases: int
@@ -112,8 +111,9 @@ class TinyGP:
         self.params = self.read_problem(filename)
         self.params.seed = set_seed
 
+        self.variables: list[float] = [0.0] * FSET_START
         for i in range(FSET_START):
-            self.x[i] = random.random() * (self.params.maxrandom-self.params.minrandom) + self.params.minrandom
+            self.variables[i] = random.random() * (self.params.maxrandom-self.params.minrandom) + self.params.minrandom
 
         self.population: list[Program] = self.random_population(POPSIZE, DEPTH, self.fitness)
 
@@ -160,9 +160,8 @@ class TinyGP:
     def fitness_function(self, prog: Program) -> float:
         fit = 0.0
         for i in range(self.fitnesscases):
-            for j in range(self.varnumber):
-                self.x[j] = self.targets[i][j]
-            result = execute(prog, self.x)
+            self.variables[:self.varnumber] = self.targets[i][:self.varnumber]
+            result = execute(prog, self.variables)
             fit += abs( result - self.targets[i][self.varnumber])
         return -fit
 
@@ -193,7 +192,7 @@ class TinyGP:
             if buffer[buffercounter] < self.varnumber:
                 print( "X" + str(buffer[buffercounter] + 1) + " ", end="")
             else:
-                print( self.x[buffer[buffercounter]], end="")
+                print( self.variables[buffer[buffercounter]], end="")
             buffercounter += 1
             return buffercounter
         comp = buffer[buffercounter]
@@ -257,6 +256,7 @@ class TinyGP:
         print(f"Generation={self.generation} Avg Fitness={-average_fitness} \
                 Best Fitness={-best_fitness} Avg Size={avg_len}")
         print("Best Individual: ")
+        print(self.population[best])
         self.print_indiv( self.population[best], 0 )
         print()
         return best_fitness

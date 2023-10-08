@@ -1,5 +1,7 @@
 #![allow(dead_code, unused_variables)]
 
+use rand::prelude::*;
+use rand::SeedableRng;
 use std::error::Error;
 use std::fmt::Display;
 use std::fs;
@@ -7,8 +9,18 @@ use std::fs;
 type Berror = Box<dyn Error>;
 type Case = Vec<f32>;
 
+const ADD: usize = 110;
+const SUB: usize = 111;
+const MUL: usize = 112;
+const DIV: usize = 113;
+const FSET_START: usize = ADD;
+const FSET_END: usize = DIV;
+
+type Opcode = usize;
+type Program = Vec<Opcode>;
+
 struct Params {
-    seed: i32,
+    seed: u64,
     min_random: f32,
     max_random: f32,
     varnumber: i32,
@@ -67,6 +79,28 @@ TSIZE={})
     }
 }
 
+fn execute(program: &Program, variables: &Vec<f32>, cursor: &mut usize) -> f32 {
+    let opcode = program[*cursor];
+    *cursor += 1;
+
+    assert!(opcode <= FSET_END);
+    return match opcode {
+        ADD => execute(program, variables, cursor) + execute(program, variables, cursor),
+        SUB => execute(program, variables, cursor) - execute(program, variables, cursor),
+        MUL => execute(program, variables, cursor) * execute(program, variables, cursor),
+        DIV => {
+            let numerator = execute(program, variables, cursor);
+            let denominator = execute(program, variables, cursor);
+            if denominator.abs() <= 0.001 {
+                numerator
+            } else {
+                numerator / denominator
+            }
+        }
+        _ => variables[opcode],
+    };
+}
+
 fn read_problem(data: String) -> Result<(Params, Vec<Case>), Berror> {
     let lines: Vec<&str> = data.split('\n').collect();
     // println!("line {:?}", lines);
@@ -102,6 +136,7 @@ fn read_problem(data: String) -> Result<(Params, Vec<Case>), Berror> {
 }
 
 struct TinyGP {
+    rand: StdRng,
     params: Params,
     cases: Vec<Case>,
     generation: i32,
@@ -110,6 +145,7 @@ struct TinyGP {
 impl TinyGP {
     fn new(params: Params, cases: Vec<Case>) -> TinyGP {
         TinyGP {
+            rand: StdRng::seed_from_u64(params.seed),
             params,
             cases,
             generation: 0,
@@ -123,7 +159,7 @@ impl TinyGP {
         Ok(TinyGP::new(params, cases))
     }
 
-    pub fn evolve(&self, generations: usize) {
+    pub fn evolve(&mut self, generations: usize) {
         println!(
             "-- TINY GP (Rust version) --\nGENERATIONS={generations}\n{}",
             self.params
@@ -131,8 +167,9 @@ impl TinyGP {
         self.stats()
     }
 
-    fn stats(&self) {
-
+    fn stats(&mut self) {
+        // let best = self.rand.gen_range(0, self.params.popsize);
+        // let mut node_count = 0;
     }
 }
 
@@ -140,7 +177,7 @@ fn main() {
     let seed: Option<i32> = Some(3);
     let filename = "../linear.dat";
 
-    let tgp = TinyGP::from_problem(filename).unwrap();
+    let mut tgp = TinyGP::from_problem(filename).unwrap();
     tgp.evolve(100);
 }
 
@@ -173,5 +210,21 @@ mod tests {
         assert_eq!(param.max_random, 5.0);
 
         assert_eq!(cases.len(), 10);
+    }
+
+    #[test]
+    fn test_execute() {
+        let program = vec![110, 0, 113, 1, 1];
+        assert_eq!(2.0, execute(&program, &vec![1.0, -2.0], &mut 0));
+
+        let program = vec![111, 0, 113, 1, 2];
+        assert_eq!(
+            0.8776571,
+            execute(
+                &program,
+                &vec![0.0, -4.025456902691228, 4.58659426408455],
+                &mut 0
+            )
+        );
     }
 }
