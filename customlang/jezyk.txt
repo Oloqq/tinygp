@@ -1,0 +1,29 @@
+program = block RETURN reg
+
+expr
+    = ADD expr expr
+    | SUB expr expr
+    | MUL expr expr
+    | DIV expr expr
+    | LT expr expr
+    | GT expr expr
+    | NUM
+    | reg
+
+stat
+    = load
+    | if
+    | while
+
+block
+    = stat* blockend
+
+blockend = ELSE | FI
+
+if = IF expr THEN block ELSE block END
+
+while = WHILE expr DO END
+
+load = LOAD reg expr
+
+reg = R NUM

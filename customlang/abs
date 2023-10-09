@@ -1,0 +1,8 @@
+< R0 = x, output >
+IF GT R0 0
+  THEN
+ELSE
+  LOAD R0 MUL R0 -1
+FI
+
+RETURN R0
