@@ -21,17 +21,18 @@ pub struct TinyGP {
     params: Params,
     cases: Vec<Case>,
     generation: i32,
-    // population: Vec<Program>,
+    population: Vec<Program>,
     fitness: Vec<f32>,
     variables: Vec<f32>,
 }
 
 impl TinyGP {
     fn new(params: Params, cases: Vec<Case>) -> TinyGP {
-        // let (population, fitness) = self.init_population();
+        let (population, fitness) = random_population(&params);
         TinyGP {
             rand: StdRng::seed_from_u64(params.seed),
-            fitness: Vec::with_capacity(params.popsize),
+            fitness,
+            population,
             params,
             cases,
             generation: 0,
@@ -62,6 +63,26 @@ impl TinyGP {
         // let best = self.rand.gen_range(0, self.params.popsize);
         // let mut node_count = 0;
     }
+}
+
+fn create_random_indiv(depth: usize) -> Program {
+    todo!();
+}
+
+fn fitness_func(program: &Program) -> f32 {
+    todo!()
+}
+
+fn random_population(p: &Params) -> (Vec<Program>, Vec<f32>) {
+    let mut population = Vec::with_capacity(p.popsize);
+    let mut fitness = Vec::with_capacity(p.popsize);
+
+    for i in 0..p.popsize {
+        population[i] = create_random_indiv(p.depth);
+        fitness[i] = fitness_func(&population[i]);
+    }
+
+    return (population, fitness);
 }
 
 fn execute(program: &Program, variables: &Vec<f32>, cursor: &mut usize) -> f32 {
