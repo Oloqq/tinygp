@@ -195,9 +195,7 @@ class TinyGP:
         # choose non terminal or terminal until depth is reached
         # then choose only terminals
 
-        randbool = random.randint(0, 1) == 0  # TEMP for keeping seed
-
-        if depth > 0 and randbool:
+        if depth > 0 and random.choice([True, False]):
             new_operation = random_operation()
             assert new_operation in [ADD, SUB, MUL, DIV]
             program[pos] = new_operation
@@ -248,9 +246,7 @@ class TinyGP:
 
     def create_random_indiv(self, depth: int) -> list[chr]:
         buffer: Program = [0] * MAX_LEN
-        length: int = self.grow(buffer, 0, depth)
-        while length < 0:
-            length = self.grow(buffer, 0, depth)
+        self.grow(buffer, 0, depth)
         return deepcopy(buffer)
 
     def random_population(self, n: int, depth: int, fitness: list[float]) -> list[str]:
