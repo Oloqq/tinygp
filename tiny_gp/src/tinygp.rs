@@ -28,7 +28,7 @@ pub struct TinyGP {
 
 impl TinyGP {
     fn new(params: Params, cases: Vec<Case>) -> TinyGP {
-        let (population, fitness) = random_population(&params);
+        let (population, fitness) = random_population(&params, &cases);
         TinyGP {
             rand: StdRng::seed_from_u64(params.seed),
             fitness,
@@ -69,17 +69,21 @@ fn create_random_indiv(depth: usize) -> Program {
     todo!();
 }
 
-fn fitness_func(program: &Program) -> f32 {
-    todo!()
+fn fitness_func(program: &Program, cases: &Vec<Case>) -> f32 {
+    cases.iter().fold(0.0, |acc, (inputs, targets)| {
+        let output = execute(program, inputs, &mut 0);
+        let error = (output - targets[0]).abs();
+        acc - error
+    })
 }
 
-fn random_population(p: &Params) -> (Vec<Program>, Vec<f32>) {
+fn random_population(p: &Params, cases: &Vec<Case>) -> (Vec<Program>, Vec<f32>) {
     let mut population = Vec::with_capacity(p.popsize);
     let mut fitness = Vec::with_capacity(p.popsize);
 
     for i in 0..p.popsize {
         population[i] = create_random_indiv(p.depth);
-        fitness[i] = fitness_func(&population[i]);
+        fitness[i] = fitness_func(&population[i], cases);
     }
 
     return (population, fitness);
@@ -113,10 +117,11 @@ mod tests {
 
     #[test]
     fn test_execute() {
-        let program = vec![110, 0, 113, 1, 1];
-        assert_eq!(2.0, execute(&program, &vec![1.0, -2.0], &mut 0));
+        let program = vec![ADD, 0, DIV, 1, 1];
+        let data = vec![1.0, -2.0];
+        assert_eq!(2.0, execute(&program, &data, &mut 0));
 
-        let program = vec![111, 0, 113, 1, 2];
+        let program = vec![SUB, 0, DIV, 1, 2];
         assert_eq!(
             0.8776571,
             execute(
@@ -125,5 +130,18 @@ mod tests {
                 &mut 0
             )
         );
+    }
+
+    #[test]
+    fn test_fitness() {
+        let program = vec![ADD, 0, DIV, 1, 1];
+
+        let cases: Vec<Case> = vec![(vec![1.0, 2.0], vec![2.0])];
+        let result = fitness_func(&program, &cases);
+        assert_eq!(result, 0.0);
+
+        let cases: Vec<Case> = vec![(vec![1.0, 2.0], vec![0.0]), (vec![1.0, 2.0], vec![0.0])];
+        let result = fitness_func(&program, &cases);
+        assert_eq!(result, -4.0);
     }
 }

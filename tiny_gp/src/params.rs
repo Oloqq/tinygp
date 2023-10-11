@@ -1,6 +1,6 @@
 use std::{error::Error, fmt::Display};
 
-pub type Case = Vec<f32>;
+pub type Case = (Vec<f32>, Vec<f32>);
 
 pub struct Params {
     pub seed: u64,
@@ -34,8 +34,13 @@ impl Params {
                 .split([' ', '\t'])
                 .filter(|t| !t.is_empty())
                 .collect();
-            let case: Case = tokens.iter().map(|t| t.parse().unwrap()).collect();
-            cases.push(case);
+            let floats = tokens
+                .iter()
+                .map(|t| t.parse().unwrap())
+                .collect::<Vec<f32>>();
+            let (inputs, targets) = floats.split_at(varnumber as usize);
+
+            cases.push((Vec::from(inputs), Vec::from(targets)));
         }
 
         Ok((
