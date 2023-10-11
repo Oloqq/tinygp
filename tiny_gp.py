@@ -191,25 +191,28 @@ class TinyGP:
             fit += abs(result - self.targets[i][self.varnumber])
         return -fit
 
-    def grow(self, buffer: str, pos: int, max: int, depth: int) -> int:
+    def grow(self, program: str, pos: int, max: int, depth: int) -> bool:
+        # choose non terminal or terminal until depth is reached
+        # then choose only terminals
+
         if pos >= max:
             return -1
 
-        tmp = random.randint(0, 1)  # TEMP for keeping seed
-        initial = pos != 0 and tmp == 0
+        randbool = random.randint(0, 1) == 0  # TEMP for keeping seed
+        make_terminal = pos != 0 and randbool
 
-        if depth == 0 or initial:
-            new_prim = random.randint(0, self.varnumber + self.constnumbers - 1)
-            buffer[pos] = new_prim
+        if depth == 0 or make_terminal:
+            new_terminal = random.randint(0, self.varnumber + self.constnumbers - 1)
+            program[pos] = new_terminal
             return pos + 1
         else:
-            new_prim = random_operation()
-            assert new_prim in [ADD, SUB, MUL, DIV]
-            buffer[pos] = new_prim
-            one_child = self.grow(buffer, pos + 1, max, depth - 1)
-            if one_child < 0:
+            new_operation = random_operation()
+            assert new_operation in [ADD, SUB, MUL, DIV]
+            program[pos] = new_operation
+            after_first_child = self.grow(program, pos + 1, max, depth - 1)
+            if after_first_child < 0:
                 return -1
-            return self.grow(buffer, one_child, max, depth - 1)
+            return self.grow(program, after_first_child, max, depth - 1)
 
     def print_indiv(self, program: str, cursor: int) -> int:
         a1 = 0

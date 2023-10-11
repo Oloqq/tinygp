@@ -65,6 +65,8 @@ impl TinyGP {
     }
 }
 
+fn grow(program: &mut Program) {}
+
 fn create_random_indiv(depth: usize) -> Program {
     todo!();
 }
