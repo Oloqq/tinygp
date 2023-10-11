@@ -122,7 +122,6 @@ class TinyGP:
         self.varnumber: int
         self.fitnesscases: int
         self.constnumbers: int
-        self.buffer: Program = [0] * MAX_LEN
 
         self.generation = 0
 
@@ -143,14 +142,14 @@ class TinyGP:
             POPSIZE, DEPTH, self.fitness
         )
 
-    def traverse(self, buffer: str, buffercount: int) -> int:
-        if buffer[buffercount] < FSET_START:
-            buffercount += 1
-            return buffercount
+    def traverse(self, program: str, cursor: int) -> int:
+        if program[cursor] < FSET_START:
+            cursor += 1
+            return cursor
 
-        if buffer[buffercount] in [ADD, SUB, MUL, DIV]:
-            buffercount += 1
-            return self.traverse(buffer, self.traverse(buffer, buffercount))
+        if program[cursor] in [ADD, SUB, MUL, DIV]:
+            cursor += 1
+            return self.traverse(program, self.traverse(program, cursor))
 
         raise Exception("run should never get here")
 
@@ -212,48 +211,48 @@ class TinyGP:
                 return -1
             return self.grow(buffer, one_child, max, depth - 1)
 
-    def print_indiv(self, buffer: str, buffercounter: int) -> int:
+    def print_indiv(self, program: str, cursor: int) -> int:
         a1 = 0
         a2: int
-        if buffer[buffercounter] < FSET_START:
-            if buffer[buffercounter] < self.varnumber:
-                print("X" + str(buffer[buffercounter] + 1) + " ", end="")
+        if program[cursor] < FSET_START:
+            if program[cursor] < self.varnumber:
+                print("X" + str(program[cursor] + 1) + " ", end="")
             else:
-                print(self.variables[buffer[buffercounter]], end="")
-            buffercounter += 1
-            return buffercounter
-        comp = buffer[buffercounter]
+                print(self.variables[program[cursor]], end="")
+            cursor += 1
+            return cursor
+        comp = program[cursor]
         if comp == ADD:
             print("(", end="")
-            buffercounter += 1
-            a1 = self.print_indiv(buffer, buffercounter)
+            cursor += 1
+            a1 = self.print_indiv(program, cursor)
             print(" + ", end="")
         if comp == SUB:
             print("(", end="")
-            buffercounter += 1
-            a1 = self.print_indiv(buffer, buffercounter)
+            cursor += 1
+            a1 = self.print_indiv(program, cursor)
             print(" - ", end="")
         if comp == MUL:
             print("(", end="")
-            buffercounter += 1
-            a1 = self.print_indiv(buffer, buffercounter)
+            cursor += 1
+            a1 = self.print_indiv(program, cursor)
             print(" * ", end="")
         if comp == DIV:
             print("(", end="")
-            buffercounter += 1
-            a1 = self.print_indiv(buffer, buffercounter)
+            cursor += 1
+            a1 = self.print_indiv(program, cursor)
             print(" / ", end="")
 
-        a2 = self.print_indiv(buffer, a1)
+        a2 = self.print_indiv(program, a1)
         print(")", end="")
         return a2
 
     def create_random_indiv(self, depth: int) -> list[chr]:
-        length: int = self.grow(self.buffer, 0, MAX_LEN, depth)
-        print(f"grew {length}")
+        buffer: Program = [0] * MAX_LEN
+        length: int = self.grow(buffer, 0, MAX_LEN, depth)
         while length < 0:
-            length = self.grow(self.buffer, 0, MAX_LEN, depth)
-        return deepcopy(self.buffer)
+            length = self.grow(buffer, 0, MAX_LEN, depth)
+        return deepcopy(buffer)
 
     def random_population(self, n: int, depth: int, fitness: list[float]) -> list[str]:
         population: list[int] = [0] * n
@@ -285,7 +284,7 @@ class TinyGP:
                 Best Fitness={-best_fitness} Avg Size={avg_len}"
         )
         print("Best Individual: ")
-        print(self.population[best])
+        # print(self.population[best])
         self.print_indiv(self.population[best], 0)
         print()
         return best_fitness
