@@ -3,6 +3,7 @@ use rand::SeedableRng;
 use std::error::Error;
 use std::fs;
 
+use crate::params;
 use crate::params::Case;
 use crate::params::Params;
 
@@ -28,9 +29,10 @@ pub struct TinyGP {
 
 impl TinyGP {
     fn new(params: Params, cases: Vec<Case>) -> TinyGP {
-        let (population, fitness) = random_population(&params, &cases);
+        let mut rand = StdRng::seed_from_u64(params.seed);
+        let (population, fitness) = random_population(&params, &cases, &mut rand);
         TinyGP {
-            rand: StdRng::seed_from_u64(params.seed),
+            rand,
             fitness,
             population,
             params,
@@ -65,10 +67,25 @@ impl TinyGP {
     }
 }
 
-fn grow(program: &mut Program) {}
+// choose non terminal or terminal until depth is reached, then choose only terminals
+fn grow(program: &mut Program, depth: usize, params: &Params, rand: &mut StdRng) {
+    if depth > 0 && rand.gen_bool(0.5) {
+        let operation = rand.gen_range(FSET_START, FSET_END + 1);
+        assert!([ADD, SUB, MUL, DIV].contains(&operation));
+        program.push(operation);
+        // grow operands
+        grow(program, depth - 1, params, rand);
+        grow(program, depth - 1, params, rand);
+    } else {
+        let terminal: usize = rand.gen_range(0, params.varnumber + params.const_numbers) as usize;
+        program.push(terminal);
+    }
+}
 
-fn create_random_indiv(depth: usize) -> Program {
-    todo!();
+fn create_random_indiv(params: &Params, rand: &mut StdRng) -> Program {
+    let mut program: Program = Vec::with_capacity(2 * params.depth);
+    grow(&mut program, params.depth, params, rand);
+    program
 }
 
 fn fitness_func(program: &Program, cases: &Vec<Case>) -> f32 {
@@ -79,12 +96,16 @@ fn fitness_func(program: &Program, cases: &Vec<Case>) -> f32 {
     })
 }
 
-fn random_population(p: &Params, cases: &Vec<Case>) -> (Vec<Program>, Vec<f32>) {
-    let mut population = Vec::with_capacity(p.popsize);
-    let mut fitness = Vec::with_capacity(p.popsize);
+fn random_population(
+    params: &Params,
+    cases: &Vec<Case>,
+    rand: &mut StdRng,
+) -> (Vec<Program>, Vec<f32>) {
+    let mut population = Vec::with_capacity(params.popsize);
+    let mut fitness = Vec::with_capacity(params.popsize);
 
-    for i in 0..p.popsize {
-        population[i] = create_random_indiv(p.depth);
+    for i in 0..params.popsize {
+        population[i] = create_random_indiv(params, rand);
         fitness[i] = fitness_func(&population[i], cases);
     }
 
@@ -115,6 +136,8 @@ fn execute(program: &Program, variables: &Vec<f32>, cursor: &mut usize) -> f32 {
 
 #[cfg(test)]
 mod tests {
+    use rand::rngs::mock::StepRng;
+
     use super::*;
 
     #[test]
@@ -145,5 +168,28 @@ mod tests {
         let cases: Vec<Case> = vec![(vec![1.0, 2.0], vec![0.0]), (vec![1.0, 2.0], vec![0.0])];
         let result = fitness_func(&program, &cases);
         assert_eq!(result, -4.0);
+    }
+
+    fn mock_params() -> Params {
+        Params {
+            seed: 1,
+            min_random: -1.0,
+            max_random: 1.0,
+            varnumber: 2,
+            const_numbers: 2,
+            popsize: 10,
+            depth: 3,
+            crossover_prob: 0.9,
+            pmut_per_node: 0.1,
+            tournament_size: 2,
+        }
+    }
+
+    #[test]
+    fn test_grow_depth_0() {
+        let mut program = Vec::new();
+        let mut rand: StdRng = StdRng::seed_from_u64(1);
+        grow(&mut program, 0, &mock_params(), &mut rand);
+        assert!(program.len() == 1)
     }
 }

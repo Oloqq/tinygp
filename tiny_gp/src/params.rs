@@ -8,7 +8,6 @@ pub struct Params {
     pub max_random: f32,
     pub varnumber: i32,
     pub const_numbers: i32,
-    pub max_len: usize,
     pub popsize: usize,
     pub depth: usize,
     pub crossover_prob: f32,
@@ -65,7 +64,6 @@ impl Default for Params {
             max_random: Default::default(),
             varnumber: Default::default(),
             const_numbers: Default::default(),
-            max_len: 10000,
             popsize: 100000,
             depth: 5,
             crossover_prob: 0.9,
@@ -79,7 +77,7 @@ impl Display for Params {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.write_str(
             format!(
-                "SEED={}\nMAX_LEN={})
+"SEED={})
 POPSIZE={}
 DEPTH={})
 CROSSOVER_PROB={})
@@ -89,7 +87,6 @@ MAX_RANDOM={})
 TSIZE={})
 ----------------------------------\n",
                 self.seed,
-                self.max_len,
                 self.popsize,
                 self.depth,
                 self.crossover_prob,
