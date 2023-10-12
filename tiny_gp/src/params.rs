@@ -13,6 +13,7 @@ pub struct Params {
     pub crossover_prob: f32,
     pub pmut_per_node: f32,
     pub tournament_size: usize,
+    pub acceptable_error: f32
 }
 
 impl Params {
@@ -69,6 +70,7 @@ impl Default for Params {
             crossover_prob: 0.9,
             pmut_per_node: 0.05,
             tournament_size: 2,
+            acceptable_error: -1e-5
         }
     }
 }
