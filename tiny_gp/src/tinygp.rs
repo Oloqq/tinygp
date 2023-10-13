@@ -30,7 +30,10 @@ pub struct TinyGP {
 impl TinyGP {
     fn new(params: Params, cases: Vec<Case>) -> TinyGP {
         let mut rand = StdRng::seed_from_u64(params.seed);
-        let (population, fitness) = random_population(&params, &cases, &mut rand);
+        let variables: Vec<f32> = (0..FSET_START)
+            .map(|_| rand.gen_range(params.min_random, params.max_random))
+            .collect();
+        let (population, fitness) = random_population(&params, &cases, &mut rand, &variables);
         TinyGP {
             rand,
             fitness,
@@ -38,7 +41,7 @@ impl TinyGP {
             params,
             cases,
             generation: 0,
-            variables: Vec::with_capacity(FSET_START),
+            variables,
         }
     }
 
@@ -50,6 +53,7 @@ impl TinyGP {
         let content = fs::read_to_string(filename)?;
         println!("{content}");
         let (params, cases) = Params::from_string(content)?;
+        println!("{}", cases.len());
         Ok(TinyGP::new(params, cases))
     }
 
@@ -145,9 +149,11 @@ fn create_random_indiv(params: &Params, rand: &mut StdRng) -> Program {
     program
 }
 
-fn fitness_func(program: &Program, cases: &Vec<Case>) -> f32 {
+fn fitness_func(program: &Program, cases: &Vec<Case>, variables: &Vec<f32>) -> f32 {
+    let mut vars = variables.clone();
     cases.iter().fold(0.0, |acc, (inputs, targets)| {
-        let output = execute(program, inputs, &mut 0);
+        vars.splice(0..inputs.len(), inputs.iter().cloned());
+        let output = execute(program, &vars, &mut 0);
         let error = (output - targets[0]).abs();
         acc - error
     })
@@ -157,13 +163,14 @@ fn random_population(
     params: &Params,
     cases: &Vec<Case>,
     rand: &mut StdRng,
+    variables: &Vec<f32>,
 ) -> (Vec<Program>, Vec<f32>) {
     let mut population = Vec::with_capacity(params.popsize);
     let mut fitness = Vec::with_capacity(params.popsize);
 
     for i in 0..params.popsize {
-        population[i] = create_random_indiv(params, rand);
-        fitness[i] = fitness_func(&population[i], cases);
+        population.push(create_random_indiv(params, rand));
+        fitness.push(fitness_func(&population[i], cases, variables));
     }
 
     return (population, fitness);
@@ -193,6 +200,7 @@ fn execute(program: &Program, variables: &Vec<f32>, cursor: &mut usize) -> f32 {
 
 #[cfg(test)]
 mod tests {
+
     use super::*;
 
     #[test]
@@ -213,15 +221,31 @@ mod tests {
     }
 
     #[test]
+    fn test_replace() {
+        let mut vars = vec![1; 2];
+        vars.push(1);
+        let inputs = vec![9];
+        let x: Vec<i32> = vars
+            .splice(0..inputs.len(), inputs.iter().cloned())
+            .collect();
+        assert_eq!(vars.len(), 3);
+        assert_eq!(vars[0], 9);
+        assert_eq!(vars[1], 1);
+        assert_eq!(vars[2], 1);
+    }
+
+    #[test]
     fn test_fitness() {
         let program = vec![ADD, 0, DIV, 1, 1];
 
-        let cases: Vec<Case> = vec![(vec![1.0, 2.0], vec![2.0])];
-        let result = fitness_func(&program, &cases);
+        let cases: Vec<Case> = vec![(vec![1.0], vec![2.0])];
+        let mut variables: Vec<f32> = vec![0.0; 1];
+        variables.push(2.0);
+        let result = fitness_func(&program, &cases, &variables);
         assert_eq!(result, 0.0);
 
-        let cases: Vec<Case> = vec![(vec![1.0, 2.0], vec![0.0]), (vec![1.0, 2.0], vec![0.0])];
-        let result = fitness_func(&program, &cases);
+        let cases: Vec<Case> = vec![(vec![1.0], vec![0.0]), (vec![1.0, 2.0], vec![0.0])];
+        let result = fitness_func(&program, &cases, &variables);
         assert_eq!(result, -4.0);
     }
 
@@ -237,7 +261,7 @@ mod tests {
             crossover_prob: 0.9,
             pmut_per_node: 0.1,
             tournament_size: 2,
-            acceptable_error: -1e-5
+            acceptable_error: -1e-5,
         }
     }
 

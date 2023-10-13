@@ -13,7 +13,7 @@ pub struct Params {
     pub crossover_prob: f32,
     pub pmut_per_node: f32,
     pub tournament_size: usize,
-    pub acceptable_error: f32
+    pub acceptable_error: f32,
 }
 
 impl Params {
@@ -70,7 +70,7 @@ impl Default for Params {
             crossover_prob: 0.9,
             pmut_per_node: 0.05,
             tournament_size: 2,
-            acceptable_error: -1e-5
+            acceptable_error: -1e-5,
         }
     }
 }
@@ -79,7 +79,7 @@ impl Display for Params {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.write_str(
             format!(
-"SEED={})
+                "SEED={})
 POPSIZE={}
 DEPTH={})
 CROSSOVER_PROB={})
@@ -126,10 +126,14 @@ mod tests {
             Err(_) => panic!("Read problem failed"),
         };
 
-        assert_eq!(param.seed, 5);
         assert_eq!(param.min_random, -5.0);
         assert_eq!(param.max_random, 5.0);
+        assert_eq!(param.varnumber, 1);
 
         assert_eq!(cases.len(), 10);
+        cases.iter().for_each(|(inputs, targets)| {
+            assert_eq!(inputs.len(), 1);
+            assert_eq!(targets.len(), 1);
+        });
     }
 }
