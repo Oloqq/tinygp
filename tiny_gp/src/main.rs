@@ -1,17 +1,19 @@
-#![allow(dead_code, unused_variables)]
-
 mod params;
 mod tinygp;
-
-use std::error::Error;
+use structopt::StructOpt;
 use tinygp::TinyGP;
 
-type Berror = Box<dyn Error>;
+#[derive(StructOpt, Debug)]
+struct Args {
+    #[structopt(short, long)]
+    seed: Option<u64>,
+
+    problemfile: String,
+}
 
 fn main() {
-    let seed: Option<u64> = Some(3);
-    let filename = "../linear.dat";
+    let args = Args::from_args();
 
-    let mut tgp = TinyGP::from_problem(filename, seed.unwrap()).unwrap();
+    let mut tgp = TinyGP::from_problem(&args.problemfile, args.seed).unwrap();
     tgp.evolve(100);
 }

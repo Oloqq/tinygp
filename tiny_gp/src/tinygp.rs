@@ -27,8 +27,11 @@ pub struct TinyGP {
 }
 
 impl TinyGP {
-    fn new(params: Params, cases: Vec<Case>) -> TinyGP {
-        let mut rand = StdRng::seed_from_u64(params.seed);
+    fn new(mut params: Params, cases: Vec<Case>, seed: Option<u64>) -> TinyGP {
+        let seed = seed.unwrap_or(StdRng::from_entropy().next_u64());
+        let mut rand = StdRng::seed_from_u64(seed);
+        params.seed = seed;
+
         println!("Creating variables");
         let variables: Vec<f32> = (0..FSET_START)
             .map(|_| rand.gen_range(params.min_random, params.max_random))
@@ -46,17 +49,12 @@ impl TinyGP {
         }
     }
 
-    fn init_population(&self) -> Vec<Program> {
-        vec![]
-    }
-
-    pub fn from_problem(filename: &str, seed: u64) -> Result<TinyGP, Box<dyn Error>> {
+    pub fn from_problem(filename: &str, seed: Option<u64>) -> Result<TinyGP, Box<dyn Error>> {
         let content = fs::read_to_string(filename)?;
         println!("{content}");
-        let (mut params, cases) = Params::from_string(content)?;
-        params.seed = seed as u64;
+        let (params, cases) = Params::from_string(content)?;
         println!("{}", cases.len());
-        Ok(TinyGP::new(params, cases))
+        Ok(TinyGP::new(params, cases, seed))
     }
 
     pub fn evolve(&mut self, generations: usize) {
@@ -338,6 +336,7 @@ fn get_expression_end(program: &Program, start: usize) -> usize {
     }
 }
 
+#[allow(unused)]
 fn pprint_recurse(program: &Program, cursor: &mut usize, buffer: &mut String, indent: usize) {
     if *cursor >= program.len() {
         return;
@@ -369,6 +368,7 @@ fn pprint_recurse(program: &Program, cursor: &mut usize, buffer: &mut String, in
     }
 }
 
+#[allow(unused)]
 fn pprint(program: &Program) {
     let mut s = String::new();
     let mut cursor = 0;
@@ -403,9 +403,7 @@ mod tests {
         let mut vars = vec![1; 2];
         vars.push(1);
         let inputs = vec![9];
-        let x: Vec<i32> = vars
-            .splice(0..inputs.len(), inputs.iter().cloned())
-            .collect();
+        vars.splice(0..inputs.len(), inputs.iter().cloned());
         assert_eq!(vars.len(), 3);
         assert_eq!(vars[0], 9);
         assert_eq!(vars[1], 1);
@@ -453,7 +451,7 @@ mod tests {
 
     #[test]
     fn test_print_indiv() {
-        let t = TinyGP::new(mock_params(), Vec::new());
+        let t = TinyGP::new(mock_params(), Vec::new(), Some(5));
         let s = t.equation_string(&vec![ADD, 0, 0]);
         assert_eq!(s, "(X1 + X1)")
     }

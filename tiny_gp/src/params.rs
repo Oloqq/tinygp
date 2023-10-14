@@ -19,7 +19,6 @@ pub struct Params {
 impl Params {
     pub fn from_string(data: String) -> Result<(Params, Vec<Case>), Box<dyn Error>> {
         let lines: Vec<&str> = data.split('\n').collect();
-        // println!("line {:?}", lines);
         let header: Vec<&str> = lines[0].trim().split([' ', '\t']).collect();
         let varnumber: usize = header[0].parse()?;
         let const_number: usize = header[1].parse()?;
