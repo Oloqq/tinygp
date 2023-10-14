@@ -9,9 +9,9 @@ use tinygp::TinyGP;
 type Berror = Box<dyn Error>;
 
 fn main() {
-    let seed: Option<i32> = Some(3);
+    let seed: Option<u64> = Some(3);
     let filename = "../linear.dat";
 
-    let mut tgp = TinyGP::from_problem(filename).unwrap();
+    let mut tgp = TinyGP::from_problem(filename, seed.unwrap()).unwrap();
     tgp.evolve(100);
 }

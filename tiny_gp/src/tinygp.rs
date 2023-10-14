@@ -53,10 +53,11 @@ impl TinyGP {
         vec![]
     }
 
-    pub fn from_problem(filename: &str) -> Result<TinyGP, Box<dyn Error>> {
+    pub fn from_problem(filename: &str, seed: u64) -> Result<TinyGP, Box<dyn Error>> {
         let content = fs::read_to_string(filename)?;
         println!("{content}");
-        let (params, cases) = Params::from_string(content)?;
+        let (mut params, cases) = Params::from_string(content)?;
+        params.seed = seed as u64;
         println!("{}", cases.len());
         Ok(TinyGP::new(params, cases))
     }
@@ -89,30 +90,60 @@ impl TinyGP {
                     tournament(&self.fitness, self.params.tournament_size, &mut self.rand);
                 let mother_id =
                     tournament(&self.fitness, self.params.tournament_size, &mut self.rand);
-                child_program =
-                    self.crossover(&self.population[father_id], &self.population[mother_id]);
+                child_program = self.crossover(father_id, mother_id);
             } else {
                 let parent = tournament(&self.fitness, self.params.tournament_size, &mut self.rand);
+                println!("mutation");
                 child_program = self.mutation(parent);
             };
             let child_index =
                 negative_tournament(&self.fitness, self.params.tournament_size, &mut self.rand);
+            println!("calculating fitness of");
+            pprint(&child_program);
             self.fitness[child_index] = fitness_func(&child_program, &self.cases, &self.variables);
             self.population[child_index] = child_program;
         }
     }
 
-    fn crossover(&self, father: &Program, mother: &Program) -> Program {
-        todo!()
+    fn crossover(&mut self, father_id: usize, mother_id: usize) -> Program {
+        let father = &self.population[father_id];
+        let mother = &self.population[mother_id];
+
+        println!("crossover");
+        pprint(&father);
+        pprint(&mother);
+
+        let len1 = father.len();
+        let len2 = mother.len();
+
+        let xo1start = self.rand.gen_range(0, len1);
+        let xo1end = get_expression_end(father, xo1start);
+
+        let xo2start = self.rand.gen_range(0, len2);
+        let xo2end = get_expression_end(mother, xo2start);
+
+        let lenoff = xo1start + (xo2end - xo2start) + (len1 - xo1end);
+
+        let mut offspring: Program = Vec::with_capacity(lenoff);
+
+        offspring.extend_from_slice(&father[0..xo1start]);
+        offspring.extend_from_slice(&mother[xo2start..xo2end]);
+        offspring.extend_from_slice(&father[xo1end..len1]);
+
+        pprint(&offspring);
+
+        offspring
     }
 
     fn mutation(&mut self, parent_id: usize) -> Program {
         let parent = &self.population[parent_id];
+        // println!("parent");
+        // pprint(&parent);
         let mut child = Vec::with_capacity(parent.len());
-        for i in 0..child.len() {
+        for i in 0..parent.len() {
+            let replacement: Opcode;
             if self.rand.gen_bool(self.params.pmut_per_node as f64) {
                 let opcode = parent[i];
-                let replacement: Opcode;
 
                 if opcode < FSET_START {
                     let terminal = self
@@ -125,9 +156,10 @@ impl TinyGP {
                 } else {
                     panic!("Unrecognized opcode appeared in program: {}", opcode);
                 }
-
-                child.push(replacement);
+            } else {
+                replacement = parent[i];
             }
+            child.push(replacement);
         }
         child
     }
@@ -311,6 +343,54 @@ fn execute(program: &Program, variables: &Vec<f32>, cursor: &mut usize) -> f32 {
     };
 }
 
+fn get_expression_end(program: &Program, start: usize) -> usize {
+    if program[start] < FSET_START {
+        return start + 1;
+    } else if program[start] < FSET_END {
+        return get_expression_end(program, get_expression_end(program, start + 1));
+    } else {
+        panic!("malformed program: {:?}", program);
+    }
+}
+
+fn pprint_recurse(program: &Program, cursor: &mut usize, buffer: &mut String, indent: usize) {
+    if *cursor >= program.len() {
+        return;
+    }
+
+    let opcode = program[*cursor];
+    *cursor += 1;
+    if opcode < FSET_START {
+        *buffer += format!("{}{}\n", str::repeat(" ", indent), opcode).as_str();
+    } else if opcode < FSET_END {
+        *buffer += format!(
+            "{}{}\n",
+            str::repeat(" ", indent),
+            match opcode {
+                ADD => "ADD",
+                SUB => "SUB",
+                MUL => "MUL",
+                DIV => "DIV",
+                _ => unreachable!(),
+            }
+        )
+        .as_str();
+
+        pprint_recurse(program, cursor, buffer, indent + 2);
+        pprint_recurse(program, cursor, buffer, indent + 2);
+    } else {
+        *buffer += "broken\n";
+        pprint_recurse(program, cursor, buffer, 0);
+    }
+}
+
+fn pprint(program: &Program) {
+    let mut s = String::new();
+    let mut cursor = 0;
+    pprint_recurse(program, &mut cursor, &mut s, 0);
+    println!("{}", s);
+}
+
 #[cfg(test)]
 mod tests {
 
@@ -391,5 +471,80 @@ mod tests {
         let t = TinyGP::new(mock_params(), Vec::new());
         let s = t.equation_string(&vec![ADD, 0, 0]);
         assert_eq!(s, "(X1 + X1)")
+    }
+
+    #[test]
+    fn test_get_expression_end() {
+        let program = vec![ADD, 0, 0];
+        assert_eq!(get_expression_end(&program, 0), 3);
+        assert_eq!(get_expression_end(&program, 1), 2);
+        assert_eq!(get_expression_end(&program, 2), 3);
+        let program = vec![ADD, ADD, 0, 0, 0];
+        assert_eq!(get_expression_end(&program, 0), 5);
+        assert_eq!(get_expression_end(&program, 1), 4);
+        assert_eq!(get_expression_end(&program, 2), 3);
+        assert_eq!(get_expression_end(&program, 3), 4);
+        assert_eq!(get_expression_end(&program, 4), 5);
+    }
+
+    #[test]
+    fn test_pprint() {
+        let program = vec![ADD, ADD, 0, 0, 0];
+        let mut s = String::new();
+        let mut cursor = 0;
+        pprint_recurse(&program, &mut cursor, &mut s, 0);
+        assert_eq!(
+            "ADD
+  ADD
+    0
+    0
+  0
+",
+            s
+        );
+    }
+
+    #[test]
+    fn test_crossover() {
+        let mut t = TinyGP::new(mock_params(), Vec::new());
+        #[rustfmt::skip]
+        let prog1 = vec![ADD,
+        DIV,
+            86,
+            24,
+        SUB,
+            0,
+            DIV,
+                ADD,
+                    83,
+                    DIV,
+                        51,
+                        84,
+                SUB,
+                    47,
+                    42
+        ];
+
+        #[rustfmt::skip]
+        let prog2 = vec![ADD,
+        SUB,
+            DIV,
+                37,
+                SUB,
+                    31,
+                    79,
+            48,
+        DIV,
+            112,
+            DIV,
+                73,
+                SUB,
+                    5,
+                    38
+        ];
+        t.population.push(prog1);
+        t.population.push(prog2);
+        let child = t.crossover(0, 1);
+        get_expression_end(&child, 0); // basic test for malformed programs
     }
 }

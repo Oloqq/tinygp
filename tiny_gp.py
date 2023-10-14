@@ -302,12 +302,20 @@ class TinyGP:
 
         lenoff = xo1start + (xo2end - xo2start) + (len1 - xo1end)
 
+        offspring = []
+
+        # offspring.extend(parent1[0:xo1start])
+        # offspring.extend(parent2[xo2start:xo2end])
+        # offspring.extend(parent1[xo1end:len1])
+
         offspring = [" "] * lenoff
 
         offspring[0:xo1start] = parent1[0:xo1start]
+
         offspring[xo1start : (xo1start + (xo2end - xo2start))] = parent2[
             xo2start:xo2end
         ]
+
         offspring[
             (xo1start + (xo2end - xo2start)) : (xo1start + (xo2end - xo2start))
             + (len1 - xo1end)
