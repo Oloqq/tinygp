@@ -12,7 +12,7 @@ const SUB: usize = 111;
 const MUL: usize = 112;
 const DIV: usize = 113;
 const FSET_START: usize = ADD;
-const FSET_END: usize = DIV;
+const FSET_END: usize = DIV + 1;
 
 pub type Opcode = usize;
 pub type Program = Vec<Opcode>;
@@ -93,13 +93,13 @@ impl TinyGP {
                 child_program = self.crossover(father_id, mother_id);
             } else {
                 let parent = tournament(&self.fitness, self.params.tournament_size, &mut self.rand);
-                println!("mutation");
+                // println!("mutation");
                 child_program = self.mutation(parent);
             };
             let child_index =
                 negative_tournament(&self.fitness, self.params.tournament_size, &mut self.rand);
-            println!("calculating fitness of");
-            pprint(&child_program);
+            // println!("calculating fitness of");
+            // pprint(&child_program);
             self.fitness[child_index] = fitness_func(&child_program, &self.cases, &self.variables);
             self.population[child_index] = child_program;
         }
@@ -109,9 +109,10 @@ impl TinyGP {
         let father = &self.population[father_id];
         let mother = &self.population[mother_id];
 
-        println!("crossover");
-        pprint(&father);
-        pprint(&mother);
+        // println!("crossover father");
+        // pprint(&father);
+        // println!("crossover mother");
+        // pprint(&mother);
 
         let len1 = father.len();
         let len2 = mother.len();
@@ -130,7 +131,7 @@ impl TinyGP {
         offspring.extend_from_slice(&mother[xo2start..xo2end]);
         offspring.extend_from_slice(&father[xo1end..len1]);
 
-        pprint(&offspring);
+        // pprint(&offspring);
 
         offspring
     }
@@ -276,7 +277,7 @@ fn negative_tournament(fitness: &Vec<f32>, tournament_size: usize, rand: &mut St
 // choose non terminal or terminal until depth is reached, then choose only terminals
 fn grow(program: &mut Program, depth: usize, params: &Params, rand: &mut StdRng) {
     if depth > 0 && rand.gen_bool(0.5) {
-        let operation = rand.gen_range(FSET_START, FSET_END + 1);
+        let operation = rand.gen_range(FSET_START, FSET_END);
         assert!([ADD, SUB, MUL, DIV].contains(&operation));
         program.push(operation);
         // grow operands
@@ -325,7 +326,7 @@ fn execute(program: &Program, variables: &Vec<f32>, cursor: &mut usize) -> f32 {
     let opcode = program[*cursor];
     *cursor += 1;
 
-    assert!(opcode <= FSET_END);
+    assert!(opcode < FSET_END);
     return match opcode {
         ADD => execute(program, variables, cursor) + execute(program, variables, cursor),
         SUB => execute(program, variables, cursor) - execute(program, variables, cursor),
@@ -379,7 +380,7 @@ fn pprint_recurse(program: &Program, cursor: &mut usize, buffer: &mut String, in
         pprint_recurse(program, cursor, buffer, indent + 2);
         pprint_recurse(program, cursor, buffer, indent + 2);
     } else {
-        *buffer += "broken\n";
+        *buffer += format!("broken {}\n", opcode).as_str();
         pprint_recurse(program, cursor, buffer, 0);
     }
 }
