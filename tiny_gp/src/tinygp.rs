@@ -32,9 +32,11 @@ pub struct TinyGP {
 impl TinyGP {
     fn new(params: Params, cases: Vec<Case>) -> TinyGP {
         let mut rand = StdRng::seed_from_u64(params.seed);
+        println!("Creating variables");
         let variables: Vec<f32> = (0..FSET_START)
             .map(|_| rand.gen_range(params.min_random, params.max_random))
             .collect();
+        println!("Creating population");
         let (population, fitness) = random_population(&params, &cases, &mut rand, &variables);
         TinyGP {
             rand,
@@ -66,11 +68,11 @@ impl TinyGP {
         );
         let mut generations = generations;
         let mut best_fitness = self.stats();
-        // while best_fitness < self.params.acceptable_error && generations > 0 {
-        //     generations -= 1;
-        //     self.evolve_generation();
-        //     best_fitness = self.stats();
-        // }
+        while best_fitness < self.params.acceptable_error && generations > 0 {
+            generations -= 1;
+            self.evolve_generation();
+            best_fitness = self.stats();
+        }
 
         if best_fitness > self.params.acceptable_error {
             println!("PROBLEM SOLVED");
@@ -81,18 +83,53 @@ impl TinyGP {
 
     fn evolve_generation(&mut self) {
         for _ in 0..self.params.popsize {
-            let child: Program = if self.rand.gen_bool(self.params.crossover_prob as f64) {
+            let child_program: Program;
+            if self.rand.gen_bool(self.params.crossover_prob as f64) {
                 let father_id =
                     tournament(&self.fitness, self.params.tournament_size, &mut self.rand);
                 let mother_id =
                     tournament(&self.fitness, self.params.tournament_size, &mut self.rand);
-                todo!() //crossover(self.population[father_id], self.population[mother_id]);
+                child_program =
+                    self.crossover(&self.population[father_id], &self.population[mother_id]);
             } else {
                 let parent = tournament(&self.fitness, self.params.tournament_size, &mut self.rand);
-                // mutation()
-                todo!();
+                child_program = self.mutation(parent);
             };
+            let child_index =
+                negative_tournament(&self.fitness, self.params.tournament_size, &mut self.rand);
+            self.fitness[child_index] = fitness_func(&child_program, &self.cases, &self.variables);
+            self.population[child_index] = child_program;
         }
+    }
+
+    fn crossover(&self, father: &Program, mother: &Program) -> Program {
+        todo!()
+    }
+
+    fn mutation(&mut self, parent_id: usize) -> Program {
+        let parent = &self.population[parent_id];
+        let mut child = Vec::with_capacity(parent.len());
+        for i in 0..child.len() {
+            if self.rand.gen_bool(self.params.pmut_per_node as f64) {
+                let opcode = parent[i];
+                let replacement: Opcode;
+
+                if opcode < FSET_START {
+                    let terminal = self
+                        .rand
+                        .gen_range(0, self.params.varnumber + self.params.const_numbers);
+                    replacement = terminal;
+                } else if (opcode >= FSET_START) && (opcode < FSET_END) {
+                    let nonterminal = self.rand.gen_range(FSET_START, FSET_END);
+                    replacement = nonterminal;
+                } else {
+                    panic!("Unrecognized opcode appeared in program: {}", opcode);
+                }
+
+                child.push(replacement);
+            }
+        }
+        child
     }
 
     fn stats(&mut self) -> f32 {
@@ -122,7 +159,7 @@ Avg Size={}",
         );
         println!("Best Individual: ");
         println!("{:?}", self.population[best]);
-        // self.print_indiv(&self.population[best], &mut 0);
+        println!("{}", self.equation_string(&self.population[best]));
 
         best_fitness
     }
