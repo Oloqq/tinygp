@@ -17,6 +17,8 @@ const FSET_END: usize = DIV;
 pub type Opcode = usize;
 pub type Program = Vec<Opcode>;
 
+use core::fmt::Debug;
+
 pub struct TinyGP {
     rand: StdRng,
     params: Params,
@@ -64,11 +66,11 @@ impl TinyGP {
         );
         let mut generations = generations;
         let mut best_fitness = self.stats();
-        while best_fitness < self.params.acceptable_error && generations > 0 {
-            generations -= 1;
-            self.evolve_generation();
-            best_fitness = self.stats();
-        }
+        // while best_fitness < self.params.acceptable_error && generations > 0 {
+        //     generations -= 1;
+        //     self.evolve_generation();
+        //     best_fitness = self.stats();
+        // }
 
         if best_fitness > self.params.acceptable_error {
             println!("PROBLEM SOLVED");
@@ -94,9 +96,83 @@ impl TinyGP {
     }
 
     fn stats(&mut self) -> f32 {
-        // let best = self.rand.gen_range(0, self.params.popsize);
-        // let mut node_count = 0;
-        0.0
+        let mut best = 0;
+        let mut node_count = 0;
+        let mut best_fitness = f32::MIN;
+        let mut avg_fitness = 0.0;
+        let popsize = self.population.len();
+
+        for i in 0..popsize {
+            node_count += self.population[i].len();
+            avg_fitness += self.fitness[i];
+            if self.fitness[i] > best_fitness {
+                best = i;
+                best_fitness = self.fitness[i];
+            }
+        }
+        let avg_len = node_count / popsize;
+        avg_fitness /= popsize as f32;
+
+        println!(
+            "Generation={}
+Avg Fitness={}
+Best Fitness={}
+Avg Size={}",
+            self.generation, -avg_fitness, -best_fitness, avg_len
+        );
+        println!("Best Individual: ");
+        println!("{:?}", self.population[best]);
+        // self.print_indiv(&self.population[best], &mut 0);
+
+        best_fitness
+    }
+
+    pub fn equation_string(&self, program: &Program) -> String {
+        let mut buffer = String::new();
+        self.serialize_equation_string(program, &mut 0, &mut buffer);
+        buffer
+    }
+
+    fn serialize_equation_string(
+        &self,
+        program: &Program,
+        cursor: &mut usize,
+        buffer: &mut String,
+    ) {
+        let opcode = program[*cursor];
+
+        let mut infix = |sign: &str| {
+            *buffer += "(";
+            *cursor += 1;
+            self.serialize_equation_string(program, cursor, buffer);
+            *buffer += sign;
+            *cursor += 1;
+            self.serialize_equation_string(program, cursor, buffer);
+            *buffer += ")";
+        };
+
+        match opcode {
+            ADD => {
+                infix(" + ");
+            }
+            SUB => {
+                infix(" - ");
+            }
+            MUL => {
+                infix(" * ");
+            }
+            DIV => {
+                infix(" / ");
+            }
+            _ => {
+                assert!(opcode < FSET_START);
+                if opcode < self.params.varnumber {
+                    *buffer += format!("X{}", opcode + 1).as_str();
+                } else {
+                    *buffer += format!("{}", self.variables[opcode]).as_str();
+                }
+            }
+        };
     }
 }
 
@@ -154,7 +230,7 @@ fn fitness_func(program: &Program, cases: &Vec<Case>, variables: &Vec<f32>) -> f
     cases.iter().fold(0.0, |acc, (inputs, targets)| {
         vars.splice(0..inputs.len(), inputs.iter().cloned());
         let output = execute(program, &vars, &mut 0);
-        let error = (output - targets[0]).abs();
+        let error = (output - targets[0]).abs(); //TEMP one output
         acc - error
     })
 }
@@ -271,5 +347,12 @@ mod tests {
         let mut rand: StdRng = StdRng::seed_from_u64(1);
         grow(&mut program, 0, &mock_params(), &mut rand);
         assert!(program.len() == 1)
+    }
+
+    #[test]
+    fn test_print_indiv() {
+        let t = TinyGP::new(mock_params(), Vec::new());
+        let s = t.equation_string(&vec![ADD, 0, 0]);
+        assert_eq!(s, "(X1 + X1)")
     }
 }

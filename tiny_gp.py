@@ -340,6 +340,7 @@ class TinyGP:
 
         best_fitness = self.summarize_generation()
         for self.generation in range(1, GENERATIONS):
+            print(best_fitness)
             if best_fitness > -1e-5:
                 print("PROBLEM SOLVED\n")
                 exit(0)

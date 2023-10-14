@@ -6,8 +6,8 @@ pub struct Params {
     pub seed: u64,
     pub min_random: f32,
     pub max_random: f32,
-    pub varnumber: i32,
-    pub const_numbers: i32,
+    pub varnumber: usize,
+    pub const_numbers: usize,
     pub popsize: usize,
     pub depth: usize,
     pub crossover_prob: f32,
@@ -21,8 +21,8 @@ impl Params {
         let lines: Vec<&str> = data.split('\n').collect();
         // println!("line {:?}", lines);
         let header: Vec<&str> = lines[0].trim().split([' ', '\t']).collect();
-        let varnumber: i32 = header[0].parse()?;
-        let random_number: i32 = header[1].parse()?;
+        let varnumber: usize = header[0].parse()?;
+        let const_number: usize = header[1].parse()?;
         let min_random: f32 = header[2].parse()?;
         let max_random: f32 = header[3].parse()?;
         let num_cases: usize = header[4].parse()?;
@@ -38,7 +38,7 @@ impl Params {
                 .iter()
                 .map(|t| t.parse().unwrap())
                 .collect::<Vec<f32>>();
-            let (inputs, targets) = floats.split_at(varnumber as usize);
+            let (inputs, targets) = floats.split_at(varnumber);
 
             cases.push((Vec::from(inputs), Vec::from(targets)));
         }
@@ -49,7 +49,7 @@ impl Params {
                 min_random,
                 max_random,
                 varnumber,
-                const_numbers: random_number,
+                const_numbers: const_number,
                 ..Default::default()
             },
             cases,
@@ -79,14 +79,14 @@ impl Display for Params {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.write_str(
             format!(
-                "SEED={})
+                "SEED={}
 POPSIZE={}
-DEPTH={})
-CROSSOVER_PROB={})
-PMUT_PER_NODE={})
-MIN_RANDOM={})
-MAX_RANDOM={})
-TSIZE={})
+DEPTH={}
+CROSSOVER_PROB={}
+PMUT_PER_NODE={}
+MIN_RANDOM={}
+MAX_RANDOM={}
+TSIZE={}
 ----------------------------------\n",
                 self.seed,
                 self.popsize,
