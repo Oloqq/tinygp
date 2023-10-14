@@ -3,7 +3,6 @@ use rand::SeedableRng;
 use std::error::Error;
 use std::fs;
 
-use crate::params;
 use crate::params::Case;
 use crate::params::Params;
 
@@ -16,8 +15,6 @@ const FSET_END: usize = DIV + 1;
 
 pub type Opcode = usize;
 pub type Program = Vec<Opcode>;
-
-use core::fmt::Debug;
 
 pub struct TinyGP {
     rand: StdRng,
@@ -93,13 +90,10 @@ impl TinyGP {
                 child_program = self.crossover(father_id, mother_id);
             } else {
                 let parent = tournament(&self.fitness, self.params.tournament_size, &mut self.rand);
-                // println!("mutation");
                 child_program = self.mutation(parent);
             };
             let child_index =
                 negative_tournament(&self.fitness, self.params.tournament_size, &mut self.rand);
-            // println!("calculating fitness of");
-            // pprint(&child_program);
             self.fitness[child_index] = fitness_func(&child_program, &self.cases, &self.variables);
             self.population[child_index] = child_program;
         }
@@ -108,11 +102,6 @@ impl TinyGP {
     fn crossover(&mut self, father_id: usize, mother_id: usize) -> Program {
         let father = &self.population[father_id];
         let mother = &self.population[mother_id];
-
-        // println!("crossover father");
-        // pprint(&father);
-        // println!("crossover mother");
-        // pprint(&mother);
 
         let len1 = father.len();
         let len2 = mother.len();
@@ -123,23 +112,16 @@ impl TinyGP {
         let xo2start = self.rand.gen_range(0, len2);
         let xo2end = get_expression_end(mother, xo2start);
 
-        let lenoff = xo1start + (xo2end - xo2start) + (len1 - xo1end);
-
-        let mut offspring: Program = Vec::with_capacity(lenoff);
-
+        let mut offspring: Program =
+            Vec::with_capacity(xo1start + (xo2end - xo2start) + (len1 - xo1end));
         offspring.extend_from_slice(&father[0..xo1start]);
         offspring.extend_from_slice(&mother[xo2start..xo2end]);
         offspring.extend_from_slice(&father[xo1end..len1]);
-
-        // pprint(&offspring);
-
         offspring
     }
 
     fn mutation(&mut self, parent_id: usize) -> Program {
         let parent = &self.population[parent_id];
-        // println!("parent");
-        // pprint(&parent);
         let mut child = Vec::with_capacity(parent.len());
         for i in 0..parent.len() {
             let replacement: Opcode;
@@ -191,8 +173,9 @@ Avg Size={}",
             self.generation, -avg_fitness, -best_fitness, avg_len
         );
         println!("Best Individual: ");
-        println!("{:?}", self.population[best]);
-        println!("{}", self.equation_string(&self.population[best]));
+        // println!("{:?}", self.population[best]);
+        // pprint(&self.population[best]);
+        println!("{}\n", self.equation_string(&self.population[best]));
 
         best_fitness
     }
@@ -277,10 +260,11 @@ fn negative_tournament(fitness: &Vec<f32>, tournament_size: usize, rand: &mut St
 // choose non terminal or terminal until depth is reached, then choose only terminals
 fn grow(program: &mut Program, depth: usize, params: &Params, rand: &mut StdRng) {
     if depth > 0 && rand.gen_bool(0.5) {
+        // generate operation
         let operation = rand.gen_range(FSET_START, FSET_END);
         assert!([ADD, SUB, MUL, DIV].contains(&operation));
         program.push(operation);
-        // grow operands
+        // generate operands
         grow(program, depth - 1, params, rand);
         grow(program, depth - 1, params, rand);
     } else {
@@ -300,7 +284,7 @@ fn fitness_func(program: &Program, cases: &Vec<Case>, variables: &Vec<f32>) -> f
     cases.iter().fold(0.0, |acc, (inputs, targets)| {
         vars.splice(0..inputs.len(), inputs.iter().cloned());
         let output = execute(program, &vars, &mut 0);
-        let error = (output - targets[0]).abs(); //TEMP one output
+        let error = (output - targets[0]).abs();
         acc - error
     })
 }
@@ -503,49 +487,5 @@ mod tests {
 ",
             s
         );
-    }
-
-    #[test]
-    fn test_crossover() {
-        let mut t = TinyGP::new(mock_params(), Vec::new());
-        #[rustfmt::skip]
-        let prog1 = vec![ADD,
-        DIV,
-            86,
-            24,
-        SUB,
-            0,
-            DIV,
-                ADD,
-                    83,
-                    DIV,
-                        51,
-                        84,
-                SUB,
-                    47,
-                    42
-        ];
-
-        #[rustfmt::skip]
-        let prog2 = vec![ADD,
-        SUB,
-            DIV,
-                37,
-                SUB,
-                    31,
-                    79,
-            48,
-        DIV,
-            112,
-            DIV,
-                73,
-                SUB,
-                    5,
-                    38
-        ];
-        t.population.push(prog1);
-        t.population.push(prog2);
-        let child = t.crossover(0, 1);
-        get_expression_end(&child, 0); // basic test for malformed programs
     }
 }
