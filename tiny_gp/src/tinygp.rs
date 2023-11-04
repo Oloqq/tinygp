@@ -63,15 +63,20 @@ impl TinyGP {
             generations, self.params
         );
         let mut generations = generations;
-        let mut best_fitness = self.stats();
+        let (mut best_fitness, mut best_id) = self.stats();
         while best_fitness < self.params.acceptable_error && generations > 0 {
             generations -= 1;
             self.evolve_generation();
-            best_fitness = self.stats();
+            (best_fitness, best_id) = self.stats();
         }
 
-        if best_fitness > self.params.acceptable_error {
+        if best_fitness >= self.params.acceptable_error {
             println!("PROBLEM SOLVED");
+            fs::write(
+                "solution.txt",
+                self.equation_string(&self.population[best_id]),
+            )
+            .unwrap();
         } else {
             println!("PROBLEM UNSOLVED");
         }
@@ -95,6 +100,7 @@ impl TinyGP {
             self.fitness[child_index] = fitness_func(&child_program, &self.cases, &self.variables);
             self.population[child_index] = child_program;
         }
+        self.generation += 1;
     }
 
     fn crossover(&mut self, father_id: usize, mother_id: usize) -> Program {
@@ -145,7 +151,7 @@ impl TinyGP {
         child
     }
 
-    fn stats(&mut self) -> f32 {
+    fn stats(&mut self) -> (f32, usize) {
         let mut best = 0;
         let mut node_count = 0;
         let mut best_fitness = f32::MIN;
@@ -175,7 +181,7 @@ Avg Size={}",
         // pprint(&self.population[best]);
         println!("{}\n", self.equation_string(&self.population[best]));
 
-        best_fitness
+        (best_fitness, best)
     }
 
     pub fn equation_string(&self, program: &Program) -> String {

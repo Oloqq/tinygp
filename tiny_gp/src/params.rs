@@ -69,7 +69,7 @@ impl Default for Params {
             crossover_prob: 0.9,
             pmut_per_node: 0.05,
             tournament_size: 2,
-            acceptable_error: -1e-5,
+            acceptable_error: -1e-3,
         }
     }
 }
