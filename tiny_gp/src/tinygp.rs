@@ -1,7 +1,9 @@
 use rand::prelude::*;
 use rand::SeedableRng;
+use std::cell::RefCell;
 use std::error::Error;
 use std::fs;
+use std::io::Write;
 
 use crate::params::Case;
 use crate::params::Params;
@@ -24,19 +26,20 @@ pub struct TinyGP {
     population: Vec<Program>,
     fitness: Vec<f32>,
     variables: Vec<f32>,
+    writer: RefCell<Box<dyn Write>>,
 }
 
 impl TinyGP {
-    fn new(mut params: Params, cases: Vec<Case>, seed: Option<u64>) -> TinyGP {
+    fn new(mut params: Params, cases: Vec<Case>, seed: Option<u64>, writer: RefCell<Box<dyn Write>>) -> TinyGP {
         let seed = seed.unwrap_or(StdRng::from_entropy().next_u64());
         let mut rand = StdRng::seed_from_u64(seed);
         params.seed = seed;
 
-        println!("Creating variables");
+        writeln!(writer.borrow_mut(), "Creating variables").unwrap();
         let variables: Vec<f32> = (0..FSET_START)
             .map(|_| rand.gen_range(params.min_random, params.max_random))
             .collect();
-        println!("Creating population");
+        writeln!(writer.borrow_mut(), "Creating population").unwrap();
         let (population, fitness) = random_population(&params, &cases, &mut rand, &variables);
         TinyGP {
             rand,
@@ -46,22 +49,24 @@ impl TinyGP {
             cases,
             generation: 0,
             variables,
+            writer: writer.into()
         }
     }
 
-    pub fn from_problem(filename: &str, seed: Option<u64>) -> Result<TinyGP, Box<dyn Error>> {
+    pub fn from_problem(filename: &str, seed: Option<u64>, writer: Box<dyn Write>) -> Result<TinyGP, Box<dyn Error>> {
         let content = fs::read_to_string(filename)?;
-        println!("{content}");
+        let writer = RefCell::new(writer);
+        writeln!(writer.borrow_mut(), "{content}").unwrap();
         let (params, cases) = Params::from_string(content)?;
-        println!("{}", cases.len());
-        Ok(TinyGP::new(params, cases, seed))
+        writeln!(writer.borrow_mut(), "{}", cases.len()).unwrap();
+        Ok(TinyGP::new(params, cases, seed, writer))
     }
 
     pub fn evolve(&mut self, generations: usize) {
-        println!(
+        writeln!(self.writer.borrow_mut(),
             "-- TINY GP (Rust version) --\nGENERATIONS={}\n{}",
             generations, self.params
-        );
+        ).unwrap();
         let mut generations = generations;
         let (mut best_fitness, mut best_id) = self.stats();
         while best_fitness < self.params.acceptable_error && generations > 0 {
@@ -71,14 +76,14 @@ impl TinyGP {
         }
 
         if best_fitness >= self.params.acceptable_error {
-            println!("PROBLEM SOLVED");
+            writeln!(self.writer.borrow_mut(), "PROBLEM SOLVED").unwrap();
             fs::write(
                 "solution.txt",
                 self.equation_string(&self.population[best_id]),
             )
             .unwrap();
         } else {
-            println!("PROBLEM UNSOLVED");
+            writeln!(self.writer.borrow_mut(), "PROBLEM UNSOLVED").unwrap();
         }
     }
 
@@ -169,17 +174,17 @@ impl TinyGP {
         let avg_len = node_count / popsize;
         avg_fitness /= popsize as f32;
 
-        println!(
+        writeln!(self.writer.borrow_mut(),
             "Generation={}
 Avg Fitness={}
 Best Fitness={}
 Avg Size={}",
             self.generation, -avg_fitness, -best_fitness, avg_len
-        );
-        println!("Best Individual: ");
-        // println!("{:?}", self.population[best]);
+        ).unwrap();
+        writeln!(self.writer.borrow_mut(), "Best Individual: ").unwrap();
+        // writeln!(self.writer.borrow_mut(), "{:?}", self.population[best]);
         // pprint(&self.population[best]);
-        println!("{}\n", self.equation_string(&self.population[best]));
+        writeln!(self.writer.borrow_mut(), "{}\n", self.equation_string(&self.population[best])).unwrap();
 
         (best_fitness, best)
     }
@@ -375,17 +380,18 @@ fn pprint_recurse(program: &Program, cursor: &mut usize, buffer: &mut String, in
 }
 
 #[allow(unused)]
-fn pprint(program: &Program) {
+fn pprint(program: &Program, writer: RefCell<Box<dyn Write>>) {
     let mut s = String::new();
     let mut cursor = 0;
     pprint_recurse(program, &mut cursor, &mut s, 0);
-    println!("{}", s);
+    writeln!(writer.borrow_mut(), "{}", s);
 }
 
 #[cfg(test)]
 mod tests {
 
     use super::*;
+    use std::io;
 
     #[test]
     fn test_execute() {
@@ -457,7 +463,7 @@ mod tests {
 
     #[test]
     fn test_print_indiv() {
-        let t = TinyGP::new(mock_params(), Vec::new(), Some(5));
+        let t = TinyGP::new(mock_params(), Vec::new(), Some(5), RefCell::new(Box::new(io::stdout())));
         let s = t.equation_string(&vec![ADD, 0, 0]);
         assert_eq!(s, "(X1 + X1)")
     }
