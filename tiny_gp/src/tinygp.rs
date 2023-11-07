@@ -2,6 +2,7 @@ use rand::prelude::*;
 use rand::SeedableRng;
 use std::cell::RefCell;
 use std::error::Error;
+use std::fmt::write;
 use std::fs;
 use std::io::Write;
 
@@ -56,9 +57,9 @@ impl TinyGP {
     pub fn from_problem(filename: &str, seed: Option<u64>, writer: Box<dyn Write>) -> Result<TinyGP, Box<dyn Error>> {
         let content = fs::read_to_string(filename)?;
         let writer = RefCell::new(writer);
-        writeln!(writer.borrow_mut(), "{content}").unwrap();
+        writeln!(*writer.borrow_mut(), "{content}").unwrap();
         let (params, cases) = Params::from_string(content)?;
-        writeln!(writer.borrow_mut(), "{}", cases.len()).unwrap();
+        writeln!(*writer.borrow_mut(), "{}", cases.len()).unwrap();
         Ok(TinyGP::new(params, cases, seed, writer))
     }
 
