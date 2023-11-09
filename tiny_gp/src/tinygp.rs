@@ -16,6 +16,8 @@ const DIV: usize = 113;
 const FSET_START: usize = ADD;
 const FSET_END: usize = DIV + 1;
 
+const MAX_LEN: usize = 10000;
+
 pub type Opcode = usize;
 pub type Program = Vec<Opcode>;
 
@@ -74,6 +76,7 @@ impl TinyGP {
             generations -= 1;
             self.evolve_generation();
             (best_fitness, best_id) = self.stats();
+            self.writer.borrow_mut().flush().unwrap();
         }
 
         if best_fitness >= self.params.acceptable_error {
@@ -86,6 +89,7 @@ impl TinyGP {
         } else {
             writeln!(self.writer.borrow_mut(), "PROBLEM UNSOLVED").unwrap();
         }
+        self.writer.borrow_mut().flush().unwrap();
     }
 
     fn evolve_generation(&mut self) {
@@ -268,18 +272,25 @@ fn negative_tournament(fitness: &Vec<f32>, tournament_size: usize, rand: &mut St
 }
 
 // choose non terminal or terminal until depth is reached, then choose only terminals
-fn grow(program: &mut Program, depth: usize, params: &Params, rand: &mut StdRng) {
+fn grow(program: &mut Program, depth: usize, params: &Params, rand: &mut StdRng) -> bool {
+    if program.len() >= MAX_LEN {
+        return false;
+    }
+
     if depth > 0 && rand.gen_bool(0.5) {
         // generate operation
         let operation = rand.gen_range(FSET_START, FSET_END);
         assert!([ADD, SUB, MUL, DIV].contains(&operation));
         program.push(operation);
         // generate operands
-        grow(program, depth - 1, params, rand);
-        grow(program, depth - 1, params, rand);
+        if !grow(program, depth - 1, params, rand) {
+            return false;
+        }
+        return grow(program, depth - 1, params, rand);
     } else {
         let terminal: usize = rand.gen_range(0, params.varnumber + params.const_numbers) as usize;
         program.push(terminal);
+        return true
     }
 }
 
