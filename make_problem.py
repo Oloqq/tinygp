@@ -40,11 +40,13 @@ def gen_problem_1d(path, foo, domain, rand, points):
 
 def gen_problem_2d(path, foo, domain, rand, points):
     lines = [f"2 {rand[0]} {rand[1]} {rand[2]} {points}\n"]
-    interval = (domain[1] - domain[0]) / points
+    point_per_dim = math.ceil(math.sqrt(points))
+    interval = (domain[1] - domain[0]) / point_per_dim
 
-    for xi in range(points):
+
+    for xi in range(point_per_dim):
         x = domain[0] + interval * xi
-        for yi in range(points):
+        for yi in range(point_per_dim):
             y = domain[0] + interval * yi
             lines.append(f"{x} {y} {foo(x, y)}\n")
 
