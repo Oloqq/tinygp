@@ -7,6 +7,7 @@ TO = 1000
 FUNC_STR = "x^2 + 3x*y - 7y + 1"
 X1 = np.linspace(FROM, TO, 40)
 X2 = np.linspace(FROM, TO, 40)
+X1, X2 = np.meshgrid(X1, X2)
 FUNC = X1**2 + 3 * X1 * X2 - 7* X2 + 1 
 TITLE = TASK + "\n" + f"{FUNC_STR}, [{FROM}, {TO}]"
 RESULT = \
@@ -25,14 +26,20 @@ def plot_one_dim():
 
 
 def plot_two_dims():
-    ax = plt.axes(projection='3d')
-    ax.scatter3D(X1, X2, RESULT, label="Calculated result")
-    ax.plot3D(X1, X2, FUNC, color='red', label="Original function")
-    plt.xlabel('x')
-    plt.ylabel('y')
-    plt.title(TITLE)
-    plt.grid()
-    plt.legend()
+    fig = plt.figure()
+    fig.set_size_inches(12, 5)
+    ax1 = fig.add_subplot(1, 2, 1, projection='3d')
+    ax2 = fig.add_subplot(1, 2, 2, projection='3d')
+    ax1.plot_surface(X1, X2, RESULT)
+    ax2.plot_surface(X1, X2, FUNC, color='red')
+    ax1.set_xlabel('x')
+    ax2.set_xlabel('x')
+    ax1.set_ylabel('y')
+    ax2.set_ylabel('y')
+    ax1.set_title(TITLE + "\nCalculated result")
+    ax2.set_title(TITLE + "\nOriginal function")
+    ax1.grid()
+    ax2.grid()
     plt.savefig(f"charts/{TASK}.png")
 
 
