@@ -17,8 +17,11 @@ def plot_chart(zadname: str):
     dims_by_func = func_lines[0].count(",") + 1
     formula = func_lines[1] \
         .partition('return ')[2] \
+        .replace(" ** ", "^") \
         .replace("**", "^") \
-        .replace("*", "")
+        .replace(" * ", "") \
+        .replace("*", "") \
+        .replace("np.", "")
 
     with open(f"{SOLUTION_DIR}/{zadname}.dat") as f:
         lines = f.readlines()
@@ -39,9 +42,11 @@ def plot_chart(zadname: str):
     FUNC_STR = formula
     variables = []
     for _ in range(dims):
-        variables.append(np.linspace(FROM, TO, 40))
+        variables.append(np.linspace(FROM, TO, 80))
     X1 = variables[0]
-    X2 = variables[1]
+    if dims > 1:
+        X2 = variables[1]
+        X1, X2 = np.meshgrid(X1, X2)
     FUNC = original_func(*variables)
     TITLE = TASK + "\n" + f"{FUNC_STR}, [{FROM}, {TO}]"
     RESULT = eval(best_solution)
@@ -57,12 +62,14 @@ def plot_chart(zadname: str):
         plt.savefig(f"{CHART_DIR}/{TASK}.png")
 
     def plot_two_dims():
+        z_result = eval(best_solution)
+        z_original = original_func(X1, X2)
         fig = plt.figure()
         fig.set_size_inches(12, 5)
         ax1 = fig.add_subplot(1, 2, 1, projection='3d')
         ax2 = fig.add_subplot(1, 2, 2, projection='3d')
-        ax1.plot_surface(X1, X2, RESULT)
-        ax2.plot_surface(X1, X2, FUNC, color='red')
+        ax1.plot_surface(X1, X2, z_result)
+        ax2.plot_surface(X1, X2, z_original, color='red')
         ax1.set_xlabel('x')
         ax2.set_xlabel('x')
         ax1.set_ylabel('y')

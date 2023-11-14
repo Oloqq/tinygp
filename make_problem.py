@@ -1,4 +1,5 @@
 import math
+import numpy as np
 
 # I didn't test this generic one
 
@@ -57,17 +58,19 @@ def zad1(x):
         return 5 * x**3 - 2 * x**2 + 3 * x - 17
 
 def zad2(x):
-        return math.sin(x) + math.cos(x)
+        return np.sin(x) + np.cos(x)
 
 def zad3(x):
-        return 2 * math.log(x + 1)
+        return 2 * np.log(x + 1)
 
 def zad4(x, y):
         return x + 2 * y
 
 def zad5(x, y):
-        # return math.sin(x/2) + 2 * math.cos(x) # chyba na upelu jest zadanie zapisane z bledem
-        return math.sin(x/2) + 2 * math.cos(y) # zakladam ze mialo byc cos(y)
+        return np.sin(x/2) + 2 * np.cos(y)
+        # zakladam ze mialo byc cos(y)
+        # return n.spin(x/2) + 2 * n.cos(x)
+        # chyba na upelu jest zadanie zapisane z bledem
 
 def zad6(x, y):
         return x**2 + 3*x*y - 7*y + 1
