@@ -1,52 +1,84 @@
+import sys
 import matplotlib.pyplot as plt
 import numpy as np
+import make_problem
+import inspect
 
-TASK = "zad" + "6d"
-FROM = -1000
-TO = 1000
-FUNC_STR = "x^2 + 3x*y - 7y + 1"
-X1 = np.linspace(FROM, TO, 40)
-X2 = np.linspace(FROM, TO, 40)
-X1, X2 = np.meshgrid(X1, X2)
-FUNC = X1**2 + 3 * X1 * X2 - 7* X2 + 1 
-TITLE = TASK + "\n" + f"{FUNC_STR}, [{FROM}, {TO}]"
-RESULT = \
-(((((X2 - 2.1299076) * (-6.2663555 + X1)) + ((((((13.4580765 + (-6.8516254 + (16.390755 / -14.378085))) - (9.343437 + X2)) + ((X1 + ((-18.584103 / -11.538987) * (X1 / -2.4520206))) * 13.480141)) + (X2 / 10.304562)) * 0.81373596) + (X1 / -2.0791721))) + (((X1 + ((X1 * (-0.7026386 + X2)) - ((-3.566656 / (12.849533 - (-18.584103 - (-6.8516254 / ((5.3568935 + (10.631165 / -14.949188)) + (((18.468822 + (18.468822 / (((((8.419867 + (X1 + -18.989166)) * -18.246765) * (12.849533 - (-16.903309 / ((X1 * 12.206173) * -11.538987)))) + (((X2 - -6.6631126) * 1.1399994) - ((((12.044483 - 8.419867) / (((10.631165 - 13.226719) + ((((X2 - (-11.538987 * 1.331295)) + ((1.2400589 / 16.545174) - 1.2400589)) * (8.381142 - -19.237852)) - 2.815403)) + ((X2 * -6.6631126) / (1.331295 + -3.566656)))) - ((-18.584103 / 6.052637) * (((-18.867569 - (X2 * X1)) - (-16.903309 + (-6.2663555 - 8.381142))) - (-15.49017 - ((-16.454147 - (X2 * X1)) - (17.208675 + (((((2.1299076 * (10.728807 - X1)) + ((4.228424 - (((-11.092448 - -1.9883728) / 6.052637) * (((-18.867569 - (X2 * X1)) - (11.330643 + (-6.2663555 - 13.368118))) - -0.7026386))) - (-9.91827 / (17.208675 * 9.343437)))) - 2.0131207) + 4.228424) - 8.381142))))))) - (((-6.8516254 / (-18.989166 * 2.815403)) + (((-11.092448 - 6.052637) / 6.052637) * (((-18.867569 - (2.0131207 * X1)) - (-16.903309 + (-6.2663555 - 8.381142))) - (12.044483 - (0.8131027 + 17.208675))))) / (-13.138719 + (6.052637 / (X1 * ((13.226719 - -19.237852) + (X1 / -14.949188))))))))) + -10.135198))) * ((-11.280575 + (3.5211086 - (((((-18.478848 + -15.49017) * ((13.4580765 / -7.545309) - -19.237852)) + (8.419867 - -16.454147)) * -6.2663555) * ((-16.903309 * -10.135198) + (-18.867569 / ((-11.092448 - (((8.419867 - X2) + ((((X1 + ((X1 + -18.867569) * 13.480141)) + ((-11.092448 - -1.9883728) / 10.304562)) * 0.81373596) + (-18.867569 / -2.0791721))) + (-13.421898 / -6.2663555))) - -15.49017)))))) / -18.246765)) - ((X1 - 12.044483) - (-11.092448 * 16.545174)))))))) + 6.052637))) - (11.330643 - -17.249308)) + (((X1 * (((X1 + -18.989166) + ((-18.13398 * -9.916205) / 10.26763)) + X2)) - 2.4363327) - (((10.728807 / 10.26763) - 8.419867) * 4.2841816)))) + 11.330643)
+SOLUTION_DIR = "output"
+CHART_DIR = "charts"
 
 
-def plot_one_dim():
-    plt.scatter(X1, RESULT, label="Calculated result")
-    plt.plot(X1, FUNC, color='red', label="Original function")
-    plt.title(TITLE)
-    plt.grid()
-    plt.legend()
-    plt.xlabel('x')
-    plt.ylabel('f(x)')
-    plt.savefig(f"charts/{TASK}.png")
+def plot_chart(zadname: str):
+    funcname = zadname[:4]
+    assert funcname in ["zad1", "zad2", "zad3", "zad4", "zad5", "zad6"]
+    original_func = getattr(make_problem, funcname)
+    funcsrc = inspect.getsource(original_func)
+    func_lines = funcsrc.split('\n')
+    dims_by_func = func_lines[0].count(",") + 1
+    formula = func_lines[1] \
+        .partition('return ')[2] \
+        .replace("**", "^") \
+        .replace("*", "")
 
+    with open(f"{SOLUTION_DIR}/{zadname}.dat") as f:
+        lines = f.readlines()
+        (dims, _consts, _minrand, _maxrand, case_num) = lines[0].split()
+        dims = int(dims)
+        domain_min = float(lines[1].split()[0])
+        domain_max = float(lines[int(case_num)].split()[0])
+        assert dims_by_func == dims
+        # solved = lines[-1].strip() == "PROBLEM SOLVED"
+        best_solution = lines[-3]
 
-def plot_two_dims():
-    fig = plt.figure()
-    fig.set_size_inches(12, 5)
-    ax1 = fig.add_subplot(1, 2, 1, projection='3d')
-    ax2 = fig.add_subplot(1, 2, 2, projection='3d')
-    ax1.plot_surface(X1, X2, RESULT)
-    ax2.plot_surface(X1, X2, FUNC, color='red')
-    ax1.set_xlabel('x')
-    ax2.set_xlabel('x')
-    ax1.set_ylabel('y')
-    ax2.set_ylabel('y')
-    ax1.set_title(TITLE + "\nCalculated result")
-    ax2.set_title(TITLE + "\nOriginal function")
-    ax1.grid()
-    ax2.grid()
-    plt.savefig(f"charts/{TASK}.png")
+    print(formula)
+    print(f"dimensions: {dims}")
 
+    TASK = zadname
+    FROM = domain_min
+    TO = domain_max
+    FUNC_STR = formula
+    variables = []
+    for _ in range(dims):
+        variables.append(np.linspace(FROM, TO, 40))
+    X1 = variables[0]
+    X2 = variables[1]
+    FUNC = original_func(*variables)
+    TITLE = TASK + "\n" + f"{FUNC_STR}, [{FROM}, {TO}]"
+    RESULT = eval(best_solution)
 
-def main():
-    # plot_one_dim()
-    plot_two_dims()
+    def plot_one_dim():
+        plt.scatter(X1, RESULT, label="Calculated result")
+        plt.plot(X1, FUNC, color='red', label="Original function")
+        plt.title(TITLE)
+        plt.grid()
+        plt.legend()
+        plt.xlabel('x')
+        plt.ylabel('f(x)')
+        plt.savefig(f"{CHART_DIR}/{TASK}.png")
+
+    def plot_two_dims():
+        fig = plt.figure()
+        fig.set_size_inches(12, 5)
+        ax1 = fig.add_subplot(1, 2, 1, projection='3d')
+        ax2 = fig.add_subplot(1, 2, 2, projection='3d')
+        ax1.plot_surface(X1, X2, RESULT)
+        ax2.plot_surface(X1, X2, FUNC, color='red')
+        ax1.set_xlabel('x')
+        ax2.set_xlabel('x')
+        ax1.set_ylabel('y')
+        ax2.set_ylabel('y')
+        ax1.set_title(TITLE + "\nCalculated result")
+        ax2.set_title(TITLE + "\nOriginal function")
+        ax1.grid()
+        ax2.grid()
+        plt.savefig(f"{CHART_DIR}/{TASK}.png")
+
+    if dims == 1:
+        plot_one_dim()
+    elif dims == 2:
+        plot_two_dims()
 
 
 if __name__ == "__main__":
-    main()
+    assert len(sys.argv) == 2
+    plot_chart(sys.argv[1])
