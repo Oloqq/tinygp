@@ -27,7 +27,6 @@ import numpy as np
 #     with open(path, "w") as f:
 #         f.writelines(lines)
 
-
 def gen_problem_1d(path, foo, domain, rand, points):
     lines = [f"1 {rand[0]} {rand[1]} {rand[2]} {points}\n"]
 
@@ -39,11 +38,11 @@ def gen_problem_1d(path, foo, domain, rand, points):
     with open(path, "w") as f:
         f.writelines(lines)
 
+
 def gen_problem_2d(path, foo, domain, rand, points):
     lines = [f"2 {rand[0]} {rand[1]} {rand[2]} {points}\n"]
     point_per_dim = math.ceil(math.sqrt(points))
     interval = (domain[1] - domain[0]) / point_per_dim
-
 
     for xi in range(point_per_dim):
         x = domain[0] + interval * xi
@@ -54,26 +53,33 @@ def gen_problem_2d(path, foo, domain, rand, points):
     with open(path, "w") as f:
         f.writelines(lines)
 
+
 def zad1(x):
-        return 5 * x**3 - 2 * x**2 + 3 * x - 17
+    return 5 * x**3 - 2 * x**2 + 3 * x - 17
+
 
 def zad2(x):
-        return np.sin(x) + np.cos(x)
+    return np.sin(x) + np.cos(x)
+
 
 def zad3(x):
-        return 2 * np.log(x + 1)
+    return 2 * np.log(x + 1)
+
 
 def zad4(x, y):
-        return x + 2 * y
+    return x + 2 * y
+
 
 def zad5(x, y):
-        return np.sin(x/2) + 2 * np.cos(y)
-        # zakladam ze mialo byc cos(y)
-        # return n.spin(x/2) + 2 * n.cos(x)
-        # chyba na upelu jest zadanie zapisane z bledem
+    return np.sin(x/2) + 2 * np.cos(y)
+    # zakladam ze mialo byc cos(y)
+    # return n.spin(x/2) + 2 * n.cos(x)
+    # chyba na upelu jest zadanie zapisane z bledem
+
 
 def zad6(x, y):
-        return x**2 + 3*x*y - 7*y + 1
+    return x**2 + 3*x*y - 7*y + 1
+
 
 def main():
     rand = (100, -20, 20)
