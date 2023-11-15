@@ -84,6 +84,27 @@ def plot_chart(zadname: str, resolution_arg: str = "80"):
         plt.ylabel('f(x)')
         plt.savefig(f"{CHART_DIR}/{zadname}.png")
 
+    def plot_two_dims_scatter():
+        z_result = eval(best_solution)
+        z_original = original_func(X1, X2)
+        fig = plt.figure()
+        fig.set_size_inches(5, 6)
+        ax1 = fig.add_subplot(1, 1, 1, projection='3d')
+
+        step = 4
+        x1_less_dense = decrease_density(X1, step)
+        x2_less_dense = decrease_density(X2, step)
+        z_res_less_dense = decrease_density(z_result, step)
+        z_org_less_dense = decrease_density(z_original, step)
+
+        ax1.scatter(x1_less_dense, x2_less_dense, z_res_less_dense, color='blue', s=2)
+        ax1.scatter(x1_less_dense, x2_less_dense, z_org_less_dense, color='red', s=2)
+        ax1.set_xlabel('x')
+        ax1.set_ylabel('y')
+        ax1.set_title(title + "\nCalculated result")
+        ax1.grid()
+        plt.savefig(f"{CHART_DIR}/{zadname}_scatter.png")
+
     def plot_two_dims():
         z_result = eval(best_solution)
         z_original = original_func(X1, X2)
@@ -107,7 +128,16 @@ def plot_chart(zadname: str, resolution_arg: str = "80"):
         plot_one_dim()
     elif dims == 2:
         plot_two_dims()
+        plot_two_dims_scatter()
 
+def decrease_density(src: list, step: int) -> list:
+    result = []
+    for x in range(0, len(src), step):
+        appendee = []
+        for y in range(0, len(src[x]), step):
+            appendee.append(src[x][y])
+        result.append(appendee)
+    return result
 
 if __name__ == "__main__":
     assert len(sys.argv) in (2, 3)
