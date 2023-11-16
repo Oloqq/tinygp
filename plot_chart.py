@@ -45,7 +45,6 @@ def plot_chart(zadname: str, resolution_arg: str = "80"):
     original_func = getattr(make_problem, funcname)
     funcsrc = inspect.getsource(original_func)
     func_lines = funcsrc.split('\n')
-    print(funcsrc)
     dims_by_func = func_lines[0].count(",") + 1
     formula = func_lines[1] \
         .partition('return ')[2] \
