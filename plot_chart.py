@@ -27,6 +27,10 @@ DOMAINS = {
     "zad5b": (0, 7),
     "zad5c": (0, 100),
     "zad5d": (-100, 100),
+    "zad7a": (-3.14, 3.14),
+    "zad7b": (0, 7),
+    "zad7c": (0, 100),
+    "zad7d": (-100, 100),
     "zad6a": (-10, 10),
     "zad6b": (0, 100),
     "zad6c": (-1, 1),
@@ -37,10 +41,11 @@ DOMAINS = {
 def plot_chart(zadname: str, resolution_arg: str = "80"):
     resolution = int(resolution_arg)
     funcname = zadname[:4]
-    assert funcname in ["zad1", "zad2", "zad3", "zad4", "zad5", "zad6"]
+    assert funcname in ["zad1", "zad2", "zad3", "zad4", "zad5", "zad6", "zad7"]
     original_func = getattr(make_problem, funcname)
     funcsrc = inspect.getsource(original_func)
     func_lines = funcsrc.split('\n')
+    print(funcsrc)
     dims_by_func = func_lines[0].count(",") + 1
     formula = func_lines[1] \
         .partition('return ')[2] \

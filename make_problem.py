@@ -73,7 +73,10 @@ def zad4(x, y):
 def zad5(x, y):
     return np.sin(x/2) + 2 * np.cos(y)
     # zakladam ze mialo byc cos(y)
-    # return n.spin(x/2) + 2 * n.cos(x)
+
+
+def zad7(x, y):
+    return np.sin(x/2) + 2 * np.cos(x)
     # chyba na upelu jest zadanie zapisane z bledem
 
 
@@ -108,6 +111,11 @@ def main():
     gen_problem_2d("zad5b.dat", zad5, (0, 7), rand, 100)
     gen_problem_2d("zad5c.dat", zad5, (0, 100), rand, 100)
     gen_problem_2d("zad5d.dat", zad5, (-100, 100), rand, 100)
+    
+    gen_problem_2d("zad7a.dat", zad7, (-3.14, 3.14), rand, 100)
+    gen_problem_2d("zad7b.dat", zad7, (0, 7), rand, 100)
+    gen_problem_2d("zad7c.dat", zad7, (0, 100), rand, 100)
+    gen_problem_2d("zad7d.dat", zad7, (-100, 100), rand, 100)
 
     gen_problem_2d("zad6a.dat", zad6, (-10, 10), rand, 100)
     gen_problem_2d("zad6b.dat", zad6, (0, 100), rand, 100)
@@ -116,8 +124,6 @@ def main():
 
 
 if __name__ == "__main__":
-    # main()
-
-    rand = (20, -10, 10)
-
-    gen_problem_1d("zad2d.dat", zad2, (-100, 100), rand, 500)
+    main()
+    # rand = (20, -10, 10)
+    # gen_problem_1d("zad2d.dat", zad2, (-100, 100), rand, 500)
