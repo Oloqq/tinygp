@@ -1,24 +1,37 @@
+use crate::params::Case;
+use crate::params::Params;
+
 use rand::prelude::*;
 use rand::SeedableRng;
 use std::cell::RefCell;
 use std::error::Error;
-use std::fmt::write;
 use std::fs;
 use std::io::Write;
 
-use crate::params::Case;
-use crate::params::Params;
+use num_derive::FromPrimitive;
+use num_traits::FromPrimitive;
 
-const ADD: usize = 110;
-const SUB: usize = 111;
-const MUL: usize = 112;
-const DIV: usize = 113;
-const FSET_START: usize = ADD;
-const FSET_END: usize = DIV + 1;
+#[derive(Clone, Copy, FromPrimitive)]
+enum Funcs {
+    Start = 110,
+    ADD,
+    SUB,
+    MUL,
+    DIV,
+    End,
+}
+
+#[derive(Clone, Copy)]
+enum Opcode {
+    Func(Funcs),
+    Val(usize),
+}
+
+// const FSET_START: usize = ADD;
+// const Funcs::End as usize: usize = DIV + 1;
 
 const MAX_LEN: usize = 10000;
 
-pub type Opcode = usize;
 pub type Program = Vec<Opcode>;
 
 pub struct TinyGP {
@@ -33,13 +46,18 @@ pub struct TinyGP {
 }
 
 impl TinyGP {
-    fn new(mut params: Params, cases: Vec<Case>, seed: Option<u64>, writer: RefCell<Box<dyn Write>>) -> TinyGP {
+    fn new(
+        mut params: Params,
+        cases: Vec<Case>,
+        seed: Option<u64>,
+        writer: RefCell<Box<dyn Write>>,
+    ) -> TinyGP {
         let seed = seed.unwrap_or(StdRng::from_entropy().next_u64());
         let mut rand = StdRng::seed_from_u64(seed);
         params.seed = seed;
 
         writeln!(writer.borrow_mut(), "Creating variables").unwrap();
-        let variables: Vec<f32> = (0..FSET_START)
+        let variables: Vec<f32> = (0..Funcs::Start as usize + 1)
             .map(|_| rand.gen_range(params.min_random, params.max_random))
             .collect();
         writeln!(writer.borrow_mut(), "Creating population").unwrap();
@@ -52,11 +70,15 @@ impl TinyGP {
             cases,
             generation: 0,
             variables,
-            writer: writer.into()
+            writer: writer.into(),
         }
     }
 
-    pub fn from_problem(filename: &str, seed: Option<u64>, writer: Box<dyn Write>) -> Result<TinyGP, Box<dyn Error>> {
+    pub fn from_problem(
+        filename: &str,
+        seed: Option<u64>,
+        writer: Box<dyn Write>,
+    ) -> Result<TinyGP, Box<dyn Error>> {
         let content = fs::read_to_string(filename)?;
         let writer = RefCell::new(writer);
         writeln!(*writer.borrow_mut(), "{content}").unwrap();
@@ -66,10 +88,13 @@ impl TinyGP {
     }
 
     pub fn evolve(&mut self, generations: usize) {
-        writeln!(self.writer.borrow_mut(),
+        writeln!(
+            self.writer.borrow_mut(),
             "-- TINY GP (Rust version) --\nGENERATIONS={}\n{}",
-            generations, self.params
-        ).unwrap();
+            generations,
+            self.params
+        )
+        .unwrap();
         let mut generations = generations;
         let (mut best_fitness, mut best_id) = self.stats();
         while best_fitness < self.params.acceptable_error && generations > 0 {
@@ -140,18 +165,19 @@ impl TinyGP {
         for i in 0..parent.len() {
             let replacement: Opcode;
             if self.rand.gen_bool(self.params.pmut_per_node as f64) {
-                let opcode = parent[i];
-
-                if opcode < FSET_START {
-                    let terminal = self
+                match parent[i] {
+                    Opcode::Func(_) => {
+                        let nonterminal = self
                         .rand
-                        .gen_range(0, self.params.varnumber + self.params.const_numbers);
-                    replacement = terminal;
-                } else if (opcode >= FSET_START) && (opcode < FSET_END) {
-                    let nonterminal = self.rand.gen_range(FSET_START, FSET_END);
-                    replacement = nonterminal;
-                } else {
-                    panic!("Unrecognized opcode appeared in program: {}", opcode);
+                        .gen_range(Funcs::Start as usize + 1, Funcs::End as usize);
+                    replacement = Opcode::Func(Funcs::from_usize(nonterminal).unwrap());
+                    },
+                    Opcode::Val(_) => {
+                        let terminal = self
+                            .rand
+                            .gen_range(0, self.params.varnumber + self.params.const_numbers);
+                        replacement = Opcode::Val(terminal);
+                    }
                 }
             } else {
                 replacement = parent[i];
@@ -179,23 +205,33 @@ impl TinyGP {
         let avg_len = node_count / popsize;
         avg_fitness /= popsize as f32;
 
-        writeln!(self.writer.borrow_mut(),
+        writeln!(
+            self.writer.borrow_mut(),
             "Generation={}
 Avg Fitness={}
 Best Fitness={}
 Avg Size={}",
-            self.generation, -avg_fitness, -best_fitness, avg_len
-        ).unwrap();
+            self.generation,
+            -avg_fitness,
+            -best_fitness,
+            avg_len
+        )
+        .unwrap();
         writeln!(self.writer.borrow_mut(), "Best Individual: ").unwrap();
         // writeln!(self.writer.borrow_mut(), "{:?}", self.population[best]);
         // pprint(&self.population[best]);
-        writeln!(self.writer.borrow_mut(), "{}\n", self.equation_string(&self.population[best])).unwrap();
+        writeln!(
+            self.writer.borrow_mut(),
+            "{}\n",
+            self.equation_string(&self.population[best])
+        )
+        .unwrap();
 
         (best_fitness, best)
     }
 
     pub fn equation_string(&self, program: &Program) -> String {
-        let mut buffer = String::new();
+        let mut buffer = String::with_capacity(program.len() * 3);
         self.serialize_equation_string(program, &mut 0, &mut buffer);
         buffer
     }
@@ -219,24 +255,29 @@ Avg Size={}",
         };
 
         match opcode {
-            ADD => {
-                infix(" + ");
+            Opcode::Func(funcid) => {
+                match funcid {
+                    Funcs::ADD => {
+                        infix(" + ");
+                    }
+                    Funcs::SUB => {
+                        infix(" - ");
+                    }
+                    Funcs::MUL => {
+                        infix(" * ");
+                    }
+                    Funcs::DIV => {
+                        infix(" / ");
+                    }
+                    Funcs::Start => unreachable!("Funcs::Start"),
+                    Funcs::End => unreachable!("Funcs::End"),
+                }
             }
-            SUB => {
-                infix(" - ");
-            }
-            MUL => {
-                infix(" * ");
-            }
-            DIV => {
-                infix(" / ");
-            }
-            _ => {
-                assert!(opcode < FSET_START);
-                if opcode < self.params.varnumber {
-                    *buffer += format!("X{}", opcode + 1).as_str();
+            Opcode::Val(x) => {
+                if x < self.params.varnumber {
+                    *buffer += format!("X{}", x + 1).as_str();
                 } else {
-                    *buffer += format!("{}", self.variables[opcode]).as_str();
+                    *buffer += format!("{}", self.variables[x]).as_str();
                 }
             }
         };
@@ -279,9 +320,8 @@ fn grow(program: &mut Program, depth: usize, params: &Params, rand: &mut StdRng)
 
     if depth > 0 && rand.gen_bool(0.5) {
         // generate operation
-        let operation = rand.gen_range(FSET_START, FSET_END);
-        assert!([ADD, SUB, MUL, DIV].contains(&operation));
-        program.push(operation);
+        let operation = rand.gen_range(Funcs::Start as usize + 1, Funcs::End as usize);
+        program.push(Opcode::Func(Funcs::from_usize(operation).unwrap()));
         // generate operands
         if !grow(program, depth - 1, params, rand) {
             return false;
@@ -289,8 +329,8 @@ fn grow(program: &mut Program, depth: usize, params: &Params, rand: &mut StdRng)
         return grow(program, depth - 1, params, rand);
     } else {
         let terminal: usize = rand.gen_range(0, params.varnumber + params.const_numbers) as usize;
-        program.push(terminal);
-        return true
+        program.push(Opcode::Val(terminal));
+        return true;
     }
 }
 
@@ -331,31 +371,31 @@ fn execute(program: &Program, variables: &Vec<f32>, cursor: &mut usize) -> f32 {
     let opcode = program[*cursor];
     *cursor += 1;
 
-    assert!(opcode < FSET_END);
     return match opcode {
-        ADD => execute(program, variables, cursor) + execute(program, variables, cursor),
-        SUB => execute(program, variables, cursor) - execute(program, variables, cursor),
-        MUL => execute(program, variables, cursor) * execute(program, variables, cursor),
-        DIV => {
-            let numerator = execute(program, variables, cursor);
-            let denominator = execute(program, variables, cursor);
-            if denominator.abs() <= 0.001 {
-                numerator
-            } else {
-                numerator / denominator
+        Opcode::Func(func) => match func {
+            Funcs::ADD => execute(program, variables, cursor) + execute(program, variables, cursor),
+            Funcs::SUB => execute(program, variables, cursor) - execute(program, variables, cursor),
+            Funcs::MUL => execute(program, variables, cursor) * execute(program, variables, cursor),
+            Funcs::DIV => {
+                let numerator = execute(program, variables, cursor);
+                let denominator = execute(program, variables, cursor);
+                if denominator.abs() <= 0.001 {
+                    numerator
+                } else {
+                    numerator / denominator
+                }
             }
-        }
-        _ => variables[opcode],
+            Funcs::Start => unreachable!(),
+            Funcs::End => unreachable!(),
+        },
+        Opcode::Val(i) => variables[i]
     };
 }
 
 fn get_expression_end(program: &Program, start: usize) -> usize {
-    if program[start] < FSET_START {
-        return start + 1;
-    } else if program[start] < FSET_END {
-        return get_expression_end(program, get_expression_end(program, start + 1));
-    } else {
-        panic!("malformed program: {:?}", program);
+    match program[start] {
+        Opcode::Val(_) => start + 1,
+        Opcode::Func(_) => get_expression_end(program, get_expression_end(program, start + 1)),
     }
 }
 
@@ -367,27 +407,27 @@ fn pprint_recurse(program: &Program, cursor: &mut usize, buffer: &mut String, in
 
     let opcode = program[*cursor];
     *cursor += 1;
-    if opcode < FSET_START {
-        *buffer += format!("{}{}\n", str::repeat(" ", indent), opcode).as_str();
-    } else if opcode < FSET_END {
-        *buffer += format!(
-            "{}{}\n",
-            str::repeat(" ", indent),
-            match opcode {
-                ADD => "ADD",
-                SUB => "SUB",
-                MUL => "MUL",
-                DIV => "DIV",
-                _ => unreachable!(),
-            }
-        )
-        .as_str();
+    match opcode {
+        Opcode::Val(i) => {
+            *buffer += format!("{}{}\n", str::repeat(" ", indent), i).as_str();
+        },
+        Opcode::Func(_) => {
+            *buffer += format!(
+                "{}{}\n",
+                str::repeat(" ", indent),
+                match opcode {
+                    ADD => "ADD",
+                    SUB => "SUB",
+                    MUL => "MUL",
+                    DIV => "DIV",
+                    _ => unreachable!(),
+                }
+            )
+            .as_str();
 
-        pprint_recurse(program, cursor, buffer, indent + 2);
-        pprint_recurse(program, cursor, buffer, indent + 2);
-    } else {
-        *buffer += format!("broken {}\n", opcode).as_str();
-        pprint_recurse(program, cursor, buffer, 0);
+            pprint_recurse(program, cursor, buffer, indent + 2);
+            pprint_recurse(program, cursor, buffer, indent + 2);
+        }
     }
 }
 
@@ -407,11 +447,11 @@ mod tests {
 
     #[test]
     fn test_execute() {
-        let program = vec![ADD, 0, DIV, 1, 1];
+        let program = vec![Funcs::ADD, 0, Funcs::DIV, 1, 1];
         let data = vec![1.0, -2.0];
         assert_eq!(2.0, execute(&program, &data, &mut 0));
 
-        let program = vec![SUB, 0, DIV, 1, 2];
+        let program = vec![Funcs::SUB, 0, Funcs::DIV, 1, 2];
         assert_eq!(
             0.8776571,
             execute(
@@ -436,7 +476,7 @@ mod tests {
 
     #[test]
     fn test_fitness() {
-        let program = vec![ADD, 0, DIV, 1, 1];
+        let program = vec![Funcs::ADD as usize, 0, Funcs::DIV as usize, 1, 1];
 
         let cases: Vec<Case> = vec![(vec![1.0], vec![2.0])];
         let mut variables: Vec<f32> = vec![0.0; 1];
@@ -475,18 +515,23 @@ mod tests {
 
     #[test]
     fn test_print_indiv() {
-        let t = TinyGP::new(mock_params(), Vec::new(), Some(5), RefCell::new(Box::new(io::stdout())));
-        let s = t.equation_string(&vec![ADD, 0, 0]);
+        let t = TinyGP::new(
+            mock_params(),
+            Vec::new(),
+            Some(5),
+            RefCell::new(Box::new(io::stdout())),
+        );
+        let s = t.equation_string(&vec![Funcs::ADD as usize, 0, 0]);
         assert_eq!(s, "(X1 + X1)")
     }
 
     #[test]
     fn test_get_expression_end() {
-        let program = vec![ADD, 0, 0];
+        let program = vec![Funcs::ADD as usize, 0, 0];
         assert_eq!(get_expression_end(&program, 0), 3);
         assert_eq!(get_expression_end(&program, 1), 2);
         assert_eq!(get_expression_end(&program, 2), 3);
-        let program = vec![ADD, ADD, 0, 0, 0];
+        let program = vec![Funcs::ADD as usize, Funcs::ADD as usize, 0, 0, 0];
         assert_eq!(get_expression_end(&program, 0), 5);
         assert_eq!(get_expression_end(&program, 1), 4);
         assert_eq!(get_expression_end(&program, 2), 3);
@@ -496,7 +541,7 @@ mod tests {
 
     #[test]
     fn test_pprint() {
-        let program = vec![ADD, ADD, 0, 0, 0];
+        let program = vec![Funcs::ADD as usize, Funcs::ADD as usize, 0, 0, 0];
         let mut s = String::new();
         let mut cursor = 0;
         pprint_recurse(&program, &mut cursor, &mut s, 0);
