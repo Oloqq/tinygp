@@ -1,4 +1,10 @@
-Program is a list of opcodes (integers, in java implementation used interchangeably with chars).
+# Genetic programming
+
+## tiny_gp
+Tool performing symbolic regression. Rust implementation of algorithm used in https://github.com/JesseBuesking/TinyGP-Java
+
+### Algorithm reverse engineering
+_Program_ is a list of opcodes (integers, in java implementation used interchangeably with chars).
 
 Some opcodes denote an arithmetic operation like
 ```
@@ -7,7 +13,7 @@ SUB = 111
 MUL = 112
 DIV = 113
 ```
-The next 2 opcodes are argument of the operation
+The next 2 opcodes are arguments of the operation
 
 Values below 110 are references to actual values. \
 Let N = number of variables in the problem. \
