@@ -12,17 +12,17 @@ use num_derive::FromPrimitive;
 use num_traits::FromPrimitive;
 
 #[derive(Clone, Copy, FromPrimitive)]
-enum Funcs {
-    Start = 110,
+pub enum Funcs {
+    Start = 110, // number important for serialization, TODO after the course calculate the index dynamically based on number of variables and const numbers
     ADD,
     SUB,
     MUL,
     DIV,
-    End,
+    End, // need to generate ranges, TODO after the course get rid of it along with Funcs::Start
 }
 
 #[derive(Clone, Copy)]
-enum Opcode {
+pub enum Opcode {
     Func(Funcs),
     Val(usize),
 }
@@ -168,10 +168,10 @@ impl TinyGP {
                 match parent[i] {
                     Opcode::Func(_) => {
                         let nonterminal = self
-                        .rand
-                        .gen_range(Funcs::Start as usize + 1, Funcs::End as usize);
-                    replacement = Opcode::Func(Funcs::from_usize(nonterminal).unwrap());
-                    },
+                            .rand
+                            .gen_range(Funcs::Start as usize + 1, Funcs::End as usize);
+                        replacement = Opcode::Func(Funcs::from_usize(nonterminal).unwrap());
+                    }
                     Opcode::Val(_) => {
                         let terminal = self
                             .rand
@@ -255,24 +255,22 @@ Avg Size={}",
         };
 
         match opcode {
-            Opcode::Func(funcid) => {
-                match funcid {
-                    Funcs::ADD => {
-                        infix(" + ");
-                    }
-                    Funcs::SUB => {
-                        infix(" - ");
-                    }
-                    Funcs::MUL => {
-                        infix(" * ");
-                    }
-                    Funcs::DIV => {
-                        infix(" / ");
-                    }
-                    Funcs::Start => unreachable!("Funcs::Start"),
-                    Funcs::End => unreachable!("Funcs::End"),
+            Opcode::Func(funcid) => match funcid {
+                Funcs::ADD => {
+                    infix(" + ");
                 }
-            }
+                Funcs::SUB => {
+                    infix(" - ");
+                }
+                Funcs::MUL => {
+                    infix(" * ");
+                }
+                Funcs::DIV => {
+                    infix(" / ");
+                }
+                Funcs::Start => unreachable!("Funcs::Start"),
+                Funcs::End => unreachable!("Funcs::End"),
+            },
             Opcode::Val(x) => {
                 if x < self.params.varnumber {
                     *buffer += format!("X{}", x + 1).as_str();
@@ -388,7 +386,7 @@ fn execute(program: &Program, variables: &Vec<f32>, cursor: &mut usize) -> f32 {
             Funcs::Start => unreachable!(),
             Funcs::End => unreachable!(),
         },
-        Opcode::Val(i) => variables[i]
+        Opcode::Val(i) => variables[i],
     };
 }
 
@@ -410,17 +408,18 @@ fn pprint_recurse(program: &Program, cursor: &mut usize, buffer: &mut String, in
     match opcode {
         Opcode::Val(i) => {
             *buffer += format!("{}{}\n", str::repeat(" ", indent), i).as_str();
-        },
-        Opcode::Func(_) => {
+        }
+        Opcode::Func(func) => {
             *buffer += format!(
                 "{}{}\n",
                 str::repeat(" ", indent),
-                match opcode {
-                    ADD => "ADD",
-                    SUB => "SUB",
-                    MUL => "MUL",
-                    DIV => "DIV",
-                    _ => unreachable!(),
+                match func {
+                    Funcs::ADD => "ADD",
+                    Funcs::SUB => "SUB",
+                    Funcs::MUL => "MUL",
+                    Funcs::DIV => "DIV",
+                    Funcs::Start => unreachable!(),
+                    Funcs::End => unreachable!(),
                 }
             )
             .as_str();
@@ -447,11 +446,23 @@ mod tests {
 
     #[test]
     fn test_execute() {
-        let program = vec![Funcs::ADD, 0, Funcs::DIV, 1, 1];
+        let program: Vec<Opcode> = vec![
+            Opcode::Func(Funcs::ADD),
+            Opcode::Val(0),
+            Opcode::Func(Funcs::DIV),
+            Opcode::Val(1),
+            Opcode::Val(1),
+        ];
         let data = vec![1.0, -2.0];
         assert_eq!(2.0, execute(&program, &data, &mut 0));
 
-        let program = vec![Funcs::SUB, 0, Funcs::DIV, 1, 2];
+        let program: Vec<Opcode> = vec![
+            Opcode::Func(Funcs::SUB),
+            Opcode::Val(0),
+            Opcode::Func(Funcs::DIV),
+            Opcode::Val(1),
+            Opcode::Val(2),
+        ];
         assert_eq!(
             0.8776571,
             execute(
@@ -476,7 +487,13 @@ mod tests {
 
     #[test]
     fn test_fitness() {
-        let program = vec![Funcs::ADD as usize, 0, Funcs::DIV as usize, 1, 1];
+        let program = vec![
+            Opcode::Func(Funcs::ADD),
+            Opcode::Val(0),
+            Opcode::Func(Funcs::DIV),
+            Opcode::Val(1),
+            Opcode::Val(1),
+        ];
 
         let cases: Vec<Case> = vec![(vec![1.0], vec![2.0])];
         let mut variables: Vec<f32> = vec![0.0; 1];
@@ -521,17 +538,27 @@ mod tests {
             Some(5),
             RefCell::new(Box::new(io::stdout())),
         );
-        let s = t.equation_string(&vec![Funcs::ADD as usize, 0, 0]);
+        let s = t.equation_string(&vec![
+            Opcode::Func(Funcs::ADD),
+            Opcode::Val(0),
+            Opcode::Val(0),
+        ]);
         assert_eq!(s, "(X1 + X1)")
     }
 
     #[test]
     fn test_get_expression_end() {
-        let program = vec![Funcs::ADD as usize, 0, 0];
+        let program = vec![Opcode::Func(Funcs::ADD), Opcode::Val(0), Opcode::Val(0)];
         assert_eq!(get_expression_end(&program, 0), 3);
         assert_eq!(get_expression_end(&program, 1), 2);
         assert_eq!(get_expression_end(&program, 2), 3);
-        let program = vec![Funcs::ADD as usize, Funcs::ADD as usize, 0, 0, 0];
+        let program = vec![
+            Opcode::Func(Funcs::ADD),
+            Opcode::Func(Funcs::ADD),
+            Opcode::Val(0),
+            Opcode::Val(0),
+            Opcode::Val(0),
+        ];
         assert_eq!(get_expression_end(&program, 0), 5);
         assert_eq!(get_expression_end(&program, 1), 4);
         assert_eq!(get_expression_end(&program, 2), 3);
@@ -541,7 +568,13 @@ mod tests {
 
     #[test]
     fn test_pprint() {
-        let program = vec![Funcs::ADD as usize, Funcs::ADD as usize, 0, 0, 0];
+        let program = vec![
+            Opcode::Func(Funcs::ADD),
+            Opcode::Func(Funcs::ADD),
+            Opcode::Val(0),
+            Opcode::Val(0),
+            Opcode::Val(0),
+        ];
         let mut s = String::new();
         let mut cursor = 0;
         pprint_recurse(&program, &mut cursor, &mut s, 0);
