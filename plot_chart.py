@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import make_problem
 import inspect
+from tinygp_eval import tinygp_eval
 
 SOLUTION_DIR = "output"
 CHART_DIR = "charts"
@@ -37,15 +38,7 @@ DOMAINS = {
     "zad6d": (-1000, 1000)
 }
 
-def tinygp_eval(solution, X1, X2):
-    # imports are used inside the eval function
-    from numpy import sin, cos
-    # TODO implement protected division
-    return eval(solution)
-
-
-def plot_chart(zadname: str, suffix: str = ""):
-    resolution = 80
+def plot_chart(zadname: str, resolution: int, suffix: str = ""):
     funcname = zadname[:4]
     assert funcname in ["zad1", "zad2", "zad3", "zad4", "zad5", "zad6", "zad7"]
     original_func = getattr(make_problem, funcname)
@@ -151,14 +144,14 @@ def decrease_density(src: list, step: int) -> list:
         result.append(appendee)
     return result
 
-# import click
+import click
 
-# @click.command()
-# @click.argument("zadname")
-# @click.option("-r --resolution")
-# def plot_command(zadname):
-#     plot_chart(zadname)
+@click.command()
+@click.argument("zadname")
+@click.option("-r", "--resolution", default=80)
+@click.option("-s", "--suffix", default="")
+def plot_command(zadname, resolution, suffix):
+    plot_chart(zadname, resolution, suffix)
 
 if __name__ == "__main__":
-    assert len(sys.argv) in (2, 3)
-    plot_chart(*sys.argv[1:])
+    plot_command()
