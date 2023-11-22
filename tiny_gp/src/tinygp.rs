@@ -18,6 +18,8 @@ pub enum Funcs {
     SUB,
     MUL,
     DIV,
+    SIN,
+    COS,
     End, // need to generate ranges, TODO after the course get rid of it along with Funcs::Start
 }
 
@@ -268,6 +270,18 @@ Avg Size={}",
                 Funcs::DIV => {
                     infix(" / ");
                 }
+                Funcs::SIN => {
+                    *buffer += "sin(";
+                    *cursor += 1;
+                    self.serialize_equation_string(program, cursor, buffer);
+                    *buffer += ")";
+                }
+                Funcs::COS => {
+                    *buffer += "cos(";
+                    *cursor += 1;
+                    self.serialize_equation_string(program, cursor, buffer);
+                    *buffer += ")";
+                }
                 Funcs::Start => unreachable!("Funcs::Start"),
                 Funcs::End => unreachable!("Funcs::End"),
             },
@@ -383,6 +397,8 @@ fn execute(program: &Program, variables: &Vec<f32>, cursor: &mut usize) -> f32 {
                     numerator / denominator
                 }
             }
+            Funcs::SIN => f32::sin(execute(program, variables, cursor)),
+            Funcs::COS => f32::cos(execute(program, variables, cursor)),
             Funcs::Start => unreachable!(),
             Funcs::End => unreachable!(),
         },
@@ -418,6 +434,8 @@ fn pprint_recurse(program: &Program, cursor: &mut usize, buffer: &mut String, in
                     Funcs::SUB => "SUB",
                     Funcs::MUL => "MUL",
                     Funcs::DIV => "DIV",
+                    Funcs::SIN => "SIN",
+                    Funcs::COS => "COS",
                     Funcs::Start => unreachable!(),
                     Funcs::End => unreachable!(),
                 }
@@ -586,6 +604,41 @@ mod tests {
   0
 ",
             s
+        );
+
+    }
+
+    #[test]
+    fn test_sin() {
+        let program = vec![
+            Opcode::Func(Funcs::SIN),
+            Opcode::Val(0),
+        ];
+
+        assert_eq!(
+            0.0,
+            execute(
+                &program,
+                &vec![0.0],
+                &mut 0
+            )
+        );
+    }
+
+    #[test]
+    fn test_cos() {
+        let program = vec![
+            Opcode::Func(Funcs::COS),
+            Opcode::Val(0),
+        ];
+
+        assert_eq!(
+            1.0,
+            execute(
+                &program,
+                &vec![0.0],
+                &mut 0
+            )
         );
     }
 }

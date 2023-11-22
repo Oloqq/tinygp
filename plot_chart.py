@@ -37,9 +37,15 @@ DOMAINS = {
     "zad6d": (-1000, 1000)
 }
 
+def tinygp_eval(solution, X1, X2):
+    # imports are used inside the eval function
+    from numpy import sin, cos
+    # TODO implement protected division
+    return eval(solution)
 
-def plot_chart(zadname: str, resolution_arg: str = "80"):
-    resolution = int(resolution_arg)
+
+def plot_chart(zadname: str, suffix: str = ""):
+    resolution = 80
     funcname = zadname[:4]
     assert funcname in ["zad1", "zad2", "zad3", "zad4", "zad5", "zad6", "zad7"]
     original_func = getattr(make_problem, funcname)
@@ -54,7 +60,7 @@ def plot_chart(zadname: str, resolution_arg: str = "80"):
         .replace("*", "") \
         .replace("np.", "")
 
-    with open(f"{SOLUTION_DIR}/{zadname}.dat") as f:
+    with open(f"{SOLUTION_DIR}/{zadname}{suffix}.dat") as f:
         lines = f.readlines()
         (dims, _consts, _minrand, _maxrand, case_num) = lines[0].split()
         dims = int(dims)
@@ -71,12 +77,14 @@ def plot_chart(zadname: str, resolution_arg: str = "80"):
     for _ in range(dims):
         variables.append(np.linspace(domain_min, domain_max, resolution))
     X1 = variables[0]
+    X2 = None
     if dims > 1:
         X2 = variables[1]
         X1, X2 = np.meshgrid(X1, X2)
     func = original_func(*variables)
     title = zadname + "\n" + f"{formula}, [{domain_min}, {domain_max}]"
-    result = eval(best_solution)
+
+    result = tinygp_eval(best_solution, X1, X2)
 
     def plot_one_dim():
         plt.scatter(X1, result, label="Calculated result")
@@ -86,7 +94,7 @@ def plot_chart(zadname: str, resolution_arg: str = "80"):
         plt.legend()
         plt.xlabel('x')
         plt.ylabel('f(x)')
-        plt.savefig(f"{CHART_DIR}/{zadname}.png")
+        plt.savefig(f"{CHART_DIR}/{zadname}{suffix}.png")
 
     def plot_two_dims_scatter():
         z_result = eval(best_solution)
@@ -107,7 +115,7 @@ def plot_chart(zadname: str, resolution_arg: str = "80"):
         ax1.set_ylabel('y')
         ax1.set_title(title + "\nCalculated result")
         ax1.grid()
-        plt.savefig(f"{CHART_DIR}/{zadname}_scatter.png")
+        plt.savefig(f"{CHART_DIR}/{zadname}{suffix}_scatter.png")
 
     def plot_two_dims():
         z_result = eval(best_solution)
@@ -126,7 +134,7 @@ def plot_chart(zadname: str, resolution_arg: str = "80"):
         ax2.set_title(title + "\nOriginal function")
         ax1.grid()
         ax2.grid()
-        plt.savefig(f"{CHART_DIR}/{zadname}.png")
+        plt.savefig(f"{CHART_DIR}/{zadname}{suffix}.png")
 
     if dims == 1:
         plot_one_dim()
@@ -142,6 +150,14 @@ def decrease_density(src: list, step: int) -> list:
             appendee.append(src[x][y])
         result.append(appendee)
     return result
+
+# import click
+
+# @click.command()
+# @click.argument("zadname")
+# @click.option("-r --resolution")
+# def plot_command(zadname):
+#     plot_chart(zadname)
 
 if __name__ == "__main__":
     assert len(sys.argv) in (2, 3)
