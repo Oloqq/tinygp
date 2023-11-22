@@ -1,9 +1,12 @@
-import sys
+import make_problem
+from tinygp_eval import tinygp_eval
+
+import click
+import inspect
 import matplotlib.pyplot as plt
 import numpy as np
-import make_problem
-import inspect
-from tinygp_eval import tinygp_eval
+from collections.abc import Callable
+
 
 SOLUTION_DIR = "output"
 CHART_DIR = "charts"
@@ -38,34 +41,14 @@ DOMAINS = {
     "zad6d": (-1000, 1000)
 }
 
-def plot_chart(zadname: str, resolution: int, suffix: str = ""):
-    funcname = zadname[:4]
-    assert funcname in ["zad1", "zad2", "zad3", "zad4", "zad5", "zad6", "zad7"]
-    original_func = getattr(make_problem, funcname)
-    funcsrc = inspect.getsource(original_func)
-    func_lines = funcsrc.split('\n')
-    dims_by_func = func_lines[0].count(",") + 1
-    formula = func_lines[1] \
-        .partition('return ')[2] \
-        .replace(" ** ", "^") \
-        .replace("**", "^") \
-        .replace(" * ", "") \
-        .replace("*", "") \
-        .replace("np.", "")
-
-    with open(f"{SOLUTION_DIR}/{zadname}{suffix}.dat") as f:
-        lines = f.readlines()
-        (dims, _consts, _minrand, _maxrand, case_num) = lines[0].split()
-        dims = int(dims)
-        assert dims_by_func == dims
-        # solved = lines[-1].strip() == "PROBLEM SOLVED"
-        best_solution = lines[-3]
-
-    print(formula)
-    print(f"dimensions: {dims}")
-
-    domain_min = DOMAINS[zadname][0]
-    domain_max = DOMAINS[zadname][1]
+def plot_chart(real_func: Callable,
+               approximated_formula: str,
+               dims: int,
+               domain_min: int,
+               domain_max: int,
+               resolution: int,
+               title: str,
+               output: str):
     variables = []
     for _ in range(dims):
         variables.append(np.linspace(domain_min, domain_max, resolution))
@@ -74,10 +57,9 @@ def plot_chart(zadname: str, resolution: int, suffix: str = ""):
     if dims > 1:
         X2 = variables[1]
         X1, X2 = np.meshgrid(X1, X2)
-    func = original_func(*variables)
-    title = zadname + "\n" + f"{formula}, [{domain_min}, {domain_max}]"
+    func = real_func(*variables)
 
-    result = tinygp_eval(best_solution, X1, X2)
+    result = tinygp_eval(approximated_formula, X1, X2)
 
     def plot_one_dim():
         plt.scatter(X1, result, label="Calculated result")
@@ -87,11 +69,10 @@ def plot_chart(zadname: str, resolution: int, suffix: str = ""):
         plt.legend()
         plt.xlabel('x')
         plt.ylabel('f(x)')
-        plt.savefig(f"{CHART_DIR}/{zadname}{suffix}.png")
+        plt.savefig(output)
 
     def plot_two_dims_scatter():
-        z_result = eval(best_solution)
-        z_original = original_func(X1, X2)
+        z_original = real_func(X1, X2)
         fig = plt.figure()
         fig.set_size_inches(5, 6)
         ax1 = fig.add_subplot(1, 1, 1, projection='3d')
@@ -99,7 +80,7 @@ def plot_chart(zadname: str, resolution: int, suffix: str = ""):
         step = 4
         x1_less_dense = decrease_density(X1, step)
         x2_less_dense = decrease_density(X2, step)
-        z_res_less_dense = decrease_density(z_result, step)
+        z_res_less_dense = decrease_density(result, step)
         z_org_less_dense = decrease_density(z_original, step)
 
         ax1.scatter(x1_less_dense, x2_less_dense, z_res_less_dense, color='blue', s=2)
@@ -108,16 +89,17 @@ def plot_chart(zadname: str, resolution: int, suffix: str = ""):
         ax1.set_ylabel('y')
         ax1.set_title(title + "\nCalculated result")
         ax1.grid()
-        plt.savefig(f"{CHART_DIR}/{zadname}{suffix}_scatter.png")
+
+        base, extension, _ = output.partition(".png")
+        plt.savefig(f"{base}_scatter{extension}")
 
     def plot_two_dims():
-        z_result = eval(best_solution)
-        z_original = original_func(X1, X2)
+        z_original = real_func(X1, X2)
         fig = plt.figure()
         fig.set_size_inches(12, 5)
         ax1 = fig.add_subplot(1, 2, 1, projection='3d')
         ax2 = fig.add_subplot(1, 2, 2, projection='3d')
-        ax1.plot_surface(X1, X2, z_result)
+        ax1.plot_surface(X1, X2, result)
         ax2.plot_surface(X1, X2, z_original, color='red')
         ax1.set_xlabel('x')
         ax2.set_xlabel('x')
@@ -127,7 +109,7 @@ def plot_chart(zadname: str, resolution: int, suffix: str = ""):
         ax2.set_title(title + "\nOriginal function")
         ax1.grid()
         ax2.grid()
-        plt.savefig(f"{CHART_DIR}/{zadname}{suffix}.png")
+        plt.savefig(output)
 
     if dims == 1:
         plot_one_dim()
@@ -144,14 +126,49 @@ def decrease_density(src: list, step: int) -> list:
         result.append(appendee)
     return result
 
-import click
+def extract_formula(funcname: str) -> (str, int):
+    original_func = getattr(make_problem, funcname)
+    funcsrc = inspect.getsource(original_func)
+    func_lines = funcsrc.split('\n')
+    dims_by_func = func_lines[0].count(",") + 1
+    formula = func_lines[1] \
+        .partition('return ')[2] \
+        .replace(" ** ", "^") \
+        .replace("**", "^") \
+        .replace(" * ", "") \
+        .replace("*", "") \
+        .replace("np.", "")
+    return formula, dims_by_func, original_func
+
+def read_solution(path: str) -> (str, int):
+    with open(path) as f:
+        lines = f.readlines()
+        (dims, _consts, _minrand, _maxrand, case_num) = lines[0].split()
+        dims = int(dims)
+        # solved = lines[-1].strip() == "PROBLEM SOLVED"
+        best_solution = lines[-3]
+    return best_solution, dims
 
 @click.command()
 @click.argument("zadname")
 @click.option("-r", "--resolution", default=80)
 @click.option("-s", "--suffix", default="")
 def plot_command(zadname, resolution, suffix):
-    plot_chart(zadname, resolution, suffix)
+    funcname = zadname[:4]
+    assert funcname in ["zad1", "zad2", "zad3", "zad4", "zad5", "zad6", "zad7"]
+    formula, dims_by_func, original_func = extract_formula(funcname)
+    best_solution, dims_by_solution = read_solution(f"{SOLUTION_DIR}/{zadname}{suffix}.dat")
+    assert dims_by_func == dims_by_solution, f"Could not determine dimensions: {dims_by_func} vs {dims_by_solution}"
+
+    print(f"dimensions: {dims_by_func}")
+    print(f"formula: {formula}")
+
+    domain_min = DOMAINS[zadname][0]
+    domain_max = DOMAINS[zadname][1]
+    title = zadname + "\n" + f"{formula}, [{domain_min}, {domain_max}]"
+    output = f"{CHART_DIR}/{zadname}{suffix}.png"
+
+    plot_chart(original_func, best_solution, dims_by_func, domain_min, domain_max, resolution, title, output)
 
 if __name__ == "__main__":
     plot_command()
