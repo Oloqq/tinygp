@@ -38,8 +38,12 @@ DOMAINS = {
     "zad6a": (-10, 10),
     "zad6b": (0, 100),
     "zad6c": (-1, 1),
-    "zad6d": (-1000, 1000)
+    "zad6d": (-1000, 1000),
+    "zad8": (0, 2*np.pi),
+    "zad9": (-np.pi / 2, np.pi / 2)
 }
+TASKS = ["zad1", "zad2", "zad3", "zad4", "zad5", "zad6", "zad7", "zad8", "zad9"]
+
 
 def plot_chart(real_func: Callable,
                approximated_formula: str,
@@ -83,8 +87,10 @@ def plot_chart(real_func: Callable,
         z_res_less_dense = decrease_density(result, step)
         z_org_less_dense = decrease_density(z_original, step)
 
-        ax1.scatter(x1_less_dense, x2_less_dense, z_res_less_dense, color='blue', s=2)
-        ax1.scatter(x1_less_dense, x2_less_dense, z_org_less_dense, color='red', s=2)
+        ax1.scatter(x1_less_dense, x2_less_dense,
+                    z_res_less_dense, color='blue', s=2)
+        ax1.scatter(x1_less_dense, x2_less_dense,
+                    z_org_less_dense, color='red', s=2)
         ax1.set_xlabel('x')
         ax1.set_ylabel('y')
         ax1.set_title(title + "\nCalculated result")
@@ -117,6 +123,7 @@ def plot_chart(real_func: Callable,
         plot_two_dims()
         plot_two_dims_scatter()
 
+
 def decrease_density(src: list, step: int) -> list:
     result = []
     for x in range(0, len(src), step):
@@ -125,6 +132,7 @@ def decrease_density(src: list, step: int) -> list:
             appendee.append(src[x][y])
         result.append(appendee)
     return result
+
 
 def extract_formula(funcname: str) -> (str, int):
     original_func = getattr(make_problem, funcname)
@@ -140,6 +148,7 @@ def extract_formula(funcname: str) -> (str, int):
         .replace("np.", "")
     return formula, dims_by_func, original_func
 
+
 def read_solution(path: str) -> (str, int):
     with open(path) as f:
         lines = f.readlines()
@@ -149,15 +158,17 @@ def read_solution(path: str) -> (str, int):
         best_solution = lines[-3]
     return best_solution, dims
 
+
 @click.command()
 @click.argument("zadname")
 @click.option("-r", "--resolution", default=80)
 @click.option("-s", "--suffix", default="")
 def plot_command(zadname, resolution, suffix):
     funcname = zadname[:4]
-    assert funcname in ["zad1", "zad2", "zad3", "zad4", "zad5", "zad6", "zad7"]
+    assert funcname in TASKS
     formula, dims_by_func, original_func = extract_formula(funcname)
-    best_solution, dims_by_solution = read_solution(f"{SOLUTION_DIR}/{zadname}{suffix}.dat")
+    best_solution, dims_by_solution = read_solution(
+        f"{SOLUTION_DIR}/{zadname}{suffix}.dat")
     assert dims_by_func == dims_by_solution, f"Could not determine dimensions: {dims_by_func} vs {dims_by_solution}"
 
     print(f"dimensions: {dims_by_func}")
@@ -168,7 +179,9 @@ def plot_command(zadname, resolution, suffix):
     title = zadname + "\n" + f"{formula}, [{domain_min}, {domain_max}]"
     output = f"{CHART_DIR}/{zadname}{suffix}.png"
 
-    plot_chart(original_func, best_solution, dims_by_func, domain_min, domain_max, resolution, title, output)
+    plot_chart(original_func, best_solution, dims_by_func,
+               domain_min, domain_max, resolution, title, output)
+
 
 if __name__ == "__main__":
     plot_command()
