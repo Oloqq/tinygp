@@ -1,5 +1,6 @@
-program = block RETURN reg
+program = block
 
+# kolejnosc nie ma znaczenia, priorytet jest jasny bo nie ma infixow
 expr
     = ADD expr expr
     | SUB expr expr
@@ -7,6 +8,9 @@ expr
     | DIV expr expr
     | LT expr expr
     | GT expr expr
+    | OR expr expr
+    | AND expr expr
+    | NOT expr
     | NUM
     | reg
 
@@ -14,16 +18,22 @@ stat
     = load
     | if
     | while
+    | output
 
-block
-    = stat* blockend
+block = stat*
 
-blockend = ELSE | FI
-
-if = IF expr THEN block ELSE block END
+if
+    = IF expr THEN block ELSE block END
+    | IF expr THEN block END
 
 while = WHILE expr DO END
 
-load = LOAD reg expr
+load
+    = LOAD reg INPUT
+    | LOAD reg expr
+
+output
+    = OUTPUT NUM
+    | OUTPUT reg
 
 reg = R NUM
