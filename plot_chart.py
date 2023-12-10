@@ -52,7 +52,8 @@ def plot_chart(real_func: Callable,
                domain_max: int,
                resolution: int,
                title: str,
-               output: str):
+               output: str,
+               simplify: bool):
     variables = []
     for _ in range(dims):
         variables.append(np.linspace(domain_min, domain_max, resolution))
@@ -63,7 +64,7 @@ def plot_chart(real_func: Callable,
         X1, X2 = np.meshgrid(X1, X2)
     func = real_func(*variables)
 
-    result = tinygp_eval(approximated_formula, X1, X2)
+    result = tinygp_eval(approximated_formula, X1, X2, simplify)
 
     def plot_one_dim():
         plt.scatter(X1, result, label="Calculated result")
@@ -123,6 +124,8 @@ def plot_chart(real_func: Callable,
         plot_two_dims()
         plot_two_dims_scatter()
 
+    print(f"Chart generated! [{output}]")
+
 
 def decrease_density(src: list, step: int) -> list:
     result = []
@@ -163,7 +166,9 @@ def read_solution(path: str) -> (str, int):
 @click.argument("zadname")
 @click.option("-r", "--resolution", default=80)
 @click.option("-s", "--suffix", default="")
-def plot_command(zadname, resolution, suffix):
+@click.option("--simplify", is_flag=True)
+def plot_command(zadname, resolution, suffix, simplify: bool):
+    print(simplify)
     funcname = zadname[:4]
     assert funcname in TASKS
     formula, dims_by_func, original_func = extract_formula(funcname)
@@ -180,7 +185,7 @@ def plot_command(zadname, resolution, suffix):
     output = f"{CHART_DIR}/{zadname}{suffix}.png"
 
     plot_chart(original_func, best_solution, dims_by_func,
-               domain_min, domain_max, resolution, title, output)
+               domain_min, domain_max, resolution, title, output, simplify)
 
 
 if __name__ == "__main__":
