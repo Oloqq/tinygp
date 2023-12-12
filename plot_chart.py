@@ -168,7 +168,6 @@ def read_solution(path: str) -> (str, int):
 @click.option("-s", "--suffix", default="")
 @click.option("--simplify", is_flag=True)
 def plot_command(zadname, resolution, suffix, simplify: bool):
-    print(simplify)
     funcname = zadname[:4]
     assert funcname in TASKS
     formula, dims_by_func, original_func = extract_formula(funcname)

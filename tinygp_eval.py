@@ -1,16 +1,22 @@
 import numpy as np
-from sympy import parsing, simplify, lambdify, symbols
+from sympy import simplify, lambdify, symbols, sympify
+
+
+# def divide(numerator, denominator=0):
+#     print("Success")
+#     if abs(denominator) <= 0.001:
+#         return numerator
+#     else:
+#         return numerator / denominator
+
 
 def tinygp_eval(solution: str, X1: np.ndarray, X2: np.ndarray, simplify_flag: bool = False):
-    # imports are used inside the eval function
-    from numpy import sin, cos
-    # TODO implement protected division - still necessary?
     print("TinyGP solution:", solution)
+    x1_sym, x2_sym = symbols('X1'), symbols('X2')
+    solution_sym = sympify(solution)
     if simplify_flag:
-        simplified = simplify(parsing.sympy_parser.parse_expr(solution))
+        simplified = simplify(solution_sym)
         print("Simplified solution:", simplified)
-        x1_sym, x2_sym = symbols('X1'), symbols('X2')
-        evaluated = lambdify((x1_sym, x2_sym), simplified, 'numpy')(X1, X2)
-        return evaluated
+        return lambdify((x1_sym, x2_sym), simplified)(X1, X2)
     else:
-        return eval(solution)
+        return lambdify((x1_sym, x2_sym), solution_sym)(X1, X2)
