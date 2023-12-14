@@ -29,11 +29,12 @@ if
 while = WHILE expr DO END
 
 load
-    = LOAD reg INPUT
+    = LOAD reg INPUT # zaczytuje kolejna wartosc z wejscia
     | LOAD reg expr
 
 output
     = OUTPUT NUM
     | OUTPUT reg
 
+# reg to register/rejestr/zmienna
 reg = R NUM
