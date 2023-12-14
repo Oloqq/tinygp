@@ -15,7 +15,7 @@ def tinygp_eval(solution: str, X1: np.ndarray, X2: np.ndarray, simplify_flag: bo
     x1_sym, x2_sym = symbols('X1'), symbols('X2')
     solution_sym = sympify(solution)
     if simplify_flag:
-        simplified = simplify(solution_sym)
+        simplified = simplify(solution_sym, ratio=1)
         print("Simplified solution:", simplified)
         return lambdify((x1_sym, x2_sym), simplified)(X1, X2)
     else:
