@@ -1,3 +1,5 @@
+# nie rozrozniamy liczb i booleanow, tak jak w C, traktujemy 0 jako false i dowolna inna wartosc jako true
+
 program = block
 
 block = stat*
