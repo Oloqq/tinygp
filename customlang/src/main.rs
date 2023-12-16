@@ -1,5 +1,6 @@
 mod params;
 mod tinygp;
+mod genlang;
 use structopt::StructOpt;
 use tinygp::TinyGP;
 use std::fs::{self, File, metadata};

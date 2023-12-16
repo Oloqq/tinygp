@@ -1,0 +1,5 @@
+{
+    "rust-analyzer.linkedProjects": [
+        ".\\customlang\\Cargo.toml"
+    ]
+}
