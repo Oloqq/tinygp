@@ -1,8 +1,10 @@
 [package]
-name = "genetyka"
+name = "tiny_gp_lang"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+rand = "0.7"
+structopt = "0.3"

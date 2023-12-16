@@ -1,61 +1,55 @@
-#[allow(dead_code, unused)]
+mod params;
+mod tinygp;
+use structopt::StructOpt;
+use tinygp::TinyGP;
+use std::fs::{self, File, metadata};
+use std::io::{self, Write};
 
-const ABS: &str = "< R0 = x, output >
-IF GT R0 0
-  THEN
-ELSE
-  LOAD R0 MUL R0 -1
-FI
+#[derive(StructOpt, Debug)]
+struct Args {
+    #[structopt(short, long)]
+    seed: Option<u64>,
 
-RETURN R0";
+    #[structopt(short, long, default_value = "100")]
+    generations: usize,
 
-type Num = f32;
+    #[structopt(short, long)]
+    output: Option<String>,
 
-struct Executor<'a> {
-    cursor: usize,
-    tokens: Vec<&'a str>,
-    registers: Vec<Num>,
-}
-
-impl Executor<'_> {
-    pub fn run(program: &str, registers: Vec<Num>) -> Num {
-        let preprocessed = program.replace("\r", "").replace("\n", " ");
-        let mut e = Executor {
-            cursor: 0,
-            registers,
-            tokens: preprocessed.split(' ').filter(|x| x.len() > 0).collect(),
-        };
-        println!("{:?}", e.tokens);
-        while e.cursor < e.tokens.len() {
-            e.parse_block();
-        }
-        return e.registers[0];
-    }
-
-    fn skip_comment(&mut self) {
-        while self.next() != ">" {}
-        println!("{}", self.cursor);
-    }
-
-    fn next(&mut self) -> &str {
-        self.cursor += 1;
-        self.tokens[self.cursor]
-    }
-
-    fn parse_if(&mut self) {}
-
-    fn parse_block(&mut self) {
-        match self.next() {
-            "<" => self.skip_comment(),
-            "IF" => self.parse_if(),
-            _ => {
-                todo!();
-            }
-        }
-    }
+    problempath: String,
 }
 
 fn main() {
-    println!("abs 2: {}", Executor::run(ABS, vec![2.0]));
-    println!("abs -2: {}", Executor::run(ABS, vec![-2.0]));
+    let args = Args::from_args();
+
+    let md = metadata(&args.problempath).expect("Incorrect PROBLEMPATH");
+    if md.is_file() {
+        let writer: Box<dyn Write> = match args.output {
+            Some(output) => Box::new(File::create(output).expect("Could not create file")),
+            None => Box::new(io::stdout())
+        };
+
+        let mut tgp = TinyGP::from_problem(&args.problempath, args.seed, writer).unwrap();
+        tgp.evolve(args.generations);
+    } else if md.is_dir() {
+        let base_path = &args.output.expect("Output path must be specified for a problem suite");
+        let md = metadata(&base_path).expect("Output path does not exist");
+        if !md.is_dir() {
+            panic!("Output path is not a directory")
+        }
+        for entry in fs::read_dir(&args.problempath).expect("Cannot read directory at PROBLEMPATH") {
+            let entry = entry.expect("wtf");
+            let input = entry.path();
+            let output = format!("{}{}", base_path, entry.file_name().to_str().unwrap());
+            println!("{output}");
+            if entry.path().is_file() {
+                let writer: Box<dyn Write> = Box::new(File::create(output).expect("Could not create file"));
+                let mut tgp = TinyGP::from_problem(input.to_str().unwrap(), args.seed, writer).unwrap();
+                tgp.evolve(args.generations);
+            }
+        }
+    } else {
+        panic!("PROBLEMPATH is not a dir, not a file, what is it?");
+    }
+
 }
