@@ -5,15 +5,10 @@ use strum::IntoEnumIterator;
 use strum_macros::EnumIter;
 
 #[derive(Debug, PartialEq, Eq, EnumIter)]
-enum Keyword {
-    ADD,
-}
-
-#[derive(Debug, PartialEq, Eq)]
 enum Opcode {
-    Kw(Keyword),
     Const(i32),
     Reg(usize),
+    ADD,
 }
 
 impl FromStr for Opcode {
@@ -33,7 +28,7 @@ impl FromStr for Opcode {
             };
         }
         match s {
-            "ADD" => Ok(Opcode::Kw(Keyword::ADD)),
+            "ADD" => Ok(Opcode::ADD),
             _ => Err(String::from(format!("unknown keyword: {s}"))),
         }
     }
@@ -55,7 +50,7 @@ mod tests {
     #[test]
     fn test_tokenize() {
         let program = [
-            Opcode::Kw(Keyword::ADD),
+            Opcode::ADD,
             Opcode::Const(2),
             Opcode::Const(3),
         ];
@@ -86,12 +81,15 @@ mod tests {
             "invalid constant: 1e2"
         );
         // keywords
-        assert_eq!(Opcode::from_str("ADD").unwrap(), Opcode::Kw(Keyword::ADD));
-        for kw in Keyword::iter() {
+        assert_eq!(Opcode::from_str("ADD").unwrap(), Opcode::ADD);
+        for kw in Opcode::iter() {
+            if (kw == Opcode::Const(0) || kw == Opcode::Reg(0)) {
+                continue;
+            }
             let s = format!("{:?}", kw);
             assert_eq!(
-                Opcode::from_str(s.as_str()).expect(format!("you forgot to implement from_str for {:?}", kw).as_str()),
-                Opcode::Kw(kw)
+                Opcode::from_str(s.as_str()).expect(format!("you forgot to implement from_str for keyword {:?}", kw).as_str()),
+                kw
             );
         }
         assert_eq!(
