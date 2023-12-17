@@ -2,9 +2,9 @@
 use std::str::FromStr;
 use strum_macros::EnumIter;
 
-#[derive(Debug, PartialEq, Eq, EnumIter)]
+#[derive(Debug, PartialEq, EnumIter, Clone, Copy)]
 pub enum Token {
-    Const(i32),
+    Const(f32),
     Reg(usize),
     ADD,
     LOAD,
@@ -22,7 +22,7 @@ impl FromStr for Token {
                 Err(_) => Err(format!("invalid register: {s}")),
             };
         } else if s.starts_with(|c: char| c.is_digit(10) || c == '-') {
-            return match s.parse::<i32>() {
+            return match s.parse::<f32>() {
                 Ok(num) => Ok(Token::Const(num)),
                 Err(_) => Err(format!("invalid constant: {s}")),
             };
@@ -54,8 +54,8 @@ mod tests {
     fn test_tokenize() {
         let program = [
             Token::ADD,
-            Token::Const(2),
-            Token::Const(3),
+            Token::Const(2.0),
+            Token::Const(3.0),
         ];
         assert_eq!(tokenize("ADD 2 3"), program);
         assert_eq!(tokenize("  ADD  2 3  "), program);
@@ -72,21 +72,14 @@ mod tests {
         assert_eq!(Token::from_str("R").unwrap_err(), "invalid register: R");
         assert_eq!(Token::from_str("RR").unwrap_err(), "invalid register: RR");
         // constants
-        assert_eq!(Token::from_str("0").unwrap(), Token::Const(0));
-        assert_eq!(Token::from_str("999").unwrap(), Token::Const(999));
-        assert_eq!(Token::from_str("-999").unwrap(), Token::Const(-999));
-        assert_eq!(
-            Token::from_str("10.0").unwrap_err(),
-            "invalid constant: 10.0"
-        );
-        assert_eq!(
-            Token::from_str("1e2").unwrap_err(),
-            "invalid constant: 1e2"
-        );
+        assert_eq!(Token::from_str("0").unwrap(), Token::Const(0.0));
+        assert_eq!(Token::from_str("999").unwrap(), Token::Const(999.0));
+        assert_eq!(Token::from_str("-999").unwrap(), Token::Const(-999.0));
+        assert_eq!(Token::from_str("1e2").unwrap(), Token::Const(100.0));
         // keywords
         assert_eq!(Token::from_str("ADD").unwrap(), Token::ADD);
         for kw in Token::iter() {
-            if kw == Token::Const(0) || kw == Token::Reg(0) {
+            if kw == Token::Const(0.0) || kw == Token::Reg(0) {
                 continue;
             }
             let s = format!("{:?}", kw);

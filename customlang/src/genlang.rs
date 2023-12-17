@@ -11,16 +11,36 @@ struct Interpreter {
 }
 
 impl Interpreter {
-    fn run(&mut self) -> Result<Vec<f32>, Error> {
-        todo!();
+    fn execute(&mut self) -> Result<Vec<f32>, Error> {
+        self.eval_block(0)?;
+        return Ok(self.output.clone());
     }
 
-    fn eval_block() -> Result<(), Error> {
-        Ok(())
+    fn eval_block(&mut self, start: usize) -> Result<(), Error> {
+        self.eval_stat(start) //FIXME evaluate all statements
     }
 
-    fn eval_stat() -> Result<(), Error> {
-        Ok(())
+    fn eval_stat(&mut self, start: usize) -> Result<(), Error> {
+        match self.program[start] {
+            Token::LOAD => {
+                let destination = self.program[start + 1]; // this will panic on invalid program right?
+                assert!(matches!(destination, Token::Reg(_)));
+                match self.program[start + 2] {
+                    _ => todo!()
+                }
+            },
+            Token::OUTPUT => {
+                match self.program[start + 1] {
+                    Token::Const(val) => self.output.push(val),
+                    Token::Reg(reg) => self.output.push(self.memory[reg]),
+                    _ => unreachable!()
+                }
+                return Ok(())
+            }
+            _ => {
+                todo!()
+            }
+        }
     }
 }
 
@@ -34,8 +54,8 @@ mod tests {
         let mut ip = Interpreter {
             memory: vec![],
             output: vec![],
-            program: vec![Token::OUTPUT, Token::Const(4)]
+            program: vec![Token::OUTPUT, Token::Const(4.0)]
         };
-        assert_eq!(ip.run().unwrap(), vec![4.0]);
+        assert_eq!(ip.execute().unwrap(), vec![4.0]);
     }
 }
