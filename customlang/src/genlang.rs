@@ -39,7 +39,13 @@ impl Interpreter {
             todo!();
         }
         else if matches!(token, Token::SIN | Token::COS) { // TODO | Token::NOT
-            todo!();
+            let (i, arg) = self.eval_expr(index + 1).unwrap();
+            let val = match token {
+                Token::SIN => f32::sin(arg),
+                Token::COS => f32::cos(arg),
+                _ => unreachable!()
+            };
+            return Ok((i, val));
         }
         else {
             let (i, lhs) = self.eval_expr(index + 1).unwrap();
