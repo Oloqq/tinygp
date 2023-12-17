@@ -16,6 +16,14 @@ impl Interpreter {
         return Ok(self.output.clone());
     }
 
+    fn execute_expr(&self) -> f32 {
+
+    }
+
+    fn eval_expr(&self, index: usize) -> Result<(), Error> {
+
+    }
+
     fn eval_block(&mut self, start: usize) -> Result<(), Error> {
         let mut index = 0;
         while index < self.program.len() {
@@ -70,6 +78,19 @@ mod tests {
             output: vec![],
             program: vec![Token::OUTPUT, Token::Const(5.0), Token::OUTPUT, Token::Const(3.0)]
         };
+        assert_eq!(ip.execute().unwrap(), vec![5.0, 3.0]);
+    }
+
+    #[test]
+    #[ignore]
+    fn test_idiot_proofness() {
+        let mut ip = Interpreter {
+            memory: vec![],
+            output: vec![],
+            program: vec![]
+        };
+
+        ip.program = vec![Token::OUTPUT, Token::Const(5.0), Token::OUTPUT];
         assert_eq!(ip.execute().unwrap(), vec![5.0, 3.0]);
     }
 }

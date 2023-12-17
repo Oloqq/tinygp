@@ -6,7 +6,14 @@ use strum_macros::EnumIter;
 pub enum Token {
     Const(f32),
     Reg(usize),
+    // expressions
     ADD,
+    SUB,
+    MUL,
+    DIV,
+    SIN,
+    COS,
+    // statements
     LOAD,
     OUTPUT,
 }
@@ -29,6 +36,11 @@ impl FromStr for Token {
         }
         match s {
             "ADD" => Ok(Token::ADD),
+            "SUB" => Ok(Token::SUB),
+            "MUL" => Ok(Token::MUL),
+            "DIV" => Ok(Token::DIV),
+            "SIN" => Ok(Token::SIN),
+            "COS" => Ok(Token::COS),
             "LOAD" => Ok(Token::LOAD),
             "OUTPUT" => Ok(Token::OUTPUT),
             _ => Err(String::from(format!("unknown keyword: {s}"))),
