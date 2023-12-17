@@ -23,6 +23,8 @@ pub enum Funcs {
     End, // need to generate ranges, TODO after the course get rid of it along with Funcs::Start
 }
 
+const CONST_NUM: usize = 0;
+
 #[derive(Clone, Copy)]
 pub enum Opcode {
     Func(Funcs),
@@ -57,10 +59,11 @@ impl TinyGP {
         let seed = seed.unwrap_or(StdRng::from_entropy().next_u64());
         let mut rand = StdRng::seed_from_u64(seed);
         params.seed = seed;
-
+        const MIN_RANDOM: f32 = -20.0;
+        const MAX_RANDOM: f32 = 20.0;
         writeln!(writer.borrow_mut(), "Creating variables").unwrap();
         let variables: Vec<f32> = (0..Funcs::Start as usize + 1)
-            .map(|_| rand.gen_range(params.min_random, params.max_random))
+            .map(|_| rand.gen_range(MIN_RANDOM, MAX_RANDOM))
             .collect();
         writeln!(writer.borrow_mut(), "Creating population").unwrap();
         let (population, fitness) = random_population(&params, &cases, &mut rand, &variables);
@@ -175,9 +178,10 @@ impl TinyGP {
                         replacement = Opcode::Func(Funcs::from_usize(nonterminal).unwrap());
                     }
                     Opcode::Val(_) => {
+
                         let terminal = self
                             .rand
-                            .gen_range(0, self.params.varnumber + self.params.const_numbers);
+                            .gen_range(0, Funcs::Start as usize);
                         replacement = Opcode::Val(terminal);
                     }
                 }
@@ -286,7 +290,8 @@ Avg Size={}",
                 Funcs::End => unreachable!("Funcs::End"),
             },
             Opcode::Val(x) => {
-                if x < self.params.varnumber {
+
+                if x < Funcs::Start as usize - CONST_NUM {
                     *buffer += format!("X{}", x + 1).as_str();
                 } else {
                     *buffer += format!("{}", self.variables[x]).as_str();
@@ -340,7 +345,7 @@ fn grow(program: &mut Program, depth: usize, params: &Params, rand: &mut StdRng)
         }
         return grow(program, depth - 1, params, rand);
     } else {
-        let terminal: usize = rand.gen_range(0, params.varnumber + params.const_numbers) as usize;
+        let terminal: usize = rand.gen_range(0, Funcs::Start as usize) as usize;
         program.push(Opcode::Val(terminal));
         return true;
     }
@@ -527,10 +532,6 @@ mod tests {
     fn mock_params() -> Params {
         Params {
             seed: 1,
-            min_random: -1.0,
-            max_random: 1.0,
-            varnumber: 2,
-            const_numbers: 2,
             popsize: 10,
             depth: 3,
             crossover_prob: 0.9,

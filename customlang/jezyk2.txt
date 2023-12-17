@@ -1,0 +1,38 @@
+program = block
+
+# kolejnosc nie ma znaczenia, priorytet jest jasny bo nie ma infixow
+expr
+    = ADD expr expr
+    | SUB expr expr
+    | MUL expr expr
+    | DIV expr expr
+    | LT expr expr
+    | GT expr expr
+    | OR expr expr
+    | AND expr expr
+    | NOT expr
+    | reg
+
+stat
+    = load
+    | if
+    | while
+    | output
+
+block = stat*
+
+if
+    = IF expr THEN block ELSE block END
+    | IF expr THEN block END
+
+while = WHILE expr DO END
+
+load
+    = LOAD reg INPUT # zaczytuje kolejna wartosc z wejscia
+    | LOAD reg expr
+
+output
+    | OUTPUT reg
+
+# reg to register/rejestr/zmienna
+reg = R NUM
