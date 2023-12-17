@@ -1,5 +1,6 @@
 mod params;
 mod tinygp;
+mod token;
 mod genlang;
 use structopt::StructOpt;
 use tinygp::TinyGP;
