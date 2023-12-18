@@ -4,6 +4,7 @@ pub type Case = (Vec<f32>, Vec<f32>);
 
 pub struct Params {
     pub seed: u64,
+    pub memsize: usize,
     pub popsize: usize,
     pub depth: usize,
     pub crossover_prob: f32,
@@ -16,8 +17,9 @@ impl Params {
     pub fn from_string(data: String) -> Result<(Params, Vec<Case>), Box<dyn Error>> {
         let lines: Vec<&str> = data.split('\n').collect();
         let header: Vec<&str> = lines[0].trim().split([' ', '\t']).collect();
-        let separator: &str = header[0];
-        let num_cases: usize = header[1].parse()?;
+        let memsize: usize = header[0].parse()?;
+        let separator: &str = header[1];
+        let num_cases: usize = header[2].parse()?;
 
         let mut cases: Vec<Case> = Vec::with_capacity(num_cases);
         for i in 0..num_cases {
@@ -45,6 +47,7 @@ impl Params {
         Ok((
             Params {
                 seed: 5,
+                memsize,
                 ..Default::default()
             },
             cases,
@@ -56,6 +59,7 @@ impl Default for Params {
     fn default() -> Self {
         Self {
             seed: Default::default(),
+            memsize: 0,
             popsize: 100000,
             depth: 5,
             crossover_prob: 0.9,
@@ -96,7 +100,7 @@ mod tests {
     #[test]
     fn test_read_params() {
         let (_param, cases) = match Params::from_string(
-            "| 3
+            "2 | 3
 2 2 | 4
 1 3 | 4
 10 20 | 30
