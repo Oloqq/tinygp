@@ -1,3 +1,9 @@
+mod common;
+mod growing;
+mod evolution;
+
+use common::*;
+use growing::*;
 use crate::params::Case;
 use crate::params::Params;
 
@@ -7,39 +13,7 @@ use std::cell::RefCell;
 use std::error::Error;
 use std::fs;
 use std::io::Write;
-
-use num_derive::FromPrimitive;
 use num_traits::FromPrimitive;
-
-#[derive(Debug, Clone, Copy, FromPrimitive, PartialEq)]
-pub enum Funcs {
-    Start = 110, // number important for serialization, TODO after the course calculate the index dynamically based on number of variables and const numbers
-    ADD,
-    SUB,
-    MUL,
-    DIV,
-    SIN,
-    COS,
-    INPUT,
-    OUTPUT,
-    End, // need to generate ranges, TODO after the course get rid of it along with Funcs::Start
-}
-
-const CONST_NUM: usize = 0;
-const TOKEN_STAT: [Funcs; 2] = [Funcs::OUTPUT, Funcs::INPUT];
-
-#[derive(Debug, Clone, Copy)]
-pub enum Token {
-    Kw(Funcs),
-    Reg(usize),
-}
-
-// const FSET_START: usize = ADD;
-// const Funcs::End as usize: usize = DIV + 1;
-
-const MAX_LEN: usize = 10000;
-
-pub type Program = Vec<Token>;
 
 struct Context {
     memory: Vec<f32>,
@@ -182,6 +156,7 @@ impl TinyGP {
     fn crossover(&mut self, father_id: usize, mother_id: usize) -> Program {
         let father = &self.population[father_id];
         let mother = &self.population[mother_id];
+        println!("crossover {:?} x {:?}", father, mother);
 
         let len1 = father.len();
         let len2 = mother.len();
@@ -191,16 +166,19 @@ impl TinyGP {
 
         let xo2start = self.rand.gen_range(0, len2);
         let xo2end = get_node_end(mother, xo2start);
+        println!("{xo1start}, {xo1end}, {xo2start}, {xo2end}");
 
         let mut offspring: Program =
             Vec::with_capacity(xo1start + (xo2end - xo2start) + (len1 - xo1end));
         offspring.extend_from_slice(&father[0..xo1start]);
         offspring.extend_from_slice(&mother[xo2start..xo2end]);
         offspring.extend_from_slice(&father[xo1end..len1]);
+        println!(" -> {:?}", offspring);
         offspring
     }
 
     fn mutation(&mut self, parent_id: usize) -> Program {
+        println!("mutation");
         let parent = &self.population[parent_id];
         let mut child = Vec::with_capacity(parent.len());
         for i in 0..parent.len() {
@@ -293,30 +271,7 @@ fn negative_tournament(fitness: &Vec<f32>, tournament_size: usize, rand: &mut St
     worst
 }
 
-// choose non terminal or terminal until depth is reached, then choose only terminals
-fn grow_stat(program: &mut Program, depth: usize, params: &Params, rand: &mut StdRng) -> bool {
-    if program.len() >= MAX_LEN || depth > params.depth {
-        return false;
-    }
-    // generate operation
-    let stat = *TOKEN_STAT.choose(rand).unwrap();
-    program.push(Token::Kw(stat));
-    match stat {
-        Funcs::OUTPUT => {
-            let regnum = rand.gen_range(0, params.memsize);
-            let reg = Token::Reg(regnum);
-            program.push(reg);
-        }
-        Funcs::INPUT => {
-            let regnum = rand.gen_range(0, params.memsize);
-            let reg = Token::Reg(regnum);
-            program.push(reg);
-        }
-        _ => panic!("{:?} is not a stat (or is not implemented as one)", stat),
-    }
-    println!("{:?}", program);
-    return true;
-}
+
 
 fn create_random_indiv(params: &Params, rand: &mut StdRng) -> Program {
     let mut program: Program = Vec::with_capacity(2 * params.depth);
@@ -406,6 +361,7 @@ fn eval_stat(program: &Program, cursor: &mut usize, ctx: &mut Context) -> Result
     Ok(())
 }
 
+#[allow(unused)]
 fn eval_expr(program: &Program, memory: &Vec<f32>, cursor: &mut usize) -> f32 {
     let opcode = program[*cursor];
     *cursor += 1;
@@ -432,36 +388,10 @@ fn eval_expr(program: &Program, memory: &Vec<f32>, cursor: &mut usize) -> f32 {
     };
 }
 
-fn get_node_end(program: &Program, start: usize) -> usize {
-    let arg1 = |index| -> usize { get_node_end(program, index) };
-    let arg2 = |index| -> usize {
-        let arg1end = get_node_end(program, index);
-        get_node_end(program, arg1end)
-    };
-
-    match program[start] {
-        Token::Reg(_) => start + 1,
-        Token::Kw(k) => match k {
-            Funcs::Start => unreachable!(),
-            Funcs::ADD => arg2(start + 1),
-            Funcs::SUB => arg2(start + 1),
-            Funcs::MUL => arg2(start + 1),
-            Funcs::DIV => arg2(start + 1),
-            Funcs::SIN => arg1(start + 1),
-            Funcs::COS => arg1(start + 1),
-            Funcs::INPUT => arg1(start + 1),
-            Funcs::OUTPUT => arg1(start + 1),
-            Funcs::End => unreachable!(),
-            // get_node_end(program, get_node_end(program, start + 1)),
-        },
-    }
-}
-
 #[cfg(test)]
 mod tests {
 
     use super::*;
-    use std::io;
 
     #[test]
     fn test_execute() {
