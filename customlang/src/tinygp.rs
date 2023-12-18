@@ -25,6 +25,7 @@ pub enum Funcs {
 }
 
 const CONST_NUM: usize = 0;
+const TOKEN_STAT: [Funcs; 1] = [Funcs::OUTPUT];
 
 #[derive(Debug, Clone, Copy)]
 pub enum Opcode {
@@ -341,13 +342,22 @@ fn grow_stat(program: &mut Program, depth: usize, params: &Params, rand: &mut St
 
     if depth > 0 && rand.gen_bool(0.5) {
         // generate operation
-        let operation = rand.gen_range(Funcs::Start as usize + 1, Funcs::End as usize);
-        program.push(Opcode::Func(Funcs::from_usize(operation).unwrap()));
-        // generate operands
-        if !grow_stat(program, depth - 1, params, rand) {
-            return false;
+        let stat = TOKEN_STAT.choose(rand).unwrap();
+        program.push(Opcode::Func(*stat));
+        match *stat {
+            Funcs::OUTPUT => {
+                let regnum = rand.gen_range(0, params.memsize);
+                let reg = Opcode::Val(regnum);
+                program.push(reg);
+            }
+            _ => unreachable!()
         }
-        return grow_stat(program, depth - 1, params, rand);
+        return true;
+        // generate operands
+        // if !grow_stat(program, depth - 1, params, rand) {
+        //     return false;
+        // }
+        // return grow_stat(program, depth - 1, params, rand);
     } else {
         let terminal: usize = rand.gen_range(0, params.memsize) as usize;
         program.push(Opcode::Val(terminal));
