@@ -60,7 +60,7 @@ impl Default for Params {
         Self {
             seed: Default::default(),
             memsize: 0,
-            popsize: 100000,
+            popsize: 10,
             depth: 5,
             crossover_prob: 0.9,
             pmut_per_node: 0.05,

@@ -30,7 +30,7 @@ const TOKEN_STAT: [Funcs; 1] = [Funcs::OUTPUT];
 #[derive(Debug, Clone, Copy)]
 pub enum Opcode {
     Func(Funcs),
-    Val(usize),
+    Reg(usize),
 }
 
 // const FSET_START: usize = ADD;
@@ -179,12 +179,12 @@ impl TinyGP {
                             .gen_range(Funcs::Start as usize + 1, Funcs::End as usize);
                         replacement = Opcode::Func(Funcs::from_usize(nonterminal).unwrap());
                     }
-                    Opcode::Val(_) => {
+                    Opcode::Reg(_) => {
 
                         let terminal = self
                             .rand
                             .gen_range(0, Funcs::Start as usize);
-                        replacement = Opcode::Val(terminal);
+                        replacement = Opcode::Reg(terminal);
                     }
                 }
             } else {
@@ -230,8 +230,8 @@ Avg Size={}",
         // pprint(&self.population[best]);
         writeln!(
             self.writer.borrow_mut(),
-            "{}\n",
-            self.equation_string(&self.population[best])
+            "{:?}\n",
+            &self.population[best]
         )
         .unwrap();
 
@@ -294,8 +294,8 @@ Avg Size={}",
                 Funcs::Start => unreachable!("Funcs::Start"),
                 Funcs::End => unreachable!("Funcs::End"),
             },
-            Opcode::Val(x) => {
-
+            Opcode::Reg(x) => {
+                println!("kuuuurwa");
                 if x < Funcs::Start as usize - CONST_NUM {
                     *buffer += format!("X{}", x + 1).as_str();
                 } else {
@@ -336,33 +336,22 @@ fn negative_tournament(fitness: &Vec<f32>, tournament_size: usize, rand: &mut St
 
 // choose non terminal or terminal until depth is reached, then choose only terminals
 fn grow_stat(program: &mut Program, depth: usize, params: &Params, rand: &mut StdRng) -> bool {
-    if program.len() >= MAX_LEN {
+    if program.len() >= MAX_LEN || depth > params.depth {
         return false;
     }
-
-    if depth > 0 && rand.gen_bool(0.5) {
-        // generate operation
-        let stat = TOKEN_STAT.choose(rand).unwrap();
-        program.push(Opcode::Func(*stat));
-        match *stat {
-            Funcs::OUTPUT => {
-                let regnum = rand.gen_range(0, params.memsize);
-                let reg = Opcode::Val(regnum);
-                program.push(reg);
-            }
-            _ => unreachable!()
+    // generate operation
+    let stat = TOKEN_STAT.choose(rand).unwrap();
+    program.push(Opcode::Func(*stat));
+    match *stat {
+        Funcs::OUTPUT => {
+            let regnum = rand.gen_range(0, params.memsize);
+            let reg = Opcode::Reg(regnum);
+            program.push(reg);
         }
-        return true;
-        // generate operands
-        // if !grow_stat(program, depth - 1, params, rand) {
-        //     return false;
-        // }
-        // return grow_stat(program, depth - 1, params, rand);
-    } else {
-        let terminal: usize = rand.gen_range(0, params.memsize) as usize;
-        program.push(Opcode::Val(terminal));
-        return true;
+        _ => unreachable!()
     }
+    println!("{:?}", program);
+    return true;
 }
 
 fn create_random_indiv(params: &Params, rand: &mut StdRng) -> Program {
@@ -399,7 +388,7 @@ fn random_population(
 }
 
 fn execute(program: &Program, params: &Params) -> f32 {
-    println!("{:?}", program);
+    // println!("{:?}", program);
     let mut memory = vec![0.0; params.memsize];
     let mut cursor = 0;
     let mut output: Vec<f32> = Vec::new();
@@ -409,7 +398,7 @@ fn execute(program: &Program, params: &Params) -> f32 {
 
 fn read_reg(token: Opcode, memory: &Vec<f32>) -> f32 {
     match token {
-        Opcode::Val(num) => {
+        Opcode::Reg(num) => {
             memory.get(num).unwrap().clone()
         },
         _ => {
@@ -427,7 +416,7 @@ fn eval_stat(program: &Program, memory: &mut Vec<f32>, cursor: &mut usize, outpu
             },
             _ => unreachable!()
         },
-        Opcode::Val(_) => unreachable!()
+        Opcode::Reg(_) => unreachable!()
     }
 }
 
@@ -453,13 +442,13 @@ fn eval_expr(program: &Program, memory: &Vec<f32>, cursor: &mut usize) -> f32 {
             Funcs::COS => f32::cos(eval_expr(program, memory, cursor)),
             _ => unreachable!()
         },
-        Opcode::Val(i) => memory[i],
+        Opcode::Reg(i) => memory[i],
     };
 }
 
 fn get_expression_end(program: &Program, start: usize) -> usize {
     match program[start] {
-        Opcode::Val(_) => start + 1,
+        Opcode::Reg(_) => start + 1,
         Opcode::Func(_) => get_expression_end(program, get_expression_end(program, start + 1)),
     }
 }
@@ -473,7 +462,7 @@ fn pprint_recurse(program: &Program, cursor: &mut usize, buffer: &mut String, in
     let opcode = program[*cursor];
     *cursor += 1;
     match opcode {
-        Opcode::Val(i) => {
+        Opcode::Reg(i) => {
             *buffer += format!("{}{}\n", str::repeat(" ", indent), i).as_str();
         }
         Opcode::Func(func) => {
@@ -518,20 +507,20 @@ mod tests {
     fn test_execute() {
         let program: Vec<Opcode> = vec![
             Opcode::Func(Funcs::ADD),
-            Opcode::Val(0),
+            Opcode::Reg(0),
             Opcode::Func(Funcs::DIV),
-            Opcode::Val(1),
-            Opcode::Val(1),
+            Opcode::Reg(1),
+            Opcode::Reg(1),
         ];
         let data = vec![1.0, -2.0];
         assert_eq!(2.0, eval_expr(&program, &data, &mut 0));
 
         let program: Vec<Opcode> = vec![
             Opcode::Func(Funcs::SUB),
-            Opcode::Val(0),
+            Opcode::Reg(0),
             Opcode::Func(Funcs::DIV),
-            Opcode::Val(1),
-            Opcode::Val(2),
+            Opcode::Reg(1),
+            Opcode::Reg(2),
         ];
         assert_eq!(
             0.8776571,
@@ -607,24 +596,24 @@ mod tests {
         );
         let s = t.equation_string(&vec![
             Opcode::Func(Funcs::ADD),
-            Opcode::Val(0),
-            Opcode::Val(0),
+            Opcode::Reg(0),
+            Opcode::Reg(0),
         ]);
         assert_eq!(s, "(X1 + X1)")
     }
 
     #[test]
     fn test_get_expression_end() {
-        let program = vec![Opcode::Func(Funcs::ADD), Opcode::Val(0), Opcode::Val(0)];
+        let program = vec![Opcode::Func(Funcs::ADD), Opcode::Reg(0), Opcode::Reg(0)];
         assert_eq!(get_expression_end(&program, 0), 3);
         assert_eq!(get_expression_end(&program, 1), 2);
         assert_eq!(get_expression_end(&program, 2), 3);
         let program = vec![
             Opcode::Func(Funcs::ADD),
             Opcode::Func(Funcs::ADD),
-            Opcode::Val(0),
-            Opcode::Val(0),
-            Opcode::Val(0),
+            Opcode::Reg(0),
+            Opcode::Reg(0),
+            Opcode::Reg(0),
         ];
         assert_eq!(get_expression_end(&program, 0), 5);
         assert_eq!(get_expression_end(&program, 1), 4);
@@ -638,9 +627,9 @@ mod tests {
         let program = vec![
             Opcode::Func(Funcs::ADD),
             Opcode::Func(Funcs::ADD),
-            Opcode::Val(0),
-            Opcode::Val(0),
-            Opcode::Val(0),
+            Opcode::Reg(0),
+            Opcode::Reg(0),
+            Opcode::Reg(0),
         ];
         let mut s = String::new();
         let mut cursor = 0;
@@ -661,7 +650,7 @@ mod tests {
     fn test_sin() {
         let program = vec![
             Opcode::Func(Funcs::SIN),
-            Opcode::Val(0),
+            Opcode::Reg(0),
         ];
 
         assert_eq!(
@@ -678,7 +667,7 @@ mod tests {
     fn test_cos() {
         let program = vec![
             Opcode::Func(Funcs::COS),
-            Opcode::Val(0),
+            Opcode::Reg(0),
         ];
 
         assert_eq!(
