@@ -139,10 +139,13 @@ impl TinyGP {
                     tournament(&self.fitness, self.params.tournament_size, &mut self.rand);
                 let mother_id =
                     tournament(&self.fitness, self.params.tournament_size, &mut self.rand);
-                child_program = self.crossover(father_id, mother_id);
+                let father = &self.population[father_id];
+                let mother = &self.population[mother_id];
+                child_program = crossover(father, mother, &mut self.rand);
             } else {
-                let parent = tournament(&self.fitness, self.params.tournament_size, &mut self.rand);
-                child_program = self.mutation(parent);
+                let parent_id = tournament(&self.fitness, self.params.tournament_size, &mut self.rand);
+                let parent = &self.population[parent_id];
+                child_program = mutation(parent, &self.params, &mut self.rand);
             };
             let child_index =
                 negative_tournament(&self.fitness, self.params.tournament_size, &mut self.rand);
@@ -151,57 +154,6 @@ impl TinyGP {
             self.population[child_index] = child_program;
         }
         self.generation += 1;
-    }
-
-    fn crossover(&mut self, father_id: usize, mother_id: usize) -> Program {
-        let father = &self.population[father_id];
-        let mother = &self.population[mother_id];
-        println!("crossover {:?} x {:?}", father, mother);
-
-        let len1 = father.len();
-        let len2 = mother.len();
-
-        let xo1start = self.rand.gen_range(0, len1);
-        let xo1end = get_node_end(father, xo1start);
-
-        let xo2start = self.rand.gen_range(0, len2);
-        let xo2end = get_node_end(mother, xo2start);
-        println!("{xo1start}, {xo1end}, {xo2start}, {xo2end}");
-
-        let mut offspring: Program =
-            Vec::with_capacity(xo1start + (xo2end - xo2start) + (len1 - xo1end));
-        offspring.extend_from_slice(&father[0..xo1start]);
-        offspring.extend_from_slice(&mother[xo2start..xo2end]);
-        offspring.extend_from_slice(&father[xo1end..len1]);
-        println!(" -> {:?}", offspring);
-        offspring
-    }
-
-    fn mutation(&mut self, parent_id: usize) -> Program {
-        println!("mutation");
-        let parent = &self.population[parent_id];
-        let mut child = Vec::with_capacity(parent.len());
-        for i in 0..parent.len() {
-            let replacement: Token;
-            if self.rand.gen_bool(self.params.pmut_per_node as f64) {
-                match parent[i] {
-                    Token::Kw(_) => {
-                        let nonterminal = self
-                            .rand
-                            .gen_range(Funcs::Start as usize + 1, Funcs::End as usize);
-                        replacement = Token::Kw(Funcs::from_usize(nonterminal).unwrap());
-                    }
-                    Token::Reg(_) => {
-                        let terminal = self.rand.gen_range(0, Funcs::Start as usize);
-                        replacement = Token::Reg(terminal);
-                    }
-                }
-            } else {
-                replacement = parent[i];
-            }
-            child.push(replacement);
-        }
-        child
     }
 
     fn stats(&mut self) -> (f32, usize) {
@@ -241,6 +193,52 @@ Avg Size={}",
 
         (best_fitness, best)
     }
+}
+
+fn crossover(father: &Program, mother: &Program, rand: &mut StdRng) -> Program {
+    println!("crossover {:?} x {:?}", father, mother);
+
+    let len1 = father.len();
+    let len2 = mother.len();
+
+    let xo1start = rand.gen_range(0, len1);
+    let xo1end = get_node_end(father, xo1start);
+
+    let xo2start = rand.gen_range(0, len2);
+    let xo2end = get_node_end(mother, xo2start);
+    println!("{xo1start}, {xo1end}, {xo2start}, {xo2end}");
+
+    let mut offspring: Program =
+        Vec::with_capacity(xo1start + (xo2end - xo2start) + (len1 - xo1end));
+    offspring.extend_from_slice(&father[0..xo1start]);
+    offspring.extend_from_slice(&mother[xo2start..xo2end]);
+    offspring.extend_from_slice(&father[xo1end..len1]);
+    println!(" -> {:?}", offspring);
+    offspring
+}
+
+fn mutation(parent: &Program, params: &Params, rand: &mut StdRng) -> Program {
+    println!("mutation");
+    let mut child = Vec::with_capacity(parent.len());
+    for i in 0..parent.len() {
+        let replacement: Token;
+        if rand.gen_bool(params.pmut_per_node as f64) {
+            match parent[i] {
+                Token::Kw(_) => {
+                    let nonterminal = rand.gen_range(Funcs::Start as usize + 1, Funcs::End as usize);
+                    replacement = Token::Kw(Funcs::from_usize(nonterminal).unwrap());
+                }
+                Token::Reg(_) => {
+                    let terminal = rand.gen_range(0, Funcs::Start as usize);
+                    replacement = Token::Reg(terminal);
+                }
+            }
+        } else {
+            replacement = parent[i];
+        }
+        child.push(replacement);
+    }
+    child
 }
 
 fn tournament(fitness: &Vec<f32>, tournament_size: usize, rand: &mut StdRng) -> usize {
