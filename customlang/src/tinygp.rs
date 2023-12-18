@@ -11,7 +11,7 @@ use std::io::Write;
 use num_derive::FromPrimitive;
 use num_traits::FromPrimitive;
 
-#[derive(Debug, Clone, Copy, FromPrimitive)]
+#[derive(Debug, Clone, Copy, FromPrimitive, PartialEq)]
 pub enum Funcs {
     Start = 110, // number important for serialization, TODO after the course calculate the index dynamically based on number of variables and const numbers
     ADD,
@@ -20,12 +20,13 @@ pub enum Funcs {
     DIV,
     SIN,
     COS,
+    INPUT,
     OUTPUT,
     End, // need to generate ranges, TODO after the course get rid of it along with Funcs::Start
 }
 
 const CONST_NUM: usize = 0;
-const TOKEN_STAT: [Funcs; 1] = [Funcs::OUTPUT];
+const TOKEN_STAT: [Funcs; 2] = [Funcs::OUTPUT, Funcs::INPUT];
 
 #[derive(Debug, Clone, Copy)]
 pub enum Token {
@@ -39,6 +40,42 @@ pub enum Token {
 const MAX_LEN: usize = 10000;
 
 pub type Program = Vec<Token>;
+
+struct Context {
+    memory: Vec<f32>,
+    input: Vec<f32>,
+    output: Vec<f32>,
+    input_cursor: usize,
+}
+
+impl Context {
+    pub fn new(memsize: usize, input: Vec<f32>) -> Self {
+        Context {
+            memory: vec![0.0; memsize],
+            input,
+            output: Vec::new(),
+            input_cursor: 0,
+        }
+    }
+
+    pub fn next_input(&mut self) -> Option<f32> {
+        if self.input.len() < self.input_cursor {
+            let val = self.input[self.input_cursor];
+            self.input_cursor += 1;
+            Some(val)
+        } else {
+            None
+        }
+    }
+}
+
+#[allow(unused)]
+#[derive(Debug)]
+enum EvalError {
+    Finished,
+    Syntax,
+    Semantic,
+}
 
 pub struct TinyGP {
     rand: StdRng,
@@ -113,11 +150,7 @@ impl TinyGP {
 
         if best_fitness >= self.params.acceptable_error {
             writeln!(self.writer.borrow_mut(), "PROBLEM SOLVED").unwrap();
-            fs::write(
-                "solution.txt",
-                self.equation_string(&self.population[best_id]),
-            )
-            .unwrap();
+            fs::write("solution.txt", format!("{:?}", self.population[best_id])).unwrap();
         } else {
             writeln!(self.writer.borrow_mut(), "PROBLEM UNSOLVED").unwrap();
         }
@@ -139,7 +172,8 @@ impl TinyGP {
             };
             let child_index =
                 negative_tournament(&self.fitness, self.params.tournament_size, &mut self.rand);
-            self.fitness[child_index] = fitness_func(&child_program, &self.params, &self.cases, &self.variables);
+            self.fitness[child_index] =
+                fitness_func(&child_program, &self.params, &self.cases, &self.variables);
             self.population[child_index] = child_program;
         }
         self.generation += 1;
@@ -153,10 +187,10 @@ impl TinyGP {
         let len2 = mother.len();
 
         let xo1start = self.rand.gen_range(0, len1);
-        let xo1end = get_expression_end(father, xo1start);
+        let xo1end = get_node_end(father, xo1start);
 
         let xo2start = self.rand.gen_range(0, len2);
-        let xo2end = get_expression_end(mother, xo2start);
+        let xo2end = get_node_end(mother, xo2start);
 
         let mut offspring: Program =
             Vec::with_capacity(xo1start + (xo2end - xo2start) + (len1 - xo1end));
@@ -180,10 +214,7 @@ impl TinyGP {
                         replacement = Token::Kw(Funcs::from_usize(nonterminal).unwrap());
                     }
                     Token::Reg(_) => {
-
-                        let terminal = self
-                            .rand
-                            .gen_range(0, Funcs::Start as usize);
+                        let terminal = self.rand.gen_range(0, Funcs::Start as usize);
                         replacement = Token::Reg(terminal);
                     }
                 }
@@ -228,81 +259,9 @@ Avg Size={}",
         writeln!(self.writer.borrow_mut(), "Best Individual: ").unwrap();
         // writeln!(self.writer.borrow_mut(), "{:?}", self.population[best]);
         // pprint(&self.population[best]);
-        writeln!(
-            self.writer.borrow_mut(),
-            "{:?}\n",
-            &self.population[best]
-        )
-        .unwrap();
+        writeln!(self.writer.borrow_mut(), "{:?}\n", &self.population[best]).unwrap();
 
         (best_fitness, best)
-    }
-
-    pub fn equation_string(&self, program: &Program) -> String {
-        let mut buffer = String::with_capacity(program.len() * 3);
-        self.serialize_equation_string(program, &mut 0, &mut buffer);
-        buffer
-    }
-
-    fn serialize_equation_string(
-        &self,
-        program: &Program,
-        cursor: &mut usize,
-        buffer: &mut String,
-    ) {
-        let opcode = program[*cursor];
-
-        let mut infix = |sign: &str| {
-            *buffer += "(";
-            *cursor += 1;
-            self.serialize_equation_string(program, cursor, buffer);
-            *buffer += sign;
-            *cursor += 1;
-            self.serialize_equation_string(program, cursor, buffer);
-            *buffer += ")";
-        };
-
-        match opcode {
-            Token::Kw(funcid) => match funcid {
-                Funcs::ADD => {
-                    infix(" + ");
-                }
-                Funcs::SUB => {
-                    infix(" - ");
-                }
-                Funcs::MUL => {
-                    infix(" * ");
-                }
-                Funcs::DIV => {
-                    infix(" / ");
-                }
-                Funcs::SIN => {
-                    *buffer += "sin(";
-                    *cursor += 1;
-                    self.serialize_equation_string(program, cursor, buffer);
-                    *buffer += ")";
-                }
-                Funcs::COS => {
-                    *buffer += "cos(";
-                    *cursor += 1;
-                    self.serialize_equation_string(program, cursor, buffer);
-                    *buffer += ")";
-                }
-                Funcs::OUTPUT => {
-                    *buffer += "OUTPUT";
-                }
-                Funcs::Start => unreachable!("Funcs::Start"),
-                Funcs::End => unreachable!("Funcs::End"),
-            },
-            Token::Reg(x) => {
-                println!("kuuuurwa");
-                if x < Funcs::Start as usize - CONST_NUM {
-                    *buffer += format!("X{}", x + 1).as_str();
-                } else {
-                    *buffer += format!("{}", self.variables[x]).as_str();
-                }
-            }
-        };
     }
 }
 
@@ -340,15 +299,20 @@ fn grow_stat(program: &mut Program, depth: usize, params: &Params, rand: &mut St
         return false;
     }
     // generate operation
-    let stat = TOKEN_STAT.choose(rand).unwrap();
-    program.push(Token::Kw(*stat));
-    match *stat {
+    let stat = *TOKEN_STAT.choose(rand).unwrap();
+    program.push(Token::Kw(stat));
+    match stat {
         Funcs::OUTPUT => {
             let regnum = rand.gen_range(0, params.memsize);
             let reg = Token::Reg(regnum);
             program.push(reg);
         }
-        _ => unreachable!()
+        Funcs::INPUT => {
+            let regnum = rand.gen_range(0, params.memsize);
+            let reg = Token::Reg(regnum);
+            program.push(reg);
+        }
+        _ => panic!("{:?} is not a stat (or is not implemented as one)", stat),
     }
     println!("{:?}", program);
     return true;
@@ -360,7 +324,12 @@ fn create_random_indiv(params: &Params, rand: &mut StdRng) -> Program {
     program
 }
 
-fn fitness_func(program: &Program, params: &Params, cases: &Vec<Case>, variables: &Vec<f32>) -> f32 {
+fn fitness_func(
+    program: &Program,
+    params: &Params,
+    cases: &Vec<Case>,
+    variables: &Vec<f32>,
+) -> f32 {
     let mut vars = variables.clone();
     cases.iter().fold(0.0, |acc, (inputs, targets)| {
         vars.splice(0..inputs.len(), inputs.iter().cloned());
@@ -388,36 +357,53 @@ fn random_population(
 }
 
 fn execute(program: &Program, params: &Params) -> f32 {
-    // println!("{:?}", program);
-    let mut memory = vec![0.0; params.memsize];
+    println!("{:?}", program);
+    let mut ctx = Context::new(params.memsize, vec![]);
     let mut cursor = 0;
-    let mut output: Vec<f32> = Vec::new();
-    eval_stat(program, &mut memory, &mut cursor, &mut output);
-    return *output.get(0).unwrap_or(&1.0);
+
+    match eval_stat(program, &mut cursor, &mut ctx) {
+        Ok(_) => {},
+        Err(e) => match e {
+            EvalError::Finished => {},
+            EvalError::Syntax => todo!(),
+            EvalError::Semantic => todo!(),
+        }
+    }
+    return *ctx.output.get(0).unwrap_or(&1.0);
 }
 
 fn read_reg(token: Token, memory: &Vec<f32>) -> f32 {
     match token {
-        Token::Reg(num) => {
-            memory.get(num).unwrap().clone()
-        },
+        Token::Reg(num) => memory.get(num).unwrap().clone(),
         _ => {
             unreachable!()
         }
     }
 }
 
-fn eval_stat(program: &Program, memory: &mut Vec<f32>, cursor: &mut usize, output: &mut Vec<f32>) {
+fn eval_stat(program: &Program, cursor: &mut usize, ctx: &mut Context) -> Result<(), EvalError> {
     match program[*cursor] {
         Token::Kw(keyword) => match keyword {
             Funcs::OUTPUT => {
-                let regval = read_reg(program[*cursor + 1], &memory);
-                output.push(regval);
-            },
-            _ => unreachable!()
+                let regval = read_reg(program[*cursor + 1], &ctx.memory);
+                ctx.output.push(regval);
+            }
+            Funcs::INPUT => {
+                let regnum = match program[*cursor + 1] {
+                    Token::Reg(num) => num,
+                    _ => panic!("Expected Reg at {}, got {:?}", *cursor + 1, program[*cursor + 1]),
+                };
+                let val = match ctx.next_input() {
+                    Some(val) => val,
+                    None => return Err(EvalError::Finished),
+                };
+                ctx.memory[regnum] = val;
+            }
+            _ => unreachable!(),
         },
-        Token::Reg(_) => unreachable!()
+        Token::Reg(_) => unreachable!(),
     }
+    Ok(())
 }
 
 fn eval_expr(program: &Program, memory: &Vec<f32>, cursor: &mut usize) -> f32 {
@@ -440,61 +426,35 @@ fn eval_expr(program: &Program, memory: &Vec<f32>, cursor: &mut usize) -> f32 {
             }
             Funcs::SIN => f32::sin(eval_expr(program, memory, cursor)),
             Funcs::COS => f32::cos(eval_expr(program, memory, cursor)),
-            _ => unreachable!()
+            _ => unreachable!(),
         },
         Token::Reg(i) => memory[i],
     };
 }
 
-fn get_expression_end(program: &Program, start: usize) -> usize {
+fn get_node_end(program: &Program, start: usize) -> usize {
+    let arg1 = |index| -> usize { get_node_end(program, index) };
+    let arg2 = |index| -> usize {
+        let arg1end = get_node_end(program, index);
+        get_node_end(program, arg1end)
+    };
+
     match program[start] {
         Token::Reg(_) => start + 1,
-        Token::Kw(_) => get_expression_end(program, get_expression_end(program, start + 1)),
+        Token::Kw(k) => match k {
+            Funcs::Start => unreachable!(),
+            Funcs::ADD => arg2(start + 1),
+            Funcs::SUB => arg2(start + 1),
+            Funcs::MUL => arg2(start + 1),
+            Funcs::DIV => arg2(start + 1),
+            Funcs::SIN => arg1(start + 1),
+            Funcs::COS => arg1(start + 1),
+            Funcs::INPUT => arg1(start + 1),
+            Funcs::OUTPUT => arg1(start + 1),
+            Funcs::End => unreachable!(),
+            // get_node_end(program, get_node_end(program, start + 1)),
+        },
     }
-}
-
-#[allow(unused)]
-fn pprint_recurse(program: &Program, cursor: &mut usize, buffer: &mut String, indent: usize) {
-    if *cursor >= program.len() {
-        return;
-    }
-
-    let opcode = program[*cursor];
-    *cursor += 1;
-    match opcode {
-        Token::Reg(i) => {
-            *buffer += format!("{}{}\n", str::repeat(" ", indent), i).as_str();
-        }
-        Token::Kw(func) => {
-            *buffer += format!(
-                "{}{}\n",
-                str::repeat(" ", indent),
-                match func {
-                    Funcs::ADD => "ADD",
-                    Funcs::SUB => "SUB",
-                    Funcs::MUL => "MUL",
-                    Funcs::DIV => "DIV",
-                    Funcs::SIN => "SIN",
-                    Funcs::COS => "COS",
-                    Funcs::OUTPUT => "OUTPUT",
-                    Funcs::Start => unreachable!(),
-                    Funcs::End => unreachable!(),
-                }
-            )
-            .as_str();
-
-            pprint_recurse(program, cursor, buffer, indent + 2);
-            pprint_recurse(program, cursor, buffer, indent + 2);
-        }
-    }
-}
-
-#[allow(unused)]
-fn pprint(program: &Program, writer: RefCell<Box<dyn Write>>) {
-    let mut s = String::new();
-    let mut cursor = 0;
-    pprint_recurse(program, &mut cursor, &mut s, 0);
-    writeln!(writer.borrow_mut(), "{}", s);
 }
 
 #[cfg(test)]
@@ -587,27 +547,11 @@ mod tests {
     }
 
     #[test]
-    fn test_print_indiv() {
-        let t = TinyGP::new(
-            mock_params(),
-            Vec::new(),
-            Some(5),
-            RefCell::new(Box::new(io::stdout())),
-        );
-        let s = t.equation_string(&vec![
-            Token::Kw(Funcs::ADD),
-            Token::Reg(0),
-            Token::Reg(0),
-        ]);
-        assert_eq!(s, "(X1 + X1)")
-    }
-
-    #[test]
     fn test_get_expression_end() {
         let program = vec![Token::Kw(Funcs::ADD), Token::Reg(0), Token::Reg(0)];
-        assert_eq!(get_expression_end(&program, 0), 3);
-        assert_eq!(get_expression_end(&program, 1), 2);
-        assert_eq!(get_expression_end(&program, 2), 3);
+        assert_eq!(get_node_end(&program, 0), 3);
+        assert_eq!(get_node_end(&program, 1), 2);
+        assert_eq!(get_node_end(&program, 2), 3);
         let program = vec![
             Token::Kw(Funcs::ADD),
             Token::Kw(Funcs::ADD),
@@ -615,68 +559,24 @@ mod tests {
             Token::Reg(0),
             Token::Reg(0),
         ];
-        assert_eq!(get_expression_end(&program, 0), 5);
-        assert_eq!(get_expression_end(&program, 1), 4);
-        assert_eq!(get_expression_end(&program, 2), 3);
-        assert_eq!(get_expression_end(&program, 3), 4);
-        assert_eq!(get_expression_end(&program, 4), 5);
-    }
-
-    #[test]
-    fn test_pprint() {
-        let program = vec![
-            Token::Kw(Funcs::ADD),
-            Token::Kw(Funcs::ADD),
-            Token::Reg(0),
-            Token::Reg(0),
-            Token::Reg(0),
-        ];
-        let mut s = String::new();
-        let mut cursor = 0;
-        pprint_recurse(&program, &mut cursor, &mut s, 0);
-        assert_eq!(
-            "ADD
-  ADD
-    0
-    0
-  0
-",
-            s
-        );
-
+        assert_eq!(get_node_end(&program, 0), 5);
+        assert_eq!(get_node_end(&program, 1), 4);
+        assert_eq!(get_node_end(&program, 2), 3);
+        assert_eq!(get_node_end(&program, 3), 4);
+        assert_eq!(get_node_end(&program, 4), 5);
     }
 
     #[test]
     fn test_sin() {
-        let program = vec![
-            Token::Kw(Funcs::SIN),
-            Token::Reg(0),
-        ];
+        let program = vec![Token::Kw(Funcs::SIN), Token::Reg(0)];
 
-        assert_eq!(
-            0.0,
-            eval_expr(
-                &program,
-                &vec![0.0],
-                &mut 0
-            )
-        );
+        assert_eq!(0.0, eval_expr(&program, &vec![0.0], &mut 0));
     }
 
     #[test]
     fn test_cos() {
-        let program = vec![
-            Token::Kw(Funcs::COS),
-            Token::Reg(0),
-        ];
+        let program = vec![Token::Kw(Funcs::COS), Token::Reg(0)];
 
-        assert_eq!(
-            1.0,
-            eval_expr(
-                &program,
-                &vec![0.0],
-                &mut 0
-            )
-        );
+        assert_eq!(1.0, eval_expr(&program, &vec![0.0], &mut 0));
     }
 }

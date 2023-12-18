@@ -1,1 +1,1 @@
-OUTPUT
+[Kw(OUTPUT), Reg(1)]
