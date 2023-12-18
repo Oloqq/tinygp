@@ -334,7 +334,7 @@ fn negative_tournament(fitness: &Vec<f32>, tournament_size: usize, rand: &mut St
 }
 
 // choose non terminal or terminal until depth is reached, then choose only terminals
-fn grow(program: &mut Program, depth: usize, params: &Params, rand: &mut StdRng) -> bool {
+fn grow_stat(program: &mut Program, depth: usize, params: &Params, rand: &mut StdRng) -> bool {
     if program.len() >= MAX_LEN {
         return false;
     }
@@ -344,10 +344,10 @@ fn grow(program: &mut Program, depth: usize, params: &Params, rand: &mut StdRng)
         let operation = rand.gen_range(Funcs::Start as usize + 1, Funcs::End as usize);
         program.push(Opcode::Func(Funcs::from_usize(operation).unwrap()));
         // generate operands
-        if !grow(program, depth - 1, params, rand) {
+        if !grow_stat(program, depth - 1, params, rand) {
             return false;
         }
-        return grow(program, depth - 1, params, rand);
+        return grow_stat(program, depth - 1, params, rand);
     } else {
         let terminal: usize = rand.gen_range(0, params.memsize) as usize;
         program.push(Opcode::Val(terminal));
@@ -357,7 +357,7 @@ fn grow(program: &mut Program, depth: usize, params: &Params, rand: &mut StdRng)
 
 fn create_random_indiv(params: &Params, rand: &mut StdRng) -> Program {
     let mut program: Program = Vec::with_capacity(2 * params.depth);
-    grow(&mut program, params.depth, params, rand);
+    grow_stat(&mut program, params.depth, params, rand);
     program
 }
 
@@ -583,7 +583,7 @@ mod tests {
     fn test_grow_depth_0() {
         let mut program = Vec::new();
         let mut rand: StdRng = StdRng::seed_from_u64(1);
-        grow(&mut program, 0, &mock_params(), &mut rand);
+        grow_stat(&mut program, 0, &mock_params(), &mut rand);
         assert!(program.len() == 1)
     }
 
