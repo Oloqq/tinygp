@@ -45,8 +45,7 @@ pub fn execute_with_new_runtime(program: &Program, memsize: usize) -> f32 {
 }
 
 pub fn execute(program: &Program, runtime: &mut Runtime) {
-    let mut cursor = 0;
-    match eval_stat(program, &mut cursor, runtime) {
+    match eval_stat(program, 0, runtime) {
         Ok(_) => {}
         Err(e) => match e {
             EvalError::Finished => {}
@@ -65,21 +64,22 @@ fn read_reg(token: Token, memory: &Vec<f32>) -> f32 {
     }
 }
 
-fn eval_stat(program: &Program, cursor: &mut usize, runtime: &mut Runtime) -> Result<(), EvalError> {
-    if let Token::Stat(stat) = program[*cursor] {
-        match stat {
+fn eval_stat(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<usize, EvalError> {
+    if let Token::Stat(stat) = program[pos] {
+        return match stat {
             Stat::OUTPUT => {
-                let regval = read_reg(program[*cursor + 1], &runtime.memory);
+                let regval = read_reg(program[pos + 1], &runtime.memory);
                 println!("{}", regval);
                 runtime.output.push(regval);
+                Ok(pos + 1)
             }
             Stat::INPUT => {
-                let regnum = match program[*cursor + 1] {
+                let regnum = match program[pos + 1] {
                     Token::Reg(num) => num,
                     _ => panic!(
                         "Expected Reg at {}, got {:?}",
-                        *cursor + 1,
-                        program[*cursor + 1]
+                        pos + 1,
+                        program[pos + 1]
                     ),
                 };
                 let val = match runtime.next_input() {
@@ -87,9 +87,9 @@ fn eval_stat(program: &Program, cursor: &mut usize, runtime: &mut Runtime) -> Re
                     None => return Err(EvalError::Finished),
                 };
                 runtime.memory[regnum] = val;
+                Ok(pos + 1)
             }
         }
-        return Ok(());
     }
     panic!("called eval_stat on non-stat");
 }
@@ -145,12 +145,10 @@ mod tests {
         let mut runtime = Runtime::new(2, vec![2.0]);
         assert_eq!(runtime.memory, vec![0.0, 0.0]);
         assert_eq!(runtime.input.len(), 1);
-        let mut cursor = 0;
-        let res = eval_stat(&program, &mut cursor, &mut runtime);
+        let res = eval_stat(&program, 0, &mut runtime);
         assert!(res.is_ok());
         assert_eq!(runtime.memory, vec![2.0, 0.0]);
-        let res = eval_stat(&program, &mut cursor, &mut runtime);
-        println!("{cursor} {res:?}");
+        let res = eval_stat(&program, 0, &mut runtime);
         assert!(matches!(res, Err(EvalError::Finished)));
     }
 
@@ -163,17 +161,16 @@ mod tests {
         let mut runtime = Runtime::new(2, vec![2.0, 3.0]);
         assert_eq!(runtime.memory, vec![0.0, 0.0]);
         assert_eq!(runtime.input.len(), 2);
-        let mut cursor = 0;
-        let res = eval_stat(&program, &mut cursor, &mut runtime);
+
+        let res = eval_stat(&program, 0, &mut runtime);
         assert!(res.is_ok());
         assert_eq!(runtime.memory, vec![2.0, 0.0]);
 
-        let res = eval_stat(&program, &mut cursor, &mut runtime);
+        let res = eval_stat(&program, 0, &mut runtime);
         assert!(res.is_ok());
         assert_eq!(runtime.memory, vec![3.0, 0.0]);
 
-        let res = eval_stat(&program, &mut cursor, &mut runtime);
-        println!("{cursor} {res:?}");
+        let res = eval_stat(&program, 0, &mut runtime);
         assert!(matches!(res, Err(EvalError::Finished)));
     }
 
@@ -185,8 +182,7 @@ mod tests {
         ];
         let mut runtime = Runtime::new(2, vec![4.0]);
         assert_eq!(runtime.memory, vec![0.0, 0.0]);
-        let mut cursor = 0;
-        let res = eval_stat(&program, &mut cursor, &mut runtime);
+        let res = eval_stat(&program, 0, &mut runtime);
         assert!(res.is_ok());
         assert_eq!(runtime.memory, vec![0.0, 4.0]);
     }
@@ -203,8 +199,7 @@ mod tests {
             output: vec![],
             input_cursor: 0,
         };
-        let mut cursor = 0;
-        let res = eval_stat(&program, &mut cursor, &mut runtime);
+        let res = eval_stat(&program, 0, &mut runtime);
         assert!(res.is_ok());
         assert_eq!(runtime.memory, vec![2.0, 0.0]);
         assert_eq!(runtime.output, vec![2.0]);
@@ -237,5 +232,21 @@ mod tests {
                 &mut 0
             )
         );
+    }
+
+    #[test]
+    fn test_exec_identity() {
+        let program: Vec<Token> = vec![
+            Token::Stat(Stat::INPUT),
+            Token::Reg(0),
+            Token::Stat(Stat::OUTPUT),
+            Token::Reg(0),
+        ];
+        let mut runtime = Runtime::new(2, vec![2.0]);
+        let res = eval_stat(&program, 0, &mut runtime);
+        assert!(res.is_ok());
+        let res = eval_stat(&program, 2, &mut runtime);
+        assert!(res.is_ok());
+        assert_eq!(runtime.output, vec![2.0]);
     }
 }
