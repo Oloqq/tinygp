@@ -1,8 +1,8 @@
 use num_derive::FromPrimitive;
+use rand_derive::Rand;
 
-#[derive(Debug, Clone, Copy, FromPrimitive, PartialEq)]
+#[derive(Debug, Clone, Copy, FromPrimitive, PartialEq, Rand)]
 pub enum Funcs {
-    Start = 110, // number important for serialization, TODO after the course calculate the index dynamically based on number of variables and const numbers
     ADD,
     SUB,
     MUL,
@@ -11,7 +11,6 @@ pub enum Funcs {
     COS,
     INPUT,
     OUTPUT,
-    End, // need to generate ranges, TODO after the course get rid of it along with Funcs::Start
 }
 
 #[allow(unused)]
@@ -38,7 +37,7 @@ pub fn get_node_end(program: &Program, start: usize) -> usize {
     match program[start] {
         Token::Reg(_) => start + 1,
         Token::Kw(k) => match k {
-            Funcs::Start => unreachable!(),
+            // Funcs::Start => unreachable!(),
             Funcs::ADD => arg2(start + 1),
             Funcs::SUB => arg2(start + 1),
             Funcs::MUL => arg2(start + 1),
@@ -47,7 +46,7 @@ pub fn get_node_end(program: &Program, start: usize) -> usize {
             Funcs::COS => arg1(start + 1),
             Funcs::INPUT => arg1(start + 1),
             Funcs::OUTPUT => arg1(start + 1),
-            Funcs::End => unreachable!(),
+            // Funcs::End => unreachable!(),
             // get_node_end(program, get_node_end(program, start + 1)),
         },
     }

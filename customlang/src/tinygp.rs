@@ -75,7 +75,7 @@ impl TinyGP {
         const MIN_RANDOM: f32 = -20.0;
         const MAX_RANDOM: f32 = 20.0;
         writeln!(writer.borrow_mut(), "Creating variables").unwrap();
-        let variables: Vec<f32> = (0..Funcs::Start as usize + 1)
+        let variables: Vec<f32> = (0..Funcs::ADD as usize + 1)
             .map(|_| rand.gen_range(MIN_RANDOM, MAX_RANDOM))
             .collect();
         writeln!(writer.borrow_mut(), "Creating population").unwrap();

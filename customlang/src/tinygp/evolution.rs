@@ -1,7 +1,6 @@
 use crate::params::Params;
 
 use super::common::*;
-use num_traits::FromPrimitive;
 use rand::prelude::*;
 
 pub fn crossover(father: &Program, mother: &Program, rand: &mut StdRng) -> Program {
@@ -45,13 +44,12 @@ pub fn mutation(parent: &Program, params: &Params, rand: &mut StdRng) -> Program
         if rand.gen_bool(params.pmut_per_node as f64) {
             match parent[i] {
                 Token::Kw(_) => {
-                    let nonterminal =
-                        rand.gen_range(Funcs::Start as usize + 1, Funcs::End as usize);
-                    replacement = Token::Kw(Funcs::from_usize(nonterminal).unwrap());
+                    let nonterminal: Funcs = rand.gen();
+                        // rand.gen_range(Funcs::Start as usize + 1, Funcs::End as usize);
+                    replacement = Token::Kw(nonterminal);
                 }
                 Token::Reg(_) => {
-                    let terminal = rand.gen_range(0, Funcs::Start as usize);
-                    replacement = Token::Reg(terminal);
+                    replacement = Token::Reg(rand.gen_range(0, params.memsize));
                 }
             }
         } else {
