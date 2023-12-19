@@ -52,3 +52,7 @@ pub fn get_node_end(program: &Program, start: usize) -> usize {
         },
     }
 }
+
+pub fn variant_eq(a: &Token, b: &Token) -> bool {
+    std::mem::discriminant(a) == std::mem::discriminant(b)
+}

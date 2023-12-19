@@ -1,27 +1,38 @@
 use crate::params::Params;
 
 use super::common::*;
-use rand::prelude::*;
 use num_traits::FromPrimitive;
+use rand::prelude::*;
 
 pub fn crossover(father: &Program, mother: &Program, rand: &mut StdRng) -> Program {
-    println!("crossover {:?} x {:?}", father, mother);
+    println!("crossover {father:?} x {mother:?}");
 
-    let len1 = father.len();
-    let len2 = mother.len();
+    let father_start = rand.gen_range(0, father.len());
+    let father_kind = father[father_start];
+    println!("{father_kind:?}");
+    let father_end = get_node_end(father, father_start);
 
-    let xo1start = rand.gen_range(0, len1);
-    let xo1end = get_node_end(father, xo1start);
+    let mother_start = match mother
+        .iter()
+        .enumerate()
+        .filter(|(_i, v)| {variant_eq(&father_kind, &v)})
+        .choose(rand)
+    {
+        Some((i, _v)) => i,
+        None => {
+            println!("parents non compatible, returning father");
+            return father.clone();
+        }
+    };
+    let mother_end = get_node_end(mother, mother_start);
+    println!("{father_start}, {father_end}, {mother_start}, {mother_end}");
 
-    let xo2start = rand.gen_range(0, len2);
-    let xo2end = get_node_end(mother, xo2start);
-    println!("{xo1start}, {xo1end}, {xo2start}, {xo2end}");
-
-    let mut offspring: Program =
-        Vec::with_capacity(xo1start + (xo2end - xo2start) + (len1 - xo1end));
-    offspring.extend_from_slice(&father[0..xo1start]);
-    offspring.extend_from_slice(&mother[xo2start..xo2end]);
-    offspring.extend_from_slice(&father[xo1end..len1]);
+    let mut offspring: Program = Vec::with_capacity(
+        father_start + (mother_end - mother_start) + (father.len() - father_end),
+    );
+    offspring.extend_from_slice(&father[0..father_start]);
+    offspring.extend_from_slice(&mother[mother_start..mother_end]);
+    offspring.extend_from_slice(&father[father_end..father.len()]);
     println!(" -> {:?}", offspring);
     offspring
 }
@@ -34,7 +45,8 @@ pub fn mutation(parent: &Program, params: &Params, rand: &mut StdRng) -> Program
         if rand.gen_bool(params.pmut_per_node as f64) {
             match parent[i] {
                 Token::Kw(_) => {
-                    let nonterminal = rand.gen_range(Funcs::Start as usize + 1, Funcs::End as usize);
+                    let nonterminal =
+                        rand.gen_range(Funcs::Start as usize + 1, Funcs::End as usize);
                     replacement = Token::Kw(Funcs::from_usize(nonterminal).unwrap());
                 }
                 Token::Reg(_) => {
