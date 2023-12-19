@@ -1,12 +1,12 @@
 mod common;
-mod growing;
 mod evolution;
+mod growing;
 
-use common::*;
-use growing::*;
-use evolution::*;
 use crate::params::Case;
 use crate::params::Params;
+use common::*;
+use evolution::*;
+use growing::*;
 
 use rand::prelude::*;
 use rand::SeedableRng;
@@ -143,7 +143,8 @@ impl TinyGP {
                 let mother = &self.population[mother_id];
                 child_program = crossover(father, mother, &mut self.rand);
             } else {
-                let parent_id = tournament(&self.fitness, self.params.tournament_size, &mut self.rand);
+                let parent_id =
+                    tournament(&self.fitness, self.params.tournament_size, &mut self.rand);
                 let parent = &self.population[parent_id];
                 child_program = mutation(parent, &self.params, &mut self.rand);
             };
@@ -239,12 +240,12 @@ fn execute(program: &Program, params: &Params) -> f32 {
     let mut cursor = 0;
 
     match eval_stat(program, &mut cursor, &mut ctx) {
-        Ok(_) => {},
+        Ok(_) => {}
         Err(e) => match e {
-            EvalError::Finished => {},
+            EvalError::Finished => {}
             EvalError::Syntax => todo!(),
             EvalError::Semantic => todo!(),
-        }
+        },
     }
     return *ctx.output.get(0).unwrap_or(&1.0);
 }
@@ -268,7 +269,11 @@ fn eval_stat(program: &Program, cursor: &mut usize, ctx: &mut Context) -> Result
             Stat::INPUT => {
                 let regnum = match program[*cursor + 1] {
                     Token::Reg(num) => num,
-                    _ => panic!("Expected Reg at {}, got {:?}", *cursor + 1, program[*cursor + 1]),
+                    _ => panic!(
+                        "Expected Reg at {}, got {:?}",
+                        *cursor + 1,
+                        program[*cursor + 1]
+                    ),
                 };
                 let val = match ctx.next_input() {
                     Some(val) => val,
@@ -306,13 +311,12 @@ fn eval_expr(program: &Program, memory: &Vec<f32>, cursor: &mut usize) -> f32 {
             _ => unreachable!(),
         },
         Token::Reg(i) => memory[i],
-        Token::Stat(_) => unreachable!()
+        Token::Stat(_) => unreachable!(),
     };
 }
 
 #[cfg(test)]
 mod tests {
-
     use super::*;
 
     #[test]
@@ -354,60 +358,6 @@ mod tests {
         assert_eq!(vars[0], 9);
         assert_eq!(vars[1], 1);
         assert_eq!(vars[2], 1);
-    }
-
-    // #[test]
-    // fn test_fitness() {
-    //     let program = vec![
-    //         Opcode::Func(Funcs::ADD),
-    //         Opcode::Val(0),
-    //         Opcode::Func(Funcs::DIV),
-    //         Opcode::Val(1),
-    //         Opcode::Val(1),
-    //     ];
-
-    //     let cases: Vec<Case> = vec![(vec![1.0], vec![2.0])];
-    //     let mut variables: Vec<f32> = vec![0.0; 1];
-    //     variables.push(2.0);
-    //     let result = fitness_func(&program, &cases, &variables);
-    //     assert_eq!(result, 0.0);
-
-    //     let cases: Vec<Case> = vec![(vec![1.0], vec![0.0]), (vec![1.0, 2.0], vec![0.0])];
-    //     let result = fitness_func(&program, &cases, &variables);
-    //     assert_eq!(result, -4.0);
-    // }
-
-    fn mock_params() -> Params {
-        Params {
-            seed: 1,
-            popsize: 10,
-            memsize: 10,
-            depth: 3,
-            crossover_prob: 0.9,
-            pmut_per_node: 0.1,
-            tournament_size: 2,
-            acceptable_error: -1e-5,
-        }
-    }
-
-    #[test]
-    fn test_get_expression_end() {
-        let program = vec![Token::Expr(Expr::ADD), Token::Reg(0), Token::Reg(0)];
-        assert_eq!(get_node_end(&program, 0), 3);
-        assert_eq!(get_node_end(&program, 1), 2);
-        assert_eq!(get_node_end(&program, 2), 3);
-        let program = vec![
-            Token::Expr(Expr::ADD),
-            Token::Expr(Expr::ADD),
-            Token::Reg(0),
-            Token::Reg(0),
-            Token::Reg(0),
-        ];
-        assert_eq!(get_node_end(&program, 0), 5);
-        assert_eq!(get_node_end(&program, 1), 4);
-        assert_eq!(get_node_end(&program, 2), 3);
-        assert_eq!(get_node_end(&program, 3), 4);
-        assert_eq!(get_node_end(&program, 4), 5);
     }
 
     #[test]

@@ -20,7 +20,6 @@ pub fn grow_stat(program: &mut Program, depth: usize, params: &Params, rand: &mu
             let reg = Token::Reg(regnum);
             program.push(reg);
         }
-        _ => panic!("{:?} is not a stat (or implementation missing)", stat),
     }
     println!("{:?}", program);
     return true;

@@ -43,10 +43,35 @@ pub fn get_node_end(program: &Program, index: usize) -> usize {
         | Token::Expr(Expr::DIV) => {
             let arg1end = get_node_end(program, index + 1);
             get_node_end(program, arg1end)
-        },
+        }
     }
 }
 
 pub fn variant_eq(a: &Token, b: &Token) -> bool {
     std::mem::discriminant(a) == std::mem::discriminant(b)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_get_expression_end() {
+        let program = vec![Token::Expr(Expr::ADD), Token::Reg(0), Token::Reg(0)];
+        assert_eq!(get_node_end(&program, 0), 3);
+        assert_eq!(get_node_end(&program, 1), 2);
+        assert_eq!(get_node_end(&program, 2), 3);
+        let program = vec![
+            Token::Expr(Expr::ADD),
+            Token::Expr(Expr::ADD),
+            Token::Reg(0),
+            Token::Reg(0),
+            Token::Reg(0),
+        ];
+        assert_eq!(get_node_end(&program, 0), 5);
+        assert_eq!(get_node_end(&program, 1), 4);
+        assert_eq!(get_node_end(&program, 2), 3);
+        assert_eq!(get_node_end(&program, 3), 4);
+        assert_eq!(get_node_end(&program, 4), 5);
+    }
 }
