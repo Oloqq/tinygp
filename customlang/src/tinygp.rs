@@ -178,7 +178,7 @@ fn fitness_func(
     let mut vars = variables.clone();
     cases.iter().fold(0.0, |acc, (inputs, targets)| {
         vars.splice(0..inputs.len(), inputs.iter().cloned());
-        let output = execute(program, params);
+        let output = execute_with_new_runtime(program, params.memsize);
         let error = (output - targets[0]).abs();
         acc - error
     })

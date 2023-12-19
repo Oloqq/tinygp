@@ -1,5 +1,3 @@
-use crate::params::Params;
-
 use super::common::*;
 
 #[allow(unused)]
@@ -10,16 +8,16 @@ enum EvalError {
     Semantic,
 }
 
-struct Context {
+pub struct Runtime {
     memory: Vec<f32>,
     input: Vec<f32>,
     output: Vec<f32>,
     input_cursor: usize,
 }
 
-impl Context {
+impl Runtime {
     pub fn new(memsize: usize, input: Vec<f32>) -> Self {
-        Context {
+        Runtime {
             memory: vec![0.0; memsize],
             input,
             output: Vec::new(),
@@ -28,7 +26,7 @@ impl Context {
     }
 
     pub fn next_input(&mut self) -> Option<f32> {
-        if self.input.len() < self.input_cursor {
+        if self.input_cursor < self.input.len()  {
             let val = self.input[self.input_cursor];
             self.input_cursor += 1;
             Some(val)
@@ -38,12 +36,17 @@ impl Context {
     }
 }
 
-pub fn execute(program: &Program, params: &Params) -> f32 {
+pub fn execute_with_new_runtime(program: &Program, memsize: usize) -> f32 {
     log::trace!("executing {:?}", program);
-    let mut ctx = Context::new(params.memsize, vec![]);
-    let mut cursor = 0;
+    let mut runtime = Runtime::new(memsize, vec![]);
 
-    match eval_stat(program, &mut cursor, &mut ctx) {
+    execute(program, &mut runtime);
+    return *runtime.output.get(0).unwrap_or(&1.0);
+}
+
+pub fn execute(program: &Program, runtime: &mut Runtime) {
+    let mut cursor = 0;
+    match eval_stat(program, &mut cursor, runtime) {
         Ok(_) => {}
         Err(e) => match e {
             EvalError::Finished => {}
@@ -51,7 +54,6 @@ pub fn execute(program: &Program, params: &Params) -> f32 {
             EvalError::Semantic => todo!(),
         },
     }
-    return *ctx.output.get(0).unwrap_or(&1.0);
 }
 
 fn read_reg(token: Token, memory: &Vec<f32>) -> f32 {
@@ -63,12 +65,13 @@ fn read_reg(token: Token, memory: &Vec<f32>) -> f32 {
     }
 }
 
-fn eval_stat(program: &Program, cursor: &mut usize, ctx: &mut Context) -> Result<(), EvalError> {
+fn eval_stat(program: &Program, cursor: &mut usize, runtime: &mut Runtime) -> Result<(), EvalError> {
     if let Token::Stat(stat) = program[*cursor] {
         match stat {
             Stat::OUTPUT => {
-                let regval = read_reg(program[*cursor + 1], &ctx.memory);
-                ctx.output.push(regval);
+                let regval = read_reg(program[*cursor + 1], &runtime.memory);
+                println!("{}", regval);
+                runtime.output.push(regval);
             }
             Stat::INPUT => {
                 let regnum = match program[*cursor + 1] {
@@ -79,11 +82,11 @@ fn eval_stat(program: &Program, cursor: &mut usize, ctx: &mut Context) -> Result
                         program[*cursor + 1]
                     ),
                 };
-                let val = match ctx.next_input() {
+                let val = match runtime.next_input() {
                     Some(val) => val,
                     None => return Err(EvalError::Finished),
                 };
-                ctx.memory[regnum] = val;
+                runtime.memory[regnum] = val;
             }
         }
         return Ok(());
@@ -122,6 +125,90 @@ fn eval_expr(program: &Program, memory: &Vec<f32>, cursor: &mut usize) -> f32 {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use pretty_assertions::assert_eq;
+
+    #[test]
+    fn test_runtime_input() {
+        let mut runtime = Runtime::new(2, vec![2.0, 3.0, 4.0]);
+        assert_eq!(runtime.next_input(), Some(2.0));
+        assert_eq!(runtime.next_input(), Some(3.0));
+        assert_eq!(runtime.next_input(), Some(4.0));
+        assert_eq!(runtime.next_input(), None);
+    }
+
+    #[test]
+    fn test_stat_input() {
+        let program: Vec<Token> = vec![
+            Token::Stat(Stat::INPUT),
+            Token::Reg(0),
+        ];
+        let mut runtime = Runtime::new(2, vec![2.0]);
+        assert_eq!(runtime.memory, vec![0.0, 0.0]);
+        assert_eq!(runtime.input.len(), 1);
+        let mut cursor = 0;
+        let res = eval_stat(&program, &mut cursor, &mut runtime);
+        assert!(res.is_ok());
+        assert_eq!(runtime.memory, vec![2.0, 0.0]);
+        let res = eval_stat(&program, &mut cursor, &mut runtime);
+        println!("{cursor} {res:?}");
+        assert!(matches!(res, Err(EvalError::Finished)));
+    }
+
+    #[test]
+    fn test_stat_input_multiple() {
+        let program: Vec<Token> = vec![
+            Token::Stat(Stat::INPUT),
+            Token::Reg(0),
+        ];
+        let mut runtime = Runtime::new(2, vec![2.0, 3.0]);
+        assert_eq!(runtime.memory, vec![0.0, 0.0]);
+        assert_eq!(runtime.input.len(), 2);
+        let mut cursor = 0;
+        let res = eval_stat(&program, &mut cursor, &mut runtime);
+        assert!(res.is_ok());
+        assert_eq!(runtime.memory, vec![2.0, 0.0]);
+
+        let res = eval_stat(&program, &mut cursor, &mut runtime);
+        assert!(res.is_ok());
+        assert_eq!(runtime.memory, vec![3.0, 0.0]);
+
+        let res = eval_stat(&program, &mut cursor, &mut runtime);
+        println!("{cursor} {res:?}");
+        assert!(matches!(res, Err(EvalError::Finished)));
+    }
+
+    #[test]
+    fn test_stat_input_second_register() {
+        let program: Vec<Token> = vec![
+            Token::Stat(Stat::INPUT),
+            Token::Reg(1)
+        ];
+        let mut runtime = Runtime::new(2, vec![4.0]);
+        assert_eq!(runtime.memory, vec![0.0, 0.0]);
+        let mut cursor = 0;
+        let res = eval_stat(&program, &mut cursor, &mut runtime);
+        assert!(res.is_ok());
+        assert_eq!(runtime.memory, vec![0.0, 4.0]);
+    }
+
+    #[test]
+    fn test_stat_output() {
+        let program: Vec<Token> = vec![
+            Token::Stat(Stat::OUTPUT),
+            Token::Reg(0)
+        ];
+        let mut runtime = Runtime {
+            memory: vec![2.0, 0.0],
+            input: vec![],
+            output: vec![],
+            input_cursor: 0,
+        };
+        let mut cursor = 0;
+        let res = eval_stat(&program, &mut cursor, &mut runtime);
+        assert!(res.is_ok());
+        assert_eq!(runtime.memory, vec![2.0, 0.0]);
+        assert_eq!(runtime.output, vec![2.0]);
+    }
 
     #[test]
     fn test_expression() {
