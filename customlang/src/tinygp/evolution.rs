@@ -43,14 +43,14 @@ pub fn mutation(parent: &Program, params: &Params, rand: &mut StdRng) -> Program
         let replacement: Token;
         if rand.gen_bool(params.pmut_per_node as f64) {
             match parent[i] {
-                Token::Kw(_) => {
-                    let nonterminal: Funcs = rand.gen();
-                        // rand.gen_range(Funcs::Start as usize + 1, Funcs::End as usize);
-                    replacement = Token::Kw(nonterminal);
+                Token::Expr(_) => {
+                    let nonterminal: Expr = rand.gen();
+                    replacement = Token::Expr(nonterminal);
                 }
                 Token::Reg(_) => {
                     replacement = Token::Reg(rand.gen_range(0, params.memsize));
                 }
+                Token::Stat(_) => todo!(),
             }
         } else {
             replacement = parent[i];

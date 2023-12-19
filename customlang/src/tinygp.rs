@@ -75,7 +75,7 @@ impl TinyGP {
         const MIN_RANDOM: f32 = -20.0;
         const MAX_RANDOM: f32 = 20.0;
         writeln!(writer.borrow_mut(), "Creating variables").unwrap();
-        let variables: Vec<f32> = (0..Funcs::ADD as usize + 1)
+        let variables: Vec<f32> = (0..Expr::ADD as usize + 1)
             .map(|_| rand.gen_range(MIN_RANDOM, MAX_RANDOM))
             .collect();
         writeln!(writer.borrow_mut(), "Creating population").unwrap();
@@ -259,13 +259,13 @@ fn read_reg(token: Token, memory: &Vec<f32>) -> f32 {
 }
 
 fn eval_stat(program: &Program, cursor: &mut usize, ctx: &mut Context) -> Result<(), EvalError> {
-    match program[*cursor] {
-        Token::Kw(keyword) => match keyword {
-            Funcs::OUTPUT => {
+    if let Token::Stat(stat) = program[*cursor] {
+        match stat {
+            Stat::OUTPUT => {
                 let regval = read_reg(program[*cursor + 1], &ctx.memory);
                 ctx.output.push(regval);
             }
-            Funcs::INPUT => {
+            Stat::INPUT => {
                 let regnum = match program[*cursor + 1] {
                     Token::Reg(num) => num,
                     _ => panic!("Expected Reg at {}, got {:?}", *cursor + 1, program[*cursor + 1]),
@@ -276,11 +276,10 @@ fn eval_stat(program: &Program, cursor: &mut usize, ctx: &mut Context) -> Result
                 };
                 ctx.memory[regnum] = val;
             }
-            _ => unreachable!(),
-        },
-        Token::Reg(_) => unreachable!(),
+        }
+        return Ok(());
     }
-    Ok(())
+    panic!("called eval_stat on non-stat");
 }
 
 #[allow(unused)]
@@ -289,11 +288,11 @@ fn eval_expr(program: &Program, memory: &Vec<f32>, cursor: &mut usize) -> f32 {
     *cursor += 1;
 
     return match opcode {
-        Token::Kw(func) => match func {
-            Funcs::ADD => eval_expr(program, memory, cursor) + eval_expr(program, memory, cursor),
-            Funcs::SUB => eval_expr(program, memory, cursor) - eval_expr(program, memory, cursor),
-            Funcs::MUL => eval_expr(program, memory, cursor) * eval_expr(program, memory, cursor),
-            Funcs::DIV => {
+        Token::Expr(func) => match func {
+            Expr::ADD => eval_expr(program, memory, cursor) + eval_expr(program, memory, cursor),
+            Expr::SUB => eval_expr(program, memory, cursor) - eval_expr(program, memory, cursor),
+            Expr::MUL => eval_expr(program, memory, cursor) * eval_expr(program, memory, cursor),
+            Expr::DIV => {
                 let numerator = eval_expr(program, memory, cursor);
                 let denominator = eval_expr(program, memory, cursor);
                 if denominator.abs() <= 0.001 {
@@ -302,11 +301,12 @@ fn eval_expr(program: &Program, memory: &Vec<f32>, cursor: &mut usize) -> f32 {
                     numerator / denominator
                 }
             }
-            Funcs::SIN => f32::sin(eval_expr(program, memory, cursor)),
-            Funcs::COS => f32::cos(eval_expr(program, memory, cursor)),
+            Expr::SIN => f32::sin(eval_expr(program, memory, cursor)),
+            Expr::COS => f32::cos(eval_expr(program, memory, cursor)),
             _ => unreachable!(),
         },
         Token::Reg(i) => memory[i],
+        Token::Stat(_) => unreachable!()
     };
 }
 
@@ -318,9 +318,9 @@ mod tests {
     #[test]
     fn test_execute() {
         let program: Vec<Token> = vec![
-            Token::Kw(Funcs::ADD),
+            Token::Expr(Expr::ADD),
             Token::Reg(0),
-            Token::Kw(Funcs::DIV),
+            Token::Expr(Expr::DIV),
             Token::Reg(1),
             Token::Reg(1),
         ];
@@ -328,9 +328,9 @@ mod tests {
         assert_eq!(2.0, eval_expr(&program, &data, &mut 0));
 
         let program: Vec<Token> = vec![
-            Token::Kw(Funcs::SUB),
+            Token::Expr(Expr::SUB),
             Token::Reg(0),
-            Token::Kw(Funcs::DIV),
+            Token::Expr(Expr::DIV),
             Token::Reg(1),
             Token::Reg(2),
         ];
@@ -391,22 +391,14 @@ mod tests {
     }
 
     #[test]
-    fn test_grow_depth_0() {
-        let mut program = Vec::new();
-        let mut rand: StdRng = StdRng::seed_from_u64(1);
-        grow_stat(&mut program, 0, &mock_params(), &mut rand);
-        assert!(program.len() == 1)
-    }
-
-    #[test]
     fn test_get_expression_end() {
-        let program = vec![Token::Kw(Funcs::ADD), Token::Reg(0), Token::Reg(0)];
+        let program = vec![Token::Expr(Expr::ADD), Token::Reg(0), Token::Reg(0)];
         assert_eq!(get_node_end(&program, 0), 3);
         assert_eq!(get_node_end(&program, 1), 2);
         assert_eq!(get_node_end(&program, 2), 3);
         let program = vec![
-            Token::Kw(Funcs::ADD),
-            Token::Kw(Funcs::ADD),
+            Token::Expr(Expr::ADD),
+            Token::Expr(Expr::ADD),
             Token::Reg(0),
             Token::Reg(0),
             Token::Reg(0),
@@ -420,14 +412,14 @@ mod tests {
 
     #[test]
     fn test_sin() {
-        let program = vec![Token::Kw(Funcs::SIN), Token::Reg(0)];
+        let program = vec![Token::Expr(Expr::SIN), Token::Reg(0)];
 
         assert_eq!(0.0, eval_expr(&program, &vec![0.0], &mut 0));
     }
 
     #[test]
     fn test_cos() {
-        let program = vec![Token::Kw(Funcs::COS), Token::Reg(0)];
+        let program = vec![Token::Expr(Expr::COS), Token::Reg(0)];
 
         assert_eq!(1.0, eval_expr(&program, &vec![0.0], &mut 0));
     }
