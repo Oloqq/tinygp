@@ -1,7 +1,7 @@
 mod params;
 mod tinygp;
-mod token;
-mod genlang;
+#[cfg(test)]
+mod e2e;
 use structopt::StructOpt;
 use tinygp::TinyGP;
 use std::fs::{self, File, metadata};
