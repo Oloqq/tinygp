@@ -235,7 +235,7 @@ fn random_population(
 }
 
 fn execute(program: &Program, params: &Params) -> f32 {
-    println!("{:?}", program);
+    log::trace!("executing {:?}", program);
     let mut ctx = Context::new(params.memsize, vec![]);
     let mut cursor = 0;
 

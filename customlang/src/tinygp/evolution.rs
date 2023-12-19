@@ -4,11 +4,10 @@ use super::common::*;
 use rand::prelude::*;
 
 pub fn crossover(father: &Program, mother: &Program, rand: &mut StdRng) -> Program {
-    println!("crossover {father:?} x {mother:?}");
+    log::trace!("crossover {father:?} x {mother:?}");
 
     let father_start = rand.gen_range(0, father.len());
     let father_kind = father[father_start];
-    println!("{father_kind:?}");
     let father_end = get_node_end(father, father_start);
 
     let mother_start = match mother
@@ -19,12 +18,11 @@ pub fn crossover(father: &Program, mother: &Program, rand: &mut StdRng) -> Progr
     {
         Some((i, _v)) => i,
         None => {
-            println!("parents non compatible, returning father");
+            log::warn!("parents non compatible, returning father");
             return father.clone();
         }
     };
     let mother_end = get_node_end(mother, mother_start);
-    println!("{father_start}, {father_end}, {mother_start}, {mother_end}");
 
     let mut offspring: Program = Vec::with_capacity(
         father_start + (mother_end - mother_start) + (father.len() - father_end),
@@ -32,12 +30,12 @@ pub fn crossover(father: &Program, mother: &Program, rand: &mut StdRng) -> Progr
     offspring.extend_from_slice(&father[0..father_start]);
     offspring.extend_from_slice(&mother[mother_start..mother_end]);
     offspring.extend_from_slice(&father[father_end..father.len()]);
-    println!(" -> {:?}", offspring);
+    log::trace!(" -> {offspring:?}");
     offspring
 }
 
 pub fn mutation(parent: &Program, params: &Params, rand: &mut StdRng) -> Program {
-    println!("mutation");
+    log::trace!("mutation");
     let mut child = Vec::with_capacity(parent.len());
     for i in 0..parent.len() {
         let replacement: Token;
@@ -48,7 +46,7 @@ pub fn mutation(parent: &Program, params: &Params, rand: &mut StdRng) -> Program
                     if e.argnum() == nonterminal.argnum() {
                         replacement = Token::Expr(nonterminal);
                     } else {
-                        println!("TODO: mutation for different argument numbers");
+                        log::warn!("mutation for different argument numbers skipped");
                         replacement = Token::Expr(e);
                     }
                 }

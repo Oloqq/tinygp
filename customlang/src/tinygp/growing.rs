@@ -21,6 +21,6 @@ pub fn grow_stat(program: &mut Program, depth: usize, params: &Params, rand: &mu
             program.push(reg);
         }
     }
-    println!("{:?}", program);
+    log::info!("grew into {:?}", program);
     return true;
 }
