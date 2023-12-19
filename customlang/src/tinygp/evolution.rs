@@ -14,7 +14,7 @@ pub fn crossover(father: &Program, mother: &Program, rand: &mut StdRng) -> Progr
     let mother_start = match mother
         .iter()
         .enumerate()
-        .filter(|(_i, v)| {variant_eq(&father_kind, &v)})
+        .filter(|(_i, v)| variant_eq(&father_kind, &v))
         .choose(rand)
     {
         Some((i, _v)) => i,
@@ -43,14 +43,21 @@ pub fn mutation(parent: &Program, params: &Params, rand: &mut StdRng) -> Program
         let replacement: Token;
         if rand.gen_bool(params.pmut_per_node as f64) {
             match parent[i] {
-                Token::Expr(_) => {
+                Token::Expr(e) => {
                     let nonterminal: Expr = rand.gen();
-                    replacement = Token::Expr(nonterminal);
+                    if e.argnum() == nonterminal.argnum() {
+                        replacement = Token::Expr(nonterminal);
+                    } else {
+                        println!("TODO: mutation for different argument numbers");
+                        replacement = Token::Expr(e);
+                    }
                 }
                 Token::Reg(_) => {
                     replacement = Token::Reg(rand.gen_range(0, params.memsize));
                 }
-                Token::Stat(_) => todo!(),
+                Token::Stat(stat) => {
+                    replacement = Token::Stat(stat);
+                },
             }
         } else {
             replacement = parent[i];

@@ -30,6 +30,19 @@ pub const MAX_LEN: usize = 10000;
 
 pub type Program = Vec<Token>;
 
+impl Expr {
+    pub fn argnum(&self) -> usize {
+        match self {
+            Expr::ADD => 2,
+            Expr::SUB => 2,
+            Expr::MUL => 2,
+            Expr::DIV => 2,
+            Expr::SIN => 1,
+            Expr::COS => 1,
+        }
+    }
+}
+
 pub fn get_node_end(program: &Program, index: usize) -> usize {
     match program[index] {
         Token::Reg(_) => index + 1,
