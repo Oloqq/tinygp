@@ -36,11 +36,10 @@ impl Runtime {
     }
 }
 
-pub fn execute_with_new_runtime(program: &Program, memsize: usize) -> Vec<f32> {
+pub fn execute(program: &Program, runtime: Runtime) -> Vec<f32> {
     log::trace!("executing {:?}", program);
-    let mut runtime = Runtime::new(memsize, vec![]);
-
-    return match execute(program, &mut runtime) {
+    let mut runtime = runtime;
+    return match eval_block(program, 0, &mut runtime) {
         Ok(_) | Err(EvalError::Finished) => {
             log::trace!("finished with output {:?}", runtime.output);
             runtime.output
@@ -52,13 +51,13 @@ pub fn execute_with_new_runtime(program: &Program, memsize: usize) -> Vec<f32> {
     }
 }
 
-pub fn execute(program: &Program, runtime: &mut Runtime) -> Result<usize, EvalError> {
-    let mut i = 0;
+fn eval_block(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<usize, EvalError> {
+    let mut pos = pos;
     loop {
-        if i >= program.len() {
-            return Ok(i);
+        if pos >= program.len() {
+            return Ok(pos);
         }
-        i = eval_stat(program, i, runtime)?;
+        pos = eval_stat(program, pos, runtime)?;
     }
 }
 
