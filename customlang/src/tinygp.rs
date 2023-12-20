@@ -29,7 +29,7 @@ pub struct TinyGP {
 }
 
 impl TinyGP {
-    fn new(
+    pub fn new(
         mut params: Params,
         cases: Vec<Case>,
         seed: Option<u64>,
@@ -179,8 +179,11 @@ fn fitness_func(
     cases.iter().fold(0.0, |acc, (inputs, targets)| {
         vars.splice(0..inputs.len(), inputs.iter().cloned());
         let output = execute_with_new_runtime(program, params.memsize);
+        let output = output.get(0).unwrap_or(&f32::INFINITY); // FIXME
         let error = (output - targets[0]).abs();
-        acc - error
+        let fitness = acc - error;
+        log::trace!("the fitness is: {fitness}");
+        fitness
     })
 }
 

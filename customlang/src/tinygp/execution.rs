@@ -2,7 +2,7 @@ use super::common::*;
 
 #[allow(unused)]
 #[derive(Debug)]
-enum EvalError {
+pub enum EvalError {
     Finished,
     Syntax,
     Semantic,
@@ -36,22 +36,29 @@ impl Runtime {
     }
 }
 
-pub fn execute_with_new_runtime(program: &Program, memsize: usize) -> f32 {
+pub fn execute_with_new_runtime(program: &Program, memsize: usize) -> Vec<f32> {
     log::trace!("executing {:?}", program);
     let mut runtime = Runtime::new(memsize, vec![]);
 
-    execute(program, &mut runtime);
-    return *runtime.output.get(0).unwrap_or(&1.0);
+    return match execute(program, &mut runtime) {
+        Ok(_) | Err(EvalError::Finished) => {
+            log::trace!("finished with output {:?}", runtime.output);
+            runtime.output
+        },
+        Err(_) => {
+            log::error!("Invalid program: {program:?}");
+            vec![f32::INFINITY]
+        },
+    }
 }
 
-pub fn execute(program: &Program, runtime: &mut Runtime) {
-    match eval_stat(program, 0, runtime) {
-        Ok(_) => {}
-        Err(e) => match e {
-            EvalError::Finished => {}
-            EvalError::Syntax => todo!(),
-            EvalError::Semantic => todo!(),
-        },
+pub fn execute(program: &Program, runtime: &mut Runtime) -> Result<usize, EvalError> {
+    let mut i = 0;
+    loop {
+        if i >= program.len() {
+            return Ok(i);
+        }
+        i = eval_stat(program, i, runtime)?;
     }
 }
 
@@ -69,9 +76,9 @@ fn eval_stat(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<usi
         return match stat {
             Stat::OUTPUT => {
                 let regval = read_reg(program[pos + 1], &runtime.memory);
-                println!("{}", regval);
+                // println!("{}", regval);
                 runtime.output.push(regval);
-                Ok(pos + 1)
+                Ok(pos + 2)
             }
             Stat::INPUT => {
                 let regnum = match program[pos + 1] {
@@ -87,7 +94,7 @@ fn eval_stat(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<usi
                     None => return Err(EvalError::Finished),
                 };
                 runtime.memory[regnum] = val;
-                Ok(pos + 1)
+                Ok(pos + 2)
             }
         }
     }
