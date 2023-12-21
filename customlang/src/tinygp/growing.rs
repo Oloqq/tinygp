@@ -19,7 +19,8 @@ pub fn grow_stat(program: &mut Program, depth: usize, params: &Params, rand: &mu
             let regnum = rand.gen_range(0, params.memsize);
             let reg = Token::Reg(regnum);
             program.push(reg);
-        }
+        },
+        _ => todo!()
     }
     log::trace!("grew into {:?}", program);
     return true;

@@ -17,6 +17,7 @@ pub enum Expr {
 pub enum Stat {
     INPUT,
     OUTPUT,
+    LOAD,
 }
 
 #[derive(Debug, Clone, Copy)]
@@ -46,11 +47,14 @@ impl Expr {
 pub fn get_node_end(program: &Program, index: usize) -> usize {
     match program[index] {
         Token::Reg(_) => index + 1,
+
         Token::Stat(Stat::INPUT)
         | Token::Stat(Stat::OUTPUT)
         | Token::Expr(Expr::SIN)
         | Token::Expr(Expr::COS) => get_node_end(program, index + 1),
-        Token::Expr(Expr::ADD)
+
+        Token::Stat(Stat::LOAD)
+        | Token::Expr(Expr::ADD)
         | Token::Expr(Expr::SUB)
         | Token::Expr(Expr::MUL)
         | Token::Expr(Expr::DIV) => {

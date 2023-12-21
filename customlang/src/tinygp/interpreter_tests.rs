@@ -1,7 +1,12 @@
-use super::{common::*, execution::{Runtime, execute}};
+use super::{
+    common::*,
+    execution::{execute, Runtime},
+};
 
 const INPUT: Token = Token::Stat(Stat::INPUT);
 const OUTPUT: Token = Token::Stat(Stat::OUTPUT);
+const LOAD: Token = Token::Stat(Stat::LOAD);
+use Token::Reg;
 
 use pretty_assertions::assert_eq;
 
@@ -20,5 +25,22 @@ fn test_identity() {
     let memsize = 3;
     let program = vec![INPUT, Token::Reg(0), OUTPUT, Token::Reg(0)];
     let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![(vec![1.0], vec![1.0]), (vec![2.0], vec![2.0])];
+    run_cases(&program, memsize, cases);
+}
+
+#[test]
+#[rustfmt::skip]
+fn test_load_register() {
+    let memsize = 2;
+    let program = vec![
+        INPUT, Reg(0),
+        LOAD, Reg(1), Reg(0),
+        OUTPUT, Reg(0),
+        OUTPUT, Reg(1),
+    ];
+    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
+        (vec![1.0], vec![1.0, 1.0]),
+        (vec![2.0], vec![2.0, 2.0])
+    ];
     run_cases(&program, memsize, cases);
 }
