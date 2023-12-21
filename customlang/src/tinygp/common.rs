@@ -1,5 +1,5 @@
 use rand_derive::Rand;
-use serde_derive::{Serialize, Deserialize};
+use serde_derive::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Copy, PartialEq, Rand, Serialize, Deserialize)]
 pub enum Expr {
@@ -9,7 +9,7 @@ pub enum Expr {
     DIV,
     SIN,
     COS,
-    NUM(f32)
+    NUM(f32),
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Rand, Serialize, Deserialize)]
@@ -42,7 +42,7 @@ impl Expr {
             Expr::DIV => 2,
             Expr::SIN => 1,
             Expr::COS => 1,
-            Expr::NUM(_) => 0
+            Expr::NUM(_) => 0,
         }
     }
 }
@@ -50,8 +50,7 @@ impl Expr {
 pub fn get_node_end(program: &Program, index: usize) -> usize {
     match program[index] {
         // no arguments
-        Token::Reg(_)
-        | Token::Expr(Expr::NUM(_)) => index + 1,
+        Token::Reg(_) | Token::Expr(Expr::NUM(_)) => index + 1,
         // 1 argument
         Token::Stat(Stat::INPUT)
         | Token::Stat(Stat::OUTPUT)
@@ -65,24 +64,24 @@ pub fn get_node_end(program: &Program, index: usize) -> usize {
         | Token::Expr(Expr::DIV) => {
             let arg1end = get_node_end(program, index + 1);
             get_node_end(program, arg1end)
-        },
-        _ => todo!()
+        }
         // "parentheses counting"
         // TODO add WHILE
-        // Token::Stat(Stat::IF) => {
-        //     let mut level = 1;
-        //     let mut i = index;
-        //     while i < program.len() && level > 0 {
-        //         match program[i] {
-        //             // TODO add WHILE
-        //             Token::Stat(Stat::IF) => level += 1,
-        //             Token::Stat(Stat::END) => level -= 1,
-        //             _ => ()
-        //         }
-        //         i += 1;
-        //     }
-        //     i
-        // }
+        Token::Stat(Stat::IF) => {
+            let mut level = 1;
+            let mut i = index;
+            while i < program.len() && level > 0 {
+                match program[i] {
+                    // TODO add WHILE
+                    Token::Stat(Stat::IF) => level += 1,
+                    Token::Stat(Stat::END) => level -= 1,
+                    _ => (),
+                }
+                i += 1;
+            }
+            i
+        }
+        _ => todo!(),
     }
 }
 
@@ -115,9 +114,52 @@ mod tests {
     }
 
     #[test]
-    #[ignore]
     fn test_expression_end_if() {
-        assert!(false)
+        #[rustfmt::skip]
+        let program = vec![
+            Token::Stat(Stat::IF),
+                Token::Expr(Expr::NUM(12.0)),
+                Token::Stat(Stat::OUTPUT), Token::Reg(0),
+                Token::Stat(Stat::OUTPUT), Token::Reg(0),
+                Token::Stat(Stat::OUTPUT), Token::Reg(0),
+            Token::Stat(Stat::END)
+        ];
+        assert_eq!(get_node_end(&program, 0), 9);
+    }
+
+    #[test]
+    fn test_expression_end_if_else() {
+        #[rustfmt::skip]
+        let program = vec![
+            Token::Stat(Stat::IF),
+                Token::Expr(Expr::NUM(12.0)),
+                Token::Stat(Stat::OUTPUT), Token::Reg(0),
+                Token::Stat(Stat::OUTPUT), Token::Reg(0),
+                Token::Stat(Stat::OUTPUT), Token::Reg(0),
+            Token::Stat(Stat::ELSE),
+                Token::Stat(Stat::OUTPUT), Token::Reg(0),
+            Token::Stat(Stat::END)
+        ];
+        assert_eq!(get_node_end(&program, 0), 12);
+    }
+
+    #[test]
+    fn test_expression_end_nested_if() {
+        #[rustfmt::skip]
+        let program = vec![
+            Token::Stat(Stat::IF),
+                Token::Expr(Expr::NUM(12.0)),
+                Token::Stat(Stat::OUTPUT), Token::Reg(0),
+                Token::Stat(Stat::IF),
+                    Token::Expr(Expr::NUM(12.0)),
+                    Token::Stat(Stat::OUTPUT), Token::Reg(0),
+                    Token::Stat(Stat::OUTPUT), Token::Reg(0),
+                    Token::Stat(Stat::OUTPUT), Token::Reg(0),
+                Token::Stat(Stat::END),
+                Token::Stat(Stat::OUTPUT), Token::Reg(0),
+            Token::Stat(Stat::END)
+        ];
+        assert_eq!(get_node_end(&program, 0), 16);
     }
 
     #[test]
@@ -130,10 +172,15 @@ mod tests {
         const LOAD: Token = Token::Stat(Stat::LOAD);
         use Token::Reg;
         let program = vec![
-            INPUT, Reg(0),
-            LOAD, Reg(1), Reg(0),
-            OUTPUT, Reg(0),
-            OUTPUT, Reg(1),
+            INPUT,
+            Reg(0),
+            LOAD,
+            Reg(1),
+            Reg(0),
+            OUTPUT,
+            Reg(0),
+            OUTPUT,
+            Reg(1),
         ];
         let s = serde_lexpr::to_string(&program).unwrap();
         println!("{s}");
