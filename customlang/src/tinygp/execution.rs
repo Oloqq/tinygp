@@ -78,11 +78,15 @@ fn eval_block(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<us
     log::trace!("eval block {pos}");
     let mut pos = pos;
     loop {
-        if pos >= program.len() {
+        if pos >= program.len() || matches!(program[pos], Token::ELSE | Token::END) {
             return Ok(pos);
         }
         pos = eval_stat(program, pos, runtime)?;
     }
+}
+
+fn is_truthy(x: f32) -> bool {
+    x != 0.0
 }
 
 fn eval_stat(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<usize, EvalError> {
@@ -116,12 +120,23 @@ fn eval_stat(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<usi
                 Ok(newpos)
             }
             Stat::IF => {
-                todo!()
+                let (newpos, condition_val) = eval_expr(program, pos + 1, runtime)?;
+                if is_truthy(condition_val) {
+                    log::trace!("IF condition at {pos} entered branch TRUE");
+                    let newpos = eval_block(program, newpos, runtime)?;
+                    if matches!(program[newpos], Token::ELSE) {
+                        let else_part_end = get_node_end(program, newpos);
+                        Ok(else_part_end + 1)
+                    } else if matches!(program[newpos], Token::END) {
+                        Ok(newpos + 1)
+                    } else {
+                        unreachable!()
+                    }
+                } else {
+                    log::trace!("IF condition at {pos} entered branch FALSE");
+                    todo!()
+                }
             }
-            Stat::ELSE | Stat::END => Err(EvalError::Syntax(
-                pos,
-                String::from("Expected a full statement"),
-            )),
         };
     }
     panic!("called eval_stat on non-stat");
@@ -156,7 +171,7 @@ fn eval_expr(
             Expr::COS => one_arg(f32::cos, runtime),
         },
         Token::Reg(num) => Ok((pos + 1, runtime.read_reg(num)?)),
-        Token::Stat(_) => unreachable!("called eval_expr on non-expr: {opcode:?}"),
+        _ => unreachable!("called eval_expr on non-expr: {opcode:?}"),
     };
 
     fn add(lhs: f32, rhs: f32) -> f32 {

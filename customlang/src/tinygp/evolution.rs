@@ -56,6 +56,7 @@ pub fn mutation(parent: &Program, params: &Params, rand: &mut StdRng) -> Program
                 Token::Stat(stat) => {
                     replacement = Token::Stat(stat);
                 },
+                _ => unimplemented!()
             }
         } else {
             replacement = parent[i];

@@ -15,16 +15,12 @@ expr
 
 stat
     = LOAD reg expr
-    | if
-    | WHILE expr DO block END
+    | IF expr block
+    | WHILE expr DO block
     | INPUT reg
     | OUTPUT expr
 
-block = stat*
-
-if
-    = IF expr block ELSE block END
-    | IF expr block END
+block = stat* (ELSE | END)?
 
 # reg to register/rejestr/zmienna
 reg = R NUM

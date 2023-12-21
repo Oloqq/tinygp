@@ -18,8 +18,6 @@ pub enum Stat {
     OUTPUT,
     LOAD,
     IF,
-    ELSE,
-    END,
 }
 
 #[derive(Debug, Clone, Copy, Serialize, Deserialize)]
@@ -27,6 +25,8 @@ pub enum Token {
     Expr(Expr),
     Stat(Stat),
     Reg(usize),
+    ELSE,
+    END,
 }
 
 pub const MAX_LEN: usize = 10000;
@@ -74,7 +74,7 @@ pub fn get_node_end(program: &Program, index: usize) -> usize {
                 match program[i] {
                     // TODO add WHILE
                     Token::Stat(Stat::IF) => level += 1,
-                    Token::Stat(Stat::END) => level -= 1,
+                    Token::END => level -= 1,
                     _ => (),
                 }
                 i += 1;
@@ -122,7 +122,7 @@ mod tests {
                 Token::Stat(Stat::OUTPUT), Token::Reg(0),
                 Token::Stat(Stat::OUTPUT), Token::Reg(0),
                 Token::Stat(Stat::OUTPUT), Token::Reg(0),
-            Token::Stat(Stat::END)
+            Token::END
         ];
         assert_eq!(get_node_end(&program, 0), 9);
     }
@@ -136,9 +136,9 @@ mod tests {
                 Token::Stat(Stat::OUTPUT), Token::Reg(0),
                 Token::Stat(Stat::OUTPUT), Token::Reg(0),
                 Token::Stat(Stat::OUTPUT), Token::Reg(0),
-            Token::Stat(Stat::ELSE),
+            Token::ELSE,
                 Token::Stat(Stat::OUTPUT), Token::Reg(0),
-            Token::Stat(Stat::END)
+            Token::END
         ];
         assert_eq!(get_node_end(&program, 0), 12);
     }
@@ -155,9 +155,9 @@ mod tests {
                     Token::Stat(Stat::OUTPUT), Token::Reg(0),
                     Token::Stat(Stat::OUTPUT), Token::Reg(0),
                     Token::Stat(Stat::OUTPUT), Token::Reg(0),
-                Token::Stat(Stat::END),
+                Token::END,
                 Token::Stat(Stat::OUTPUT), Token::Reg(0),
-            Token::Stat(Stat::END)
+            Token::END
         ];
         assert_eq!(get_node_end(&program, 0), 16);
     }

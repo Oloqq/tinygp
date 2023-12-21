@@ -7,8 +7,8 @@ const INPUT: Token = Token::Stat(Stat::INPUT);
 const OUTPUT: Token = Token::Stat(Stat::OUTPUT);
 const LOAD: Token = Token::Stat(Stat::LOAD);
 const IF: Token = Token::Stat(Stat::IF);
-// const ELSE: Token = Token::Stat(Stat::ELSE);
-const END: Token = Token::Stat(Stat::END);
+// const ELSE: Token = Token::ELSE);
+const END: Token = Token::END;
 use Token::Reg;
 
 fn num(x: f32) -> Token {
