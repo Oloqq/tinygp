@@ -2,8 +2,9 @@
 
 use num_derive::FromPrimitive;
 use rand_derive::Rand;
+use serde_derive::{Serialize, Deserialize};
 
-#[derive(Debug, Clone, Copy, FromPrimitive, PartialEq, Rand)]
+#[derive(Debug, Clone, Copy, FromPrimitive, PartialEq, Rand, Serialize, Deserialize)]
 pub enum Expr {
     ADD,
     SUB,
@@ -13,14 +14,14 @@ pub enum Expr {
     COS,
 }
 
-#[derive(Debug, Clone, Copy, FromPrimitive, PartialEq, Rand)]
+#[derive(Debug, Clone, Copy, FromPrimitive, PartialEq, Rand, Serialize, Deserialize)]
 pub enum Stat {
     INPUT,
     OUTPUT,
     LOAD,
 }
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, Serialize, Deserialize)]
 pub enum Token {
     Expr(Expr),
     Stat(Stat),
@@ -90,5 +91,30 @@ mod tests {
         assert_eq!(get_node_end(&program, 2), 3);
         assert_eq!(get_node_end(&program, 3), 4);
         assert_eq!(get_node_end(&program, 4), 5);
+    }
+
+    #[test]
+    fn test_serialize() {
+        let e = Expr::ADD;
+        let s = serde_lexpr::to_string(&e).unwrap();
+        println!("{s}");
+        const INPUT: Token = Token::Stat(Stat::INPUT);
+        const OUTPUT: Token = Token::Stat(Stat::OUTPUT);
+        const LOAD: Token = Token::Stat(Stat::LOAD);
+        use Token::Reg;
+        let program = vec![
+            INPUT, Reg(0),
+            LOAD, Reg(1), Reg(0),
+            OUTPUT, Reg(0),
+            OUTPUT, Reg(1),
+        ];
+        let s = serde_lexpr::to_string(&program).unwrap();
+        println!("{s}");
+        let p2: Vec<Token> = serde_lexpr::from_str(&s).unwrap();
+        println!("{program:?}");
+        println!("{p2:?}");
+        let s2 = serde_lexpr::to_string(&p2).unwrap();
+
+        assert_eq!(s, s2);
     }
 }
