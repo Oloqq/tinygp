@@ -123,3 +123,33 @@ fn test_load_expr_protected_div() {
     ];
     run_cases(&program, memsize, cases);
 }
+
+#[test]
+#[rustfmt::skip]
+fn test_output_num_literal() {
+    let memsize = 3;
+    let program = vec![
+        OUTPUT, Token::Expr(Expr::NUM(21.37))
+    ];
+    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
+        (vec![], vec![21.37]),
+        (vec![1.0], vec![21.37]),
+    ];
+    run_cases(&program, memsize, cases);
+}
+
+#[test]
+#[rustfmt::skip]
+fn test_expr_with_literal() {
+    let memsize = 3;
+    let program = vec![
+        OUTPUT, Token::Expr(Expr::ADD),
+            Token::Expr(Expr::NUM(1.37)),
+            Token::Expr(Expr::NUM(1.0))
+    ];
+    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
+        (vec![], vec![2.37]),
+        (vec![1.0], vec![2.37]),
+    ];
+    run_cases(&program, memsize, cases);
+}

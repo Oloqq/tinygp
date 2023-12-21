@@ -27,7 +27,6 @@ pub struct TinyGP {
     generation: i32,
     population: Vec<Program>,
     fitness: Vec<f32>,
-    variables: Vec<f32>,
     writer: RefCell<Box<dyn Write>>,
 }
 
@@ -44,11 +43,8 @@ impl TinyGP {
         const MIN_RANDOM: f32 = -20.0;
         const MAX_RANDOM: f32 = 20.0;
         writeln!(writer.borrow_mut(), "Creating variables").unwrap();
-        let variables: Vec<f32> = (0..Expr::ADD as usize + 1)
-            .map(|_| rand.gen_range(MIN_RANDOM, MAX_RANDOM))
-            .collect();
         writeln!(writer.borrow_mut(), "Creating population").unwrap();
-        let (population, fitness) = random_population(&params, &cases, &mut rand, &variables);
+        let (population, fitness) = random_population(&params, &cases, &mut rand);
         TinyGP {
             rand,
             fitness,
@@ -56,7 +52,6 @@ impl TinyGP {
             params,
             cases,
             generation: 0,
-            variables,
             writer: writer.into(),
         }
     }
@@ -120,7 +115,7 @@ impl TinyGP {
             let child_index =
                 negative_tournament(&self.fitness, self.params.tournament_size, &mut self.rand);
             self.fitness[child_index] =
-                fitness_func(&child_program, &self.params, &self.cases, &self.variables);
+                fitness_func(&child_program, &self.params, &self.cases);
             self.population[child_index] = child_program;
         }
         self.generation += 1;
@@ -175,12 +170,9 @@ fn create_random_indiv(params: &Params, rand: &mut StdRng) -> Program {
 fn fitness_func(
     program: &Program,
     params: &Params,
-    cases: &Vec<Case>,
-    variables: &Vec<f32>,
+    cases: &Vec<Case>
 ) -> f32 {
-    let mut vars = variables.clone();
     cases.iter().fold(0.0, |acc, (inputs, targets)| {
-        vars.splice(0..inputs.len(), inputs.iter().cloned());
         let runtime = Runtime::new(params.memsize, inputs.clone()); // TODO dont clone inputs, not needed
         let output = execute(program, runtime);
         let output = output.get(0).unwrap_or(&f32::INFINITY); // FIXME
@@ -195,14 +187,13 @@ fn random_population(
     params: &Params,
     cases: &Vec<Case>,
     rand: &mut StdRng,
-    variables: &Vec<f32>,
 ) -> (Vec<Program>, Vec<f32>) {
     let mut population = Vec::with_capacity(params.popsize);
     let mut fitness = Vec::with_capacity(params.popsize);
 
     for i in 0..params.popsize {
         population.push(create_random_indiv(params, rand));
-        fitness.push(fitness_func(&population[i], params, cases, variables));
+        fitness.push(fitness_func(&population[i], params, cases));
     }
 
     return (population, fitness);

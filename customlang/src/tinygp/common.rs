@@ -1,10 +1,7 @@
-#![allow(unused)]
-
-use num_derive::FromPrimitive;
 use rand_derive::Rand;
 use serde_derive::{Serialize, Deserialize};
 
-#[derive(Debug, Clone, Copy, FromPrimitive, PartialEq, Rand, Serialize, Deserialize)]
+#[derive(Debug, Clone, Copy, PartialEq, Rand, Serialize, Deserialize)]
 pub enum Expr {
     ADD,
     SUB,
@@ -12,9 +9,10 @@ pub enum Expr {
     DIV,
     SIN,
     COS,
+    NUM(f32)
 }
 
-#[derive(Debug, Clone, Copy, FromPrimitive, PartialEq, Rand, Serialize, Deserialize)]
+#[derive(Debug, Clone, Copy, PartialEq, Rand, Serialize, Deserialize)]
 pub enum Stat {
     INPUT,
     OUTPUT,
@@ -41,19 +39,22 @@ impl Expr {
             Expr::DIV => 2,
             Expr::SIN => 1,
             Expr::COS => 1,
+            Expr::NUM(_) => 0
         }
     }
 }
 
 pub fn get_node_end(program: &Program, index: usize) -> usize {
     match program[index] {
-        Token::Reg(_) => index + 1,
-
+        // no arguments
+        Token::Reg(_)
+        | Token::Expr(Expr::NUM(_)) => index + 1,
+        // 1 argument
         Token::Stat(Stat::INPUT)
         | Token::Stat(Stat::OUTPUT)
         | Token::Expr(Expr::SIN)
         | Token::Expr(Expr::COS) => get_node_end(program, index + 1),
-
+        // 2 arguments
         Token::Stat(Stat::LOAD)
         | Token::Expr(Expr::ADD)
         | Token::Expr(Expr::SUB)

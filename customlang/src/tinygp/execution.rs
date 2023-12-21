@@ -62,23 +62,14 @@ fn eval_block(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<us
     }
 }
 
-fn read_reg(token: Token, memory: &Vec<f32>) -> f32 {
-    match token {
-        Token::Reg(num) => memory.get(num).unwrap().clone(),
-        _ => {
-            unreachable!()
-        }
-    }
-}
-
 fn eval_stat(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<usize, EvalError> {
     log::trace!("eval stat {pos}");
     if let Token::Stat(stat) = program[pos] {
         return match stat {
             Stat::OUTPUT => {
-                let regval = read_reg(program[pos + 1], &runtime.memory);
-                runtime.output.push(regval);
-                Ok(pos + 2)
+                let (newpos, val) = eval_expr(program, pos + 1, runtime)?;
+                runtime.output.push(val);
+                Ok(newpos)
             }
             Stat::INPUT => {
                 let regnum = match program[pos + 1] {
@@ -126,6 +117,7 @@ fn eval_expr(
 
     return match opcode {
         Token::Expr(func) => match func {
+            Expr::NUM(val) => Ok((pos + 1, val)),
             Expr::ADD => two_arg(add, runtime),
             Expr::SUB => two_arg(sub, runtime),
             Expr::MUL => two_arg(mul, runtime),
