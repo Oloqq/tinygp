@@ -44,3 +44,22 @@ fn test_load_register() {
     ];
     run_cases(&program, memsize, cases);
 }
+
+#[test]
+#[rustfmt::skip]
+fn test_load_expr_add() {
+    let memsize = 3;
+    let program = vec![
+        INPUT, Reg(0),
+        INPUT, Reg(1),
+        LOAD, Reg(2),
+            Token::Expr(Expr::ADD), Reg(0), Reg(1),
+        OUTPUT, Reg(0),
+        OUTPUT, Reg(1),
+        OUTPUT, Reg(2),
+    ];
+    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
+        (vec![1.0, 2.0], vec![1.0, 2.0, 3.0]),
+    ];
+    run_cases(&program, memsize, cases);
+}

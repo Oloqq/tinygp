@@ -118,7 +118,14 @@ fn eval_expr(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<(us
     let opcode = program[pos];
 
     return match opcode {
-        Token::Expr(_) => todo!(),
+        Token::Expr(func) => match func {
+            Expr::ADD => {
+                let (pos, lhs) = eval_expr(program, pos + 1, runtime)?;
+                let (pos, rhs) = eval_expr(program, pos, runtime)?;
+                Ok((pos, lhs + rhs))
+            },
+            _ => todo!()
+        }
         // match func { // remember this implementation assumed pos mutates inside eval_expr (and is passed as reference)
         //     Expr::ADD => eval_expr(program, memory, pos) + eval_expr(program, memory, pos),
         //     // Expr::SUB => eval_expr(program, memory, pos) - eval_expr(program, memory, pos),
@@ -137,7 +144,7 @@ fn eval_expr(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<(us
         //     _ => unimplemented!(),
         // },
         Token::Reg(num) => Ok((pos + 1, runtime.memory.get(num).unwrap().clone())),
-        Token::Stat(_) => unreachable!("called eval_expr on non-expr"),
+        Token::Stat(_) => unreachable!("called eval_expr on non-expr: {opcode:?}"),
     };
 }
 
