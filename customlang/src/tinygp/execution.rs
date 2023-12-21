@@ -120,10 +120,10 @@ fn eval_stat(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<usi
                 Ok(newpos)
             }
             Stat::IF => {
-                let (newpos, condition_val) = eval_expr(program, pos + 1, runtime)?;
+                let (blockpos, condition_val) = eval_expr(program, pos + 1, runtime)?;
                 if is_truthy(condition_val) {
                     log::trace!("IF condition at {pos} entered branch TRUE");
-                    let newpos = eval_block(program, newpos, runtime)?;
+                    let newpos = eval_block(program, blockpos, runtime)?;
                     if matches!(program[newpos], Token::ELSE) {
                         let else_part_end = get_node_end(program, newpos);
                         Ok(else_part_end + 1)
@@ -134,7 +134,22 @@ fn eval_stat(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<usi
                     }
                 } else {
                     log::trace!("IF condition at {pos} entered branch FALSE");
-                    todo!()
+                    let mut level = 1;
+                    let mut elsepos = blockpos;
+                    while elsepos < program.len() && level > 0 {
+                        match program[elsepos] {
+                            // TODO add WHILE
+                            Token::Stat(Stat::IF) => level += 1,
+                            Token::ELSE if level == 1 => {
+                                elsepos += 1;
+                                break
+                            }
+                            Token::END => level -= 1,
+                            _ => (),
+                        }
+                        elsepos += 1;
+                    }
+                    eval_block(program, elsepos, runtime)
                 }
             }
         };
