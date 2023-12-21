@@ -26,7 +26,7 @@ impl Runtime {
     }
 
     pub fn next_input(&mut self) -> Option<f32> {
-        if self.input_cursor < self.input.len()  {
+        if self.input_cursor < self.input.len() {
             let val = self.input[self.input_cursor];
             self.input_cursor += 1;
             Some(val)
@@ -43,12 +43,12 @@ pub fn execute(program: &Program, runtime: Runtime) -> Vec<f32> {
         Ok(_) | Err(EvalError::Finished) => {
             log::trace!("finished with output {:?}", runtime.output);
             runtime.output
-        },
+        }
         Err(_) => {
             log::error!("Invalid program: {program:?}");
             vec![f32::INFINITY]
-        },
-    }
+        }
+    };
 }
 
 fn eval_block(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<usize, EvalError> {
@@ -83,11 +83,7 @@ fn eval_stat(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<usi
             Stat::INPUT => {
                 let regnum = match program[pos + 1] {
                     Token::Reg(num) => num,
-                    _ => panic!(
-                        "Expected Reg at {}, got {:?}",
-                        pos + 1,
-                        program[pos + 1]
-                    ),
+                    _ => panic!("Expected Reg at {}, got {:?}", pos + 1, program[pos + 1]),
                 };
                 let val = match runtime.next_input() {
                     Some(val) => val,
@@ -95,57 +91,68 @@ fn eval_stat(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<usi
                 };
                 runtime.memory[regnum] = val;
                 Ok(pos + 2)
-            },
+            }
             Stat::LOAD => {
                 let destination = match program[pos + 1] {
                     Token::Reg(num) => num,
-                    _ => panic!(
-                        "Expected Reg at {}, got {:?}",
-                        pos + 1,
-                        program[pos + 1]
-                    ),
+                    _ => panic!("Expected Reg at {}, got {:?}", pos + 1, program[pos + 1]),
                 };
                 let (newpos, val) = eval_expr(program, pos + 2, runtime)?;
                 runtime.memory[destination] = val;
                 Ok(newpos)
             }
-        }
+        };
     }
     panic!("called eval_stat on non-stat");
 }
 
-fn eval_expr(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<(usize, f32), EvalError> {
+fn eval_expr(
+    program: &Program,
+    pos: usize,
+    runtime: &mut Runtime,
+) -> Result<(usize, f32), EvalError> {
     let opcode = program[pos];
+
+    let one_arg = |func: fn(f32) -> f32, runtime: &mut Runtime| {
+        let (pos, arg) = eval_expr(program, pos + 1, runtime)?;
+        Ok((pos, func(arg)))
+    };
+
+    let two_arg = |func: fn(f32, f32) -> f32, runtime: &mut Runtime| {
+        let (pos, lhs) = eval_expr(program, pos + 1, runtime)?;
+        let (pos, rhs) = eval_expr(program, pos, runtime)?;
+        Ok((pos, func(lhs, rhs)))
+    };
 
     return match opcode {
         Token::Expr(func) => match func {
-            Expr::ADD => {
-                let (pos, lhs) = eval_expr(program, pos + 1, runtime)?;
-                let (pos, rhs) = eval_expr(program, pos, runtime)?;
-                Ok((pos, lhs + rhs))
-            },
-            _ => todo!()
-        }
-        // match func { // remember this implementation assumed pos mutates inside eval_expr (and is passed as reference)
-        //     Expr::ADD => eval_expr(program, memory, pos) + eval_expr(program, memory, pos),
-        //     // Expr::SUB => eval_expr(program, memory, pos) - eval_expr(program, memory, pos),
-        //     // Expr::MUL => eval_expr(program, memory, pos) * eval_expr(program, memory, pos),
-        //     // Expr::DIV => {
-        //     //     let numerator = eval_expr(program, memory, pos);
-        //     //     let denominator = eval_expr(program, memory, pos);
-        //     //     if denominator.abs() <= 0.001 {
-        //     //         numerator
-        //     //     } else {
-        //     //         numerator / denominator
-        //     //     }
-        //     // }
-        //     // Expr::SIN => f32::sin(eval_expr(program, memory, pos)),
-        //     // Expr::COS => f32::cos(eval_expr(program, memory, pos)),
-        //     _ => unimplemented!(),
-        // },
+            Expr::ADD => two_arg(add, runtime),
+            Expr::SUB => two_arg(sub, runtime),
+            Expr::MUL => two_arg(mul, runtime),
+            Expr::DIV => two_arg(protected_div, runtime),
+            Expr::SIN => one_arg(f32::sin, runtime),
+            Expr::COS => one_arg(f32::cos, runtime),
+        },
         Token::Reg(num) => Ok((pos + 1, runtime.memory.get(num).unwrap().clone())),
         Token::Stat(_) => unreachable!("called eval_expr on non-expr: {opcode:?}"),
     };
+
+    fn add(lhs: f32, rhs: f32) -> f32 {
+        lhs + rhs
+    }
+    fn sub(lhs: f32, rhs: f32) -> f32 {
+        lhs - rhs
+    }
+    fn mul(lhs: f32, rhs: f32) -> f32 {
+        lhs * rhs
+    }
+    fn protected_div(lhs: f32, rhs: f32) -> f32 {
+        if rhs.abs() <= 0.001 {
+            lhs
+        } else {
+            lhs / rhs
+        }
+    }
 }
 
 #[cfg(test)]
@@ -164,10 +171,7 @@ mod tests {
 
     #[test]
     fn test_stat_input() {
-        let program: Vec<Token> = vec![
-            Token::Stat(Stat::INPUT),
-            Token::Reg(0),
-        ];
+        let program: Vec<Token> = vec![Token::Stat(Stat::INPUT), Token::Reg(0)];
         let mut runtime = Runtime::new(2, vec![2.0]);
         assert_eq!(runtime.memory, vec![0.0, 0.0]);
         assert_eq!(runtime.input.len(), 1);
@@ -180,10 +184,7 @@ mod tests {
 
     #[test]
     fn test_stat_input_multiple() {
-        let program: Vec<Token> = vec![
-            Token::Stat(Stat::INPUT),
-            Token::Reg(0),
-        ];
+        let program: Vec<Token> = vec![Token::Stat(Stat::INPUT), Token::Reg(0)];
         let mut runtime = Runtime::new(2, vec![2.0, 3.0]);
         assert_eq!(runtime.memory, vec![0.0, 0.0]);
         assert_eq!(runtime.input.len(), 2);
@@ -202,10 +203,7 @@ mod tests {
 
     #[test]
     fn test_stat_input_second_register() {
-        let program: Vec<Token> = vec![
-            Token::Stat(Stat::INPUT),
-            Token::Reg(1)
-        ];
+        let program: Vec<Token> = vec![Token::Stat(Stat::INPUT), Token::Reg(1)];
         let mut runtime = Runtime::new(2, vec![4.0]);
         assert_eq!(runtime.memory, vec![0.0, 0.0]);
         let res = eval_stat(&program, 0, &mut runtime);
@@ -215,10 +213,7 @@ mod tests {
 
     #[test]
     fn test_stat_output() {
-        let program: Vec<Token> = vec![
-            Token::Stat(Stat::OUTPUT),
-            Token::Reg(0)
-        ];
+        let program: Vec<Token> = vec![Token::Stat(Stat::OUTPUT), Token::Reg(0)];
         let mut runtime = Runtime {
             memory: vec![2.0, 0.0],
             input: vec![],

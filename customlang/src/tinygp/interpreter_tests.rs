@@ -63,3 +63,63 @@ fn test_load_expr_add() {
     ];
     run_cases(&program, memsize, cases);
 }
+
+#[test]
+#[rustfmt::skip]
+fn test_load_expr_sub() {
+    let memsize = 3;
+    let program = vec![
+        INPUT, Reg(0),
+        INPUT, Reg(1),
+        LOAD, Reg(2),
+            Token::Expr(Expr::SUB), Reg(0), Reg(1),
+        OUTPUT, Reg(0),
+        OUTPUT, Reg(1),
+        OUTPUT, Reg(2),
+    ];
+    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
+        (vec![1.0, 2.0], vec![1.0, 2.0, -1.0]),
+    ];
+    run_cases(&program, memsize, cases);
+}
+
+#[test]
+#[rustfmt::skip]
+fn test_load_expr_mul() {
+    let memsize = 3;
+    let program = vec![
+        INPUT, Reg(0),
+        INPUT, Reg(1),
+        LOAD, Reg(2),
+            Token::Expr(Expr::MUL), Reg(0), Reg(1),
+        OUTPUT, Reg(0),
+        OUTPUT, Reg(1),
+        OUTPUT, Reg(2),
+    ];
+    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
+        (vec![2.0, 2.0], vec![2.0, 2.0, 4.0]),
+    ];
+    run_cases(&program, memsize, cases);
+}
+
+
+#[test]
+#[rustfmt::skip]
+fn test_load_expr_protected_div() {
+    let memsize = 3;
+    let program = vec![
+        INPUT, Reg(0),
+        INPUT, Reg(1),
+        LOAD, Reg(2),
+            Token::Expr(Expr::DIV), Reg(0), Reg(1),
+        OUTPUT, Reg(0),
+        OUTPUT, Reg(1),
+        OUTPUT, Reg(2),
+    ];
+    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
+        (vec![1.0, 2.0], vec![1.0, 2.0, 0.5]),
+        (vec![1.0, 0.01], vec![1.0, 0.01, 100.0]),
+        (vec![1.0, 0.0001], vec![1.0, 0.0001, 1.0]),
+    ];
+    run_cases(&program, memsize, cases);
+}
