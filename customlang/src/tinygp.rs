@@ -40,8 +40,6 @@ impl TinyGP {
         let seed = seed.unwrap_or(StdRng::from_entropy().next_u64());
         let mut rand = StdRng::seed_from_u64(seed);
         params.seed = seed;
-        const MIN_RANDOM: f32 = -20.0;
-        const MAX_RANDOM: f32 = 20.0;
         writeln!(writer.borrow_mut(), "Creating variables").unwrap();
         writeln!(writer.borrow_mut(), "Creating population").unwrap();
         let (population, fitness) = random_population(&params, &cases, &mut rand);
