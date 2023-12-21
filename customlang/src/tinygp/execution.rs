@@ -52,6 +52,7 @@ pub fn execute(program: &Program, runtime: Runtime) -> Vec<f32> {
 }
 
 fn eval_block(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<usize, EvalError> {
+    log::trace!("eval block {pos}");
     let mut pos = pos;
     loop {
         if pos >= program.len() {
@@ -71,11 +72,11 @@ fn read_reg(token: Token, memory: &Vec<f32>) -> f32 {
 }
 
 fn eval_stat(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<usize, EvalError> {
+    log::trace!("eval stat {pos}");
     if let Token::Stat(stat) = program[pos] {
         return match stat {
             Stat::OUTPUT => {
                 let regval = read_reg(program[pos + 1], &runtime.memory);
-                // println!("{}", regval);
                 runtime.output.push(regval);
                 Ok(pos + 2)
             }

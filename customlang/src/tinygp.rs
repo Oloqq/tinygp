@@ -3,6 +3,9 @@ mod evolution;
 mod execution;
 mod growing;
 
+#[cfg(test)]
+mod interpreter_tests;
+
 use crate::params::Case;
 use crate::params::Params;
 use common::*;

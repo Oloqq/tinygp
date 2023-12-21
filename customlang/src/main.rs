@@ -1,8 +1,5 @@
-#[cfg(test)]
-mod e2e;
 mod params;
 mod tinygp;
-use env_logger::builder;
 use std::fs::{self, metadata, File};
 use std::io::{self, Write};
 use structopt::StructOpt;
