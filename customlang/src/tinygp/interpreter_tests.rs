@@ -7,7 +7,7 @@ const INPUT: Token = Token::Stat(Stat::INPUT);
 const OUTPUT: Token = Token::Stat(Stat::OUTPUT);
 const LOAD: Token = Token::Stat(Stat::LOAD);
 const IF: Token = Token::Stat(Stat::IF);
-// const ELSE: Token = Token::ELSE);
+const ELSE: Token = Token::ELSE;
 const END: Token = Token::END;
 use Token::Reg;
 
@@ -21,8 +21,8 @@ fn run_cases(program: &Program, memsize: usize, cases: Vec<(Vec<f32>, Vec<f32>)>
     let _ = env_logger::builder().is_test(true).try_init();
     for (i, (input, expected_output)) in cases.into_iter().enumerate() {
         let runtime = Runtime::new(memsize, input);
-        let output = execute(&program, runtime);
         println!("\nCase {i}");
+        let output = execute(&program, runtime);
         assert_eq!(output, expected_output);
     }
 }
@@ -191,6 +191,60 @@ fn test_if_false() {
     ];
     let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
         (vec![], vec![1.0, 3.0]),
+    ];
+    run_cases(&program, memsize, cases);
+}
+
+#[test]
+#[rustfmt::skip]
+fn test_if_nested() {
+    let memsize = 3;
+    let program = vec![
+        INPUT, Reg(0),
+        INPUT, Reg(1),
+        OUTPUT, num(1.0),
+        IF, Reg(0),
+            OUTPUT, num(2.0),
+            IF, Reg(1),
+                OUTPUT, num(3.0),
+            END,
+        END,
+        OUTPUT, num(4.0),
+    ];
+    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
+        (vec![0.0, 0.0], vec![1.0, 4.0]),
+        (vec![0.0, 1.0], vec![1.0, 4.0]),
+        (vec![1.0, 0.0], vec![1.0, 2.0, 4.0]),
+        (vec![1.0, 1.0], vec![1.0, 2.0, 3.0, 4.0]),
+    ];
+    run_cases(&program, memsize, cases);
+}
+
+#[test]
+#[rustfmt::skip]
+fn test_if_else_nested() {
+    let memsize = 3;
+    let program = vec![
+        INPUT, Reg(0),
+        INPUT, Reg(1),
+        OUTPUT, num(1.0),
+        IF, Reg(0), // 6
+            OUTPUT, num(2.0),
+            IF, Reg(1), // 10
+                OUTPUT, num(3.0),
+            ELSE, // 14
+                OUTPUT, num(5.0),
+            END,
+        ELSE, // 18
+            OUTPUT, num(6.0),
+        END, // 21
+        OUTPUT, num(4.0),
+    ];
+    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
+        (vec![0.0, 0.0], vec![1.0, 6.0, 4.0]),
+        (vec![0.0, 1.0], vec![1.0, 6.0, 4.0]),
+        (vec![1.0, 0.0], vec![1.0, 2.0, 5.0, 4.0]),
+        (vec![1.0, 1.0], vec![1.0, 2.0, 3.0, 4.0]),
     ];
     run_cases(&program, memsize, cases);
 }

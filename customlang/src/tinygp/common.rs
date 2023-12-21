@@ -67,7 +67,7 @@ pub fn get_node_end(program: &Program, index: usize) -> usize {
         }
         // "parentheses counting"
         // TODO add WHILE
-        Token::Stat(Stat::IF) => {
+        Token::Stat(Stat::IF) | Token::ELSE => {
             let mut level = 1;
             let mut i = index;
             while i < program.len() && level > 0 {
