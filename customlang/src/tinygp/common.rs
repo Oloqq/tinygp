@@ -17,6 +17,9 @@ pub enum Stat {
     INPUT,
     OUTPUT,
     LOAD,
+    IF,
+    ELSE,
+    END,
 }
 
 #[derive(Debug, Clone, Copy, Serialize, Deserialize)]
@@ -62,7 +65,24 @@ pub fn get_node_end(program: &Program, index: usize) -> usize {
         | Token::Expr(Expr::DIV) => {
             let arg1end = get_node_end(program, index + 1);
             get_node_end(program, arg1end)
-        }
+        },
+        _ => todo!()
+        // "parentheses counting"
+        // TODO add WHILE
+        // Token::Stat(Stat::IF) => {
+        //     let mut level = 1;
+        //     let mut i = index;
+        //     while i < program.len() && level > 0 {
+        //         match program[i] {
+        //             // TODO add WHILE
+        //             Token::Stat(Stat::IF) => level += 1,
+        //             Token::Stat(Stat::END) => level -= 1,
+        //             _ => ()
+        //         }
+        //         i += 1;
+        //     }
+        //     i
+        // }
     }
 }
 
@@ -92,6 +112,12 @@ mod tests {
         assert_eq!(get_node_end(&program, 2), 3);
         assert_eq!(get_node_end(&program, 3), 4);
         assert_eq!(get_node_end(&program, 4), 5);
+    }
+
+    #[test]
+    #[ignore]
+    fn test_expression_end_if() {
+        assert!(false)
     }
 
     #[test]

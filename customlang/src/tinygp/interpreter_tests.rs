@@ -6,7 +6,14 @@ use super::{
 const INPUT: Token = Token::Stat(Stat::INPUT);
 const OUTPUT: Token = Token::Stat(Stat::OUTPUT);
 const LOAD: Token = Token::Stat(Stat::LOAD);
+const IF: Token = Token::Stat(Stat::IF);
+// const ELSE: Token = Token::Stat(Stat::ELSE);
+const END: Token = Token::Stat(Stat::END);
 use Token::Reg;
+
+fn num(x: f32) -> Token {
+    Token::Expr(Expr::NUM(x))
+}
 
 use pretty_assertions::assert_eq;
 
@@ -150,6 +157,40 @@ fn test_expr_with_literal() {
     let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
         (vec![], vec![2.37]),
         (vec![1.0], vec![2.37]),
+    ];
+    run_cases(&program, memsize, cases);
+}
+
+#[test]
+#[rustfmt::skip]
+fn test_if_true() {
+    let memsize = 3;
+    let program = vec![
+        OUTPUT, num(1.0),
+        IF, num(1.0),
+            OUTPUT, num(2.0),
+        END,
+        OUTPUT, num(3.0),
+    ];
+    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
+        (vec![], vec![1.0, 2.0, 3.0]),
+    ];
+    run_cases(&program, memsize, cases);
+}
+
+#[test]
+#[rustfmt::skip]
+fn test_if_false() {
+    let memsize = 3;
+    let program = vec![
+        OUTPUT, num(1.0),
+        IF, num(0.0),
+            OUTPUT, num(2.0),
+        END,
+        OUTPUT, num(3.0),
+    ];
+    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
+        (vec![], vec![1.0, 3.0]),
     ];
     run_cases(&program, memsize, cases);
 }

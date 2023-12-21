@@ -4,8 +4,8 @@ use super::common::*;
 #[derive(Debug)]
 pub enum EvalError {
     Finished,
-    Syntax,
-    Semantic,
+    Syntax(usize, String),
+    Semantic(String),
 }
 
 pub struct Runtime {
@@ -32,6 +32,29 @@ impl Runtime {
             Some(val)
         } else {
             None
+        }
+    }
+
+    pub fn set_reg(&mut self, num: usize, val: f32) -> Result<(), EvalError> {
+        if num > self.memory.len() {
+            Err(EvalError::Semantic(format!(
+                "Tried to set memory[{num}], when length is {}",
+                self.memory.len()
+            )))
+        } else {
+            self.memory[num] = val;
+            Ok(())
+        }
+    }
+
+    pub fn read_reg(&self, num: usize) -> Result<f32, EvalError> {
+        if num > self.memory.len() {
+            Err(EvalError::Semantic(format!(
+                "Tried to read memory[{num}], when length is {}",
+                self.memory.len()
+            )))
+        } else {
+            Ok(self.memory[num].clone())
         }
     }
 }
@@ -72,26 +95,33 @@ fn eval_stat(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<usi
                 Ok(newpos)
             }
             Stat::INPUT => {
-                let regnum = match program[pos + 1] {
+                let destination = match program[pos + 1] {
                     Token::Reg(num) => num,
-                    _ => panic!("Expected Reg at {}, got {:?}", pos + 1, program[pos + 1]),
+                    _ => return Err(EvalError::Syntax(pos + 1, "Expected REG".into())),
                 };
                 let val = match runtime.next_input() {
                     Some(val) => val,
                     None => return Err(EvalError::Finished),
                 };
-                runtime.memory[regnum] = val;
+                runtime.set_reg(destination, val)?;
                 Ok(pos + 2)
             }
             Stat::LOAD => {
                 let destination = match program[pos + 1] {
                     Token::Reg(num) => num,
-                    _ => panic!("Expected Reg at {}, got {:?}", pos + 1, program[pos + 1]),
+                    _ => return Err(EvalError::Syntax(pos + 1, "Expected REG".into())),
                 };
                 let (newpos, val) = eval_expr(program, pos + 2, runtime)?;
-                runtime.memory[destination] = val;
+                runtime.set_reg(destination, val)?;
                 Ok(newpos)
             }
+            Stat::IF => {
+                todo!()
+            }
+            Stat::ELSE | Stat::END => Err(EvalError::Syntax(
+                pos,
+                String::from("Expected a full statement"),
+            )),
         };
     }
     panic!("called eval_stat on non-stat");
@@ -125,7 +155,7 @@ fn eval_expr(
             Expr::SIN => one_arg(f32::sin, runtime),
             Expr::COS => one_arg(f32::cos, runtime),
         },
-        Token::Reg(num) => Ok((pos + 1, runtime.memory.get(num).unwrap().clone())),
+        Token::Reg(num) => Ok((pos + 1, runtime.read_reg(num)?)),
         Token::Stat(_) => unreachable!("called eval_expr on non-expr: {opcode:?}"),
     };
 
