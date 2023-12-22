@@ -332,3 +332,24 @@ fn test_while_nested() {
     ];
     run_cases(&program, memsize, cases);
 }
+
+#[test]
+#[rustfmt::skip]
+fn test_while_many_iterations() {
+    let memsize = 3;
+    let program = vec![
+        INPUT, Reg(0),
+        WHILE, Reg(0),
+            OUTPUT, Reg(0),
+            LOAD, Reg(0), Token::Expr(Expr::SUB),
+                Reg(0), num(1.0),
+        END,
+    ];
+    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
+        (vec![0.0], vec![]),
+        (vec![1.0], vec![1.0]),
+        (vec![2.0], vec![2.0, 1.0]),
+        (vec![3.0], vec![3.0, 2.0, 1.0]),
+    ];
+    run_cases(&program, memsize, cases);
+}
