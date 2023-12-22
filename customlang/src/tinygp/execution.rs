@@ -96,6 +96,54 @@ fn is_truthy(x: f32) -> bool {
     x != 0.0
 }
 
+fn handle_if_true(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<usize, EvalError> {
+    let end_or_else = eval_block(program, pos, runtime)?;
+    match program[end_or_else] {
+        Token::ELSE => {
+            let else_part_end = get_node_end(program, end_or_else);
+            log::trace!("got node end {else_part_end}");
+            Ok(else_part_end)
+        },
+        Token::END => Ok(end_or_else + 1),
+        _ => Err(EvalError::Syntax(end_or_else, "Expected END or ELSE".into()))
+    }
+}
+
+fn handle_if_false(program: &Program, true_block_pos: usize, runtime: &mut Runtime, if_stat_pos: usize) -> Result<usize, EvalError> {
+    let true_block_end = skip_block(program, true_block_pos);
+    match program[true_block_end] {
+        Token::ELSE => {
+            let else_block_pos = true_block_end + 1;
+            log::trace!("IF condition at {if_stat_pos} entered ELSE branch at {else_block_pos}");
+            let endpos = eval_block(program, else_block_pos, runtime)?;
+            Ok(endpos + 1)
+        }
+        Token::END => {
+            log::trace!("IF condition at {if_stat_pos} has no ELSE branch (reached END at {true_block_end}");
+            Ok(true_block_end + 1)
+        }
+        _ => unreachable!()
+    }
+}
+
+fn skip_block(program: &Program, pos: usize) -> usize {
+    let mut level = 1;
+    let mut cursor = pos;
+    while cursor < program.len() && level > 0 {
+        cursor += 1;
+        match program[cursor] {
+            // TODO add WHILE
+            Token::Stat(Stat::IF) => level += 1,
+            Token::END => level -= 1,
+            Token::ELSE if level == 1 => {
+                level -= 1
+            }
+            _ => (),
+        }
+    }
+    cursor
+}
+
 fn eval_stat(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<usize, EvalError> {
     log::trace!("eval stat {pos}");
     match program[pos] {
@@ -127,49 +175,13 @@ fn eval_stat(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<usi
                 Ok(newpos)
             }
             Stat::IF => {
-                let (blockpos, condition_val) = eval_expr(program, pos + 1, runtime)?;
+                let (true_block_pos, condition_val) = eval_expr(program, pos + 1, runtime)?;
                 if is_truthy(condition_val) {
-                    log::trace!("IF condition at {pos} entered branch TRUE");
-                    let end_or_else = eval_block(program, blockpos, runtime)?;
-                    match program[end_or_else] {
-                        Token::ELSE => {
-                            let else_part_end = get_node_end(program, end_or_else);
-                            log::trace!("got node end {else_part_end}");
-                            Ok(else_part_end)
-                        },
-                        Token::END => Ok(end_or_else + 1),
-                        _ => unreachable!()
-                    }
+                    log::trace!("IF condition at {pos} evaluated to TRUE");
+                    handle_if_true(program, true_block_pos, runtime)
                 } else {
-                    log::trace!("IF condition at {pos} entered branch FALSE");
-                    let mut level = 1;
-                    let mut elsepos = blockpos;
-                    while elsepos < program.len() && level > 0 {
-                        println!("{elsepos}: {level}");
-                        elsepos += 1;
-                        match program[elsepos] {
-                            // TODO add WHILE
-                            Token::Stat(Stat::IF) => level += 1,
-                            Token::END => level -= 1,
-                            Token::ELSE if level == 1 => {
-                                level -= 1
-                            }
-                            _ => (),
-                        }
-                    }
-                    match program[elsepos] {
-                        Token::ELSE => {
-                            log::trace!("skipped to ELSE branch at {elsepos}");
-                            let endpos = eval_block(program, elsepos + 1, runtime)?;
-                            Ok(endpos + 1)
-                        }
-                        Token::END => {
-                            log::trace!("skipped to END at {elsepos}, no ELSE branch ");
-                            Ok(elsepos + 1)
-                        }
-                        _ => unreachable!()
-                    }
-
+                    log::trace!("IF condition at {pos} evaluated to FALSE");
+                    handle_if_false(program, true_block_pos, runtime, pos)
                 }
             }
         },

@@ -248,3 +248,32 @@ fn test_if_else_nested() {
     ];
     run_cases(&program, memsize, cases);
 }
+
+// #[test]
+// #[rustfmt::skip]
+// fn test_while() {
+//     let memsize = 3;
+//     let program = vec![
+//         INPUT, Reg(0),
+//         INPUT, Reg(1),
+//         OUTPUT, num(1.0),
+//         IF, Reg(0), // 6
+//             OUTPUT, num(2.0),
+//             IF, Reg(1), // 10
+//                 OUTPUT, num(3.0),
+//             ELSE, // 14
+//                 OUTPUT, num(5.0),
+//             END,
+//         ELSE, // 18
+//             OUTPUT, num(6.0),
+//         END, // 21
+//         OUTPUT, num(4.0),
+//     ];
+//     let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
+//         (vec![0.0, 0.0], vec![1.0, 6.0, 4.0]),
+//         (vec![0.0, 1.0], vec![1.0, 6.0, 4.0]),
+//         (vec![1.0, 0.0], vec![1.0, 2.0, 5.0, 4.0]),
+//         (vec![1.0, 1.0], vec![1.0, 2.0, 3.0, 4.0]),
+//     ];
+//     run_cases(&program, memsize, cases);
+// }

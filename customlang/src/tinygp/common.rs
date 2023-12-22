@@ -18,6 +18,7 @@ pub enum Stat {
     OUTPUT,
     LOAD,
     IF,
+    // WHILE,
 }
 
 #[derive(Debug, Clone, Copy, Serialize, Deserialize)]
