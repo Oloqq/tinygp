@@ -368,33 +368,20 @@ mod tests {
     }
 
     #[test]
-    #[ignore]
     fn test_expression() {
-        // let program: Vec<Token> = vec![
-        //     Token::Expr(Expr::ADD),
-        //     Token::Reg(0),
-        //     Token::Expr(Expr::DIV),
-        //     Token::Reg(1),
-        //     Token::Reg(1),
-        // ];
-        // let data = vec![1.0, -2.0];
-        // assert_eq!(2.0, eval_expr(&program, &data, &mut 0));
-
-        // let program: Vec<Token> = vec![
-        //     Token::Expr(Expr::SUB),
-        //     Token::Reg(0),
-        //     Token::Expr(Expr::DIV),
-        //     Token::Reg(1),
-        //     Token::Reg(2),
-        // ];
-        // assert_eq!(
-        //     0.8776571,
-        //     eval_expr(
-        //         &program,
-        //         &vec![0.0, -4.025456902691228, 4.58659426408455],
-        //         &mut 0
-        //     )
-        // );
+        let program: Vec<Token> = vec![
+            Token::Expr(Expr::ADD),
+            Token::Reg(0),
+            Token::Expr(Expr::DIV),
+            Token::Reg(1),
+            Token::Reg(1),
+        ];
+        let data = vec![1.0, -2.0];
+        let mut runtime =  Runtime::new(3, vec![]);
+        runtime.memory = data;
+        let (pos, val) = eval_expr(&program, 0, &mut runtime).unwrap();
+        assert_eq!(5, pos);
+        assert_eq!(2.0, val);
     }
 
     #[test]
