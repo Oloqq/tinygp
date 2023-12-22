@@ -1,8 +1,0 @@
-{
-    "rust-analyzer.linkedProjects": [
-        ".\\customlang\\Cargo.toml",
-        ".\\customlang\\Cargo.toml",
-        ".\\customlang\\Cargo.toml"
-    ],
-    "rust-analyzer.showUnlinkedFileNotification": false
-}
