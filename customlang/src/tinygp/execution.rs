@@ -6,6 +6,7 @@ pub enum EvalError {
     Finished,
     Syntax(usize, String),
     Semantic(String),
+    MaxIteration
 }
 
 pub struct Runtime {
@@ -13,6 +14,7 @@ pub struct Runtime {
     input: Vec<f32>,
     output: Vec<f32>,
     input_cursor: usize,
+    max_iterations: usize,
 }
 
 impl Runtime {
@@ -22,6 +24,7 @@ impl Runtime {
             input,
             output: Vec::new(),
             input_cursor: 0,
+            max_iterations: 100
         }
     }
 
@@ -69,11 +72,27 @@ pub fn execute(program: &Program, runtime: Runtime) -> Vec<f32> {
             runtime.output
         }
         Err(EvalError::Finished) => {
-            log::trace!("terminated due to input end with output {:?}", runtime.output);
+            log::trace!(
+                "terminated due to input end with output {:?}",
+                runtime.output
+            );
             runtime.output
         }
-        Err(_) => {
+        Err(EvalError::MaxIteration) => {
+            log::trace!(
+                "terminated due reaching max iteration {:?}",
+                runtime.output
+            );
+            runtime.output
+        }
+        Err(EvalError::Syntax(pos, reason)) => {
             log::error!("Invalid program: {program:?}");
+            log::error!("Invalid syntax at {pos}: {reason}");
+            panic!("Invalid syntax at {pos}: {reason}");
+        }
+        Err(EvalError::Semantic(reason)) => {
+            log::error!("Invalid program: {program:?}");
+            log::error!("Invalid program reason: {reason}");
             vec![f32::INFINITY]
         }
     };
@@ -96,20 +115,32 @@ fn is_truthy(x: f32) -> bool {
     x != 0.0
 }
 
-fn handle_if_true(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<usize, EvalError> {
+fn handle_if_true(
+    program: &Program,
+    pos: usize,
+    runtime: &mut Runtime,
+) -> Result<usize, EvalError> {
     let end_or_else = eval_block(program, pos, runtime)?;
     match program[end_or_else] {
         Token::ELSE => {
             let else_part_end = get_node_end(program, end_or_else);
             log::trace!("got node end {else_part_end}");
             Ok(else_part_end)
-        },
+        }
         Token::END => Ok(end_or_else + 1),
-        _ => Err(EvalError::Syntax(end_or_else, "Expected END or ELSE".into()))
+        _ => Err(EvalError::Syntax(
+            end_or_else,
+            "Expected END or ELSE".into(),
+        )),
     }
 }
 
-fn handle_if_false(program: &Program, true_block_pos: usize, runtime: &mut Runtime, if_stat_pos: usize) -> Result<usize, EvalError> {
+fn handle_if_false(
+    program: &Program,
+    true_block_pos: usize,
+    runtime: &mut Runtime,
+    if_stat_pos: usize,
+) -> Result<usize, EvalError> {
     let true_block_end = skip_block(program, true_block_pos);
     match program[true_block_end] {
         Token::ELSE => {
@@ -119,10 +150,12 @@ fn handle_if_false(program: &Program, true_block_pos: usize, runtime: &mut Runti
             Ok(endpos + 1)
         }
         Token::END => {
-            log::trace!("IF condition at {if_stat_pos} has no ELSE branch (reached END at {true_block_end}");
+            log::trace!(
+                "IF condition at {if_stat_pos} has no ELSE branch (reached END at {true_block_end}"
+            );
             Ok(true_block_end + 1)
         }
-        _ => unreachable!()
+        _ => unreachable!(),
     }
 }
 
@@ -132,16 +165,38 @@ fn skip_block(program: &Program, pos: usize) -> usize {
     while cursor < program.len() && level > 0 {
         cursor += 1;
         match program[cursor] {
-            // TODO add WHILE
-            Token::Stat(Stat::IF) => level += 1,
+            Token::Stat(Stat::IF | Stat::WHILE) => level += 1,
             Token::END => level -= 1,
-            Token::ELSE if level == 1 => {
-                level -= 1
-            }
+            Token::ELSE if level == 1 => level -= 1,
             _ => (),
         }
     }
     cursor
+}
+
+fn handle_while(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<usize, EvalError> {
+    let while_pos = pos;
+    let expr_pos = pos + 1;
+    let block_pos;
+    let mut expr_val;
+    (block_pos, expr_val) = eval_expr(program, expr_pos, runtime)?;
+    let block_end_pos = skip_block(program, block_pos);
+    let mut iteration = 0;
+
+    while is_truthy(expr_val) {
+        log::trace!("WHILE at {while_pos}: iteration {iteration}");
+        eval_block(program, block_pos, runtime)?;
+        (_, expr_val) = eval_expr(program, expr_pos, runtime)?;
+        iteration += 1;
+        if iteration >= runtime.max_iterations {
+            return Err(EvalError::MaxIteration)
+        }
+    }
+
+    match program[block_end_pos] {
+        Token::END => Ok(block_end_pos + 1),
+        _ => Err(EvalError::Syntax(block_end_pos, format!("Expected END after a WHILE started at {while_pos}. Got to {block_end_pos}")))
+    }
 }
 
 fn eval_stat(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<usize, EvalError> {
@@ -184,8 +239,9 @@ fn eval_stat(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<usi
                     handle_if_false(program, true_block_pos, runtime, pos)
                 }
             }
+            Stat::WHILE => handle_while(program, pos, runtime),
         },
-        _ => panic!("called eval_stat on non-stat at {pos}")
+        _ => panic!("called eval_stat on non-stat at {pos}"),
     }
 }
 
@@ -303,6 +359,7 @@ mod tests {
             input: vec![],
             output: vec![],
             input_cursor: 0,
+            max_iterations: 100
         };
         let res = eval_stat(&program, 0, &mut runtime);
         assert!(res.is_ok());
