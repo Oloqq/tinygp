@@ -1,1 +1,0 @@
-[Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]

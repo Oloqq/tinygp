@@ -1,5 +1,15 @@
 program = block
 
+block = stat*
+
+stat
+    = LOAD reg expr
+    | IF expr block END
+    | IF expr block ELSE block END
+    | WHILE expr DO block END
+    | INPUT reg
+    | OUTPUT expr
+
 # kolejnosc nie ma znaczenia, priorytet jest jasny bo nie ma infixow
 expr
     = ADD expr expr
@@ -11,30 +21,7 @@ expr
     | OR expr expr
     | AND expr expr
     | NOT expr
-    | NUM
     | reg
-
-stat
-    = load
-    | if
-    | while
-    | output
-
-block = stat*
-
-if
-    = IF expr THEN block ELSE block END
-    | IF expr THEN block END
-
-while = WHILE expr DO END
-
-load
-    = LOAD reg INPUT # zaczytuje kolejna wartosc z wejscia
-    | LOAD reg expr
-
-output
-    = OUTPUT NUM
-    | OUTPUT reg
 
 # reg to register/rejestr/zmienna
 reg = R NUM
