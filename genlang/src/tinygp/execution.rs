@@ -272,6 +272,12 @@ fn eval_expr(
             Expr::DIV => two_arg(protected_div, runtime),
             Expr::SIN => one_arg(f32::sin, runtime),
             Expr::COS => one_arg(f32::cos, runtime),
+            Expr::EQ => two_arg(equal, runtime),
+            Expr::LT => two_arg(less_than, runtime),
+            Expr::GT => two_arg(greater_than, runtime),
+            Expr::OR => two_arg(or, runtime),
+            Expr::AND => two_arg(and, runtime),
+            Expr::NOT => one_arg(negation, runtime),
         },
         Token::Reg(num) => Ok((pos + 1, runtime.read_reg(num)?)),
         _ => unreachable!("called eval_expr on non-expr: {opcode:?}"),
@@ -291,6 +297,48 @@ fn eval_expr(
             lhs
         } else {
             lhs / rhs
+        }
+    }
+    fn equal(lhs: f32, rhs: f32) -> f32 {
+        if lhs == rhs {
+            1.0
+        } else {
+            0.0
+        }
+    }
+    fn less_than(lhs: f32, rhs: f32) -> f32 {
+        if lhs < rhs {
+            1.0
+        } else {
+            0.0
+        }
+    }
+    fn greater_than(lhs: f32, rhs: f32) -> f32 {
+        if lhs > rhs {
+            1.0
+        } else {
+            0.0
+        }
+    }
+    fn or(lhs: f32, rhs: f32) -> f32 {
+        if is_truthy(lhs) || is_truthy(rhs) {
+            1.0
+        } else {
+            0.0
+        }
+    }
+    fn and(lhs: f32, rhs: f32) -> f32 {
+        if is_truthy(lhs) && is_truthy(rhs) {
+            1.0
+        } else {
+            0.0
+        }
+    }
+    fn negation(arg: f32) -> f32 {
+        if is_truthy(arg) {
+            0.0
+        } else {
+            1.0
         }
     }
 }

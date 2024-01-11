@@ -9,6 +9,12 @@ pub enum Expr {
     DIV,
     SIN,
     COS,
+    EQ,
+    LT,
+    GT,
+    OR,
+    AND,
+    NOT,
     NUM(f32),
 }
 
@@ -44,6 +50,12 @@ impl Expr {
             Expr::SIN => 1,
             Expr::COS => 1,
             Expr::NUM(_) => 0,
+            Expr::EQ => 2,
+            Expr::LT => 2,
+            Expr::GT => 2,
+            Expr::OR => 2,
+            Expr::AND => 2,
+            Expr::NOT => 1,
         }
     }
 }
@@ -191,5 +203,7 @@ mod tests {
         let s2 = serde_lexpr::to_string(&p2).unwrap();
 
         assert_eq!(s, s2);
+        // ((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 1) (Reg . 0) (Stat . OUTPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 1))
+        // assert!(false);
     }
 }

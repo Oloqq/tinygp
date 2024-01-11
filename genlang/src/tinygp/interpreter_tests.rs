@@ -353,3 +353,114 @@ fn test_while_many_iterations() {
     ];
     run_cases(&program, memsize, cases);
 }
+
+#[test]
+#[rustfmt::skip]
+fn test_expr_eq() {
+    let memsize = 3;
+    let program = vec![
+        INPUT, Reg(0),
+        INPUT, Reg(1),
+        LOAD, Reg(2),
+            Token::Expr(Expr::EQ), Reg(0), Reg(1),
+        OUTPUT, Reg(2)
+    ];
+    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
+        (vec![1.0, 2.0], vec![0.0]),
+        (vec![-1.0, -1.0], vec![1.0]),
+    ];
+    run_cases(&program, memsize, cases);
+}
+
+#[test]
+#[rustfmt::skip]
+fn test_expr_less_than() {
+    let memsize = 3;
+    let program = vec![
+        INPUT, Reg(0),
+        INPUT, Reg(1),
+        LOAD, Reg(2),
+            Token::Expr(Expr::LT), Reg(0), Reg(1),
+        OUTPUT, Reg(2)
+    ];
+    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
+        (vec![1.0, 2.0], vec![1.0]),
+        (vec![-1.0, -2.0], vec![0.0]),
+    ];
+    run_cases(&program, memsize, cases);
+}
+
+#[test]
+#[rustfmt::skip]
+fn test_expr_greater_than() {
+    let memsize = 3;
+    let program = vec![
+        INPUT, Reg(0),
+        INPUT, Reg(1),
+        LOAD, Reg(2),
+            Token::Expr(Expr::GT), Reg(0), Reg(1),
+        OUTPUT, Reg(2)
+    ];
+    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
+        (vec![1.0, 2.0], vec![0.0]),
+        (vec![-1.0, -2.0], vec![1.0]),
+    ];
+    run_cases(&program, memsize, cases);
+}
+
+#[test]
+#[rustfmt::skip]
+fn test_expr_or() {
+    let memsize = 3;
+    let program = vec![
+        INPUT, Reg(0),
+        INPUT, Reg(1),
+        LOAD, Reg(2),
+            Token::Expr(Expr::OR), Reg(0), Reg(1),
+        OUTPUT, Reg(2)
+    ];
+    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
+        (vec![0.0, 0.0], vec![0.0]),
+        (vec![0.0, 1.0], vec![1.0]),
+        (vec![1.0, 0.0], vec![1.0]),
+        (vec![1.0, 1.0], vec![1.0]),
+    ];
+    run_cases(&program, memsize, cases);
+}
+
+#[test]
+#[rustfmt::skip]
+fn test_expr_and() {
+    let memsize = 3;
+    let program = vec![
+        INPUT, Reg(0),
+        INPUT, Reg(1),
+        LOAD, Reg(2),
+            Token::Expr(Expr::AND), Reg(0), Reg(1),
+        OUTPUT, Reg(2)
+    ];
+    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
+        (vec![0.0, 0.0], vec![0.0]),
+        (vec![0.0, 1.0], vec![0.0]),
+        (vec![1.0, 0.0], vec![0.0]),
+        (vec![1.0, 1.0], vec![1.0]),
+    ];
+    run_cases(&program, memsize, cases);
+}
+
+#[test]
+#[rustfmt::skip]
+fn test_expr_not() {
+    let memsize = 3;
+    let program = vec![
+        INPUT, Reg(0),
+        LOAD, Reg(2),
+            Token::Expr(Expr::NOT), Reg(0),
+        OUTPUT, Reg(2)
+    ];
+    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
+        (vec![0.0], vec![1.0]),
+        (vec![1.0], vec![0.0]),
+    ];
+    run_cases(&program, memsize, cases);
+}

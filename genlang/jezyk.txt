@@ -1,29 +1,30 @@
 # nie rozrozniamy liczb i booleanow, tak jak w C, traktujemy 0 jako false i dowolna inna wartosc jako true
 
-program = block
+program = block ✅
 
-block = stat*
+block = stat* ✅
 
 stat
-    = LOAD reg expr
-    | IF expr block END
-    | IF expr block ELSE block END
-    | WHILE expr DO block END
-    | INPUT reg
-    | OUTPUT expr
+    = LOAD reg expr ✅
+    | IF expr block END ✅
+    | IF expr block ELSE block END ✅
+    | WHILE expr DO block END ✅
+    | INPUT reg ✅
+    | OUTPUT expr ✅
 
 # kolejnosc nie ma znaczenia, priorytet jest jasny bo nie ma infixow
 expr
-    = ADD expr expr
-    | SUB expr expr
-    | MUL expr expr
-    | DIV expr expr
-    | LT expr expr
-    | GT expr expr
-    | OR expr expr
-    | AND expr expr
-    | NOT expr
-    | reg
+    = ADD expr expr ✅
+    | SUB expr expr ✅
+    | MUL expr expr ✅
+    | DIV expr expr ✅
+    | EQ expr expr ✅
+    | LT expr expr ✅
+    | GT expr expr ✅
+    | OR expr expr ✅
+    | AND expr expr ✅
+    | NOT expr ✅
+    | reg ✅
 
 # reg to register/rejestr/zmienna
-reg = R NUM
+reg = R NUM ✅
