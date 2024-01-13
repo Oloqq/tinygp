@@ -1,0 +1,8 @@
+# 1.1.F Program powinien wygenerować na wyjściu liczbę jako jedyną liczbę 1. Poza liczbą 1 NIE powinien nic więcej wygenerować.
+5
+exact
+| 1
+1 2 43 | 1
+1 2 | 1
+1 2 43 | 1
+4 | 1
