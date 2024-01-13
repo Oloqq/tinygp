@@ -9,16 +9,16 @@ pub enum EvalError {
     MaxIteration
 }
 
-pub struct Runtime {
+pub struct Runtime<'a> {
     memory: Vec<Number>,
-    input: Vec<Number>,
+    input: &'a Vec<Number>,
     output: Vec<Number>,
     input_cursor: usize,
     max_iterations: usize,
 }
 
-impl Runtime {
-    pub fn new(memsize: usize, input: Vec<Number>) -> Self {
+impl<'a> Runtime<'a> {
+     pub fn new(memsize: usize, input: &'a Vec<Number>) -> Self {
         Runtime {
             memory: vec![0; memsize],
             input,
@@ -28,7 +28,7 @@ impl Runtime {
         }
     }
 
-    pub fn next_input(&mut self) -> Option<Number> {
+     fn next_input(&mut self) -> Option<Number> {
         if self.input_cursor < self.input.len() {
             let val = self.input[self.input_cursor];
             self.input_cursor += 1;
@@ -38,7 +38,7 @@ impl Runtime {
         }
     }
 
-    pub fn set_reg(&mut self, num: usize, val: Number) -> Result<(), EvalError> {
+     fn set_reg(&mut self, num: usize, val: Number) -> Result<(), EvalError> {
         if num > self.memory.len() {
             Err(EvalError::Semantic(format!(
                 "Tried to set memory[{num}], when length is {}",
@@ -50,7 +50,7 @@ impl Runtime {
         }
     }
 
-    pub fn read_reg(&self, num: usize) -> Result<Number, EvalError> {
+     fn read_reg(&self, num: usize) -> Result<Number, EvalError> {
         if num > self.memory.len() {
             Err(EvalError::Semantic(format!(
                 "Tried to read memory[{num}], when length is {}",
@@ -345,7 +345,8 @@ mod tests {
 
     #[test]
     fn test_runtime_input() {
-        let mut runtime = Runtime::new(2, vec![2, 3, 4]);
+        let inputs = &vec![2, 3, 4];
+        let mut runtime = Runtime::new(2, &inputs);
         assert_eq!(runtime.next_input(), Some(2));
         assert_eq!(runtime.next_input(), Some(3));
         assert_eq!(runtime.next_input(), Some(4));
@@ -355,7 +356,8 @@ mod tests {
     #[test]
     fn test_stat_input() {
         let program: Vec<Token> = vec![Token::Stat(Stat::INPUT), Token::Reg(0)];
-        let mut runtime = Runtime::new(2, vec![2]);
+        let inputs = vec![2];
+        let mut runtime = Runtime::new(2, &inputs);
         assert_eq!(runtime.memory, vec![0, 0]);
         assert_eq!(runtime.input.len(), 1);
         let res = eval_stat(&program, 0, &mut runtime);
@@ -368,7 +370,8 @@ mod tests {
     #[test]
     fn test_stat_input_multiple() {
         let program: Vec<Token> = vec![Token::Stat(Stat::INPUT), Token::Reg(0)];
-        let mut runtime = Runtime::new(2, vec![2, 3]);
+        let inputs = vec![2, 3];
+        let mut runtime = Runtime::new(2, &inputs);
         assert_eq!(runtime.memory, vec![0, 0]);
         assert_eq!(runtime.input.len(), 2);
 
@@ -387,7 +390,8 @@ mod tests {
     #[test]
     fn test_stat_input_second_register() {
         let program: Vec<Token> = vec![Token::Stat(Stat::INPUT), Token::Reg(1)];
-        let mut runtime = Runtime::new(2, vec![4]);
+        let inputs = vec![4];
+        let mut runtime = Runtime::new(2, &inputs);
         assert_eq!(runtime.memory, vec![0, 0]);
         let res = eval_stat(&program, 0, &mut runtime);
         assert!(res.is_ok());
@@ -397,9 +401,10 @@ mod tests {
     #[test]
     fn test_stat_output() {
         let program: Vec<Token> = vec![Token::Stat(Stat::OUTPUT), Token::Reg(0)];
+        let inputs = vec![];
         let mut runtime = Runtime {
             memory: vec![2, 0],
-            input: vec![],
+            input: &inputs,
             output: vec![],
             input_cursor: 0,
             max_iterations: 100
@@ -420,7 +425,8 @@ mod tests {
             Token::Reg(1),
         ];
         let data = vec![1, -2];
-        let mut runtime =  Runtime::new(3, vec![]);
+        let inputs = &vec![];
+        let mut runtime =  Runtime::new(3, &inputs);
         runtime.memory = data;
         let (pos, val) = eval_expr(&program, 0, &mut runtime).unwrap();
         assert_eq!(5, pos);
@@ -435,7 +441,8 @@ mod tests {
             Token::Stat(Stat::OUTPUT),
             Token::Reg(0),
         ];
-        let mut runtime = Runtime::new(2, vec![2]);
+        let inputs = &vec![2];
+        let mut runtime = Runtime::new(2, &inputs);
         let res = eval_stat(&program, 0, &mut runtime);
         assert!(res.is_ok());
         let res = eval_stat(&program, 2, &mut runtime);

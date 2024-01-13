@@ -2,6 +2,7 @@ mod common;
 mod evolution;
 mod execution;
 mod growing;
+mod fitness_funcs;
 
 #[cfg(test)]
 mod evolution_tests;
@@ -22,6 +23,8 @@ use std::error::Error;
 use std::fs;
 use std::io::Write;
 
+use self::fitness_funcs::*;
+
 pub struct TinyGP {
     rand: StdRng,
     params: Params,
@@ -30,6 +33,7 @@ pub struct TinyGP {
     population: Vec<Program>,
     fitness: Vec<f32>,
     writer: RefCell<Box<dyn Write>>,
+    fitness_func: FitnessFunc
 }
 
 impl TinyGP {
@@ -43,7 +47,8 @@ impl TinyGP {
         let mut rand = StdRng::seed_from_u64(seed);
         params.seed = seed;
         writeln!(writer.borrow_mut(), "Creating population").unwrap();
-        let (population, fitness) = random_population(&params, &cases, &mut rand);
+        let tmp_default_fitness_func: FitnessFunc = *FITNESS_FUNCS.get("diff_first".into()).unwrap();
+        let (population, fitness) = random_population(&params, &cases, &mut rand, tmp_default_fitness_func);
         TinyGP {
             rand,
             fitness,
@@ -52,6 +57,7 @@ impl TinyGP {
             cases,
             generation: 0,
             writer: writer.into(),
+            fitness_func: tmp_default_fitness_func
         }
     }
 
@@ -113,7 +119,7 @@ impl TinyGP {
             };
             let child_index =
                 negative_tournament(&self.fitness, self.params.tournament_size, &mut self.rand);
-            self.fitness[child_index] = fitness_func(&child_program, &self.params, &self.cases);
+            self.fitness[child_index] = run_and_rank(&child_program, &self.params, &self.cases, self.fitness_func);
             self.population[child_index] = child_program;
         }
         self.generation += 1;
@@ -162,13 +168,14 @@ pub fn random_population(
     params: &Params,
     cases: &Vec<Case>,
     rand: &mut StdRng,
+    fitness_func: FitnessFunc
 ) -> (Vec<Program>, Vec<f32>) {
     let mut population = Vec::with_capacity(params.popsize);
     let mut fitness = Vec::with_capacity(params.popsize);
 
     for i in 0..params.popsize {
         population.push(create_random_indiv(params, rand));
-        fitness.push(fitness_func(&population[i], params, cases));
+        fitness.push(run_and_rank(&population[i], params, cases, fitness_func));
     }
 
     return (population, fitness);

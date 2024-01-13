@@ -1,18 +1,22 @@
-use crate::params::{Params, Case};
 use super::execution::*;
+use super::fitness_funcs::*;
+use crate::params::{Case, Params};
 
 use super::common::*;
 use rand::prelude::*;
 
-pub fn fitness_func(program: &Program, params: &Params, cases: &Vec<Case>) -> f32 {
+pub fn run_and_rank(
+    program: &Program,
+    params: &Params,
+    cases: &Vec<Case>,
+    fitness_func: FitnessFunc,
+) -> f32 {
     cases.iter().fold(0.0, |acc, (inputs, targets)| {
-        let runtime = Runtime::new(params.memsize, inputs.clone()); // TODO dont clone inputs, not needed
+        let runtime = Runtime::new(params.memsize, &inputs);
         let output = execute(program, runtime);
-        let output = output.get(0).unwrap_or(&0);
-        let error = (output - targets[0]).abs();
-        let fitness = acc - error as f32;
+        let fitness = fitness_func(targets, &output);
         log::trace!("the fitness is: {fitness}");
-        fitness
+        acc + fitness
     })
 }
 
@@ -68,8 +72,8 @@ pub fn mutation(parent: &Program, params: &Params, rand: &mut StdRng) -> Program
                 }
                 Token::Stat(stat) => {
                     replacement = Token::Stat(stat);
-                },
-                _ => unimplemented!()
+                }
+                _ => unimplemented!(),
             }
         } else {
             replacement = parent[i];
