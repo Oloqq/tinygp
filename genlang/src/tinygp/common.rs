@@ -1,6 +1,8 @@
 use rand_derive::Rand;
 use serde_derive::{Deserialize, Serialize};
 
+pub type Number = f32;
+
 #[derive(Debug, Clone, Copy, PartialEq, Rand, Serialize, Deserialize)]
 pub enum Expr {
     ADD,
@@ -15,7 +17,7 @@ pub enum Expr {
     OR,
     AND,
     NOT,
-    NUM(f32),
+    NUM(Number),
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Rand, Serialize, Deserialize)]
@@ -78,15 +80,13 @@ pub fn get_node_end(program: &Program, index: usize) -> usize {
             let arg1end = get_node_end(program, index + 1);
             get_node_end(program, arg1end)
         }
-        // "parentheses counting"
-        // TODO add WHILE
-        Token::Stat(Stat::IF) | Token::ELSE => {
+        // parentheses counting
+        Token::Stat(Stat::IF | Stat::WHILE) | Token::ELSE => {
             let mut level = 1;
             let mut i = index;
             while i < program.len() && level > 0 {
                 match program[i] {
-                    // TODO add WHILE
-                    Token::Stat(Stat::IF) => level += 1,
+                    Token::Stat(Stat::IF | Stat::WHILE) => level += 1,
                     Token::END => level -= 1,
                     _ => (),
                 }

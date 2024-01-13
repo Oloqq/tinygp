@@ -235,6 +235,9 @@ fn test_if_else_nested() {
                 OUTPUT, num(3.0),
             ELSE, // 14
                 OUTPUT, num(5.0),
+                WHILE, num(0.0),
+                    OUTPUT, num(99.7),
+                END,
             END,
         ELSE, // 18
             OUTPUT, num(6.0),
@@ -321,14 +324,15 @@ fn test_while_nested() {
                 LOAD, Reg(1), num(0.0),
                 OUTPUT, num(3.0),
             END,
+            OUTPUT, num(19.0),
         END,
         OUTPUT, num(4.0),
     ];
     let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
         (vec![0.0, 0.0], vec![1.0, 4.0]),
         (vec![0.0, 1.0], vec![1.0, 4.0]),
-        (vec![1.0, 0.0], vec![1.0, 2.0, 4.0]),
-        (vec![1.0, 1.0], vec![1.0, 2.0, 3.0, 4.0]),
+        (vec![1.0, 0.0], vec![1.0, 2.0, 19.0, 4.0]),
+        (vec![1.0, 1.0], vec![1.0, 2.0, 3.0, 19.0, 4.0]),
     ];
     run_cases(&program, memsize, cases);
 }
