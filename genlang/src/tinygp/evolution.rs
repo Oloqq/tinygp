@@ -1,7 +1,20 @@
-use crate::params::Params;
+use crate::params::{Params, Case};
+use super::execution::*;
 
 use super::common::*;
 use rand::prelude::*;
+
+pub fn fitness_func(program: &Program, params: &Params, cases: &Vec<Case>) -> f32 {
+    cases.iter().fold(0.0, |acc, (inputs, targets)| {
+        let runtime = Runtime::new(params.memsize, inputs.clone()); // TODO dont clone inputs, not needed
+        let output = execute(program, runtime);
+        let output = output.get(0).unwrap_or(&0);
+        let error = (output - targets[0]).abs();
+        let fitness = acc - error as f32;
+        log::trace!("the fitness is: {fitness}");
+        fitness
+    })
+}
 
 pub fn crossover(father: &Program, mother: &Program, rand: &mut StdRng) -> Program {
     log::trace!("crossover {father:?} x {mother:?}");

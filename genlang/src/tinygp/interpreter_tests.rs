@@ -13,7 +13,7 @@ const END: Token = Token::END;
 use Token::Reg;
 
 fn num(x: Number) -> Token {
-    Token::Expr(Expr::NUM(x))
+    Token::Expr(Expr::Num(x))
 }
 
 use pretty_assertions::assert_eq;
@@ -137,7 +137,7 @@ fn test_load_expr_protected_div() {
 fn test_output_num_literal() {
     let memsize = 3;
     let program = vec![
-        OUTPUT, Token::Expr(Expr::NUM(21))
+        OUTPUT, Token::Expr(Expr::Num(21))
     ];
     let cases: Vec<(Vec<Number>, Vec<Number>)> = vec![
         (vec![], vec![21]),
@@ -152,8 +152,8 @@ fn test_expr_with_literal() {
     let memsize = 3;
     let program = vec![
         OUTPUT, Token::Expr(Expr::ADD),
-            Token::Expr(Expr::NUM(2)),
-            Token::Expr(Expr::NUM(1))
+            Token::Expr(Expr::Num(2)),
+            Token::Expr(Expr::Num(1))
     ];
     let cases: Vec<(Vec<Number>, Vec<Number>)> = vec![
         (vec![], vec![3]),

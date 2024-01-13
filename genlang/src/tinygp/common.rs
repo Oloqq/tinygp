@@ -22,7 +22,8 @@ pub enum Expr {
     OR,
     AND,
     NOT,
-    NUM(Number),
+    Num(Number),
+    Reg(usize) // Expr::Reg is used only for growing, any real Program should not have it
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Rand, Serialize, Deserialize)]
@@ -52,7 +53,8 @@ impl Expr {
             Expr::SUB => 2,
             Expr::MUL => 2,
             Expr::DIV => 2,
-            Expr::NUM(_) => 0,
+            Expr::Num(_) => 0,
+            Expr::Reg(_) => 0,
             Expr::EQ => 2,
             Expr::LT => 2,
             Expr::GT => 2,
@@ -66,7 +68,7 @@ impl Expr {
 pub fn get_node_end(program: &Program, index: usize) -> usize {
     match program[index] {
         // no arguments
-        Token::Reg(_) | Token::Expr(Expr::NUM(_)) => index + 1,
+        Token::Reg(_) | Token::Expr(Expr::Num(_)) => index + 1,
         // 1 argument
         Token::Stat(Stat::INPUT)
         | Token::Stat(Stat::OUTPUT) => get_node_end(program, index + 1),
@@ -130,7 +132,7 @@ mod tests {
         #[rustfmt::skip]
         let program = vec![
             Token::Stat(Stat::IF),
-                Token::Expr(Expr::NUM(12)),
+                Token::Expr(Expr::Num(12)),
                 Token::Stat(Stat::OUTPUT), Token::Reg(0),
                 Token::Stat(Stat::OUTPUT), Token::Reg(0),
                 Token::Stat(Stat::OUTPUT), Token::Reg(0),
@@ -144,7 +146,7 @@ mod tests {
         #[rustfmt::skip]
         let program = vec![
             Token::Stat(Stat::IF),
-                Token::Expr(Expr::NUM(12)),
+                Token::Expr(Expr::Num(12)),
                 Token::Stat(Stat::OUTPUT), Token::Reg(0),
                 Token::Stat(Stat::OUTPUT), Token::Reg(0),
                 Token::Stat(Stat::OUTPUT), Token::Reg(0),
@@ -160,10 +162,10 @@ mod tests {
         #[rustfmt::skip]
         let program = vec![
             Token::Stat(Stat::IF),
-                Token::Expr(Expr::NUM(12)),
+                Token::Expr(Expr::Num(12)),
                 Token::Stat(Stat::OUTPUT), Token::Reg(0),
                 Token::Stat(Stat::IF),
-                    Token::Expr(Expr::NUM(12)),
+                    Token::Expr(Expr::Num(12)),
                     Token::Stat(Stat::OUTPUT), Token::Reg(0),
                     Token::Stat(Stat::OUTPUT), Token::Reg(0),
                     Token::Stat(Stat::OUTPUT), Token::Reg(0),

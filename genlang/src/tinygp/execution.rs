@@ -261,7 +261,8 @@ fn eval_expr(
 
     return match opcode {
         Token::Expr(func) => match func {
-            Expr::NUM(val) => Ok((pos + 1, val)),
+            Expr::Num(val) => Ok((pos + 1, val)),
+            Expr::Reg(regnum) => Ok((pos + 1, runtime.read_reg(regnum).unwrap_or(0))),
             Expr::ADD => two_arg(add, runtime),
             Expr::SUB => two_arg(sub, runtime),
             Expr::MUL => two_arg(mul, runtime),

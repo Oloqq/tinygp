@@ -1,19 +1,6 @@
-use crate::params::{Params, Case};
+use crate::params::Params;
 use super::common::*;
-use super::execution::*;
 use rand::prelude::*;
-
-pub fn fitness_func(program: &Program, params: &Params, cases: &Vec<Case>) -> f32 {
-    cases.iter().fold(0.0, |acc, (inputs, targets)| {
-        let runtime = Runtime::new(params.memsize, inputs.clone()); // TODO dont clone inputs, not needed
-        let output = execute(program, runtime);
-        let output = output.get(0).unwrap_or(&0);
-        let error = (output - targets[0]).abs();
-        let fitness = acc - error as f32;
-        log::trace!("the fitness is: {fitness}");
-        fitness
-    })
-}
 
 pub fn grow_stat(size_left: i32, _depth_left: usize, params: &Params, rand: &mut StdRng) -> Vec<Token> {
     let stat: Stat = rand.gen();
@@ -45,22 +32,6 @@ pub fn create_random_indiv(params: &Params, rand: &mut StdRng) -> Program {
     program.append(&mut grow_stat(i32::MAX, params.max_depth, params, rand));
     program.append(&mut vec![Token::Stat(Stat::OUTPUT), Token::Reg(0)]);
     program
-}
-
-pub fn random_population(
-    params: &Params,
-    cases: &Vec<Case>,
-    rand: &mut StdRng,
-) -> (Vec<Program>, Vec<f32>) {
-    let mut population = Vec::with_capacity(params.popsize);
-    let mut fitness = Vec::with_capacity(params.popsize);
-
-    for i in 0..params.popsize {
-        population.push(create_random_indiv(params, rand));
-        fitness.push(fitness_func(&population[i], params, cases));
-    }
-
-    return (population, fitness);
 }
 
 #[cfg(test)]

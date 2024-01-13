@@ -158,5 +158,21 @@ Avg Size={}",
     }
 }
 
+pub fn random_population(
+    params: &Params,
+    cases: &Vec<Case>,
+    rand: &mut StdRng,
+) -> (Vec<Program>, Vec<f32>) {
+    let mut population = Vec::with_capacity(params.popsize);
+    let mut fitness = Vec::with_capacity(params.popsize);
+
+    for i in 0..params.popsize {
+        population.push(create_random_indiv(params, rand));
+        fitness.push(fitness_func(&population[i], params, cases));
+    }
+
+    return (population, fitness);
+}
+
 #[cfg(test)]
 mod tests {}
