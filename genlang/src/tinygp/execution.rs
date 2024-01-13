@@ -10,15 +10,15 @@ pub enum EvalError {
 }
 
 pub struct Runtime {
-    memory: Vec<f32>,
-    input: Vec<f32>,
-    output: Vec<f32>,
+    memory: Vec<Number>,
+    input: Vec<Number>,
+    output: Vec<Number>,
     input_cursor: usize,
     max_iterations: usize,
 }
 
 impl Runtime {
-    pub fn new(memsize: usize, input: Vec<f32>) -> Self {
+    pub fn new(memsize: usize, input: Vec<Number>) -> Self {
         Runtime {
             memory: vec![0.0; memsize],
             input,
@@ -28,7 +28,7 @@ impl Runtime {
         }
     }
 
-    pub fn next_input(&mut self) -> Option<f32> {
+    pub fn next_input(&mut self) -> Option<Number> {
         if self.input_cursor < self.input.len() {
             let val = self.input[self.input_cursor];
             self.input_cursor += 1;
@@ -38,7 +38,7 @@ impl Runtime {
         }
     }
 
-    pub fn set_reg(&mut self, num: usize, val: f32) -> Result<(), EvalError> {
+    pub fn set_reg(&mut self, num: usize, val: Number) -> Result<(), EvalError> {
         if num > self.memory.len() {
             Err(EvalError::Semantic(format!(
                 "Tried to set memory[{num}], when length is {}",
@@ -50,7 +50,7 @@ impl Runtime {
         }
     }
 
-    pub fn read_reg(&self, num: usize) -> Result<f32, EvalError> {
+    pub fn read_reg(&self, num: usize) -> Result<Number, EvalError> {
         if num > self.memory.len() {
             Err(EvalError::Semantic(format!(
                 "Tried to read memory[{num}], when length is {}",
@@ -111,7 +111,7 @@ fn eval_block(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<us
     }
 }
 
-fn is_truthy(x: f32) -> bool {
+fn is_truthy(x: Number) -> bool {
     x != 0.0
 }
 
@@ -249,15 +249,15 @@ fn eval_expr(
     program: &Program,
     pos: usize,
     runtime: &mut Runtime,
-) -> Result<(usize, f32), EvalError> {
+) -> Result<(usize, Number), EvalError> {
     let opcode = program[pos];
 
-    let one_arg = |func: fn(f32) -> f32, runtime: &mut Runtime| {
+    let one_arg = |func: fn(Number) -> Number, runtime: &mut Runtime| {
         let (pos, arg) = eval_expr(program, pos + 1, runtime)?;
         Ok((pos, func(arg)))
     };
 
-    let two_arg = |func: fn(f32, f32) -> f32, runtime: &mut Runtime| {
+    let two_arg = |func: fn(Number, Number) -> Number, runtime: &mut Runtime| {
         let (pos, lhs) = eval_expr(program, pos + 1, runtime)?;
         let (pos, rhs) = eval_expr(program, pos, runtime)?;
         Ok((pos, func(lhs, rhs)))
@@ -283,58 +283,58 @@ fn eval_expr(
         _ => unreachable!("called eval_expr on non-expr: {opcode:?}"),
     };
 
-    fn add(lhs: f32, rhs: f32) -> f32 {
+    fn add(lhs: Number, rhs: Number) -> Number {
         lhs + rhs
     }
-    fn sub(lhs: f32, rhs: f32) -> f32 {
+    fn sub(lhs: Number, rhs: Number) -> Number {
         lhs - rhs
     }
-    fn mul(lhs: f32, rhs: f32) -> f32 {
+    fn mul(lhs: Number, rhs: Number) -> Number {
         lhs * rhs
     }
-    fn protected_div(lhs: f32, rhs: f32) -> f32 {
+    fn protected_div(lhs: Number, rhs: Number) -> Number {
         if rhs.abs() <= 0.001 {
             lhs
         } else {
             lhs / rhs
         }
     }
-    fn equal(lhs: f32, rhs: f32) -> f32 {
+    fn equal(lhs: Number, rhs: Number) -> Number {
         if lhs == rhs {
             1.0
         } else {
             0.0
         }
     }
-    fn less_than(lhs: f32, rhs: f32) -> f32 {
+    fn less_than(lhs: Number, rhs: Number) -> Number {
         if lhs < rhs {
             1.0
         } else {
             0.0
         }
     }
-    fn greater_than(lhs: f32, rhs: f32) -> f32 {
+    fn greater_than(lhs: Number, rhs: Number) -> Number {
         if lhs > rhs {
             1.0
         } else {
             0.0
         }
     }
-    fn or(lhs: f32, rhs: f32) -> f32 {
+    fn or(lhs: Number, rhs: Number) -> Number {
         if is_truthy(lhs) || is_truthy(rhs) {
             1.0
         } else {
             0.0
         }
     }
-    fn and(lhs: f32, rhs: f32) -> f32 {
+    fn and(lhs: Number, rhs: Number) -> Number {
         if is_truthy(lhs) && is_truthy(rhs) {
             1.0
         } else {
             0.0
         }
     }
-    fn negation(arg: f32) -> f32 {
+    fn negation(arg: Number) -> Number {
         if is_truthy(arg) {
             0.0
         } else {

@@ -5,6 +5,8 @@ mod growing;
 
 #[cfg(test)]
 mod interpreter_tests;
+#[cfg(test)]
+mod evolution_tests;
 
 use crate::params::Case;
 use crate::params::Params;
