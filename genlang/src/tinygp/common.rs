@@ -43,8 +43,6 @@ pub enum Token {
     END,
 }
 
-pub const MAX_LEN: usize = 10000;
-
 pub type Program = Vec<Token>;
 
 impl Expr {
