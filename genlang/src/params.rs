@@ -1,6 +1,8 @@
 use std::{error::Error, fmt::Display};
 
-pub type Case = (Vec<f32>, Vec<f32>);
+type Number = i32;
+
+pub type Case = (Vec<Number>, Vec<Number>);
 
 pub struct Params {
     pub seed: u64,
@@ -34,12 +36,12 @@ impl Params {
             let inputs = inputs
                 .iter()
                 .map(|t| t.parse().unwrap())
-                .collect::<Vec<f32>>();
+                .collect::<Vec<Number>>();
 
             let outputs = outputs
                 .iter()
                 .map(|t| t.parse().unwrap())
-                .collect::<Vec<f32>>();
+                .collect::<Vec<Number>>();
 
             cases.push((Vec::from(inputs), Vec::from(outputs)));
         }

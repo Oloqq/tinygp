@@ -175,9 +175,9 @@ fn fitness_func(
     cases.iter().fold(0.0, |acc, (inputs, targets)| {
         let runtime = Runtime::new(params.memsize, inputs.clone()); // TODO dont clone inputs, not needed
         let output = execute(program, runtime);
-        let output = output.get(0).unwrap_or(&f32::INFINITY); // FIXME
+        let output = output.get(0).unwrap_or(&0); // FIXME
         let error = (output - targets[0]).abs();
-        let fitness = acc - error;
+        let fitness = acc - error as f32;
         log::trace!("the fitness is: {fitness}");
         fitness
     })

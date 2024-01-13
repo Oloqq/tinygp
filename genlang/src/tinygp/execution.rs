@@ -20,7 +20,7 @@ pub struct Runtime {
 impl Runtime {
     pub fn new(memsize: usize, input: Vec<Number>) -> Self {
         Runtime {
-            memory: vec![0.0; memsize],
+            memory: vec![0; memsize],
             input,
             output: Vec::new(),
             input_cursor: 0,
@@ -62,7 +62,7 @@ impl Runtime {
     }
 }
 
-pub fn execute(program: &Program, runtime: Runtime) -> Vec<f32> {
+pub fn execute(program: &Program, runtime: Runtime) -> Vec<Number> {
     log::trace!("executing {:?}", program);
     let mut runtime = runtime;
     return match eval_block(program, 0, &mut runtime) {
@@ -93,7 +93,7 @@ pub fn execute(program: &Program, runtime: Runtime) -> Vec<f32> {
         Err(EvalError::Semantic(reason)) => {
             log::error!("Invalid program: {program:?}");
             log::error!("Invalid program reason: {reason}");
-            vec![f32::INFINITY]
+            runtime.output
         }
     };
 }
@@ -109,10 +109,6 @@ fn eval_block(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<us
         }
         pos = eval_stat(program, pos, runtime)?;
     }
-}
-
-fn is_truthy(x: Number) -> bool {
-    x != 0.0
 }
 
 fn handle_if_true(
@@ -291,7 +287,7 @@ fn eval_expr(
         lhs * rhs
     }
     fn protected_div(lhs: Number, rhs: Number) -> Number {
-        if rhs.abs() <= 0.001 {
+        if rhs == 0 {
             lhs
         } else {
             lhs / rhs
@@ -299,44 +295,44 @@ fn eval_expr(
     }
     fn equal(lhs: Number, rhs: Number) -> Number {
         if lhs == rhs {
-            1.0
+            NUMBER_TRUE
         } else {
-            0.0
+            NUMBER_FALSE
         }
     }
     fn less_than(lhs: Number, rhs: Number) -> Number {
         if lhs < rhs {
-            1.0
+            NUMBER_TRUE
         } else {
-            0.0
+            NUMBER_FALSE
         }
     }
     fn greater_than(lhs: Number, rhs: Number) -> Number {
         if lhs > rhs {
-            1.0
+            NUMBER_TRUE
         } else {
-            0.0
+            NUMBER_FALSE
         }
     }
     fn or(lhs: Number, rhs: Number) -> Number {
         if is_truthy(lhs) || is_truthy(rhs) {
-            1.0
+            NUMBER_TRUE
         } else {
-            0.0
+            NUMBER_FALSE
         }
     }
     fn and(lhs: Number, rhs: Number) -> Number {
         if is_truthy(lhs) && is_truthy(rhs) {
-            1.0
+            NUMBER_TRUE
         } else {
-            0.0
+            NUMBER_FALSE
         }
     }
     fn negation(arg: Number) -> Number {
         if is_truthy(arg) {
-            0.0
+            NUMBER_FALSE
         } else {
-            1.0
+            NUMBER_TRUE
         }
     }
 }
@@ -348,22 +344,22 @@ mod tests {
 
     #[test]
     fn test_runtime_input() {
-        let mut runtime = Runtime::new(2, vec![2.0, 3.0, 4.0]);
-        assert_eq!(runtime.next_input(), Some(2.0));
-        assert_eq!(runtime.next_input(), Some(3.0));
-        assert_eq!(runtime.next_input(), Some(4.0));
+        let mut runtime = Runtime::new(2, vec![2, 3, 4]);
+        assert_eq!(runtime.next_input(), Some(2));
+        assert_eq!(runtime.next_input(), Some(3));
+        assert_eq!(runtime.next_input(), Some(4));
         assert_eq!(runtime.next_input(), None);
     }
 
     #[test]
     fn test_stat_input() {
         let program: Vec<Token> = vec![Token::Stat(Stat::INPUT), Token::Reg(0)];
-        let mut runtime = Runtime::new(2, vec![2.0]);
-        assert_eq!(runtime.memory, vec![0.0, 0.0]);
+        let mut runtime = Runtime::new(2, vec![2]);
+        assert_eq!(runtime.memory, vec![0, 0]);
         assert_eq!(runtime.input.len(), 1);
         let res = eval_stat(&program, 0, &mut runtime);
         assert!(res.is_ok());
-        assert_eq!(runtime.memory, vec![2.0, 0.0]);
+        assert_eq!(runtime.memory, vec![2, 0]);
         let res = eval_stat(&program, 0, &mut runtime);
         assert!(matches!(res, Err(EvalError::Finished)));
     }
@@ -371,17 +367,17 @@ mod tests {
     #[test]
     fn test_stat_input_multiple() {
         let program: Vec<Token> = vec![Token::Stat(Stat::INPUT), Token::Reg(0)];
-        let mut runtime = Runtime::new(2, vec![2.0, 3.0]);
-        assert_eq!(runtime.memory, vec![0.0, 0.0]);
+        let mut runtime = Runtime::new(2, vec![2, 3]);
+        assert_eq!(runtime.memory, vec![0, 0]);
         assert_eq!(runtime.input.len(), 2);
 
         let res = eval_stat(&program, 0, &mut runtime);
         assert!(res.is_ok());
-        assert_eq!(runtime.memory, vec![2.0, 0.0]);
+        assert_eq!(runtime.memory, vec![2, 0]);
 
         let res = eval_stat(&program, 0, &mut runtime);
         assert!(res.is_ok());
-        assert_eq!(runtime.memory, vec![3.0, 0.0]);
+        assert_eq!(runtime.memory, vec![3, 0]);
 
         let res = eval_stat(&program, 0, &mut runtime);
         assert!(matches!(res, Err(EvalError::Finished)));
@@ -390,18 +386,18 @@ mod tests {
     #[test]
     fn test_stat_input_second_register() {
         let program: Vec<Token> = vec![Token::Stat(Stat::INPUT), Token::Reg(1)];
-        let mut runtime = Runtime::new(2, vec![4.0]);
-        assert_eq!(runtime.memory, vec![0.0, 0.0]);
+        let mut runtime = Runtime::new(2, vec![4]);
+        assert_eq!(runtime.memory, vec![0, 0]);
         let res = eval_stat(&program, 0, &mut runtime);
         assert!(res.is_ok());
-        assert_eq!(runtime.memory, vec![0.0, 4.0]);
+        assert_eq!(runtime.memory, vec![0, 4]);
     }
 
     #[test]
     fn test_stat_output() {
         let program: Vec<Token> = vec![Token::Stat(Stat::OUTPUT), Token::Reg(0)];
         let mut runtime = Runtime {
-            memory: vec![2.0, 0.0],
+            memory: vec![2, 0],
             input: vec![],
             output: vec![],
             input_cursor: 0,
@@ -409,8 +405,8 @@ mod tests {
         };
         let res = eval_stat(&program, 0, &mut runtime);
         assert!(res.is_ok());
-        assert_eq!(runtime.memory, vec![2.0, 0.0]);
-        assert_eq!(runtime.output, vec![2.0]);
+        assert_eq!(runtime.memory, vec![2, 0]);
+        assert_eq!(runtime.output, vec![2]);
     }
 
     #[test]
@@ -422,12 +418,12 @@ mod tests {
             Token::Reg(1),
             Token::Reg(1),
         ];
-        let data = vec![1.0, -2.0];
+        let data = vec![1, -2];
         let mut runtime =  Runtime::new(3, vec![]);
         runtime.memory = data;
         let (pos, val) = eval_expr(&program, 0, &mut runtime).unwrap();
         assert_eq!(5, pos);
-        assert_eq!(2.0, val);
+        assert_eq!(2, val);
     }
 
     #[test]
@@ -438,11 +434,11 @@ mod tests {
             Token::Stat(Stat::OUTPUT),
             Token::Reg(0),
         ];
-        let mut runtime = Runtime::new(2, vec![2.0]);
+        let mut runtime = Runtime::new(2, vec![2]);
         let res = eval_stat(&program, 0, &mut runtime);
         assert!(res.is_ok());
         let res = eval_stat(&program, 2, &mut runtime);
         assert!(res.is_ok());
-        assert_eq!(runtime.output, vec![2.0]);
+        assert_eq!(runtime.output, vec![2]);
     }
 }

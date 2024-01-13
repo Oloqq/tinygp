@@ -12,13 +12,13 @@ const ELSE: Token = Token::ELSE;
 const END: Token = Token::END;
 use Token::Reg;
 
-fn num(x: f32) -> Token {
+fn num(x: Number) -> Token {
     Token::Expr(Expr::NUM(x))
 }
 
 use pretty_assertions::assert_eq;
 
-fn run_cases(program: &Program, memsize: usize, cases: Vec<(Vec<f32>, Vec<f32>)>) {
+fn run_cases(program: &Program, memsize: usize, cases: Vec<(Vec<Number>, Vec<Number>)>) {
     let _ = env_logger::builder().is_test(true).try_init();
     for (i, (input, expected_output)) in cases.into_iter().enumerate() {
         let runtime = Runtime::new(memsize, input);
@@ -32,7 +32,7 @@ fn run_cases(program: &Program, memsize: usize, cases: Vec<(Vec<f32>, Vec<f32>)>
 fn test_identity() {
     let memsize = 3;
     let program = vec![INPUT, Token::Reg(0), OUTPUT, Token::Reg(0)];
-    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![(vec![1.0], vec![1.0]), (vec![2.0], vec![2.0])];
+    let cases: Vec<(Vec<Number>, Vec<Number>)> = vec![(vec![1], vec![1]), (vec![2], vec![2])];
     run_cases(&program, memsize, cases);
 }
 
@@ -46,9 +46,9 @@ fn test_load_register() {
         OUTPUT, Reg(0),
         OUTPUT, Reg(1),
     ];
-    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
-        (vec![1.0], vec![1.0, 1.0]),
-        (vec![2.0], vec![2.0, 2.0])
+    let cases: Vec<(Vec<Number>, Vec<Number>)> = vec![
+        (vec![1], vec![1, 1]),
+        (vec![2], vec![2, 2])
     ];
     run_cases(&program, memsize, cases);
 }
@@ -66,8 +66,8 @@ fn test_load_expr_add() {
         OUTPUT, Reg(1),
         OUTPUT, Reg(2),
     ];
-    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
-        (vec![1.0, 2.0], vec![1.0, 2.0, 3.0]),
+    let cases: Vec<(Vec<Number>, Vec<Number>)> = vec![
+        (vec![1, 2], vec![1, 2, 3]),
     ];
     run_cases(&program, memsize, cases);
 }
@@ -85,8 +85,8 @@ fn test_load_expr_sub() {
         OUTPUT, Reg(1),
         OUTPUT, Reg(2),
     ];
-    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
-        (vec![1.0, 2.0], vec![1.0, 2.0, -1.0]),
+    let cases: Vec<(Vec<Number>, Vec<Number>)> = vec![
+        (vec![1, 2], vec![1, 2, -1]),
     ];
     run_cases(&program, memsize, cases);
 }
@@ -104,8 +104,8 @@ fn test_load_expr_mul() {
         OUTPUT, Reg(1),
         OUTPUT, Reg(2),
     ];
-    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
-        (vec![2.0, 2.0], vec![2.0, 2.0, 4.0]),
+    let cases: Vec<(Vec<Number>, Vec<Number>)> = vec![
+        (vec![2, 2], vec![2, 2, 4]),
     ];
     run_cases(&program, memsize, cases);
 }
@@ -124,10 +124,10 @@ fn test_load_expr_protected_div() {
         OUTPUT, Reg(1),
         OUTPUT, Reg(2),
     ];
-    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
-        (vec![1.0, 2.0], vec![1.0, 2.0, 0.5]),
-        (vec![1.0, 0.01], vec![1.0, 0.01, 100.0]),
-        (vec![1.0, 0.0001], vec![1.0, 0.0001, 1.0]),
+    let cases: Vec<(Vec<Number>, Vec<Number>)> = vec![
+        (vec![1, 2], vec![1, 2, 0]),
+        (vec![1, 0], vec![1, 0, 1]),
+        (vec![6, 2], vec![6, 2, 3]),
     ];
     run_cases(&program, memsize, cases);
 }
@@ -137,11 +137,11 @@ fn test_load_expr_protected_div() {
 fn test_output_num_literal() {
     let memsize = 3;
     let program = vec![
-        OUTPUT, Token::Expr(Expr::NUM(21.37))
+        OUTPUT, Token::Expr(Expr::NUM(21))
     ];
-    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
-        (vec![], vec![21.37]),
-        (vec![1.0], vec![21.37]),
+    let cases: Vec<(Vec<Number>, Vec<Number>)> = vec![
+        (vec![], vec![21]),
+        (vec![1], vec![21]),
     ];
     run_cases(&program, memsize, cases);
 }
@@ -152,12 +152,12 @@ fn test_expr_with_literal() {
     let memsize = 3;
     let program = vec![
         OUTPUT, Token::Expr(Expr::ADD),
-            Token::Expr(Expr::NUM(1.37)),
-            Token::Expr(Expr::NUM(1.0))
+            Token::Expr(Expr::NUM(2)),
+            Token::Expr(Expr::NUM(1))
     ];
-    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
-        (vec![], vec![2.37]),
-        (vec![1.0], vec![2.37]),
+    let cases: Vec<(Vec<Number>, Vec<Number>)> = vec![
+        (vec![], vec![3]),
+        (vec![1], vec![3]),
     ];
     run_cases(&program, memsize, cases);
 }
@@ -167,14 +167,14 @@ fn test_expr_with_literal() {
 fn test_if_true() {
     let memsize = 3;
     let program = vec![
-        OUTPUT, num(1.0),
-        IF, num(1.0),
-            OUTPUT, num(2.0),
+        OUTPUT, num(1),
+        IF, num(1),
+            OUTPUT, num(2),
         END,
-        OUTPUT, num(3.0),
+        OUTPUT, num(3),
     ];
-    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
-        (vec![], vec![1.0, 2.0, 3.0]),
+    let cases: Vec<(Vec<Number>, Vec<Number>)> = vec![
+        (vec![], vec![1, 2, 3]),
     ];
     run_cases(&program, memsize, cases);
 }
@@ -184,14 +184,14 @@ fn test_if_true() {
 fn test_if_false() {
     let memsize = 3;
     let program = vec![
-        OUTPUT, num(1.0),
-        IF, num(0.0),
-            OUTPUT, num(2.0),
+        OUTPUT, num(1),
+        IF, num(0),
+            OUTPUT, num(2),
         END,
-        OUTPUT, num(3.0),
+        OUTPUT, num(3),
     ];
-    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
-        (vec![], vec![1.0, 3.0]),
+    let cases: Vec<(Vec<Number>, Vec<Number>)> = vec![
+        (vec![], vec![1, 3]),
     ];
     run_cases(&program, memsize, cases);
 }
@@ -203,20 +203,20 @@ fn test_if_nested() {
     let program = vec![
         INPUT, Reg(0),
         INPUT, Reg(1),
-        OUTPUT, num(1.0),
+        OUTPUT, num(1),
         IF, Reg(0),
-            OUTPUT, num(2.0),
+            OUTPUT, num(2),
             IF, Reg(1),
-                OUTPUT, num(3.0),
+                OUTPUT, num(3),
             END,
         END,
-        OUTPUT, num(4.0),
+        OUTPUT, num(4),
     ];
-    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
-        (vec![0.0, 0.0], vec![1.0, 4.0]),
-        (vec![0.0, 1.0], vec![1.0, 4.0]),
-        (vec![1.0, 0.0], vec![1.0, 2.0, 4.0]),
-        (vec![1.0, 1.0], vec![1.0, 2.0, 3.0, 4.0]),
+    let cases: Vec<(Vec<Number>, Vec<Number>)> = vec![
+        (vec![0, 0], vec![1, 4]),
+        (vec![0, 1], vec![1, 4]),
+        (vec![1, 0], vec![1, 2, 4]),
+        (vec![1, 1], vec![1, 2, 3, 4]),
     ];
     run_cases(&program, memsize, cases);
 }
@@ -228,27 +228,27 @@ fn test_if_else_nested() {
     let program = vec![
         INPUT, Reg(0),
         INPUT, Reg(1),
-        OUTPUT, num(1.0),
+        OUTPUT, num(1),
         IF, Reg(0), // 6
-            OUTPUT, num(2.0),
+            OUTPUT, num(2),
             IF, Reg(1), // 10
-                OUTPUT, num(3.0),
+                OUTPUT, num(3),
             ELSE, // 14
-                OUTPUT, num(5.0),
-                WHILE, num(0.0),
-                    OUTPUT, num(99.7),
+                OUTPUT, num(5),
+                WHILE, num(0),
+                    OUTPUT, num(997),
                 END,
             END,
         ELSE, // 18
-            OUTPUT, num(6.0),
+            OUTPUT, num(6),
         END, // 21
-        OUTPUT, num(4.0),
+        OUTPUT, num(4),
     ];
-    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
-        (vec![0.0, 0.0], vec![1.0, 6.0, 4.0]),
-        (vec![0.0, 1.0], vec![1.0, 6.0, 4.0]),
-        (vec![1.0, 0.0], vec![1.0, 2.0, 5.0, 4.0]),
-        (vec![1.0, 1.0], vec![1.0, 2.0, 3.0, 4.0]),
+    let cases: Vec<(Vec<Number>, Vec<Number>)> = vec![
+        (vec![0, 0], vec![1, 6, 4]),
+        (vec![0, 1], vec![1, 6, 4]),
+        (vec![1, 0], vec![1, 2, 5, 4]),
+        (vec![1, 1], vec![1, 2, 3, 4]),
     ];
     run_cases(&program, memsize, cases);
 }
@@ -258,14 +258,14 @@ fn test_if_else_nested() {
 fn test_while_false() {
     let memsize = 3;
     let program = vec![
-        OUTPUT, num(1.0),
-        WHILE, num(0.0),
-            OUTPUT, num(2.0),
+        OUTPUT, num(1),
+        WHILE, num(0),
+            OUTPUT, num(2),
         END,
-        OUTPUT, num(3.0)
+        OUTPUT, num(3)
     ];
-    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
-        (vec![], vec![1.0, 3.0]),
+    let cases: Vec<(Vec<Number>, Vec<Number>)> = vec![
+        (vec![], vec![1, 3]),
     ];
     run_cases(&program, memsize, cases);
 }
@@ -275,19 +275,19 @@ fn test_while_false() {
 fn test_while_interrupt_infinite_loop() {
     let memsize = 3;
     let program = vec![
-        OUTPUT, num(1.0),
-        WHILE, num(1.0),
-            OUTPUT, num(2.0),
+        OUTPUT, num(1),
+        WHILE, num(1),
+            OUTPUT, num(2),
         END,
-        OUTPUT, num(3.0)
+        OUTPUT, num(3)
     ];
     let runtime = Runtime::new(memsize, vec![]);
     println!("Entering infinite loop");
     let output = execute(&program, runtime);
     assert!(output.len() > 3);
-    assert_eq!(output[0], 1.0);
-    assert_eq!(output[1], 2.0);
-    assert_eq!(output[2], 2.0);
+    assert_eq!(output[0], 1);
+    assert_eq!(output[1], 2);
+    assert_eq!(output[2], 2);
 }
 
 #[test]
@@ -295,16 +295,16 @@ fn test_while_interrupt_infinite_loop() {
 fn test_while_condition_change() {
     let memsize = 3;
     let program = vec![
-        OUTPUT, num(1.0),
-        LOAD, Reg(0), num(1.0),
+        OUTPUT, num(1),
+        LOAD, Reg(0), num(1),
         WHILE, Reg(0),
-            OUTPUT, num(2.0),
-            LOAD, Reg(0), num(0.0),
+            OUTPUT, num(2),
+            LOAD, Reg(0), num(0),
         END,
-        OUTPUT, num(3.0)
+        OUTPUT, num(3)
     ];
-    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
-        (vec![], vec![1.0, 2.0, 3.0]),
+    let cases: Vec<(Vec<Number>, Vec<Number>)> = vec![
+        (vec![], vec![1, 2, 3]),
     ];
     run_cases(&program, memsize, cases);
 }
@@ -316,23 +316,23 @@ fn test_while_nested() {
     let program = vec![
         INPUT, Reg(0),
         INPUT, Reg(1),
-        OUTPUT, num(1.0),
+        OUTPUT, num(1),
         WHILE, Reg(0),
-            LOAD, Reg(0), num(0.0),
-            OUTPUT, num(2.0),
+            LOAD, Reg(0), num(0),
+            OUTPUT, num(2),
             WHILE, Reg(1),
-                LOAD, Reg(1), num(0.0),
-                OUTPUT, num(3.0),
+                LOAD, Reg(1), num(0),
+                OUTPUT, num(3),
             END,
-            OUTPUT, num(19.0),
+            OUTPUT, num(19),
         END,
-        OUTPUT, num(4.0),
+        OUTPUT, num(4),
     ];
-    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
-        (vec![0.0, 0.0], vec![1.0, 4.0]),
-        (vec![0.0, 1.0], vec![1.0, 4.0]),
-        (vec![1.0, 0.0], vec![1.0, 2.0, 19.0, 4.0]),
-        (vec![1.0, 1.0], vec![1.0, 2.0, 3.0, 19.0, 4.0]),
+    let cases: Vec<(Vec<Number>, Vec<Number>)> = vec![
+        (vec![0, 0], vec![1, 4]),
+        (vec![0, 1], vec![1, 4]),
+        (vec![1, 0], vec![1, 2, 19, 4]),
+        (vec![1, 1], vec![1, 2, 3, 19, 4]),
     ];
     run_cases(&program, memsize, cases);
 }
@@ -346,14 +346,14 @@ fn test_while_many_iterations() {
         WHILE, Reg(0),
             OUTPUT, Reg(0),
             LOAD, Reg(0), Token::Expr(Expr::SUB),
-                Reg(0), num(1.0),
+                Reg(0), num(1),
         END,
     ];
-    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
-        (vec![0.0], vec![]),
-        (vec![1.0], vec![1.0]),
-        (vec![2.0], vec![2.0, 1.0]),
-        (vec![3.0], vec![3.0, 2.0, 1.0]),
+    let cases: Vec<(Vec<Number>, Vec<Number>)> = vec![
+        (vec![0], vec![]),
+        (vec![1], vec![1]),
+        (vec![2], vec![2, 1]),
+        (vec![3], vec![3, 2, 1]),
     ];
     run_cases(&program, memsize, cases);
 }
@@ -369,9 +369,9 @@ fn test_expr_eq() {
             Token::Expr(Expr::EQ), Reg(0), Reg(1),
         OUTPUT, Reg(2)
     ];
-    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
-        (vec![1.0, 2.0], vec![0.0]),
-        (vec![-1.0, -1.0], vec![1.0]),
+    let cases: Vec<(Vec<Number>, Vec<Number>)> = vec![
+        (vec![1, 2], vec![0]),
+        (vec![-1, -1], vec![1]),
     ];
     run_cases(&program, memsize, cases);
 }
@@ -387,9 +387,9 @@ fn test_expr_less_than() {
             Token::Expr(Expr::LT), Reg(0), Reg(1),
         OUTPUT, Reg(2)
     ];
-    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
-        (vec![1.0, 2.0], vec![1.0]),
-        (vec![-1.0, -2.0], vec![0.0]),
+    let cases: Vec<(Vec<Number>, Vec<Number>)> = vec![
+        (vec![1, 2], vec![1]),
+        (vec![-1, -2], vec![0]),
     ];
     run_cases(&program, memsize, cases);
 }
@@ -405,9 +405,9 @@ fn test_expr_greater_than() {
             Token::Expr(Expr::GT), Reg(0), Reg(1),
         OUTPUT, Reg(2)
     ];
-    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
-        (vec![1.0, 2.0], vec![0.0]),
-        (vec![-1.0, -2.0], vec![1.0]),
+    let cases: Vec<(Vec<Number>, Vec<Number>)> = vec![
+        (vec![1, 2], vec![0]),
+        (vec![-1, -2], vec![1]),
     ];
     run_cases(&program, memsize, cases);
 }
@@ -423,11 +423,11 @@ fn test_expr_or() {
             Token::Expr(Expr::OR), Reg(0), Reg(1),
         OUTPUT, Reg(2)
     ];
-    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
-        (vec![0.0, 0.0], vec![0.0]),
-        (vec![0.0, 1.0], vec![1.0]),
-        (vec![1.0, 0.0], vec![1.0]),
-        (vec![1.0, 1.0], vec![1.0]),
+    let cases: Vec<(Vec<Number>, Vec<Number>)> = vec![
+        (vec![0, 0], vec![0]),
+        (vec![0, 1], vec![1]),
+        (vec![1, 0], vec![1]),
+        (vec![1, 1], vec![1]),
     ];
     run_cases(&program, memsize, cases);
 }
@@ -443,11 +443,11 @@ fn test_expr_and() {
             Token::Expr(Expr::AND), Reg(0), Reg(1),
         OUTPUT, Reg(2)
     ];
-    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
-        (vec![0.0, 0.0], vec![0.0]),
-        (vec![0.0, 1.0], vec![0.0]),
-        (vec![1.0, 0.0], vec![0.0]),
-        (vec![1.0, 1.0], vec![1.0]),
+    let cases: Vec<(Vec<Number>, Vec<Number>)> = vec![
+        (vec![0, 0], vec![0]),
+        (vec![0, 1], vec![0]),
+        (vec![1, 0], vec![0]),
+        (vec![1, 1], vec![1]),
     ];
     run_cases(&program, memsize, cases);
 }
@@ -462,9 +462,9 @@ fn test_expr_not() {
             Token::Expr(Expr::NOT), Reg(0),
         OUTPUT, Reg(2)
     ];
-    let cases: Vec<(Vec<f32>, Vec<f32>)> = vec![
-        (vec![0.0], vec![1.0]),
-        (vec![1.0], vec![0.0]),
+    let cases: Vec<(Vec<Number>, Vec<Number>)> = vec![
+        (vec![0], vec![1]),
+        (vec![1], vec![0]),
     ];
     run_cases(&program, memsize, cases);
 }

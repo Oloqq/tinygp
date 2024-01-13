@@ -1,7 +1,14 @@
 use rand_derive::Rand;
 use serde_derive::{Deserialize, Serialize};
 
-pub type Number = f32;
+pub type Number = i32;
+
+pub fn is_truthy(x: Number) -> bool {
+    x != 0
+}
+
+pub const NUMBER_TRUE: Number = 1;
+pub const NUMBER_FALSE: Number = 0;
 
 #[derive(Debug, Clone, Copy, PartialEq, Rand, Serialize, Deserialize)]
 pub enum Expr {
@@ -125,7 +132,7 @@ mod tests {
         #[rustfmt::skip]
         let program = vec![
             Token::Stat(Stat::IF),
-                Token::Expr(Expr::NUM(12.0)),
+                Token::Expr(Expr::NUM(12)),
                 Token::Stat(Stat::OUTPUT), Token::Reg(0),
                 Token::Stat(Stat::OUTPUT), Token::Reg(0),
                 Token::Stat(Stat::OUTPUT), Token::Reg(0),
@@ -139,7 +146,7 @@ mod tests {
         #[rustfmt::skip]
         let program = vec![
             Token::Stat(Stat::IF),
-                Token::Expr(Expr::NUM(12.0)),
+                Token::Expr(Expr::NUM(12)),
                 Token::Stat(Stat::OUTPUT), Token::Reg(0),
                 Token::Stat(Stat::OUTPUT), Token::Reg(0),
                 Token::Stat(Stat::OUTPUT), Token::Reg(0),
@@ -155,10 +162,10 @@ mod tests {
         #[rustfmt::skip]
         let program = vec![
             Token::Stat(Stat::IF),
-                Token::Expr(Expr::NUM(12.0)),
+                Token::Expr(Expr::NUM(12)),
                 Token::Stat(Stat::OUTPUT), Token::Reg(0),
                 Token::Stat(Stat::IF),
-                    Token::Expr(Expr::NUM(12.0)),
+                    Token::Expr(Expr::NUM(12)),
                     Token::Stat(Stat::OUTPUT), Token::Reg(0),
                     Token::Stat(Stat::OUTPUT), Token::Reg(0),
                     Token::Stat(Stat::OUTPUT), Token::Reg(0),
