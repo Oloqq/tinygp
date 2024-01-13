@@ -270,8 +270,6 @@ fn eval_expr(
             Expr::SUB => two_arg(sub, runtime),
             Expr::MUL => two_arg(mul, runtime),
             Expr::DIV => two_arg(protected_div, runtime),
-            Expr::SIN => one_arg(f32::sin, runtime),
-            Expr::COS => one_arg(f32::cos, runtime),
             Expr::EQ => two_arg(equal, runtime),
             Expr::LT => two_arg(less_than, runtime),
             Expr::GT => two_arg(greater_than, runtime),

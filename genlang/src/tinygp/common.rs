@@ -9,8 +9,6 @@ pub enum Expr {
     SUB,
     MUL,
     DIV,
-    SIN,
-    COS,
     EQ,
     LT,
     GT,
@@ -49,8 +47,6 @@ impl Expr {
             Expr::SUB => 2,
             Expr::MUL => 2,
             Expr::DIV => 2,
-            Expr::SIN => 1,
-            Expr::COS => 1,
             Expr::NUM(_) => 0,
             Expr::EQ => 2,
             Expr::LT => 2,
@@ -68,9 +64,7 @@ pub fn get_node_end(program: &Program, index: usize) -> usize {
         Token::Reg(_) | Token::Expr(Expr::NUM(_)) => index + 1,
         // 1 argument
         Token::Stat(Stat::INPUT)
-        | Token::Stat(Stat::OUTPUT)
-        | Token::Expr(Expr::SIN)
-        | Token::Expr(Expr::COS) => get_node_end(program, index + 1),
+        | Token::Stat(Stat::OUTPUT) => get_node_end(program, index + 1),
         // 2 arguments
         Token::Stat(Stat::LOAD)
         | Token::Expr(Expr::ADD)
