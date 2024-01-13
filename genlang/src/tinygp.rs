@@ -4,15 +4,15 @@ mod execution;
 mod growing;
 
 #[cfg(test)]
-mod interpreter_tests;
-#[cfg(test)]
 mod evolution_tests;
+#[cfg(test)]
+mod interpreter_tests;
 
 use crate::params::Case;
 use crate::params::Params;
 use common::*;
 use evolution::*;
-use execution::*;
+// use execution::*;
 use growing::*;
 
 use rand::prelude::*;
@@ -42,7 +42,6 @@ impl TinyGP {
         let seed = seed.unwrap_or(StdRng::from_entropy().next_u64());
         let mut rand = StdRng::seed_from_u64(seed);
         params.seed = seed;
-        writeln!(writer.borrow_mut(), "Creating variables").unwrap();
         writeln!(writer.borrow_mut(), "Creating population").unwrap();
         let (population, fitness) = random_population(&params, &cases, &mut rand);
         TinyGP {
@@ -114,8 +113,7 @@ impl TinyGP {
             };
             let child_index =
                 negative_tournament(&self.fitness, self.params.tournament_size, &mut self.rand);
-            self.fitness[child_index] =
-                fitness_func(&child_program, &self.params, &self.cases);
+            self.fitness[child_index] = fitness_func(&child_program, &self.params, &self.cases);
             self.population[child_index] = child_program;
         }
         self.generation += 1;
@@ -158,45 +156,6 @@ Avg Size={}",
 
         (best_fitness, best)
     }
-}
-
-fn create_random_indiv(params: &Params, rand: &mut StdRng) -> Program {
-    let mut program: Program = Vec::with_capacity(2 * params.depth);
-    grow_stat(&mut program, params.depth, params, rand);
-    grow_stat(&mut program, params.depth, params, rand);
-    program
-}
-
-fn fitness_func(
-    program: &Program,
-    params: &Params,
-    cases: &Vec<Case>
-) -> f32 {
-    cases.iter().fold(0.0, |acc, (inputs, targets)| {
-        let runtime = Runtime::new(params.memsize, inputs.clone()); // TODO dont clone inputs, not needed
-        let output = execute(program, runtime);
-        let output = output.get(0).unwrap_or(&0); // FIXME
-        let error = (output - targets[0]).abs();
-        let fitness = acc - error as f32;
-        log::trace!("the fitness is: {fitness}");
-        fitness
-    })
-}
-
-fn random_population(
-    params: &Params,
-    cases: &Vec<Case>,
-    rand: &mut StdRng,
-) -> (Vec<Program>, Vec<f32>) {
-    let mut population = Vec::with_capacity(params.popsize);
-    let mut fitness = Vec::with_capacity(params.popsize);
-
-    for i in 0..params.popsize {
-        population.push(create_random_indiv(params, rand));
-        fitness.push(fitness_func(&population[i], params, cases));
-    }
-
-    return (population, fitness);
 }
 
 #[cfg(test)]

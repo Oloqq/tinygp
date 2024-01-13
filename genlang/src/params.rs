@@ -4,6 +4,7 @@ type Number = i32;
 
 pub type Case = (Vec<Number>, Vec<Number>);
 
+#[derive(Clone, Copy)]
 pub struct Params {
     pub seed: u64,
     pub memsize: usize,
