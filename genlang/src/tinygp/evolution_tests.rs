@@ -3,7 +3,7 @@ use std::io::{self, Write};
 use crate::params::{Params, Case, GrowingParams};
 
 use super::{
-    // common::*,
+    common::*,
     // evolution::*,
     TinyGP
 };
@@ -38,7 +38,7 @@ fn test_e2e_identity() {
 }
 
 #[test]
-fn test_e2e_gen_1() { // 1.1.A
+fn test_e2e_gen_1() { // 1.1.A, 1.1.D, 1.1.F
     let params = Params {
         seed: 0,
         memsize: 3,
@@ -70,7 +70,7 @@ fn test_e2e_gen_1() { // 1.1.A
 }
 
 #[test]
-fn test_e2e_gen_789() { // 1.1.B
+fn test_e2e_gen_789() { // 1.1.B, 1.1.E, 1.1.C analogicznie
     let params = Params {
         seed: 0,
         memsize: 3,
@@ -90,6 +90,53 @@ fn test_e2e_gen_789() { // 1.1.B
         (vec![], vec![789]),
         (vec![], vec![789]),
         (vec![], vec![789])
+    ];
+    let writer: Box<dyn Write> = Box::new(io::stdout());
+    let seed = Some(0);
+    let mut tgp = TinyGP::new(params, cases, seed, writer.into());
+    let (program, fitness) = tgp.evolve(3);
+    println!("{:?}", program);
+    println!("{:?}", fitness);
+    assert_eq!(fitness, 0.0);
+}
+
+#[test]
+fn test_e2e_sum() { // 1.2.B, 1.2C
+    const ONLY_VARIANT_MATTERS_I32: i32 = 0;
+    const ONLY_VARIANT_MATTERS_USIZE: usize = 0;
+    let params = Params {
+        seed: 0,
+        memsize: 3,
+        popsize: 1000,
+        max_depth: 3,
+        max_size: 4,
+        acceptable_error: 0.0,
+        growing: GrowingParams {
+            p_prefer_reg_over_num: 1.0,
+            p_expression_plug: 0.5,
+            d_expr: vec![
+                (Expr::ADD, 1),
+                (Expr::SUB, 0),
+                (Expr::MUL, 0),
+                (Expr::DIV, 0),
+                (Expr::EQ, 0),
+                (Expr::LT, 0),
+                (Expr::GT, 0),
+                (Expr::OR, 0),
+                (Expr::AND, 0),
+                (Expr::NOT, 0),
+                (Expr::Num(ONLY_VARIANT_MATTERS_I32), 1),
+                (Expr::Reg(ONLY_VARIANT_MATTERS_USIZE), 1),
+            ],
+            ..Default::default()
+        },
+        ..Default::default()
+    };
+    let cases: Vec<Case> = vec![
+        (vec![-9, 9], vec![0]),
+        (vec![0, 4], vec![4]),
+        (vec![1, 2], vec![3]),
+        (vec![-9999, 9999], vec![0]),
     ];
     let writer: Box<dyn Write> = Box::new(io::stdout());
     let seed = Some(0);

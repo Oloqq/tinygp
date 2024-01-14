@@ -1,4 +1,4 @@
-mod common;
+pub mod common;
 mod evolution;
 mod execution;
 mod growing;

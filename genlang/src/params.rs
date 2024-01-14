@@ -1,19 +1,21 @@
 use std::{error::Error, fmt::Display};
+use crate::tinygp::common::{Token, Stat, Expr};
 
 type Number = i32;
 
 pub type Case = (Vec<Number>, Vec<Number>);
 type Probability = f64;
 
-#[derive(Clone, Copy)]
+#[derive(Clone)]
 pub struct GrowingParams {
     pub min_const: Number, // inclusive
     pub max_const: Number, // exclusive
     pub p_expression_plug: Probability,
     pub p_prefer_reg_over_num: Probability,
+    pub d_expr: Vec<(Expr, i32)>,
 }
 
-#[derive(Clone, Copy)]
+#[derive(Clone)]
 pub struct Params {
     pub seed: u64,
     pub memsize: usize,
@@ -76,6 +78,20 @@ impl Default for GrowingParams {
             max_const: 100,
             p_expression_plug: 0.8,// TODO this should really be replaced by a function that increases in value as expression get longer
             p_prefer_reg_over_num: 0.5,
+            d_expr: vec![
+                (Expr::ADD, 1),
+                (Expr::SUB, 1),
+                (Expr::MUL, 1),
+                (Expr::DIV, 1),
+                (Expr::EQ, 1),
+                (Expr::LT, 1),
+                (Expr::GT, 1),
+                (Expr::OR, 1),
+                (Expr::AND, 1),
+                (Expr::NOT, 1),
+                (Expr::Num(0), 1),
+                (Expr::Reg(0), 1),
+            ]
         }
     }
 }

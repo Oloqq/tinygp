@@ -1,6 +1,7 @@
 use super::common::*;
 use crate::params::Params;
 use rand::prelude::*;
+use rand::distributions::WeightedIndex;
 
 fn rand_reg(params: &Params, rand: &mut StdRng) -> Token {
     Token::Reg(rand.gen_range(0, params.memsize))
@@ -22,7 +23,9 @@ pub fn grow_expr(params: &Params, rand: &mut StdRng) -> Vec<Token> {
             code.push(rand_const(params, rand))
         }
     } else {
-        let e: Expr = rand.gen();
+        let items = &params.growing.d_expr;
+        let dist2 = WeightedIndex::new(items.iter().map(|item| item.1)).unwrap();
+        let e: Expr = items[dist2.sample(rand)].0;
         match e {
             Expr::Reg(_) => code.push(rand_reg(params, rand)),
             Expr::Num(_) => code.push(rand_const(params, rand)),
