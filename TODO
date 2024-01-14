@@ -1,4 +1,6 @@
 remove seed from params
 add secondary fitness to promote short programs
+implement depth check
+test size checks
 
 performance would be much better with an AST, both with growing and execution

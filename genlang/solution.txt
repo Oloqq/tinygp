@@ -1,0 +1,1 @@
+[Stat(LOAD), Reg(0), Expr(Num(789)), Stat(LOAD), Reg(2), Expr(ADD), Expr(EQ), Expr(Num(789)), Expr(Num(789)), Expr(Num(789)), Stat(OUTPUT), Reg(0)]
