@@ -16,11 +16,12 @@ fn test_e2e_identity() {
         memsize: 3,
         popsize: 10,
         max_depth: 3,
-        max_size: 100,
-        crossover_prob: 0.9,
-        pmut_per_node: 0.05,
+        max_size: 4,
+        p_crossover: 0.9,
+        p_mut_per_node: 0.05,
         tournament_size: 2,
         acceptable_error: 0.1,
+        ..Default::default()
     };
     let cases: Vec<Case> = vec![
         (vec![1], vec![1]),
@@ -37,27 +38,29 @@ fn test_e2e_identity() {
 }
 
 #[test]
-#[ignore]
-fn test_e2e_2_number_sum() {
-    // let params = Params {
-    //     seed: 0,
-    //     memsize: 3,
-    //     popsize: 10,
-    //     max_depth: 3,
-    //     crossover_prob: 0.9,
-    //     pmut_per_node: 0.05,
-    //     tournament_size: 2,
-    //     acceptable_error: 0.1,
-    // };
-    // let cases: Vec<Case> = vec![
-    //     (vec![1, 2], vec![3]),
-    //     (vec![-1, 10], vec![9])
-    // ];
-    // let writer: Box<dyn Write> = Box::new(io::stdout());
-    // let seed = Some(0);
-    // let mut tgp = TinyGP::new(params, cases, seed, writer.into());
-    // tgp.evolve(3);
-    // println!("{:?}", tgp.population);
-    // println!("{:?}", tgp.fitness);
-    // assert!(false);
+fn test_e2e_gen_1() {
+    let params = Params {
+        seed: 0,
+        memsize: 3,
+        popsize: 100,
+        max_depth: 3,
+        max_size: 4,
+        p_crossover: 0.9,
+        p_mut_per_node: 0.05,
+        tournament_size: 2,
+        acceptable_error: 0.1,
+        ..Default::default()
+    };
+    let cases: Vec<Case> = vec![
+        (vec![0], vec![1]),
+        (vec![1], vec![1]),
+        (vec![1, 2], vec![1])
+    ];
+    let writer: Box<dyn Write> = Box::new(io::stdout());
+    let seed = Some(0);
+    let mut tgp = TinyGP::new(params, cases, seed, writer.into());
+    let (program, fitness) = tgp.evolve(3);
+    println!("{:?}", program);
+    println!("{:?}", fitness);
+    assert_eq!(fitness, 0.0);
 }

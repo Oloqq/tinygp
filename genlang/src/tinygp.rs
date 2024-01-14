@@ -74,7 +74,7 @@ impl TinyGP {
         Ok(TinyGP::new(params, cases, seed, writer))
     }
 
-    pub fn evolve(&mut self, generations: usize) {
+    pub fn evolve(&mut self, generations: usize) -> (Program, f32) {
         writeln!(
             self.writer.borrow_mut(),
             "-- TINY GP (Rust version) --\nGENERATIONS={}\n{}",
@@ -98,12 +98,13 @@ impl TinyGP {
             writeln!(self.writer.borrow_mut(), "PROBLEM UNSOLVED").unwrap();
         }
         self.writer.borrow_mut().flush().unwrap();
+        (self.population[best_id].clone(), best_fitness)
     }
 
     fn evolve_generation(&mut self) {
         for _ in 0..self.params.popsize {
             let child_program: Program;
-            if self.rand.gen_bool(self.params.crossover_prob as f64) {
+            if self.rand.gen_bool(self.params.p_crossover as f64) {
                 let father_id =
                     tournament(&self.fitness, self.params.tournament_size, &mut self.rand);
                 let mother_id =

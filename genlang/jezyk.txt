@@ -25,6 +25,7 @@ expr
     | AND expr expr ✅
     | NOT expr ✅
     | reg ✅
+    | NUM ✅
 
 # reg to register/rejestr/zmienna
 reg = R NUM ✅

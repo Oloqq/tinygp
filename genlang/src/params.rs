@@ -3,6 +3,14 @@ use std::{error::Error, fmt::Display};
 type Number = i32;
 
 pub type Case = (Vec<Number>, Vec<Number>);
+type Probability = f64;
+
+#[derive(Clone, Copy)]
+pub struct GrowingParams {
+    pub min_const: Number, // inclusive
+    pub max_const: Number, // exclusive
+    pub p_expression_plug: Probability
+}
 
 #[derive(Clone, Copy)]
 pub struct Params {
@@ -11,10 +19,11 @@ pub struct Params {
     pub popsize: usize,
     pub max_depth: usize,
     pub max_size: usize,
-    pub crossover_prob: f32,
-    pub pmut_per_node: f32,
+    pub p_crossover: Probability,
+    pub p_mut_per_node: Probability,
     pub tournament_size: usize,
     pub acceptable_error: f32,
+    pub growing: GrowingParams
 }
 
 impl Params {
@@ -59,18 +68,29 @@ impl Params {
     }
 }
 
+impl Default for GrowingParams {
+    fn default() -> Self {
+        Self {
+            min_const: -100,
+            max_const: 100,
+            p_expression_plug: 0.8 // TODO this should really be replaced by a function that increases in value as expression get longer
+        }
+    }
+}
+
 impl Default for Params {
     fn default() -> Self {
         Self {
             seed: Default::default(),
-            memsize: 0,
+            memsize: 5,
             popsize: 10,
             max_depth: 5,
             max_size: 1000,
-            crossover_prob: 0.9,
-            pmut_per_node: 0.05,
+            p_crossover: 0.9,
+            p_mut_per_node: 0.05,
             tournament_size: 2,
             acceptable_error: -1e-3,
+            growing: Default::default()
         }
     }
 }
@@ -89,8 +109,8 @@ TSIZE={}
                 self.seed,
                 self.popsize,
                 self.max_depth,
-                self.crossover_prob,
-                self.pmut_per_node,
+                self.p_crossover,
+                self.p_mut_per_node,
                 self.tournament_size
             )
             .as_str(),

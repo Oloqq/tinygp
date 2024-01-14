@@ -56,7 +56,7 @@ pub fn mutation(parent: &Program, params: &Params, rand: &mut StdRng) -> Program
     let mut child = Vec::with_capacity(parent.len());
     for i in 0..parent.len() {
         let replacement: Token;
-        if rand.gen_bool(params.pmut_per_node as f64) {
+        if rand.gen_bool(params.p_mut_per_node as f64) {
             match parent[i] {
                 Token::Expr(e) => {
                     let nonterminal: Expr = rand.gen();

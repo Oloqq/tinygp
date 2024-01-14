@@ -1,28 +1,75 @@
-use crate::params::Params;
 use super::common::*;
+use crate::params::Params;
 use rand::prelude::*;
 
-pub fn grow_stat(size_left: i32, _depth_left: usize, params: &Params, rand: &mut StdRng) -> Vec<Token> {
+const PREFER_REG_OVER_NUM: f64 = 0.5;
+
+fn rand_reg(params: &Params, rand: &mut StdRng) -> Token {
+    Token::Reg(rand.gen_range(0, params.memsize))
+}
+
+fn rand_const(params: &Params, rand: &mut StdRng) -> Token {
+    Token::Expr(Expr::Num(
+        rand.gen_range(params.growing.min_const, params.growing.max_const),
+    ))
+}
+
+pub fn grow_expr(params: &Params, rand: &mut StdRng) -> Vec<Token> {
+    let mut code = vec![];
+
+    if rand.gen_bool(params.growing.p_expression_plug) {
+        if rand.gen_bool(PREFER_REG_OVER_NUM) {
+            code.push(rand_reg(params, rand))
+        } else {
+            code.push(rand_const(params, rand))
+        }
+    } else {
+        let e: Expr = rand.gen();
+        match e {
+            Expr::Reg(_) => code.push(rand_reg(params, rand)),
+            Expr::Num(_) => code.push(rand_const(params, rand)),
+            _ => {
+                code.push(Token::Expr(e));
+                assert!(!matches!(e, Expr::Reg(_)));
+                for _ in 0..e.argnum() {
+                    code.append(&mut grow_expr(params, rand));
+                }
+            },
+        }
+    }
+    code
+}
+
+pub fn grow_stat(
+    size_left: i32,
+    _depth_left: usize,
+    params: &Params,
+    rand: &mut StdRng,
+) -> Vec<Token> {
     let stat: Stat = rand.gen();
+    let size_left = size_left as usize;
     let mut code: Vec<Token> = vec![];
     code.push(Token::Stat(stat));
     match stat {
         Stat::OUTPUT => {
-            let regnum = rand.gen_range(0, params.memsize);
-            let reg = Token::Reg(regnum);
-            code.push(reg);
+            code.push(rand_reg(params, rand));
         }
         Stat::INPUT => {
-            let regnum = rand.gen_range(0, params.memsize);
-            let reg = Token::Reg(regnum);
-            code.push(reg);
-        },
+            code.push(rand_reg(params, rand));
+        }
+        Stat::LOAD => {
+            code.push(rand_reg(params, rand));
+            let expr = grow_expr(params, rand);
+            if code.len() + expr.len() > size_left {
+                return vec![];
+            }
+        }
         _ => {
             log::error!("growing logic unfinished");
             return vec![];
         }
     }
-    return if size_left > code.len() as i32 { code } else { vec![] };
+    return if size_left > code.len() { code } else { vec![] };
 }
 
 pub fn create_random_indiv(params: &Params, rand: &mut StdRng) -> Program {
@@ -61,5 +108,15 @@ mod tests {
         assert!(prog.len() > 4);
         assert!(matches!(prog[0], Token::Stat(Stat::INPUT)));
         assert!(matches!(prog[prog.len() - 2], Token::Stat(Stat::OUTPUT)));
+    }
+
+    #[test]
+    // #[ignore]
+    fn test_rand_expr() {
+        let mut rand = StdRng::seed_from_u64(0);
+        for _ in 0..1000 {
+            println!("{:?}", grow_expr(&Params::default(), &mut rand));
+        }
+        // assert!(false);
     }
 }
