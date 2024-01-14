@@ -2,8 +2,6 @@ use super::common::*;
 use crate::params::Params;
 use rand::prelude::*;
 
-const PREFER_REG_OVER_NUM: f64 = 0.5;
-
 fn rand_reg(params: &Params, rand: &mut StdRng) -> Token {
     Token::Reg(rand.gen_range(0, params.memsize))
 }
@@ -18,7 +16,7 @@ pub fn grow_expr(params: &Params, rand: &mut StdRng) -> Vec<Token> {
     let mut code = vec![];
 
     if rand.gen_bool(params.growing.p_expression_plug) {
-        if rand.gen_bool(PREFER_REG_OVER_NUM) {
+        if rand.gen_bool(params.growing.p_prefer_reg_over_num) {
             code.push(rand_reg(params, rand))
         } else {
             code.push(rand_const(params, rand))
@@ -59,10 +57,11 @@ pub fn grow_stat(
         }
         Stat::LOAD => {
             code.push(rand_reg(params, rand));
-            let expr = grow_expr(params, rand);
+            let mut expr = grow_expr(params, rand);
             if code.len() + expr.len() > size_left {
                 return vec![];
             }
+            code.append(&mut expr);
         }
         _ => {
             log::error!("growing logic unfinished");

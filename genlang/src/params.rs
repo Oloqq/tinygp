@@ -9,7 +9,8 @@ type Probability = f64;
 pub struct GrowingParams {
     pub min_const: Number, // inclusive
     pub max_const: Number, // exclusive
-    pub p_expression_plug: Probability
+    pub p_expression_plug: Probability,
+    pub p_prefer_reg_over_num: Probability,
 }
 
 #[derive(Clone, Copy)]
@@ -73,7 +74,8 @@ impl Default for GrowingParams {
         Self {
             min_const: -100,
             max_const: 100,
-            p_expression_plug: 0.8 // TODO this should really be replaced by a function that increases in value as expression get longer
+            p_expression_plug: 0.8,// TODO this should really be replaced by a function that increases in value as expression get longer
+            p_prefer_reg_over_num: 0.5,
         }
     }
 }

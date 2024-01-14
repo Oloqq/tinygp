@@ -68,12 +68,18 @@ impl Expr {
 pub fn get_node_end(program: &Program, index: usize) -> usize {
     match program[index] {
         // no arguments
-        Token::Reg(_) | Token::Expr(Expr::Num(_)) => index + 1,
+        Token::Reg(_) | Token::Expr(Expr::Num(_)) | Token::END => index + 1,
         // 1 argument
         Token::Stat(Stat::INPUT)
-        | Token::Stat(Stat::OUTPUT) => get_node_end(program, index + 1),
+        | Token::Stat(Stat::OUTPUT)
+        | Token::Expr(Expr::NOT) => get_node_end(program, index + 1),
         // 2 arguments
         Token::Stat(Stat::LOAD)
+        | Token::Expr(Expr::EQ)
+        | Token::Expr(Expr::LT)
+        | Token::Expr(Expr::GT)
+        | Token::Expr(Expr::AND)
+        | Token::Expr(Expr::OR)
         | Token::Expr(Expr::ADD)
         | Token::Expr(Expr::SUB)
         | Token::Expr(Expr::MUL)
@@ -95,7 +101,7 @@ pub fn get_node_end(program: &Program, index: usize) -> usize {
             }
             i
         }
-        _ => todo!(),
+        Token::Expr(Expr::Reg(_)) => unreachable!()
     }
 }
 

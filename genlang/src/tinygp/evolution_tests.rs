@@ -1,6 +1,6 @@
 use std::io::{self, Write};
 
-use crate::params::{Params, Case};
+use crate::params::{Params, Case, GrowingParams};
 
 use super::{
     // common::*,
@@ -9,12 +9,11 @@ use super::{
 };
 
 #[test]
-#[ignore]
 fn test_e2e_identity() {
     let params = Params {
         seed: 0,
         memsize: 3,
-        popsize: 10,
+        popsize: 100,
         max_depth: 3,
         max_size: 4,
         p_crossover: 0.9,
@@ -31,10 +30,11 @@ fn test_e2e_identity() {
     let writer: Box<dyn Write> = Box::new(io::stdout());
     let seed = Some(0);
     let mut tgp = TinyGP::new(params, cases, seed, writer.into());
-    tgp.evolve(3);
+    let (program, fitness) = tgp.evolve(3);
     println!("{:?}", tgp.population);
     println!("{:?}", tgp.fitness);
-    assert!(false);
+    println!("{:?}", program);
+    assert_eq!(fitness, 0.0);
 }
 
 #[test]
@@ -49,6 +49,10 @@ fn test_e2e_gen_1() {
         p_mut_per_node: 0.05,
         tournament_size: 2,
         acceptable_error: 0.1,
+        growing: GrowingParams {
+            p_prefer_reg_over_num: 0.2,
+            ..Default::default()
+        },
         ..Default::default()
     };
     let cases: Vec<Case> = vec![
