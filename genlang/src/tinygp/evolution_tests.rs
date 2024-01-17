@@ -146,3 +146,51 @@ fn test_e2e_sum() { // 1.2.B, 1.2C
     println!("{:?}", fitness);
     assert_eq!(fitness, 0.0);
 }
+
+
+#[test]
+fn test_e2e_diff() {
+    const ONLY_VARIANT_MATTERS_I32: i32 = 0;
+    const ONLY_VARIANT_MATTERS_USIZE: usize = 0;
+    let params = Params {
+        seed: 0,
+        memsize: 3,
+        popsize: 1000,
+        max_depth: 3,
+        max_size: 4,
+        acceptable_error: 0.0,
+        growing: GrowingParams {
+            p_prefer_reg_over_num: 1.0,
+            p_expression_plug: 0.5,
+            d_expr: vec![
+                (Expr::ADD, 0),
+                (Expr::SUB, 1),
+                (Expr::MUL, 0),
+                (Expr::DIV, 0),
+                (Expr::EQ, 0),
+                (Expr::LT, 0),
+                (Expr::GT, 0),
+                (Expr::OR, 0),
+                (Expr::AND, 0),
+                (Expr::NOT, 0),
+                (Expr::Num(ONLY_VARIANT_MATTERS_I32), 1),
+                (Expr::Reg(ONLY_VARIANT_MATTERS_USIZE), 1),
+            ],
+            ..Default::default()
+        },
+        ..Default::default()
+    };
+    let cases: Vec<Case> = vec![
+        (vec![-9, 9], vec![-18]),
+        (vec![0, 4], vec![-4]),
+        (vec![1, 2], vec![-1]),
+        (vec![-9999, 9999], vec![-9999 - 9999]),
+    ];
+    let writer: Box<dyn Write> = Box::new(io::stdout());
+    let seed = Some(0);
+    let mut tgp = TinyGP::new(params, cases, seed, writer.into());
+    let (program, fitness) = tgp.evolve(3);
+    println!("{:?}", program);
+    println!("{:?}", fitness);
+    assert_eq!(fitness, 0.0);
+}
