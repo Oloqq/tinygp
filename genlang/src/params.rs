@@ -1,4 +1,5 @@
 use std::{error::Error, fmt::Display};
+#[allow(unused)]
 use crate::tinygp::common::{Token, Stat, Expr};
 
 type Number = i32;

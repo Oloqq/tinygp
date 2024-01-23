@@ -61,6 +61,7 @@ impl TinyGP {
         }
     }
 
+    #[allow(unused)]
     pub fn from_problem(
         filename: &str,
         seed: Option<u64>,
