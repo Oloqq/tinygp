@@ -1,6 +1,6 @@
 use std::io::{self, Write};
 
-use crate::params::{Params, Case, GrowingParams};
+use crate::{params::{Params, Case, GrowingParams}, tinygp::fitness_funcs::diff_first};
 
 use super::{
     common::*,
@@ -29,8 +29,8 @@ fn test_e2e_identity() {
     ];
     let writer: Box<dyn Write> = Box::new(io::stdout());
     let seed = Some(0);
-    let mut tgp = TinyGP::new(params, cases, seed, writer.into());
-    let (program, fitness) = tgp.evolve(3);
+    let mut tgp = TinyGP::new(params, cases, seed, writer.into(), diff_first);
+    let (program, fitness) = tgp.evolve(3, diff_first);
     println!("{:?}", tgp.population);
     println!("{:?}", tgp.fitness);
     println!("{:?}", program);
@@ -62,8 +62,8 @@ fn test_e2e_gen_1() { // 1.1.A, 1.1.D, 1.1.F
     ];
     let writer: Box<dyn Write> = Box::new(io::stdout());
     let seed = Some(0);
-    let mut tgp = TinyGP::new(params, cases, seed, writer.into());
-    let (program, fitness) = tgp.evolve(3);
+    let mut tgp = TinyGP::new(params, cases, seed, writer.into(), diff_first);
+    let (program, fitness) = tgp.evolve(3, diff_first);
     println!("{:?}", program);
     println!("{:?}", fitness);
     assert_eq!(fitness, 0.0);
@@ -93,8 +93,8 @@ fn test_e2e_gen_789() { // 1.1.B, 1.1.E, 1.1.C analogicznie
     ];
     let writer: Box<dyn Write> = Box::new(io::stdout());
     let seed = Some(0);
-    let mut tgp = TinyGP::new(params, cases, seed, writer.into());
-    let (program, fitness) = tgp.evolve(3);
+    let mut tgp = TinyGP::new(params, cases, seed, writer.into(), diff_first);
+    let (program, fitness) = tgp.evolve(3, diff_first);
     println!("{:?}", program);
     println!("{:?}", fitness);
     assert_eq!(fitness, 0.0);
@@ -140,8 +140,8 @@ fn test_e2e_sum() { // 1.2.B, 1.2C
     ];
     let writer: Box<dyn Write> = Box::new(io::stdout());
     let seed = Some(0);
-    let mut tgp = TinyGP::new(params, cases, seed, writer.into());
-    let (program, fitness) = tgp.evolve(3);
+    let mut tgp = TinyGP::new(params, cases, seed, writer.into(), diff_first);
+    let (program, fitness) = tgp.evolve(3, diff_first);
     println!("{:?}", program);
     println!("{:?}", fitness);
     assert_eq!(fitness, 0.0);
@@ -188,8 +188,8 @@ fn test_e2e_diff() {
     ];
     let writer: Box<dyn Write> = Box::new(io::stdout());
     let seed = Some(0);
-    let mut tgp = TinyGP::new(params, cases, seed, writer.into());
-    let (program, fitness) = tgp.evolve(3);
+    let mut tgp = TinyGP::new(params, cases, seed, writer.into(), diff_first);
+    let (program, fitness) = tgp.evolve(3, diff_first);
     println!("{:?}", program);
     println!("{:?}", fitness);
     assert_eq!(fitness, 0.0);

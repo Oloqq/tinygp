@@ -4,7 +4,7 @@ use once_cell::sync::Lazy;
 
 pub type FitnessFunc = fn(expected: &Vec<Number>, actual: &Vec<Number>) -> f32;
 
-fn diff_first(expected: &Vec<Number>, actual: &Vec<Number>) -> f32 {
+pub fn diff_first(expected: &Vec<Number>, actual: &Vec<Number>) -> f32 {
     let output = actual.get(0).unwrap_or(&0);
     let expected = expected[0];
     let error = (output - expected).abs();

@@ -1,9 +1,10 @@
 use crate::params::{Params, Case, GrowingParams};
 use crate::tinygp::TinyGP;
+use crate::tinygp::fitness_funcs::*;
 
 use std::io::{self, Write};
 
-pub fn bench_1_1_a() {
+pub fn bench_1_1_a(seed: Option<u64>) {
     let params = Params {
         seed: 0,
         memsize: 3,
@@ -26,9 +27,8 @@ pub fn bench_1_1_a() {
         (vec![1, 2], vec![1])
     ];
     let writer: Box<dyn Write> = Box::new(io::stdout());
-    let seed = Some(0);
-    let mut tgp = TinyGP::new(params, cases, seed, writer.into());
-    let (program, fitness) = tgp.evolve(3);
+    let mut tgp = TinyGP::new(params, cases, seed, writer.into(), diff_first);
+    let (program, fitness) = tgp.evolve(3, diff_first);
     println!("{:?}", program);
     println!("{:?}", fitness);
     assert_eq!(fitness, 0.0);

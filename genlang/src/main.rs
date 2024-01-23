@@ -1,6 +1,6 @@
-mod params;
 mod tinygp;
 mod benchmark;
+mod params;
 
 #[allow(unused)]
 use std::fs::{self, metadata, File};
@@ -15,7 +15,7 @@ use crate::benchmark::run_benchmark;
 #[derive(StructOpt, Debug)]
 struct Args {
     #[structopt(short, long)]
-    _seed: Option<u64>,
+    seed: Option<u64>,
 
     #[structopt(short, long, default_value = "100")]
     _generations: usize,
@@ -47,7 +47,7 @@ fn main() {
     let args = Args::from_args();
     if let Some(suite) = args.suite {
         println!("Selected suite: {suite}");
-        run_benchmark(&suite);
+        run_benchmark(&suite, args.seed);
     }
     else {
         unimplemented!();
