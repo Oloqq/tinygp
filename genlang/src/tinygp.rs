@@ -74,6 +74,13 @@ impl TinyGP {
         Ok(TinyGP::new(params, cases, seed, writer, tmp_default_fitness_func))
     }
 
+    pub fn save_population(&self, writer: &mut Box<dyn Write>) {
+        for program in self.population.iter() {
+            let s = serde_lexpr::to_string(&program).unwrap();
+            writeln!(writer, "{}", s).unwrap();
+        }
+    }
+
     pub fn evolve(&mut self, generations: usize, fitness_func: FitnessFunc) -> (Program, f32) {
         writeln!(
             self.writer.borrow_mut(),

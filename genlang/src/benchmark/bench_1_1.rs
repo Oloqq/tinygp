@@ -1,7 +1,8 @@
 use crate::params::{Params, Case, GrowingParams};
-use crate::tinygp::TinyGP;
 use crate::tinygp::fitness_funcs::*;
+use crate::tinygp::TinyGP;
 
+use std::fs::File;
 use std::io::{self, Write};
 
 pub fn bench_1_1_a(seed: Option<u64>) {
@@ -29,6 +30,8 @@ pub fn bench_1_1_a(seed: Option<u64>) {
     let writer: Box<dyn Write> = Box::new(io::stdout());
     let mut tgp = TinyGP::new(params, cases, seed, writer.into(), diff_first);
     let (program, fitness) = tgp.evolve(3, diff_first);
+    let mut writer: Box<dyn Write> = Box::new(File::create("last_population").expect("Could not create file"));
+    tgp.save_population(&mut writer);
     println!("{:?}", program);
     println!("{:?}", fitness);
     assert_eq!(fitness, 0.0);

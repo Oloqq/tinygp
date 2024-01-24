@@ -8,7 +8,7 @@ pub fn run_benchmark(selector: &str, seed: Option<u64>) {
             bench_1_1_a(seed);
         },
         _ => {
-            println!("Could not find a benchmark");
+            println!("Could not find the benchmark");
         }
     }
 }
