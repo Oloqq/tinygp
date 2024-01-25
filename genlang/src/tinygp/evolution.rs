@@ -15,13 +15,13 @@ pub fn run_and_rank(
         let runtime = Runtime::new(params.memsize, &inputs);
         let output = execute(program, runtime);
         let fitness = fitness_func(targets, &output);
-        log::trace!("the fitness is: {fitness}");
+        // log::trace!("the fitness is: {fitness}");
         acc + fitness
     })
 }
 
 pub fn crossover(father: &Program, mother: &Program, rand: &mut StdRng) -> Program {
-    log::trace!("crossover {father:?} x {mother:?}");
+    log::debug!("crossover {father:?} x {mother:?}");
 
     let father_start = rand.gen_range(0, father.len());
     let father_kind = father[father_start];
@@ -52,7 +52,7 @@ pub fn crossover(father: &Program, mother: &Program, rand: &mut StdRng) -> Progr
 }
 
 pub fn mutation(parent: &Program, params: &Params, rand: &mut StdRng) -> Program {
-    log::trace!("mutation");
+    log::debug!("mutation");
     let mut child = Vec::with_capacity(parent.len());
     for i in 0..parent.len() {
         let replacement: Token;

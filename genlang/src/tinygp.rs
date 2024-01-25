@@ -35,6 +35,22 @@ pub struct TinyGP {
     writer: RefCell<Box<dyn Write>>,
 }
 
+fn load_population(filepath: &str, params: &Params, cases: &Vec<Case>, fitness_func: FitnessFunc) -> Result<(Vec<Program>, Vec<f32>), Box<dyn Error>> {
+    let content = fs::read_to_string(filepath)?;
+    let lines: Vec<&str> = content.trim_end().split('\n').collect();
+    let mut population = Vec::with_capacity(lines.len());
+    let mut fitness = Vec::with_capacity(lines.len());
+
+    for i in 0..lines.len() {
+        println!("{}", lines[i]);
+        let program: Vec<Token> = serde_lexpr::from_str(&lines[i]).unwrap();
+        population.push(program);
+        fitness.push(run_and_rank(&population[i], params, cases, fitness_func));
+    }
+
+    Ok((population, fitness))
+}
+
 impl TinyGP {
     pub fn new(
         mut params: Params,
@@ -57,6 +73,31 @@ impl TinyGP {
             generation: 0,
             writer: writer.into(),
         }
+    }
+
+    pub fn from_population(
+        params: &Params,
+        cases: &Vec<Case>,
+        seed: Option<u64>,
+        writer: RefCell<Box<dyn Write>>,
+        fitness_func: FitnessFunc,
+        filepath: &str
+    ) -> Result<TinyGP, Box<dyn Error>> {
+        let seed = seed.unwrap_or(StdRng::from_entropy().next_u64());
+        let rand = StdRng::seed_from_u64(seed);
+        writeln!(writer.borrow_mut(), "Loading population").unwrap();
+        let (population, fitness) = load_population(filepath, &params, &cases, fitness_func)?;
+        let mut params = params.clone();
+        params.seed = seed;
+        Ok(TinyGP {
+            rand,
+            fitness,
+            population,
+            params: params.clone(),
+            cases: cases.clone(),
+            generation: 0,
+            writer: writer.into(),
+        })
     }
 
     #[allow(unused)]

@@ -66,9 +66,9 @@ pub fn execute(program: &Program, runtime: Runtime) -> Vec<Number> {
     log::trace!("executing {:?}", program);
     let mut runtime = runtime;
     return match eval_block(program, 0, &mut runtime) {
-        Ok(pos) => {
+        Ok(_pos) => {
             log::trace!("program ended with output {:?}", runtime.output);
-            log::trace!("finished at pos {}/{}", pos, program.len() - 1);
+            // log::debug!("finished at pos {}/{}", pos, program.len() - 1);
             runtime.output
         }
         Err(EvalError::Finished) => {
@@ -100,11 +100,11 @@ pub fn execute(program: &Program, runtime: Runtime) -> Vec<Number> {
 
 // eval_block returns position after the last STAT. This means the cursor will point to ELSE or END tokens
 fn eval_block(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<usize, EvalError> {
-    log::trace!("eval block {pos}");
+    // log::debug!("eval block {pos}");
     let mut pos = pos;
     loop {
         if pos >= program.len() || matches!(program[pos], Token::ELSE | Token::END) {
-            log::trace!("returning from block, returning {pos}");
+            // log::debug!("returning from block, returning {pos}");
             return Ok(pos);
         }
         pos = eval_stat(program, pos, runtime)?;
@@ -196,7 +196,7 @@ fn handle_while(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<
 }
 
 fn eval_stat(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<usize, EvalError> {
-    log::trace!("eval stat {pos}");
+    // log::debug!("eval stat {pos}");
     match program[pos] {
         Token::Stat(stat) => match stat {
             Stat::OUTPUT => {

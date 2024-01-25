@@ -18,10 +18,13 @@ struct Args {
     seed: Option<u64>,
 
     #[structopt(short, long, default_value = "100")]
-    _generations: usize,
+    generations: usize,
 
     #[structopt(long)]
     suite: Option<String>,
+
+    #[structopt(short, long)]
+    fresh: bool,
 
     // #[structopt(short, long)]
     // output: Option<String>,
@@ -47,7 +50,7 @@ fn main() {
     let args = Args::from_args();
     if let Some(suite) = args.suite {
         println!("Selected suite: {suite}");
-        run_benchmark(&suite, args.seed);
+        run_benchmark(&suite, args.seed, args.fresh, args.generations);
     }
     else {
         unimplemented!();
