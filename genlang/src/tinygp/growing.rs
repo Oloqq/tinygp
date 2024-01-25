@@ -3,11 +3,11 @@ use crate::params::Params;
 use rand::prelude::*;
 use rand::distributions::WeightedIndex;
 
-fn rand_reg(params: &Params, rand: &mut StdRng) -> Token {
+pub fn rand_reg(params: &Params, rand: &mut StdRng) -> Token {
     Token::Reg(rand.gen_range(0, params.memsize))
 }
 
-fn rand_const(params: &Params, rand: &mut StdRng) -> Token {
+pub fn rand_const(params: &Params, rand: &mut StdRng) -> Token {
     Token::Expr(Expr::Num(
         rand.gen_range(params.growing.min_const, params.growing.max_const),
     ))
@@ -26,8 +26,12 @@ pub fn grow_expr(params: &Params, rand: &mut StdRng) -> Vec<Token> {
         let items = &params.growing.d_expr;
         let dist2 = WeightedIndex::new(items.iter().map(|item| item.1)).unwrap();
         let e: Expr = items[dist2.sample(rand)].0;
+        println!("{e:?}");
         match e {
-            Expr::Reg(_) => code.push(rand_reg(params, rand)),
+            Expr::Reg(_) => {
+                println!("substituting");
+                code.push(rand_reg(params, rand))
+            }
             Expr::Num(_) => code.push(rand_const(params, rand)),
             _ => {
                 code.push(Token::Expr(e));

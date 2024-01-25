@@ -101,7 +101,9 @@ pub fn get_node_end(program: &Program, index: usize) -> usize {
             }
             i
         }
-        Token::Expr(Expr::Reg(_)) => unreachable!()
+        Token::Expr(Expr::Reg(_)) => {
+            unreachable!("{:?}", program);
+        }
     }
 }
 

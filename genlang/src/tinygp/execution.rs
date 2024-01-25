@@ -279,13 +279,15 @@ fn eval_expr(
     };
 
     fn add(lhs: Number, rhs: Number) -> Number {
-        lhs + rhs
+        lhs.checked_add(rhs).unwrap_or_else(|| { rhs.signum() * Number::MAX })
     }
     fn sub(lhs: Number, rhs: Number) -> Number {
-        lhs - rhs
+        let sign = if rhs > lhs { -1 } else { 1 };
+        lhs.checked_sub(rhs).unwrap_or_else(|| { sign * Number::MAX })
     }
     fn mul(lhs: Number, rhs: Number) -> Number {
-        lhs * rhs
+        let sign = lhs.signum() * rhs.signum();
+        lhs.checked_mul(rhs).unwrap_or_else(|| { sign * Number::MAX })
     }
     fn protected_div(lhs: Number, rhs: Number) -> Number {
         if rhs == 0 {

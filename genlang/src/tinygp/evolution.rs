@@ -3,6 +3,7 @@ use super::fitness_funcs::*;
 use crate::params::{Case, Params};
 
 use super::common::*;
+use super::growing::rand_reg;
 use rand::prelude::*;
 
 pub fn run_and_rank(
@@ -59,9 +60,12 @@ pub fn mutation(parent: &Program, params: &Params, rand: &mut StdRng) -> Program
         if rand.gen_bool(params.p_mut_per_node as f64) {
             match parent[i] {
                 Token::Expr(e) => {
-                    let nonterminal: Expr = rand.gen();
-                    if e.argnum() == nonterminal.argnum() {
-                        replacement = Token::Expr(nonterminal);
+                    let candidate: Expr = rand.gen();
+                    if matches!(candidate, Expr::Reg(_)) && e.argnum() == 0 { // TODO reductive mutation (truncate the rest of the tree)
+                        replacement = rand_reg(params, rand);
+                    }
+                    else if e.argnum() == candidate.argnum() {
+                        replacement = Token::Expr(candidate);
                     } else {
                         log::warn!("mutation for different argument numbers skipped");
                         replacement = Token::Expr(e);

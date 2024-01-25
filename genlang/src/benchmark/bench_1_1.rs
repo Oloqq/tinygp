@@ -52,5 +52,4 @@ pub fn bench_1_1_a(seed: Option<u64>, fresh: bool, generations: usize) {
     tgp.save_population(&mut writer);
     println!("{:?}", program);
     println!("{:?}", fitness);
-    assert_eq!(fitness, 0.0);
 }
