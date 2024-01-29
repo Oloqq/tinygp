@@ -19,7 +19,7 @@ pub fn bench_1_1_a(seed: Option<u64>, fresh: bool, generations: usize) {
         tournament_size: 2,
         acceptable_error: 0.1,
         growing: GrowingParams {
-            p_prefer_reg_over_num: 0.2,
+            p_prefer_reg_over_num: 0.0,
             ..Default::default()
         },
         ..Default::default()

@@ -32,6 +32,7 @@ pub struct TinyGP {
     generation: i32,
     population: Vec<Program>,
     fitness: Vec<f32>,
+    fitness_normalized: Vec<f64>,
     writer: RefCell<Box<dyn Write>>,
 }
 
@@ -63,9 +64,11 @@ impl TinyGP {
         params.seed = seed;
         writeln!(writer.borrow_mut(), "Creating population").unwrap();
         let (population, fitness) = random_population(&params, &cases, &mut rand, fitness_func);
+        let fitness_normalized = normalize_fitness(&fitness, &population);
         TinyGP {
             rand,
             fitness,
+            fitness_normalized,
             population,
             params,
             cases,
@@ -86,11 +89,13 @@ impl TinyGP {
         let rand = StdRng::seed_from_u64(seed);
         writeln!(writer.borrow_mut(), "Loading population").unwrap();
         let (population, fitness) = load_population(filepath, &params, &cases, fitness_func)?;
+        let fitness_normalized = normalize_fitness(&fitness, &population);
         let mut params = params.clone();
         params.seed = seed;
         Ok(TinyGP {
             rand,
             fitness,
+            fitness_normalized,
             population,
             params: params.clone(),
             cases: cases.clone(),
@@ -153,23 +158,24 @@ impl TinyGP {
             let child_program: Program;
             if self.rand.gen_bool(self.params.p_crossover as f64) {
                 let father_id =
-                    tournament(&self.fitness, self.params.tournament_size, &mut self.rand);
+                    tournament(&self.fitness_normalized, self.params.tournament_size, &mut self.rand);
                 let mother_id =
-                    tournament(&self.fitness, self.params.tournament_size, &mut self.rand);
+                    tournament(&self.fitness_normalized, self.params.tournament_size, &mut self.rand);
                 let father = &self.population[father_id];
                 let mother = &self.population[mother_id];
                 child_program = crossover(father, mother, &mut self.rand);
             } else {
                 let parent_id =
-                    tournament(&self.fitness, self.params.tournament_size, &mut self.rand);
+                    tournament(&self.fitness_normalized, self.params.tournament_size, &mut self.rand);
                 let parent = &self.population[parent_id];
                 child_program = mutation(parent, &self.params, &mut self.rand);
             };
             let child_index =
-                negative_tournament(&self.fitness, self.params.tournament_size, &mut self.rand);
+                negative_tournament(&self.fitness_normalized, self.params.tournament_size, &mut self.rand);
             self.fitness[child_index] = run_and_rank(&child_program, &self.params, &self.cases, fitness_func);
             self.population[child_index] = child_program;
         }
+        self.fitness_normalized = normalize_fitness(&self.fitness, &self.population);
         self.generation += 1;
     }
 
