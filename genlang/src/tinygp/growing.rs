@@ -46,21 +46,24 @@ pub fn grow_expr(params: &Params, rand: &mut StdRng) -> Vec<Token> {
 }
 
 pub fn grow_stat(
-    size_left: i32,
+    size_left: usize,
     _depth_left: usize,
     params: &Params,
     rand: &mut StdRng,
 ) -> Vec<Token> {
     let stat: Stat = rand.gen();
-    let size_left = size_left as usize;
     let mut code: Vec<Token> = vec![];
     code.push(Token::Stat(stat));
     match stat {
-        Stat::OUTPUT => {
-            code.push(rand_reg(params, rand));
-        }
         Stat::INPUT => {
             code.push(rand_reg(params, rand));
+        }
+        Stat::OUTPUT => {
+            let mut expr = grow_expr(params, rand);
+            if code.len() + expr.len() > size_left {
+                return vec![];
+            }
+            code.append(&mut expr);
         }
         Stat::LOAD => {
             code.push(rand_reg(params, rand));
@@ -81,8 +84,8 @@ pub fn grow_stat(
 pub fn create_random_indiv(params: &Params, rand: &mut StdRng) -> Program {
     let mut program: Program = Vec::with_capacity(2 * params.max_depth);
     program.append(&mut vec![Token::Stat(Stat::INPUT), Token::Reg(0)]);
-    program.append(&mut grow_stat(i32::MAX, params.max_depth, params, rand));
-    program.append(&mut grow_stat(i32::MAX, params.max_depth, params, rand));
+    program.append(&mut grow_stat(params.max_size, params.max_depth, params, rand));
+    program.append(&mut grow_stat(params.max_size, params.max_depth, params, rand));
     program.append(&mut vec![Token::Stat(Stat::OUTPUT), Token::Reg(0)]);
     program
 }

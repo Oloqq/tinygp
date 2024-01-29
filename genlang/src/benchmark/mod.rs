@@ -7,6 +7,9 @@ pub fn run_benchmark(selector: &str, seed: Option<u64>, fresh: bool, generations
         "1_1_a" => {
             bench_1_1_a(seed, fresh, generations);
         },
+        "1_1_b" => {
+            bench_1_1_b(seed, fresh, generations);
+        },
         _ => {
             println!("Could not find the benchmark");
         }
