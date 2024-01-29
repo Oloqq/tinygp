@@ -42,7 +42,6 @@ fn load_population(filepath: &str, params: &Params, cases: &Vec<Case>, fitness_f
     let mut fitness = Vec::with_capacity(lines.len());
 
     for i in 0..lines.len() {
-        println!("{}", lines[i]);
         let program: Vec<Token> = serde_lexpr::from_str(&lines[i]).unwrap();
         population.push(program);
         fitness.push(run_and_rank(&population[i], params, cases, fitness_func));

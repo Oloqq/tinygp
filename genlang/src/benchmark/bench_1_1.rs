@@ -50,6 +50,6 @@ pub fn bench_1_1_a(seed: Option<u64>, fresh: bool, generations: usize) {
         Box::new(File::create(POP_FILE).expect("Could not create file"));
 
     tgp.save_population(&mut writer);
-    println!("{:?}", program);
+    // println!("{:?}", program);
     println!("{:?}", fitness);
 }
