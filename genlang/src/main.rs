@@ -13,15 +13,18 @@ use tinygp::TinyGP;
 use crate::benchmark::run_benchmark;
 
 #[derive(StructOpt, Debug)]
-struct Args {
+pub struct Args {
     #[structopt(short, long)]
     seed: Option<u64>,
 
     #[structopt(short, long, default_value = "100")]
     generations: usize,
 
-    #[structopt(long)]
+    #[structopt(long,short="u")]
     suite: Option<String>,
+
+    #[structopt(long,short="d")]
+    stdout: bool,
 
     #[structopt(short, long)]
     fresh: bool,
@@ -48,9 +51,9 @@ fn main() {
     // log::error!("This is an error message");
 
     let args = Args::from_args();
-    if let Some(suite) = args.suite {
+    if let Some(suite) = &args.suite {
         println!("Selected suite: {suite}");
-        run_benchmark(&suite, args.seed, args.fresh, args.generations);
+        run_benchmark(&suite, &args);
     }
     else {
         unimplemented!();

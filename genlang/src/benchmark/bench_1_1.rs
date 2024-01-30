@@ -1,14 +1,10 @@
 use crate::params::{Case, GrowingParams, Params};
 use crate::tinygp::fitness_funcs::*;
-use crate::tinygp::TinyGP;
-
-use std::cell::RefCell;
-use std::fs::File;
-use std::io::{self, Write};
+use crate::Args;
+use super::util::execute_benchmark;
 
 // 1.1.A Program powinien wygenerować na wyjściu (na dowolnej pozycji w danych wyjściowych) liczbę 1. Poza liczbą 1 może też zwrócić inne liczby.
-pub fn bench_1_1_a(seed: Option<u64>, fresh: bool, generations: usize) {
-    const POP_FILE: &str = "population/1_1_a";
+pub fn bench_1_1_a(args: &Args) {
     let params = Params {
         seed: 0,
         memsize: 3,
@@ -29,39 +25,16 @@ pub fn bench_1_1_a(seed: Option<u64>, fresh: bool, generations: usize) {
         (vec![1, 2], vec![1]),
     ];
 
-    let writer: RefCell<Box<dyn Write>> = RefCell::new(Box::new(io::stdout()));
-    let mut tgp;
-    if !fresh {
-        tgp = match TinyGP::from_population(&params, &cases, seed, writer, diff_first, POP_FILE) {
-            Ok(tgp) => tgp,
-            Err(_) => {
-                println!("Couldn't load previous population, starting fresh");
-                let writer: RefCell<Box<dyn Write>> = RefCell::new(Box::new(io::stdout()));
-                TinyGP::new(params, cases, seed, writer, diff_first)
-            }
-        }
-    } else {
-        tgp = TinyGP::new(params, cases, seed, writer, diff_first);
-    }
-
-    let (program, fitness) = tgp.evolve(generations, diff_first);
-    let mut writer: Box<dyn Write> =
-        Box::new(File::create(POP_FILE).expect("Could not create file"));
-
-    tgp.save_population(&mut writer);
-    // println!("{:?}", program);
-    println!("{:?}", fitness);
+    execute_benchmark(args, params, cases, "1_1_a", diff_first);
 }
 
-
 // 1.1.B Program powinien wygenerować na wyjściu (na dowolnej pozycji w danych wyjściowych) liczbę 789. Poza liczbą 789 może też zwrócić inne liczby.
-pub fn bench_1_1_b(seed: Option<u64>, fresh: bool, generations: usize) {
-    const POP_FILE: &str = "population/1_1_b";
+pub fn bench_1_1_b(args: &Args) {
     let params = Params {
         seed: 0,
         memsize: 3,
         popsize: 100,
-        max_size: 4,
+        max_size: 4, // ignored during initial generation, low number prevents bloating
         p_crossover: 0.9,
         p_mut_per_node: 0.1,
         tournament_size: 2,
@@ -78,27 +51,5 @@ pub fn bench_1_1_b(seed: Option<u64>, fresh: bool, generations: usize) {
         (vec![1, 2], vec![789]),
     ];
 
-    // TODO allow file writes
-    let writer: RefCell<Box<dyn Write>> = RefCell::new(Box::new(io::stdout()));
-    let mut tgp;
-    if !fresh {
-        tgp = match TinyGP::from_population(&params, &cases, seed, writer, diff_first, POP_FILE) {
-            Ok(tgp) => tgp,
-            Err(_) => {
-                println!("Couldn't load previous population, starting fresh");
-                let writer: RefCell<Box<dyn Write>> = RefCell::new(Box::new(io::stdout()));
-                TinyGP::new(params, cases, seed, writer, diff_first)
-            }
-        }
-    } else {
-        tgp = TinyGP::new(params, cases, seed, writer, diff_first);
-    }
-
-    let (program, fitness) = tgp.evolve(generations, diff_first);
-    let mut writer: Box<dyn Write> =
-        Box::new(File::create(POP_FILE).expect("Could not create file"));
-
-    tgp.save_population(&mut writer);
-    // println!("{:?}", program);
-    println!("{:?}", fitness);
+    execute_benchmark(args, params, cases, "1_1_b", diff_first);
 }
