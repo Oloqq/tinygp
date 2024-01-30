@@ -204,8 +204,8 @@ Avg Fitness={}
 Best Fitness={}
 Avg Size={}",
             self.generation,
-            -avg_fitness,
-            -best_fitness,
+            avg_fitness,
+            best_fitness,
             avg_len
         )
         .unwrap();

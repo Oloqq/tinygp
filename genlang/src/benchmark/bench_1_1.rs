@@ -18,7 +18,6 @@ pub fn bench_1_1_a(seed: Option<u64>, fresh: bool, generations: usize) {
         p_crossover: 0.9,
         p_mut_per_node: 0.05,
         tournament_size: 2,
-        acceptable_error: 0.1,
         growing: GrowingParams {
             p_prefer_reg_over_num: 0.0,
             ..Default::default()
@@ -66,9 +65,8 @@ pub fn bench_1_1_b(seed: Option<u64>, fresh: bool, generations: usize) {
         max_depth: 3,
         max_size: 4,
         p_crossover: 0.9,
-        p_mut_per_node: 0.05,
+        p_mut_per_node: 0.1,
         tournament_size: 2,
-        acceptable_error: 0.1,
         growing: GrowingParams {
             p_prefer_reg_over_num: 0.0,
             max_const: 1000,
@@ -82,6 +80,7 @@ pub fn bench_1_1_b(seed: Option<u64>, fresh: bool, generations: usize) {
         (vec![1, 2], vec![789]),
     ];
 
+    // TODO allow file writes
     let writer: RefCell<Box<dyn Write>> = RefCell::new(Box::new(io::stdout()));
     let mut tgp;
     if !fresh {

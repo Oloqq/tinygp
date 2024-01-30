@@ -1,1 +1,1 @@
-[Stat(OUTPUT), Expr(Num(789)), Stat(OUTPUT), Reg(0)]
+[Stat(OUTPUT), Expr(Num(789)), Stat(OUTPUT), Expr(Num(789)), Stat(OUTPUT), Expr(Num(534))]

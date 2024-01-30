@@ -26,6 +26,7 @@ pub struct Params {
     pub p_crossover: Probability,
     pub p_mut_per_node: Probability,
     pub tournament_size: usize,
+    /// Minimum fitness required to consider the program fitted. Must be negative.
     pub acceptable_error: f32,
     pub growing: GrowingParams
 }
