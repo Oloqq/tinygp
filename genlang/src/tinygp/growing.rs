@@ -26,10 +26,8 @@ pub fn grow_expr(params: &Params, rand: &mut StdRng) -> Vec<Token> {
         let items = &params.growing.d_expr;
         let dist2 = WeightedIndex::new(items.iter().map(|item| item.1)).unwrap();
         let e: Expr = items[dist2.sample(rand)].0;
-        println!("{e:?}");
         match e {
             Expr::Reg(_) => {
-                println!("substituting");
                 code.push(rand_reg(params, rand))
             }
             Expr::Num(_) => code.push(rand_const(params, rand)),

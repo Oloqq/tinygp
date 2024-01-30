@@ -1,12 +1,13 @@
 use crate::Args;
 
-use self::bench_1_1::*;
-
 mod bench_1_1;
 mod bench_1_2;
 mod bench_1_3;
 mod bench_1_4;
 mod util;
+
+use self::bench_1_1::*;
+use self::bench_1_2::*;
 
 pub fn run_benchmark(suite: &str, args: &Args) {
     match suite {
@@ -14,7 +15,7 @@ pub fn run_benchmark(suite: &str, args: &Args) {
         "1_1_b" => bench_1_1_b(args),
         "1_1_c" => bench_1_1_c(args),
 
-        // "1_2_a" => bench_1_2_a(args),
+        "1_2_a" => bench_1_2_a(args),
         // "1_2_b" => bench_1_2_b(args),
         // "1_2_c" => bench_1_2_c(args),
         // "1_2_d" => bench_1_2_d(args),

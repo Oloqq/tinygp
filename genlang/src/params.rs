@@ -9,9 +9,13 @@ type Probability = f64;
 
 #[derive(Clone)]
 pub struct GrowingParams {
-    pub min_const: Number, // inclusive
-    pub max_const: Number, // exclusive
+    /// inclusive
+    pub min_const: Number,
+    /// exclusive
+    pub max_const: Number,
+    /// Expressions can easily grow large due to their recursive structure. This is the probability of terminating the expression with a non-recursive term (e.g. Reg or Num). Programs may fail to finish generating if set too low. In the future should probably be replaced with a function.
     pub p_expression_plug: Probability,
+    /// When plugging, affinity towards Reg vs Num
     pub p_prefer_reg_over_num: Probability,
     pub d_expr: Vec<(Expr, i32)>,
 }
@@ -75,7 +79,10 @@ impl Params {
 }
 
 impl Default for GrowingParams {
+
     fn default() -> Self {
+        const PLACEHOLDER: usize = 0;
+
         Self {
             min_const: -100,
             max_const: 100,
@@ -92,8 +99,8 @@ impl Default for GrowingParams {
                 (Expr::OR, 1),
                 (Expr::AND, 1),
                 (Expr::NOT, 1),
-                (Expr::Num(0), 1),
-                (Expr::Reg(0), 1),
+                (Expr::Num(PLACEHOLDER as i32), 1),
+                (Expr::Reg(PLACEHOLDER), 1),
             ]
         }
     }

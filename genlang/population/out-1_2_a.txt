@@ -1,0 +1,718 @@
+Creating population
+-- TINY GP (Rust version) --
+GENERATIONS=100
+SEED=2
+POPSIZE=100
+CROSSOVER_PROB=0.9
+PMUT_PER_NODE=0.2
+TSIZE=2
+----------------------------------
+
+Generation=0
+Avg Fitness=-738423940
+Best Fitness=-8
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=1
+Avg Fitness=-286737700
+Best Fitness=-8
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=2
+Avg Fitness=-213850460
+Best Fitness=-8
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=3
+Avg Fitness=-181530130
+Best Fitness=-8
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=4
+Avg Fitness=-480789060
+Best Fitness=-8
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=5
+Avg Fitness=-169207280
+Best Fitness=-8
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=6
+Avg Fitness=-286080860
+Best Fitness=-8
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=7
+Avg Fitness=-95537160
+Best Fitness=-8
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(1), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=8
+Avg Fitness=-271498940
+Best Fitness=-8
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=9
+Avg Fitness=-349678980
+Best Fitness=-8
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=10
+Avg Fitness=-124311620
+Best Fitness=-8
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=11
+Avg Fitness=-353811330
+Best Fitness=-8
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=12
+Avg Fitness=-176155500
+Best Fitness=-8
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=13
+Avg Fitness=-343701760
+Best Fitness=-8
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=14
+Avg Fitness=-123627060
+Best Fitness=-8
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=15
+Avg Fitness=-216658000
+Best Fitness=-8
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(1), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=16
+Avg Fitness=-90758740
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(1), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=17
+Avg Fitness=-77096200
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=18
+Avg Fitness=-220125550
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(2), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=19
+Avg Fitness=-292439230
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(1), Stat(INPUT), Reg(2), Stat(OUTPUT), Reg(2)]
+
+Generation=20
+Avg Fitness=-550282900
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=21
+Avg Fitness=-183129900
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(2), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=22
+Avg Fitness=-298302080
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=23
+Avg Fitness=-224932480
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=24
+Avg Fitness=-91004824
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=25
+Avg Fitness=-140080940
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=26
+Avg Fitness=-246047700
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=27
+Avg Fitness=-100057010
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=28
+Avg Fitness=-143851920
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=29
+Avg Fitness=-82234910
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=30
+Avg Fitness=-347821340
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(1), Reg(1), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=31
+Avg Fitness=-252275950
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=32
+Avg Fitness=-239422740
+Best Fitness=-8
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=33
+Avg Fitness=-216591490
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(1), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=34
+Avg Fitness=-303514100
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(1), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=35
+Avg Fitness=-110122376
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(1), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=36
+Avg Fitness=-210337280
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(2), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=37
+Avg Fitness=-25701352
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=38
+Avg Fitness=-41100136
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=39
+Avg Fitness=-110166300
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=40
+Avg Fitness=-123865600
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=41
+Avg Fitness=-24171038
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=42
+Avg Fitness=-67221920
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=43
+Avg Fitness=-85896590
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=44
+Avg Fitness=-59920836
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(2), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=45
+Avg Fitness=-100727660
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(2), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=46
+Avg Fitness=-84021920
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(2), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=47
+Avg Fitness=-134004090
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(2), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=48
+Avg Fitness=-163876590
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=49
+Avg Fitness=-115905050
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(LOAD), Reg(1), Reg(0), Stat(INPUT), Reg(2), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=50
+Avg Fitness=-181647360
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=51
+Avg Fitness=-12.22
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(1), Reg(1), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=52
+Avg Fitness=-9.86
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0), Stat(INPUT), Reg(0)]
+
+Generation=53
+Avg Fitness=-73311840
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0), Stat(OUTPUT), Reg(1)]
+
+Generation=54
+Avg Fitness=-127210780
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0), Stat(INPUT), Reg(0)]
+
+Generation=55
+Avg Fitness=-82100920
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=56
+Avg Fitness=-159699200
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=57
+Avg Fitness=-39705016
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=58
+Avg Fitness=-49839760
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(2), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=59
+Avg Fitness=-58047670
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=60
+Avg Fitness=-272578600
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=61
+Avg Fitness=-136420000
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(1), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=62
+Avg Fitness=-144474720
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(1), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=63
+Avg Fitness=-189494500
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(1), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=64
+Avg Fitness=-209469310
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(1), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0)]
+
+Generation=65
+Avg Fitness=-226718800
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(1), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0)]
+
+Generation=66
+Avg Fitness=-113189730
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=67
+Avg Fitness=-119117864
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=68
+Avg Fitness=-98548960
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=69
+Avg Fitness=-79466090
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=70
+Avg Fitness=-228844850
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=71
+Avg Fitness=-47216260
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=72
+Avg Fitness=-286018100
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=73
+Avg Fitness=-141027490
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=74
+Avg Fitness=-144550830
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=75
+Avg Fitness=-149485470
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=76
+Avg Fitness=-65827972
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=77
+Avg Fitness=-418125660
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=78
+Avg Fitness=-259868960
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=79
+Avg Fitness=-64609810
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=80
+Avg Fitness=-9.81
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=81
+Avg Fitness=-177385900
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0), Stat(LOAD), Reg(2), Reg(0)]
+
+Generation=82
+Avg Fitness=-169842880
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0), Stat(LOAD), Reg(2), Reg(0)]
+
+Generation=83
+Avg Fitness=-186455540
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(2), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=84
+Avg Fitness=-118602630
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0)]
+
+Generation=85
+Avg Fitness=-91894460
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=86
+Avg Fitness=-238306770
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=87
+Avg Fitness=-171817470
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=88
+Avg Fitness=-208744400
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=89
+Avg Fitness=-320231230
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=90
+Avg Fitness=-334593120
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=91
+Avg Fitness=-162580960
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=92
+Avg Fitness=-134357570
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0), Stat(INPUT), Reg(0)]
+
+Generation=93
+Avg Fitness=-164643900
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(2), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=94
+Avg Fitness=-339343970
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(2), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0), Stat(INPUT), Reg(0)]
+
+Generation=95
+Avg Fitness=-413403420
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(2), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=96
+Avg Fitness=-312290940
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=97
+Avg Fitness=-168345500
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(2), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=98
+Avg Fitness=-166042270
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(2), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=99
+Avg Fitness=-235085550
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(2), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=100
+Avg Fitness=-190815140
+Best Fitness=-8
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+PROBLEM UNSOLVED
