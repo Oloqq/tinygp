@@ -1,5 +1,6 @@
 use super::execution::*;
 use super::fitness_funcs::*;
+use super::growing::rand_const;
 use crate::params::{Case, Params};
 
 use super::common::*;
@@ -52,31 +53,37 @@ pub fn crossover(father: &Program, mother: &Program, rand: &mut StdRng) -> Progr
     offspring
 }
 
+fn mutate_expression(source: Expr, params: &Params, rand: &mut StdRng) -> Token {
+    let replacement: Token;
+    // TODO implement reductive mutation (allow mutating with different argnum) (truncate the rest of the tree)
+    let candidate: Expr = {
+        let mut cand: Expr = rand.gen();
+        while source.argnum() != cand.argnum() {
+            cand = rand.gen();
+        }
+        cand
+    };
+
+    if matches!(candidate, Expr::Reg(_)) {
+        replacement = rand_reg(params, rand);
+    } else if matches!(candidate, Expr::Num(_)) {
+        replacement = rand_const(params, rand);
+    } else {
+        replacement = Token::Expr(candidate);
+    }
+    replacement
+}
+
 pub fn mutation(parent: &Program, params: &Params, rand: &mut StdRng) -> Program {
     log::debug!("mutation");
     let mut child = Vec::with_capacity(parent.len());
     for i in 0..parent.len() {
         let replacement: Token;
         if rand.gen_bool(params.p_mut_per_node as f64) {
-            match parent[i] {
-                Token::Expr(e) => {
-                    let candidate: Expr = rand.gen();
-                    if matches!(candidate, Expr::Reg(_)) && e.argnum() == 0 { // TODO reductive mutation (truncate the rest of the tree)
-                        replacement = rand_reg(params, rand);
-                    }
-                    else if e.argnum() == candidate.argnum() {
-                        replacement = Token::Expr(candidate);
-                    } else {
-                        log::warn!("mutation for different argument numbers skipped");
-                        replacement = Token::Expr(e);
-                    }
-                }
-                Token::Reg(_) => {
-                    replacement = Token::Reg(rand.gen_range(0, params.memsize));
-                }
-                Token::Stat(stat) => {
-                    replacement = Token::Stat(stat);
-                }
+            replacement = match parent[i] {
+                Token::Expr(e) => mutate_expression(e, params, rand),
+                Token::Reg(_) => Token::Reg(rand.gen_range(0, params.memsize)),
+                Token::Stat(stat) => Token::Stat(stat),
                 _ => unimplemented!(),
             }
         } else {
@@ -113,4 +120,44 @@ pub fn negative_tournament(fitness: &Vec<f64>, tournament_size: usize, rand: &mu
         }
     }
     worst
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::params::GrowingParams;
+
+    use super::*;
+
+    #[test]
+    fn test_mutate_expression() {
+        let params = Params {
+            memsize: 5,
+            growing: GrowingParams {
+                min_const: -1000,
+                max_const: 1000,
+                ..Default::default()
+            },
+            ..Default::default()
+        };
+        let seed = StdRng::from_entropy().next_u64();
+        let mut rand = StdRng::seed_from_u64(seed);
+        let source = Expr::Num(2);
+        let got = mutate_expression(source, &params, &mut rand);
+        match got {
+            Token::Expr(Expr::Num(x)) => {
+                assert!(x >= params.growing.min_const);
+                assert!(x < params.growing.max_const);
+            }
+            #[allow(unused_comparisons)]
+            Token::Reg(r) => {
+                assert!(r >= 0);
+                assert!(r < params.memsize);
+            }
+            Token::Expr(Expr::Reg(_)) => {
+                panic!("mutated into the code smell Expr::R, got: {got:?}, seed = {seed}")
+            }
+            _ => panic!("mutation went wrong, got: {got:?}, seed = {seed}"),
+        }
+        assert!(matches!(got, Token::Expr(_)));
+    }
 }
