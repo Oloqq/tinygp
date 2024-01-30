@@ -17,8 +17,8 @@ pub fn execute_benchmark(
     name: &str,
     ff: FitnessFunc,
 ) {
-    let out_file = &format!("population/out-{name}");
-    let pop_file = &format!("population/{name}");
+    let out_file = &format!("population/out-{name}.txt");
+    let pop_file = &format!("population/{name}.pop");
 
     let writer: RefCell<Box<dyn Write>> = if args.stdout {
         RefCell::new(Box::new(io::stdout()))
