@@ -47,7 +47,6 @@ pub fn grow_expr(params: &Params, rand: &mut StdRng) -> Vec<Token> {
 
 pub fn grow_stat(
     size_left: usize,
-    _depth_left: usize,
     params: &Params,
     rand: &mut StdRng,
 ) -> Vec<Token> {
@@ -82,10 +81,10 @@ pub fn grow_stat(
 }
 
 pub fn create_random_indiv(params: &Params, rand: &mut StdRng) -> Program {
-    let mut program: Program = Vec::with_capacity(2 * params.max_depth);
+    let mut program: Program = Vec::with_capacity(50);
     program.append(&mut vec![Token::Stat(Stat::INPUT), Token::Reg(0)]);
-    program.append(&mut grow_stat(params.max_size, params.max_depth, params, rand));
-    program.append(&mut grow_stat(params.max_size, params.max_depth, params, rand));
+    program.append(&mut grow_stat(params.max_size, params, rand));
+    program.append(&mut grow_stat(params.max_size, params, rand));
     program.append(&mut vec![Token::Stat(Stat::OUTPUT), Token::Reg(0)]);
     program
 }
@@ -109,7 +108,6 @@ mod tests {
     #[ignore]
     fn test_random_indiv() {
         let params = Params {
-            max_depth: 3,
             ..Default::default()
         };
         let mut rand = StdRng::seed_from_u64(0);

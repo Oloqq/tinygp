@@ -21,7 +21,6 @@ pub struct Params {
     pub seed: u64,
     pub memsize: usize,
     pub popsize: usize,
-    pub max_depth: usize,
     pub max_size: usize,
     pub p_crossover: Probability,
     pub p_mut_per_node: Probability,
@@ -104,7 +103,6 @@ impl Default for Params {
             seed: Default::default(),
             memsize: 5,
             popsize: 10,
-            max_depth: 5,
             max_size: 1000,
             p_crossover: 0.9,
             p_mut_per_node: 0.05,
@@ -121,14 +119,12 @@ impl Display for Params {
             format!(
                 "SEED={}
 POPSIZE={}
-DEPTH={}
 CROSSOVER_PROB={}
 PMUT_PER_NODE={}
 TSIZE={}
 ----------------------------------\n",
                 self.seed,
                 self.popsize,
-                self.max_depth,
                 self.p_crossover,
                 self.p_mut_per_node,
                 self.tournament_size
