@@ -153,14 +153,6 @@ impl TinyGP {
         }
     }
 
-    fn memory_initializer(&mut self) -> Option<&mut StdRng> {
-        if self.params.random_initial_memory {
-            Some(&mut self.rand)
-        } else {
-            None
-        }
-    }
-
     pub fn evolve(&mut self, generations: usize, fitness_func: FitnessFunc) -> (Program, f32) {
         writeln!(
             self.writer.borrow_mut(),

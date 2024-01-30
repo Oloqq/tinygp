@@ -21,6 +21,7 @@ pub struct Params {
     pub seed: u64,
     pub memsize: usize,
     pub popsize: usize,
+    /// Max size of Vec<Token> representing a program. Ignored during initial generation.
     pub max_size: usize,
     pub p_crossover: Probability,
     pub p_mut_per_node: Probability,

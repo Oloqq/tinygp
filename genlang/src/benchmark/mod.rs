@@ -13,6 +13,9 @@ pub fn run_benchmark(suite: &str, args: &Args) {
         "1_1_b" => {
             bench_1_1_b(args);
         },
+        "1_1_c" => {
+            bench_1_1_c(args);
+        },
         _ => {
             println!("Could not find the benchmark");
         }
