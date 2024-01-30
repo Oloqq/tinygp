@@ -27,7 +27,8 @@ pub struct Params {
     pub tournament_size: usize,
     /// Minimum fitness required to consider the program fitted. Must be negative.
     pub acceptable_error: f32,
-    pub growing: GrowingParams
+    pub growing: GrowingParams,
+    pub random_initial_memory: bool
 }
 
 impl Params {
@@ -108,6 +109,7 @@ impl Default for Params {
             p_mut_per_node: 0.05,
             tournament_size: 2,
             acceptable_error: -1e-3,
+            random_initial_memory: false,
             growing: Default::default()
         }
     }

@@ -9,3 +9,5 @@ nastepnie mozna kontynuowac uczenie na podstawie zapisanej populacji
 
 wynik w part_2
 [1_1_b_part_2](./1_1_b_part_2)
+
+(po wygenerowaniu tego zostały wprowadzone major zmiany)

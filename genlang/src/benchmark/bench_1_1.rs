@@ -6,13 +6,13 @@ use super::util::execute_benchmark;
 // 1.1.A Program powinien wygenerować na wyjściu (na dowolnej pozycji w danych wyjściowych) liczbę 1. Poza liczbą 1 może też zwrócić inne liczby.
 pub fn bench_1_1_a(args: &Args) {
     let params = Params {
-        seed: 0,
         memsize: 3,
         popsize: 100,
         max_size: 4,
         p_crossover: 0.9,
-        p_mut_per_node: 0.05,
+        p_mut_per_node: 0.2,
         tournament_size: 2,
+        random_initial_memory: true,
         growing: GrowingParams {
             p_prefer_reg_over_num: 0.0,
             ..Default::default()
@@ -31,7 +31,6 @@ pub fn bench_1_1_a(args: &Args) {
 // 1.1.B Program powinien wygenerować na wyjściu (na dowolnej pozycji w danych wyjściowych) liczbę 789. Poza liczbą 789 może też zwrócić inne liczby.
 pub fn bench_1_1_b(args: &Args) {
     let params = Params {
-        seed: 0,
         memsize: 3,
         popsize: 100,
         max_size: 4, // ignored during initial generation, low number prevents bloating

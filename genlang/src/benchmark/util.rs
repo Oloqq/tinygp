@@ -1,7 +1,7 @@
 use std::{
     cell::RefCell,
     fs::File,
-    io::{self, Write}, fmt::format,
+    io::{self, Write},
 };
 
 use crate::{

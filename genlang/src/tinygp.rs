@@ -1,8 +1,8 @@
 pub mod common;
 mod evolution;
 mod execution;
-mod growing;
 pub mod fitness_funcs;
+mod growing;
 
 #[cfg(test)]
 mod evolution_tests;
@@ -36,16 +36,30 @@ pub struct TinyGP {
     writer: RefCell<Box<dyn Write>>,
 }
 
-fn load_population(filepath: &str, params: &Params, cases: &Vec<Case>, fitness_func: FitnessFunc) -> Result<(Vec<Program>, Vec<f32>), Box<dyn Error>> {
+fn load_population(
+    filepath: &str,
+    params: &Params,
+    cases: &Vec<Case>,
+    fitness_func: FitnessFunc,
+    memory_initializer: Option<&mut StdRng>,
+) -> Result<(Vec<Program>, Vec<f32>), Box<dyn Error>> {
     let content = fs::read_to_string(filepath)?;
     let lines: Vec<&str> = content.trim_end().split('\n').collect();
     let mut population = Vec::with_capacity(lines.len());
     let mut fitness = Vec::with_capacity(lines.len());
+    let mut memory_initializer = memory_initializer;
+    // let memory_initializer = RefCell::new(memory_initializer);
 
     for i in 0..lines.len() {
         let program: Vec<Token> = serde_lexpr::from_str(&lines[i]).unwrap();
         population.push(program);
-        fitness.push(run_and_rank(&population[i], params, cases, fitness_func));
+        fitness.push(run_and_rank(
+            &population[i],
+            params,
+            cases,
+            fitness_func,
+            &mut memory_initializer,
+        ));
     }
 
     Ok((population, fitness))
@@ -57,7 +71,7 @@ impl TinyGP {
         cases: Vec<Case>,
         seed: Option<u64>,
         writer: RefCell<Box<dyn Write>>,
-        fitness_func: FitnessFunc
+        fitness_func: FitnessFunc,
     ) -> TinyGP {
         let seed = seed.unwrap_or(StdRng::from_entropy().next_u64());
         let mut rand = StdRng::seed_from_u64(seed);
@@ -83,12 +97,18 @@ impl TinyGP {
         seed: Option<u64>,
         writer: RefCell<Box<dyn Write>>,
         fitness_func: FitnessFunc,
-        filepath: &str
+        filepath: &str,
     ) -> Result<TinyGP, Box<dyn Error>> {
         let seed = seed.unwrap_or(StdRng::from_entropy().next_u64());
-        let rand = StdRng::seed_from_u64(seed);
+        let mut rand = StdRng::seed_from_u64(seed);
         writeln!(writer.borrow_mut(), "Loading population").unwrap();
-        let (population, fitness) = load_population(filepath, &params, &cases, fitness_func)?;
+        let memory_init = if params.random_initial_memory {
+            Some(&mut rand)
+        } else {
+            None
+        };
+        let (population, fitness) =
+            load_population(filepath, &params, &cases, fitness_func, memory_init)?;
         let fitness_normalized = normalize_fitness(&fitness, &population);
         let mut params = params.clone();
         params.seed = seed;
@@ -115,14 +135,29 @@ impl TinyGP {
         writeln!(*writer.borrow_mut(), "{content}").unwrap();
         let (params, cases) = Params::from_string(content)?;
         writeln!(*writer.borrow_mut(), "{}", cases.len()).unwrap();
-        let tmp_default_fitness_func: FitnessFunc = *FITNESS_FUNCS.get("diff_first".into()).unwrap();
-        Ok(TinyGP::new(params, cases, seed, writer, tmp_default_fitness_func))
+        let tmp_default_fitness_func: FitnessFunc =
+            *FITNESS_FUNCS.get("diff_first".into()).unwrap();
+        Ok(TinyGP::new(
+            params,
+            cases,
+            seed,
+            writer,
+            tmp_default_fitness_func,
+        ))
     }
 
     pub fn save_population(&self, writer: &mut Box<dyn Write>) {
         for program in self.population.iter() {
             let s = serde_lexpr::to_string(&program).unwrap();
             writeln!(writer, "{}", s).unwrap();
+        }
+    }
+
+    fn memory_initializer(&mut self) -> Option<&mut StdRng> {
+        if self.params.random_initial_memory {
+            Some(&mut self.rand)
+        } else {
+            None
         }
     }
 
@@ -157,22 +192,40 @@ impl TinyGP {
         for _ in 0..self.params.popsize {
             let child_program: Program;
             if self.rand.gen_bool(self.params.p_crossover as f64) {
-                let father_id =
-                    tournament(&self.fitness_normalized, self.params.tournament_size, &mut self.rand);
-                let mother_id =
-                    tournament(&self.fitness_normalized, self.params.tournament_size, &mut self.rand);
+                let father_id = tournament(
+                    &self.fitness_normalized,
+                    self.params.tournament_size,
+                    &mut self.rand,
+                );
+                let mother_id = tournament(
+                    &self.fitness_normalized,
+                    self.params.tournament_size,
+                    &mut self.rand,
+                );
                 let father = &self.population[father_id];
                 let mother = &self.population[mother_id];
                 child_program = crossover(father, mother, &mut self.rand);
             } else {
-                let parent_id =
-                    tournament(&self.fitness_normalized, self.params.tournament_size, &mut self.rand);
+                let parent_id = tournament(
+                    &self.fitness_normalized,
+                    self.params.tournament_size,
+                    &mut self.rand,
+                );
                 let parent = &self.population[parent_id];
                 child_program = mutation(parent, &self.params, &mut self.rand);
             };
-            let child_index =
-                negative_tournament(&self.fitness_normalized, self.params.tournament_size, &mut self.rand);
-            self.fitness[child_index] = run_and_rank(&child_program, &self.params, &self.cases, fitness_func);
+            let child_index = negative_tournament(
+                &self.fitness_normalized,
+                self.params.tournament_size,
+                &mut self.rand,
+            );
+            self.fitness[child_index] = run_and_rank(
+                &child_program,
+                &self.params,
+                &self.cases,
+                fitness_func,
+                &mut Some(&mut self.rand),
+            );
             self.population[child_index] = child_program;
         }
         self.fitness_normalized = normalize_fitness(&self.fitness, &self.population);
@@ -222,14 +275,26 @@ pub fn random_population(
     params: &Params,
     cases: &Vec<Case>,
     rand: &mut StdRng,
-    fitness_func: FitnessFunc
+    fitness_func: FitnessFunc,
 ) -> (Vec<Program>, Vec<f32>) {
     let mut population = Vec::with_capacity(params.popsize);
     let mut fitness = Vec::with_capacity(params.popsize);
 
+    // let memory_init = if params.random_initial_memory {
+    //     Some(&rand)
+    // } else {
+    //     None
+    // };
+
     for i in 0..params.popsize {
         population.push(create_random_indiv(params, rand));
-        fitness.push(run_and_rank(&population[i], params, cases, fitness_func));
+        fitness.push(run_and_rank(
+            &population[i],
+            params,
+            cases,
+            fitness_func,
+            &mut Some(rand),
+        ));
     }
 
     return (population, fitness);

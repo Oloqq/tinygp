@@ -1,3 +1,5 @@
+use rand::{rngs::StdRng, Rng};
+
 use super::common::*;
 
 #[allow(unused)]
@@ -6,7 +8,7 @@ pub enum EvalError {
     Finished,
     Syntax(usize, String),
     Semantic(String),
-    MaxIteration
+    MaxIteration,
 }
 
 pub struct Runtime<'a> {
@@ -18,17 +20,23 @@ pub struct Runtime<'a> {
 }
 
 impl<'a> Runtime<'a> {
-     pub fn new(memsize: usize, input: &'a Vec<Number>) -> Self {
+    pub fn new(memsize: usize, input: &'a Vec<Number>, randomize_memory: &mut Option<&mut StdRng>) -> Self {
+        let memory = if let Some(rand) = randomize_memory {
+            (0..memsize).map(|_| {rand.gen::<i32>()}).collect()
+        } else {
+            vec![0; memsize]
+        };
+
         Runtime {
-            memory: vec![0; memsize],
+            memory,
             input,
             output: Vec::new(),
             input_cursor: 0,
-            max_iterations: 100
+            max_iterations: 100,
         }
     }
 
-     fn next_input(&mut self) -> Option<Number> {
+    fn next_input(&mut self) -> Option<Number> {
         if self.input_cursor < self.input.len() {
             let val = self.input[self.input_cursor];
             self.input_cursor += 1;
@@ -38,7 +46,7 @@ impl<'a> Runtime<'a> {
         }
     }
 
-     fn set_reg(&mut self, num: usize, val: Number) -> Result<(), EvalError> {
+    fn set_reg(&mut self, num: usize, val: Number) -> Result<(), EvalError> {
         if num > self.memory.len() {
             Err(EvalError::Semantic(format!(
                 "Tried to set memory[{num}], when length is {}",
@@ -50,7 +58,7 @@ impl<'a> Runtime<'a> {
         }
     }
 
-     fn read_reg(&self, num: usize) -> Result<Number, EvalError> {
+    fn read_reg(&self, num: usize) -> Result<Number, EvalError> {
         if num > self.memory.len() {
             Err(EvalError::Semantic(format!(
                 "Tried to read memory[{num}], when length is {}",
@@ -79,10 +87,7 @@ pub fn execute(program: &Program, runtime: Runtime) -> Vec<Number> {
             runtime.output
         }
         Err(EvalError::MaxIteration) => {
-            log::trace!(
-                "terminated due reaching max iteration {:?}",
-                runtime.output
-            );
+            log::trace!("terminated due reaching max iteration {:?}", runtime.output);
             runtime.output
         }
         Err(EvalError::Syntax(pos, reason)) => {
@@ -185,13 +190,16 @@ fn handle_while(program: &Program, pos: usize, runtime: &mut Runtime) -> Result<
         (_, expr_val) = eval_expr(program, expr_pos, runtime)?;
         iteration += 1;
         if iteration >= runtime.max_iterations {
-            return Err(EvalError::MaxIteration)
+            return Err(EvalError::MaxIteration);
         }
     }
 
     match program[block_end_pos] {
         Token::END => Ok(block_end_pos + 1),
-        _ => Err(EvalError::Syntax(block_end_pos, format!("Expected END after a WHILE started at {while_pos}. Got to {block_end_pos}")))
+        _ => Err(EvalError::Syntax(
+            block_end_pos,
+            format!("Expected END after a WHILE started at {while_pos}. Got to {block_end_pos}"),
+        )),
     }
 }
 
@@ -279,15 +287,16 @@ fn eval_expr(
     };
 
     fn add(lhs: Number, rhs: Number) -> Number {
-        lhs.checked_add(rhs).unwrap_or_else(|| { rhs.signum() * Number::MAX })
+        lhs.checked_add(rhs)
+            .unwrap_or_else(|| rhs.signum() * Number::MAX)
     }
     fn sub(lhs: Number, rhs: Number) -> Number {
         let sign = if rhs > lhs { -1 } else { 1 };
-        lhs.checked_sub(rhs).unwrap_or_else(|| { sign * Number::MAX })
+        lhs.checked_sub(rhs).unwrap_or_else(|| sign * Number::MAX)
     }
     fn mul(lhs: Number, rhs: Number) -> Number {
         let sign = lhs.signum() * rhs.signum();
-        lhs.checked_mul(rhs).unwrap_or_else(|| { sign * Number::MAX })
+        lhs.checked_mul(rhs).unwrap_or_else(|| sign * Number::MAX)
     }
     fn protected_div(lhs: Number, rhs: Number) -> Number {
         if rhs == 0 {
@@ -344,11 +353,12 @@ fn eval_expr(
 mod tests {
     use super::*;
     use pretty_assertions::assert_eq;
+    use rand::{SeedableRng, RngCore};
 
     #[test]
     fn test_runtime_input() {
         let inputs = &vec![2, 3, 4];
-        let mut runtime = Runtime::new(2, &inputs);
+        let mut runtime = Runtime::new(2, &inputs, &mut None);
         assert_eq!(runtime.next_input(), Some(2));
         assert_eq!(runtime.next_input(), Some(3));
         assert_eq!(runtime.next_input(), Some(4));
@@ -359,7 +369,7 @@ mod tests {
     fn test_stat_input() {
         let program: Vec<Token> = vec![Token::Stat(Stat::INPUT), Token::Reg(0)];
         let inputs = vec![2];
-        let mut runtime = Runtime::new(2, &inputs);
+        let mut runtime = Runtime::new(2, &inputs, &mut None);
         assert_eq!(runtime.memory, vec![0, 0]);
         assert_eq!(runtime.input.len(), 1);
         let res = eval_stat(&program, 0, &mut runtime);
@@ -373,7 +383,7 @@ mod tests {
     fn test_stat_input_multiple() {
         let program: Vec<Token> = vec![Token::Stat(Stat::INPUT), Token::Reg(0)];
         let inputs = vec![2, 3];
-        let mut runtime = Runtime::new(2, &inputs);
+        let mut runtime = Runtime::new(2, &inputs, &mut None);
         assert_eq!(runtime.memory, vec![0, 0]);
         assert_eq!(runtime.input.len(), 2);
 
@@ -393,7 +403,7 @@ mod tests {
     fn test_stat_input_second_register() {
         let program: Vec<Token> = vec![Token::Stat(Stat::INPUT), Token::Reg(1)];
         let inputs = vec![4];
-        let mut runtime = Runtime::new(2, &inputs);
+        let mut runtime = Runtime::new(2, &inputs, &mut None);
         assert_eq!(runtime.memory, vec![0, 0]);
         let res = eval_stat(&program, 0, &mut runtime);
         assert!(res.is_ok());
@@ -409,7 +419,7 @@ mod tests {
             input: &inputs,
             output: vec![],
             input_cursor: 0,
-            max_iterations: 100
+            max_iterations: 100,
         };
         let res = eval_stat(&program, 0, &mut runtime);
         assert!(res.is_ok());
@@ -428,7 +438,7 @@ mod tests {
         ];
         let data = vec![1, -2];
         let inputs = &vec![];
-        let mut runtime =  Runtime::new(3, &inputs);
+        let mut runtime = Runtime::new(3, &inputs, &mut None);
         runtime.memory = data;
         let (pos, val) = eval_expr(&program, 0, &mut runtime).unwrap();
         assert_eq!(5, pos);
@@ -444,11 +454,22 @@ mod tests {
             Token::Reg(0),
         ];
         let inputs = &vec![2];
-        let mut runtime = Runtime::new(2, &inputs);
+        let mut runtime = Runtime::new(2, &inputs, &mut None);
         let res = eval_stat(&program, 0, &mut runtime);
         assert!(res.is_ok());
         let res = eval_stat(&program, 2, &mut runtime);
         assert!(res.is_ok());
         assert_eq!(runtime.output, vec![2]);
+    }
+
+    #[test]
+    fn test_random_memory() {
+        let seed = StdRng::from_entropy().next_u64();
+        println!("Seed: {seed}");
+        let mut rand = StdRng::seed_from_u64(seed);
+        let inputs = &vec![2];
+        let runtime = Runtime::new(5, &inputs, &mut Some(&mut rand));
+        assert_eq!(runtime.memory.len(), 5);
+        assert!(runtime.memory[0] != runtime.memory[1] || runtime.memory[0] != runtime.memory[2] || runtime.memory[0] != runtime.memory[3] || runtime.memory[0] != runtime.memory[4]);
     }
 }
