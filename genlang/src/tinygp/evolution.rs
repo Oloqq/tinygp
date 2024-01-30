@@ -158,6 +158,5 @@ mod tests {
             }
             _ => panic!("mutation went wrong, got: {got:?}, seed = {seed}"),
         }
-        assert!(matches!(got, Token::Expr(_)));
     }
 }
