@@ -1,1 +1,1 @@
-[Stat(INPUT), Reg(2), Stat(INPUT), Reg(0), Stat(OUTPUT), Expr(MUL), Reg(0), Reg(2)]
+[Stat(INPUT), Reg(2), Stat(INPUT), Reg(0), Stat(OUTPUT), Expr(SUB), Reg(2), Reg(0), Stat(OUTPUT), Expr(Num(66))]

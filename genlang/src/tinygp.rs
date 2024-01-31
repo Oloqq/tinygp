@@ -196,7 +196,17 @@ impl TinyGP {
                 );
                 let father = &self.population[father_id];
                 let mother = &self.population[mother_id];
-                child_program = crossover(father, mother, &mut self.rand);
+                let mby_overgrown = crossover(father, mother, &mut self.rand);
+                if mby_overgrown.len() < self.params.max_size {
+                    child_program = mby_overgrown;
+                } else {
+                    if self.rand.gen_bool(0.5) {
+                        child_program = father.clone();
+                    } else {
+                        child_program = mother.clone();
+                    }
+                }
+
             } else {
                 let parent_id = tournament(
                     &self.fitness_normalized,
