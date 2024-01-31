@@ -66,6 +66,9 @@ wynik w part_2
 
 mozna uruchomic istniejaca populacje bez modyfikowania przez podanie `-g 0`
 
+# describe execution
+`cargo run -- -e '((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 4) (Expr Num . -74) (Stat . IF) (Expr . GT) (Expr Num . 69) (Reg . 1) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 2) (Reg . 2) END (Stat . OUTPUT) (Reg . 0))' -i '4 6'`
+
 
 # describe logging
 
@@ -76,8 +79,14 @@ W plikach `.pop` zapisano końcowe populacje. W plikach `.txt` można zobaczyć 
 
 - ✅Testy 1.1 (generowanie stałych)
   - sukces bez większych problemów
-  - funkcja fitnesu `diff_first` oblicza różnicę miedzy oczekiwanym a otrzymanym pierwszym elementem z wyjścia
+  - funkcja fitnesu `diff_first` oblicza różnicę miedzy oczekiwanym a otrzymanym pierwszym elementem z wyjścia. W przypadku pustego wyjścia przyjmuje 0 jako otrzymaną wartość.
 - ✅Testy 1.2 (arytmetyka)
   - ważny jest dobór przypadków uczących. Jeśli liczby z wyjścia były bliskie oczekiwanemu wyjściu, programy osiadały na procesie przenoszenia wejścia na wyjście
   - użyto `diff_first`
-- Test 1.3
+- ✅Test 1.3 (zwracanie większej liczby)
+  - w tych benchmarkach po raz pierwszy objawił się brak nacisku na tylko jeden element w outpucie
+  - zmodyfikowano funkcję fitnesu, tak że wyliczony błąd osobnika mnożony był przez długość jego programu
+  - w efekcie `diff_first` zaczęło promować puste wyjście
+  - puste wyjście pozostało optymalne nawet przy dodaniu stałej jedynki do długości programu, przez przyjęcie 0 jako "domyślnej" wartości zwracanej przez program
+  - po zmianie tej domyślnej wartości na $-\infty$ powstała funkcja `diff_first_promote_single`, zwracająca fitness
+  $$-|actual-expected|\sqrt{len(program)}$$

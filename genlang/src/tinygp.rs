@@ -1,6 +1,6 @@
 pub mod common;
 mod evolution;
-mod execution;
+pub mod execution;
 pub mod fitness_funcs;
 mod growing;
 
@@ -206,7 +206,6 @@ impl TinyGP {
                         child_program = mother.clone();
                     }
                 }
-
             } else {
                 let parent_id = tournament(
                     &self.fitness_normalized,
@@ -221,12 +220,17 @@ impl TinyGP {
                 self.params.tournament_size,
                 &mut self.rand,
             );
+            let mut meminit = if self.params.random_initial_memory {
+                Some(&mut self.rand)
+            } else {
+                None
+            };
             self.fitness[child_index] = run_and_rank(
                 &child_program,
                 &self.params,
                 &self.cases,
                 fitness_func,
-                &mut Some(&mut self.rand),
+                &mut meminit,
             );
             self.population[child_index] = child_program;
         }
@@ -288,6 +292,7 @@ pub fn random_population(
     //     None
     // };
 
+
     for i in 0..params.popsize {
         population.push(create_random_indiv(params, rand));
         fitness.push(run_and_rank(
@@ -295,7 +300,11 @@ pub fn random_population(
             params,
             cases,
             fitness_func,
-            &mut Some(rand),
+            &mut if params.random_initial_memory {
+                Some(rand)
+            } else {
+                None
+            },
         ));
     }
 

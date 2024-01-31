@@ -9,8 +9,10 @@ use std::io::{self, Write};
 use structopt::StructOpt;
 #[allow(unused)]
 use tinygp::TinyGP;
+use tinygp::execution::{Runtime, execute};
 
 use crate::benchmark::run_benchmark;
+use crate::tinygp::common::Number;
 
 #[derive(StructOpt, Debug)]
 pub struct Args {
@@ -28,6 +30,12 @@ pub struct Args {
 
     #[structopt(short, long)]
     fresh: bool,
+
+    #[structopt(short, long)]
+    exec: Option<String>,
+
+    #[structopt(short, long, default_value = "")]
+    input: String,
 
     // #[structopt(short, long)]
     // output: Option<String>,
@@ -51,7 +59,14 @@ fn main() {
     // log::error!("This is an error message");
 
     let args = Args::from_args();
-    if let Some(suite) = &args.suite {
+    if let Some(exec) = &args.exec {
+        let input: Vec<Number> = args.input.split(" ").map(|s| s.parse().expect("Incorrect input given")).collect();
+        let runtime = Runtime::new(1000, &input, &mut None);
+        let program = serde_lexpr::from_str(&exec).expect("Couldn't parse the program");
+        let output = execute(&program, runtime);
+        println!("{output:?}")
+    }
+    else if let Some(suite) = &args.suite {
         println!("Selected suite: {suite}");
         run_benchmark(&suite, &args);
     }

@@ -11,6 +11,16 @@ pub fn diff_first(expected: &Vec<Number>, actual: &Vec<Number>) -> f32 {
     -error
 }
 
+pub fn diff_first_promote_single(expected: &Vec<Number>, actual: &Vec<Number>) -> f32 {
+    let output = match actual.get(0) {
+        Some(x) => x,
+        None => return -f32::INFINITY,
+    };
+    let expected = expected[0];
+    let error = (*output as f32 - expected as f32).abs();
+    -error * f32::sqrt(actual.len() as f32)
+}
+
 pub static FITNESS_FUNCS: Lazy<HashMap<String, FitnessFunc>> = Lazy::new(|| {
     let mut h: HashMap<String, FitnessFunc> = HashMap::new();
     h.insert("diff_first".into(), diff_first);
