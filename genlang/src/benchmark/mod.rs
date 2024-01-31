@@ -19,7 +19,7 @@ pub fn run_benchmark(suite: &str, args: &Args) {
         // "1_2_b" => bench_1_2_b(args),
         // "1_2_c" => bench_1_2_c(args),
         // "1_2_d" => bench_1_2_d(args),
-        // "1_2_e" => bench_1_2_e(args),
+        "1_2_e" => bench_1_2_e(args),
 
         // "1_3_a" => bench_1_3_a(args),
         // "1_3_b" => bench_1_3_b(args),

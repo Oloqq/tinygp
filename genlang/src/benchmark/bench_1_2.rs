@@ -8,21 +8,13 @@ use super::util::execute_benchmark;
 // TODO: implement terminating on reaching set output vector length, or another fitness accounting for the size of output vector
 pub fn bench_1_2_a(args: &Args) {
     let params = Params {
-        memsize: 3,
-        popsize: 100,
-        max_size: 4,
-        p_crossover: 0.9,
-        p_mut_per_node: 0.2,
-        tournament_size: 2,
-        growing: GrowingParams {
-            p_prefer_reg_over_num: 1.0,
-            ..Default::default()
-        },
+        popsize: 10000,
+        random_initial_memory: true,
         ..Default::default()
     };
     let cases: Vec<Case> = vec![
-        (vec![0, 9], vec![9]),
-        (vec![1, 4], vec![5]),
+        (vec![4, 7], vec![11]),
+        (vec![4, 4], vec![8]),
         (vec![7, 8], vec![15]),
     ];
 
@@ -32,8 +24,23 @@ pub fn bench_1_2_a(args: &Args) {
 
 // 1.2.B Program powinien odczytać dwie pierwsze liczy z wejścia i zwrócić na wyjściu (jedynie) ich sumę. Na wejściu mogą być tylko całkowite liczby w zakresie [-9,9]
 
+
 // 1.2.C Program powinien odczytać dwie pierwsze liczy z wejścia i zwrócić na wyjściu (jedynie) ich sumę. Na wejściu mogą być tylko całkowite liczby dodatnie w zakresie [-9999,9999]
 
 // 1.2.D Program powinien odczytać dwie pierwsze liczy z wejścia i zwrócić na wyjściu (jedynie) ich różnicę. Na wejściu mogą być tylko całkowite liczby dodatnie w zakresie [-9999,9999]
 
 // 1.2.E Program powinien odczytać dwie pierwsze liczy z wejścia i zwrócić na wyjściu (jedynie) ich iloczyn. Na wejściu mogą być tylko całkowite liczby dodatnie w zakresie [-9999,9999]
+pub fn bench_1_2_e(args: &Args) {
+    let params = Params {
+        popsize: 10000,
+        random_initial_memory: true,
+        ..Default::default()
+    };
+    let cases: Vec<Case> = vec![
+        (vec![-9999, 9999], vec![0]),
+        (vec![-5000, 2500], vec![-2500]),
+        (vec![5000, -2500], vec![2500]),
+    ];
+
+    execute_benchmark(args, params, cases, "1_2_e", diff_first);
+}

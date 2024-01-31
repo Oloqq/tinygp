@@ -57,6 +57,7 @@ pub fn crossover(father: &Program, mother: &Program, rand: &mut StdRng) -> Progr
 fn mutate_expression(source: Expr, params: &Params, rand: &mut StdRng) -> Token {
     let replacement: Token;
     // TODO implement reductive mutation (allow mutating with different argnum) (truncate the rest of the tree)
+    // and also expansive mutation
     let candidate: Expr = {
         let mut cand: Expr = rand.gen();
         while source.argnum() != cand.argnum() {
