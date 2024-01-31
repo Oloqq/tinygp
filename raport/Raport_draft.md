@@ -90,3 +90,9 @@ W plikach `.pop` zapisano końcowe populacje. W plikach `.txt` można zobaczyć 
   - puste wyjście pozostało optymalne nawet przy dodaniu stałej jedynki do długości programu, przez przyjęcie 0 jako "domyślnej" wartości zwracanej przez program
   - po zmianie tej domyślnej wartości na $-\infty$ powstała funkcja `diff_first_promote_single`, zwracająca fitness
   $$-|actual-expected|\sqrt{len(program)}$$
+- Test 1.4
+  - 1.4.A (średnia z 10 liczb)
+    - do generowania przypadków testowych użyto `troublemaker.py`
+    - jako funkcję fitnesu znowu użyto `diff_first_promote_single`
+    - nie dało efektu, prawdopodobnie problemem był wcześniejszy brak możliwości tworzenia nowych statementów poza krosowaniem
+    - podczas mutacji statementu, dodano szansę na wygenerowanie w tym miejscu dodatkowego statementu zamiast zmieniania istniejącego. Szansa jest określana w parametrach jako `p_insertion`

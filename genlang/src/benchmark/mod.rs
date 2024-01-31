@@ -9,6 +9,7 @@ mod util;
 use self::bench_1_1::*;
 use self::bench_1_2::*;
 use self::bench_1_3::*;
+use self::bench_1_4::*;
 
 pub fn run_benchmark(suite: &str, args: &Args) {
     match suite {
@@ -25,8 +26,8 @@ pub fn run_benchmark(suite: &str, args: &Args) {
         "1_3_a" => bench_1_3_a(args),
         "1_3_b" => bench_1_3_b(args),
 
-        // "1_4_a" => bench_1_4_a(args),
-        // "1_4_b" => bench_1_4_b(args),
+        "1_4_a" => bench_1_4_a(args),
+        "1_4_b" => bench_1_4_b(args),
         _ => {
             println!("Could not find the benchmark");
         }

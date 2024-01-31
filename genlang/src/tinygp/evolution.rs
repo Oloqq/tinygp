@@ -2,9 +2,11 @@ use super::execution::*;
 use super::fitness_funcs::*;
 use super::growing::rand_const;
 use crate::params::{Case, Params};
+use crate::tinygp::growing::grow_stat;
 
 use super::common::*;
 use super::growing::rand_reg;
+use rand::distributions::WeightedIndex;
 use rand::prelude::*;
 
 pub fn run_and_rank(
@@ -59,9 +61,11 @@ fn mutate_expression(source: Expr, params: &Params, rand: &mut StdRng) -> Token 
     // TODO implement reductive mutation (allow mutating with different argnum) (truncate the rest of the tree)
     // and also expansive mutation
     let candidate: Expr = {
-        let mut cand: Expr = rand.gen();
+        let items = &params.growing.d_expr;
+        let dist2 = WeightedIndex::new(items.iter().map(|item| item.1)).unwrap();
+        let mut cand: Expr = items[dist2.sample(rand)].0;
         while source.argnum() != cand.argnum() {
-            cand = rand.gen();
+            cand = items[dist2.sample(rand)].0;
         }
         cand
     };
@@ -76,6 +80,19 @@ fn mutate_expression(source: Expr, params: &Params, rand: &mut StdRng) -> Token 
     replacement
 }
 
+fn mutate_statement(source: Stat, _params: &Params, _rand: &mut StdRng) -> Token {
+    // let candidate: Stat = {
+    //     let items = &params.growing.d_stat;
+    //     let dist2 = WeightedIndex::new(items.iter().map(|item| item.1)).unwrap();
+    //     let mut cand: Stat = items[dist2.sample(rand)].0;
+    //     while source.argnum() != cand.argnum() {
+    //         cand = items[dist2.sample(rand)].0;
+    //     }
+    //     cand
+    // };
+    Token::Stat(source)
+}
+
 pub fn mutation(parent: &Program, params: &Params, rand: &mut StdRng) -> Program {
     log::debug!("mutation");
     let mut child = Vec::with_capacity(parent.len());
@@ -85,7 +102,15 @@ pub fn mutation(parent: &Program, params: &Params, rand: &mut StdRng) -> Program
             replacement = match parent[i] {
                 Token::Expr(e) => mutate_expression(e, params, rand),
                 Token::Reg(_) => Token::Reg(rand.gen_range(0, params.memsize)),
-                Token::Stat(stat) => Token::Stat(stat), // TODO mutate stat
+                Token::Stat(stat) => {
+                    if rand.gen_bool(params.growing.p_insertion) {
+                        child.extend(grow_stat(params.max_size - parent.len(), params, rand));
+                    }
+                    if rand.gen_bool(params.growing.p_insertion) {
+                        child.extend(grow_stat(params.max_size - parent.len(), params, rand));
+                    }
+                    mutate_statement(stat, params, rand)
+                },
                 Token::ELSE => Token::ELSE,
                 Token::END => Token::END,
             }

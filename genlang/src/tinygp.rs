@@ -271,7 +271,7 @@ Avg Size={}",
         writeln!(self.writer.borrow_mut(), "Best Individual: ").unwrap();
         // writeln!(self.writer.borrow_mut(), "{:?}", self.population[best]);
         // pprint(&self.population[best]);
-        writeln!(self.writer.borrow_mut(), "{:?}\n", &self.population[best]).unwrap();
+        writeln!(self.writer.borrow_mut(), "{:?}\n", serde_lexpr::to_string(&self.population[best]).unwrap()).unwrap();
 
         (best_fitness, best)
     }
