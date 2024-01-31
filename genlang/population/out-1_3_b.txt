@@ -10,65 +10,86 @@ TSIZE=2
 
 Generation=0
 Avg Fitness=-inf
-Best Fitness=-10471
+Best Fitness=-10472
 Avg Size=16
 Best Individual: 
-[Stat(INPUT), Reg(0), Stat(INPUT), Reg(0), Stat(LOAD), Reg(4), Reg(2), Stat(OUTPUT), Reg(0)]
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(3), Stat(IF), Reg(3), Stat(LOAD), Reg(0), Reg(3), ELSE, Stat(IF), Reg(0), Stat(LOAD), Reg(4), Reg(1), ELSE, Stat(INPUT), Reg(3), END, END, Stat(OUTPUT), Reg(0)]
 
 Generation=1
 Avg Fitness=-inf
-Best Fitness=-10471
+Best Fitness=-10021.627
 Avg Size=16
 Best Individual: 
-[Stat(INPUT), Reg(0), Stat(INPUT), Reg(0), Stat(LOAD), Reg(4), Reg(2), Stat(OUTPUT), Reg(0)]
+[Stat(INPUT), Reg(0), Stat(IF), Expr(GT), Reg(3), Reg(0), Stat(LOAD), Reg(2), Reg(4), ELSE, Stat(IF), Expr(GT), Expr(Num(-22)), Reg(0), Stat(INPUT), Reg(0), ELSE, Stat(OUTPUT), Reg(0), END, END, Stat(LOAD), Reg(0), Reg(4), Stat(OUTPUT), Reg(0)]
 
 Generation=2
 Avg Fitness=-inf
-Best Fitness=-10471
+Best Fitness=-10021.627
 Avg Size=17
 Best Individual: 
-[Stat(INPUT), Reg(0), Stat(INPUT), Reg(0), Stat(LOAD), Reg(4), Reg(2), Stat(OUTPUT), Reg(0)]
+[Stat(INPUT), Reg(0), Stat(IF), Expr(GT), Reg(3), Reg(0), Stat(LOAD), Reg(2), Reg(4), ELSE, Stat(IF), Expr(GT), Expr(Num(-22)), Reg(0), Stat(INPUT), Reg(0), ELSE, Stat(OUTPUT), Reg(0), END, END, Stat(LOAD), Reg(0), Reg(4), Stat(OUTPUT), Reg(0)]
 
 Generation=3
 Avg Fitness=-inf
-Best Fitness=-10471
+Best Fitness=-10021.627
 Avg Size=18
 Best Individual: 
-[Stat(INPUT), Reg(0), Stat(IF), Expr(Num(-13)), Stat(INPUT), Reg(0), ELSE, Stat(LOAD), Reg(3), Reg(3), END, Stat(LOAD), Reg(4), Reg(4), Stat(OUTPUT), Reg(0)]
+[Stat(INPUT), Reg(0), Stat(IF), Expr(GT), Reg(3), Reg(0), Stat(LOAD), Reg(2), Reg(4), ELSE, Stat(IF), Expr(GT), Expr(Num(-22)), Reg(0), Stat(INPUT), Reg(0), ELSE, Stat(OUTPUT), Reg(0), END, END, Stat(LOAD), Reg(0), Reg(4), Stat(OUTPUT), Reg(0)]
 
 Generation=4
 Avg Fitness=-inf
-Best Fitness=-10014
-Avg Size=18
+Best Fitness=-27.712812
+Avg Size=17
 Best Individual: 
-[Stat(INPUT), Reg(0), Stat(LOAD), Reg(4), Reg(4), Stat(IF), Expr(GT), Reg(0), Reg(3), Stat(IF), Reg(0), Stat(OUTPUT), Reg(0), ELSE, Stat(OUTPUT), Reg(3), END, ELSE, Stat(IF), Reg(3), Stat(OUTPUT), Reg(0), ELSE, Stat(IF), Reg(4), Stat(OUTPUT), Expr(EQ), Expr(Num(92)), Reg(0), ELSE, Stat(INPUT), Reg(4), END, END, END, Stat(LOAD), Reg(4), Expr(EQ), Reg(3), Expr(DIV), Expr(Num(-21)), Expr(ADD), Expr(NOT), Reg(1), Expr(Num(-53))]
+[Stat(INPUT), Reg(0), Stat(IF), Expr(GT), Reg(3), Reg(0), Stat(LOAD), Reg(2), Reg(4), ELSE, Stat(IF), Expr(GT), Expr(Num(-22)), Reg(0), Stat(INPUT), Reg(0), ELSE, Stat(OUTPUT), Reg(0), END, END, Stat(LOAD), Reg(0), Reg(4), Stat(IF), Expr(ADD), Expr(Num(-4)), Reg(2), Stat(INPUT), Reg(3), ELSE, Stat(LOAD), Reg(3), Reg(4), END, Stat(OUTPUT), Reg(3), Stat(OUTPUT), Reg(0)]
 
 Generation=5
 Avg Fitness=-inf
-Best Fitness=-10014
-Avg Size=18
+Best Fitness=-16
+Avg Size=17
 Best Individual: 
-[Stat(INPUT), Reg(0), Stat(LOAD), Reg(4), Reg(4), Stat(IF), Expr(GT), Reg(0), Reg(3), Stat(IF), Reg(0), Stat(OUTPUT), Reg(0), ELSE, Stat(OUTPUT), Reg(3), END, ELSE, Stat(IF), Reg(3), Stat(OUTPUT), Reg(0), ELSE, Stat(IF), Reg(4), Stat(OUTPUT), Expr(EQ), Expr(Num(92)), Reg(0), ELSE, Stat(INPUT), Reg(4), END, END, END, Stat(LOAD), Reg(4), Expr(EQ), Reg(3), Expr(DIV), Expr(Num(-21)), Expr(ADD), Expr(NOT), Reg(1), Expr(Num(-53))]
+[Stat(INPUT), Reg(0), Stat(IF), Expr(GT), Expr(GT), Expr(Num(63)), Reg(0), Reg(1), Stat(INPUT), Reg(2), ELSE, Stat(OUTPUT), Reg(0), END, Stat(LOAD), Reg(0), Reg(3), Stat(OUTPUT), Reg(2)]
 
 Generation=6
 Avg Fitness=-inf
-Best Fitness=-10014
-Avg Size=19
+Best Fitness=-16
+Avg Size=18
 Best Individual: 
-[Stat(INPUT), Reg(0), Stat(LOAD), Reg(4), Reg(4), Stat(IF), Expr(GT), Reg(0), Reg(3), Stat(IF), Reg(0), Stat(OUTPUT), Reg(0), ELSE, Stat(OUTPUT), Reg(3), END, ELSE, Stat(IF), Reg(3), Stat(OUTPUT), Reg(0), ELSE, Stat(IF), Reg(4), Stat(OUTPUT), Expr(EQ), Expr(Num(92)), Reg(0), ELSE, Stat(INPUT), Reg(4), END, END, END, Stat(LOAD), Reg(4), Expr(EQ), Reg(3), Expr(DIV), Expr(Num(-21)), Expr(ADD), Expr(NOT), Reg(1), Expr(Num(-53))]
+[Stat(INPUT), Reg(0), Stat(IF), Expr(GT), Expr(GT), Expr(Num(63)), Reg(0), Reg(1), Stat(INPUT), Reg(2), ELSE, Stat(OUTPUT), Reg(0), END, Stat(LOAD), Reg(0), Reg(3), Stat(OUTPUT), Reg(2)]
 
 Generation=7
 Avg Fitness=-inf
-Best Fitness=-10014
-Avg Size=20
+Best Fitness=-16
+Avg Size=19
 Best Individual: 
-[Stat(INPUT), Reg(0), Stat(LOAD), Reg(4), Reg(4), Stat(IF), Expr(GT), Reg(0), Reg(3), Stat(IF), Reg(0), Stat(OUTPUT), Reg(0), ELSE, Stat(OUTPUT), Reg(3), END, ELSE, Stat(IF), Reg(3), Stat(OUTPUT), Reg(0), ELSE, Stat(IF), Reg(4), Stat(OUTPUT), Expr(EQ), Expr(Num(92)), Reg(0), ELSE, Stat(INPUT), Reg(4), END, END, END, Stat(LOAD), Reg(4), Expr(EQ), Reg(3), Expr(DIV), Expr(Num(-21)), Expr(ADD), Expr(NOT), Reg(1), Expr(Num(-53))]
+[Stat(INPUT), Reg(0), Stat(IF), Expr(GT), Expr(GT), Expr(Num(63)), Reg(0), Reg(1), Stat(INPUT), Reg(2), ELSE, Stat(OUTPUT), Reg(0), END, Stat(LOAD), Reg(0), Reg(3), Stat(OUTPUT), Reg(2)]
 
 Generation=8
 Avg Fitness=-inf
-Best Fitness=0
+Best Fitness=-16
 Avg Size=21
 Best Individual: 
-[Stat(INPUT), Reg(0), Stat(LOAD), Reg(2), Reg(3), Stat(IF), Expr(GT), Reg(0), Expr(Num(92)), Stat(INPUT), Reg(4), ELSE, Stat(IF), Expr(SUB), Reg(1), Expr(Num(-22)), Stat(IF), Expr(Num(-33)), Stat(INPUT), Reg(0), ELSE, Stat(INPUT), Reg(1), END, ELSE, Stat(INPUT), Reg(1), END, END, Stat(OUTPUT), Reg(0)]
+[Stat(INPUT), Reg(0), Stat(IF), Expr(GT), Expr(GT), Expr(Num(63)), Reg(0), Reg(1), Stat(INPUT), Reg(2), ELSE, Stat(OUTPUT), Reg(0), END, Stat(LOAD), Reg(0), Reg(3), Stat(OUTPUT), Reg(2)]
+
+Generation=9
+Avg Fitness=-inf
+Best Fitness=-1.4142135
+Avg Size=22
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(2), Stat(IF), Expr(LT), Reg(0), Expr(OR), Expr(Num(-96)), Expr(SUB), Reg(3), Expr(Num(-81)), Stat(LOAD), Reg(0), Reg(2), ELSE, Stat(OUTPUT), Reg(0), END, Stat(OUTPUT), Reg(0)]
+
+Generation=10
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=23
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(2), Stat(IF), Expr(LT), Reg(0), Expr(OR), Expr(Num(-96)), Expr(SUB), Reg(3), Expr(Num(-81)), Stat(LOAD), Reg(0), Reg(2), ELSE, Stat(LOAD), Reg(2), Expr(Num(62)), END, Stat(OUTPUT), Reg(0)]
+
+Generation=11
+Avg Fitness=-inf
+Best Fitness=0
+Avg Size=25
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(3), Stat(IF), Reg(3), Stat(IF), Expr(SUB), Expr(GT), Expr(SUB), Reg(3), Expr(Num(12)), Expr(Num(6)), Expr(Num(-20)), Stat(IF), Expr(GT), Reg(3), Reg(0), Stat(OUTPUT), Reg(3), ELSE, Stat(OUTPUT), Reg(0), END, ELSE, Stat(OUTPUT), Reg(0), END, ELSE, Stat(LOAD), Reg(3), Reg(2), END, ELSE, Stat(IF), Reg(0), Stat(LOAD), Reg(4), Reg(1), ELSE, Stat(LOAD), Reg(3), Reg(2), END, END, Stat(OUTPUT), Reg(0)]
 
 PROBLEM SOLVED

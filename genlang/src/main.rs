@@ -60,7 +60,7 @@ fn main() {
 
     let args = Args::from_args();
     if let Some(exec) = &args.exec {
-        let input: Vec<Number> = args.input.split(" ").map(|s| s.parse().expect("Incorrect input given")).collect();
+        let input: Vec<Number> = args.input.trim().split(" ").map(|s| s.parse().expect("Incorrect input given")).collect();
         let runtime = Runtime::new(1000, &input, &mut None);
         let program = serde_lexpr::from_str(&exec).expect("Couldn't parse the program");
         let output = execute(&program, runtime);

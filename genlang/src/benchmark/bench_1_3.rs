@@ -31,6 +31,10 @@ pub fn bench_1_3_b(args: &Args) {
         (vec![7777, 21], vec![7777]),
         (vec![2115, -600], vec![2115]),
         (vec![0, 15], vec![15]),
+        (vec![15, 0], vec![15]),
+        (vec![2, 3], vec![3]),
+        (vec![3, 2], vec![3]),
+
     ];
 
     execute_benchmark(args, params, cases, "1_3_b", diff_first_promote_single);
