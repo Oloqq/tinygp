@@ -35,6 +35,14 @@ expr
 
 The grammar is designed to work with a single numeric type. Current implementation uses integers. For the sake of logical operators and condition checks (`IF` and `WHILE`) any non-zero number is treated as true and zero is treated as false.
 
+## Parametrization
+The project is heavily configurable, as almost every numeric parameter of the process is set inside [Params](../genlang/src/params.rs) structure.
+This includes parameteres like population size, acceptable error, probabilities of mutation and crossover, and even probability distribution used in growing the program.
+
+The program interpreter uses 32 bit integers as it's internal type, but can easily be adapted to floating point numbers with minimal development by assigning e.g. `type Number = f32;`, and adapting functions like `is_truthy`.
+
+As of now, the fitness function is outside of the `Params` structure. However, because the fitting process can be run for a specific number of generations, and then be resumed after the program exits (thanks to serializing last generation), and the `evolve` method takes the fitness function as an argument, the fitness function may be changed mid-training with a change of a single line of code.
+
 ## Initial population
 Useful programs will generally take some input and produce some output, therefore the initial programs are generated as `INPUT`, 2 random `STAT` , `OUTPUT`.
 
@@ -57,6 +65,9 @@ wynik w part_2
 [1_1_b_part_2](./1_1_b_part_2)
 
 mozna uruchomic istniejaca populacje bez modyfikowania przez podanie `-g 0`
+
+
+# describe logging
 
 # Benchmarki testowe
 Wyniki benchmarków można znaleźć w folderze [population](../genlang/population/)

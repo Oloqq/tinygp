@@ -17,7 +17,10 @@ pub struct GrowingParams {
     pub p_expression_plug: Probability,
     /// When plugging, affinity towards Reg vs Num
     pub p_prefer_reg_over_num: Probability,
+    /// Weights used when growing expressions
     pub d_expr: Vec<(Expr, i32)>,
+    /// Weights used when growing statements
+    pub d_stat: Vec<(Stat, i32)>,
 }
 
 #[derive(Clone)]
@@ -101,6 +104,13 @@ impl Default for GrowingParams {
                 (Expr::NOT, 1),
                 (Expr::Num(PLACEHOLDER as i32), 1),
                 (Expr::Reg(PLACEHOLDER), 1),
+            ],
+            d_stat: vec![
+                (Stat::LOAD, 1),
+                (Stat::IF, 1),
+                (Stat::WHILE, 0),
+                (Stat::INPUT, 1),
+                (Stat::OUTPUT, 1)
             ]
         }
     }

@@ -1,0 +1,25 @@
+Creating population
+-- TINY GP (Rust version) --
+GENERATIONS=1
+SEED=4
+POPSIZE=10000
+CROSSOVER_PROB=0.9
+PMUT_PER_NODE=0.05
+TSIZE=2
+----------------------------------
+
+Generation=0
+Avg Fitness=-566044700
+Best Fitness=-7001
+Avg Size=12
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=1
+Avg Fitness=-293549900
+Best Fitness=-4501
+Avg Size=11
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(IF), Expr(GT), Expr(Num(-21)), Reg(3), Stat(INPUT), Reg(1), ELSE, Stat(IF), Reg(4), Stat(INPUT), Reg(0), ELSE, Stat(IF), Reg(4), Stat(IF), Reg(0), Stat(LOAD), Reg(0), Expr(Num(-87)), ELSE, Stat(OUTPUT), Reg(2), END, ELSE, Stat(IF), Reg(2), Stat(IF), Expr(MUL), Expr(Num(49)), Expr(Num(-71)), Stat(INPUT), Reg(0), ELSE, END, ELSE, Stat(INPUT), Reg(4), END, END, END, END, Stat(IF), Expr(ADD), Reg(2), Reg(1), Stat(LOAD), Reg(1), Expr(Num(-44)), ELSE, END, Stat(OUTPUT), Reg(0)]
+
+PROBLEM UNSOLVED

@@ -70,8 +70,23 @@ pub fn grow_stat(
             }
             code.append(&mut expr);
         }
-        _ => {
-            log::error!("growing logic unfinished");
+        Stat::IF => {
+            code.append(&mut grow_expr(params, rand));
+            let mut space = size_left - code.len();
+
+            code.append(&mut grow_stat(space, params, rand));
+            space = size_left - code.len();
+
+            if space < 8 && rand.gen_bool(0.5) {
+                code.push(Token::END);
+            } else {
+                code.push(Token::ELSE);
+                code.append(&mut grow_stat(space, params, rand));
+                code.push(Token::END);
+            }
+        }
+        Stat::WHILE => {
+            log::error!("TODO: growing WHILE");
             return vec![];
         }
     }

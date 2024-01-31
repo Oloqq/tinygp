@@ -1,4 +1,4 @@
-use crate::params::{Case, GrowingParams, Params};
+use crate::params::{Case, Params};
 use crate::tinygp::fitness_funcs::*;
 use crate::Args;
 use super::util::execute_benchmark;

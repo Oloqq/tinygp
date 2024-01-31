@@ -33,7 +33,7 @@ pub fn crossover(father: &Program, mother: &Program, rand: &mut StdRng) -> Progr
     let mother_start = match mother
         .iter()
         .enumerate()
-        .filter(|(_i, v)| variant_eq(&father_kind, &v))
+        .filter(|(_i, v)| variant_eq(&father_kind, &v) && !matches!(father_kind, Token::Stat(Stat::IF | Stat::WHILE)))
         .choose(rand)
     {
         Some((i, _v)) => i,
@@ -85,8 +85,9 @@ pub fn mutation(parent: &Program, params: &Params, rand: &mut StdRng) -> Program
             replacement = match parent[i] {
                 Token::Expr(e) => mutate_expression(e, params, rand),
                 Token::Reg(_) => Token::Reg(rand.gen_range(0, params.memsize)),
-                Token::Stat(stat) => Token::Stat(stat),
-                _ => unimplemented!(),
+                Token::Stat(stat) => Token::Stat(stat), // TODO mutate stat
+                Token::ELSE => Token::ELSE,
+                Token::END => Token::END,
             }
         } else {
             replacement = parent[i];
@@ -161,4 +162,20 @@ mod tests {
             _ => panic!("mutation went wrong, got: {got:?}, seed = {seed}"),
         }
     }
+
+    // #[test]
+    // crossover at if and while was disabled because of this crossover producing an incorrect program with a certain rand
+    // fn test_bugfix_crossover() {
+    //     let params = Params {
+    //         ..Default::default()
+    //     };
+    //     let seed = StdRng::from_entropy().next_u64();
+    //     let mut rand = StdRng::seed_from_u64(seed);
+    //     let prog1 = [Stat(INPUT), Reg(0), Stat(INPUT), Reg(2), Stat(IF), Reg(4), Stat(IF), Reg(2), Stat(IF), Expr(Num(-91)), Stat(LOAD), Reg(1), Expr(Num(-25)), ELSE, Stat(
+    //             IF), Reg(0), ELSE, Stat(LOAD), Reg(0), Expr(Num(-58)), END, END, ELSE, Stat(IF), Expr(Num(20)), ELSE, Stat(OUTPUT), Expr(Num(59)), END, END, ELSE, Stat(OUTPUT), Reg(3),
+    //             END, Stat(OUTPUT), Reg(0)];
+    // }
+    //  x [Stat(INPUT), Reg(0), Stat(LOAD), Reg(4), Reg(4), Stat(OUTPUT), Reg(0)]
+    //     TRACE:  -> [Stat(INPUT), Reg(0), Stat(INPUT), Reg(2), Stat(IF), Reg(4), Stat(IF), Reg(2), Stat(LOAD), Reg(4), Reg(4), ELSE, Stat(OUTPUT), Reg(3), END, Stat(OUTPUT), Reg(
+    //     0)]
 }
