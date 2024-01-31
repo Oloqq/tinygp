@@ -1,7 +1,7 @@
-Loading population
+Creating population
 -- TINY GP (Rust version) --
-GENERATIONS=0
-SEED=4
+GENERATIONS=100
+SEED=1
 POPSIZE=10000
 CROSSOVER_PROB=0.9
 PMUT_PER_NODE=0.05
@@ -9,10 +9,80 @@ TSIZE=2
 ----------------------------------
 
 Generation=0
-Avg Fitness=-9841840
-Best Fitness=0
-Avg Size=18
+Avg Fitness=-489421440
+Best Fitness=-73051
+Avg Size=7
 Best Individual: 
-[Stat(INPUT), Reg(0), Stat(INPUT), Reg(1), Stat(OUTPUT), Expr(ADD), Reg(1), Reg(0), Stat(INPUT), Reg(1)]
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Expr(MUL), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=1
+Avg Fitness=-306861340
+Best Fitness=-73051
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Expr(MUL), Reg(0), Reg(0), Stat(OUTPUT), Reg(2)]
+
+Generation=2
+Avg Fitness=-186894940
+Best Fitness=-73051
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Expr(MUL), Reg(0), Reg(0), Stat(OUTPUT), Reg(4)]
+
+Generation=3
+Avg Fitness=-159438200
+Best Fitness=-73051
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Expr(MUL), Reg(0), Reg(0), Stat(OUTPUT), Reg(4)]
+
+Generation=4
+Avg Fitness=-151153300
+Best Fitness=-59040
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(0), Stat(OUTPUT), Expr(MUL), Reg(0), Expr(Num(81))]
+
+Generation=5
+Avg Fitness=-173072640
+Best Fitness=-11871
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(3), Reg(0), Stat(OUTPUT), Expr(MUL), Reg(3), Expr(MUL), Expr(Num(-9)), Expr(Num(-83)), Stat(OUTPUT), Reg(0)]
+
+Generation=6
+Avg Fitness=-170075820
+Best Fitness=-11871
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(3), Reg(0), Stat(OUTPUT), Expr(MUL), Reg(0), Expr(MUL), Expr(Num(-9)), Expr(Num(-83)), Stat(OUTPUT), Reg(0)]
+
+Generation=7
+Avg Fitness=-174910990
+Best Fitness=-11871
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Expr(MUL), Reg(0), Expr(MUL), Expr(Num(-9)), Expr(Num(-83)), Stat(OUTPUT), Reg(0)]
+
+Generation=8
+Avg Fitness=-207579820
+Best Fitness=-9068
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(3), Reg(0), Stat(OUTPUT), Expr(MUL), Reg(0), Expr(MUL), Expr(Num(34)), Expr(Num(24)), Stat(OUTPUT), Reg(0)]
+
+Generation=9
+Avg Fitness=-245269090
+Best Fitness=-7434
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(2), Reg(1), Stat(LOAD), Reg(0), Expr(MUL), Expr(MUL), Reg(0), Expr(Num(21)), Expr(Num(38)), Stat(OUTPUT), Reg(0)]
+
+Generation=10
+Avg Fitness=-299923940
+Best Fitness=0
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(2), Stat(INPUT), Reg(0), Stat(OUTPUT), Expr(MUL), Reg(0), Reg(2)]
 
 PROBLEM SOLVED

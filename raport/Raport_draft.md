@@ -61,9 +61,12 @@ mozna uruchomic istniejaca populacje bez modyfikowania przez podanie `-g 0`
 # Benchmarki testowe
 Wyniki benchmarków można znaleźć w folderze [population](../genlang/population/)
 
-- Testy 1.1 (generowanie stałych)
+W plikach `.pop` zapisano końcowe populacje. W plikach `.txt` można zobaczyć przebieg procesu uczenia oraz wymaganą ilość generacji.
+
+- ✅Testy 1.1 (generowanie stałych)
   - sukces bez większych problemów
-  - funkcja fitnesu `diff_first` porównuje pierwszą liczbę z wyjścia
-- Testy 1.2 (arytmetyka)
-  - `diff_first` zawiodło przy małych liczbach na wejściu. Programom opłacało się zwracać liczby z wejścia aby być stosunkowo blisko zamierzonego wyniku.
-  -
+  - funkcja fitnesu `diff_first` oblicza różnicę miedzy oczekiwanym a otrzymanym pierwszym elementem z wyjścia
+- ✅Testy 1.2 (arytmetyka)
+  - ważny jest dobór przypadków uczących. Jeśli liczby z wyjścia były bliskie oczekiwanemu wyjściu, programy osiadały na procesie przenoszenia wejścia na wyjście
+  - użyto `diff_first`
+- Test 1.3

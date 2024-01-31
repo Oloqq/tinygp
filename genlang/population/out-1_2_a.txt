@@ -1,6 +1,6 @@
 Loading population
 -- TINY GP (Rust version) --
-GENERATIONS=1
+GENERATIONS=100
 SEED=4
 POPSIZE=10000
 CROSSOVER_PROB=0.9
@@ -9,17 +9,52 @@ TSIZE=2
 ----------------------------------
 
 Generation=0
-Avg Fitness=-338536100
+Avg Fitness=-251243470
 Best Fitness=-4
 Avg Size=6
 Best Individual: 
 [Stat(INPUT), Reg(0), Stat(OUTPUT), Expr(ADD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
 
 Generation=1
-Avg Fitness=-248081000
+Avg Fitness=-169017540
 Best Fitness=-4
 Avg Size=6
 Best Individual: 
 [Stat(INPUT), Reg(0), Stat(OUTPUT), Expr(ADD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
 
-PROBLEM UNSOLVED
+Generation=2
+Avg Fitness=-151208640
+Best Fitness=-4
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Reg(0), Reg(0), Stat(LOAD), Reg(1), Expr(Num(-11)), Stat(OUTPUT), Reg(0)]
+
+Generation=3
+Avg Fitness=-121237496
+Best Fitness=-4
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Expr(ADD), Reg(0), Reg(0), Stat(OUTPUT), Expr(Num(-80)), Stat(OUTPUT), Reg(0)]
+
+Generation=4
+Avg Fitness=-94866830
+Best Fitness=-4
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Expr(ADD), Reg(0), Reg(0), Stat(OUTPUT), Expr(Num(-80)), Stat(OUTPUT), Reg(0)]
+
+Generation=5
+Avg Fitness=-136061580
+Best Fitness=-4
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=6
+Avg Fitness=-156942290
+Best Fitness=0
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(2), Stat(INPUT), Reg(0), Stat(OUTPUT), Expr(ADD), Reg(2), Reg(0)]
+
+PROBLEM SOLVED
