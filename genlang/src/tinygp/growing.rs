@@ -48,7 +48,10 @@ pub fn grow_stat(
     params: &Params,
     rand: &mut StdRng,
 ) -> Vec<Token> {
-    let stat: Stat = rand.gen();
+    let items = &params.growing.d_stat;
+    let dist2 = WeightedIndex::new(items.iter().map(|item| item.1)).unwrap();
+    let stat: Stat = items[dist2.sample(rand)].0;
+
     let mut code: Vec<Token> = vec![];
     code.push(Token::Stat(stat));
     match stat {

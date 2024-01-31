@@ -1,4 +1,4 @@
-use crate::params::{Case, GrowingParams, Params};
+use crate::params::{Case, Params};
 use crate::tinygp::fitness_funcs::*;
 use crate::Args;
 use super::util::execute_benchmark;
@@ -7,13 +7,13 @@ use super::util::execute_benchmark;
 pub fn bench_1_3_a(args: &Args) {
     let params = Params {
         popsize: 10000,
-        random_initial_memory: true,
         ..Default::default()
     };
     let cases: Vec<Case> = vec![
-        (vec![2000, 9999], vec![11999]),
-        (vec![5000, 2500], vec![7500]),
-        (vec![1, 1000], vec![1001]),
+        (vec![0, 9], vec![9]),
+        (vec![7, 1], vec![7]),
+        (vec![2, 4], vec![4]),
+        (vec![6, 0], vec![6]),
     ];
 
     execute_benchmark(args, params, cases, "1_3_a", diff_first);

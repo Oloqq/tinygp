@@ -45,6 +45,7 @@ pub fn execute_benchmark(
     let (program, fitness) = tgp.evolve(args.generations, ff);
 
     println!("Finished with program\n{:?}\nof fitness = {}", program, fitness);
+    println!("{}", serde_lexpr::to_string(&program).unwrap());
 
     let mut writer: Box<dyn Write> =
     Box::new(File::create(pop_file).expect("Could not create file"));
