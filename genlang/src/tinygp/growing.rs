@@ -79,6 +79,8 @@ pub fn grow_stat(
 
             code.append(&mut grow_stat(space, params, rand));
             space = size_left - code.len();
+            // code.append(&mut grow_stat(space, params, rand));
+            // space = size_left - code.len();
 
             if space < 8 && rand.gen_bool(0.5) {
                 code.push(Token::END);
@@ -89,8 +91,18 @@ pub fn grow_stat(
             }
         }
         Stat::WHILE => {
-            log::error!("TODO: growing WHILE");
-            return vec![];
+            code.append(&mut grow_expr(params, rand));
+            // let mut space = size_left - code.len();
+
+            code.push(Token::Stat(Stat::LOAD));
+            code.push(Token::Reg(0));
+            code.push(Token::Reg(0));
+
+            // code.append(&mut grow_stat(space, params, rand));
+            // space = size_left - code.len();
+            // code.append(&mut grow_stat(space, params, rand));
+
+            code.push(Token::END);
         }
     }
     return if size_left > code.len() { code } else { vec![] };

@@ -9,10 +9,11 @@ pub fn bench_1_4_a(args: &Args) {
     let params = Params {
         popsize: 1000,
         max_size: 10000,
+        memsize: 15,
         growing: GrowingParams {
             d_expr: vec![
                 (Expr::ADD, 4),
-                (Expr::SUB, 0),
+                (Expr::SUB, 1),
                 (Expr::MUL, 0),
                 (Expr::DIV, 1),
                 (Expr::EQ, 0),
@@ -27,7 +28,7 @@ pub fn bench_1_4_a(args: &Args) {
             d_stat: vec![
                 (Stat::LOAD, 1),
                 (Stat::IF, 0),
-                (Stat::WHILE, 0),
+                (Stat::WHILE, 1),
                 (Stat::INPUT, 4),
                 (Stat::OUTPUT, 1)
             ],
@@ -40,16 +41,16 @@ pub fn bench_1_4_a(args: &Args) {
         ..Default::default()
     };
     let cases: Vec<Case> = vec![
-        (vec![78, 71, 61], vec![70]),
-        (vec![34, 36, 69], vec![46]),
-        (vec![-44, -80, -48], vec![-58]),
-        (vec![-72, 54, -73], vec![-31]),
-        (vec![65, -42, -72], vec![-17]),
-        (vec![-67, -63, 94], vec![-12]),
-        (vec![-95, 7, -54], vec![-48]),
-        (vec![23, -29, -35], vec![-14]),
-        (vec![82, -51, -72], vec![-14]),
-        (vec![23, -32, 45], vec![12]),
+        (vec![32, -80, 48], vec![0]),
+        (vec![74, -58, 74], vec![30]),
+        (vec![40, 84, -59], vec![21]),
+        (vec![59, 71, 20], vec![50]),
+        (vec![-94, -89, 21], vec![-54]),
+        (vec![-41, -26, 9], vec![-20]),
+        (vec![10, -35, 66], vec![13]),
+        (vec![40, 47, -18], vec![23]),
+        (vec![69, 25, 82], vec![58]),
+        (vec![-54, -94, -64], vec![-71]),
     ];
 
     execute_benchmark(args, params, cases, "1_4_a", diff_first_promote_single);

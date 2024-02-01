@@ -10,7 +10,7 @@ stat
     = LOAD REG expr
     | IF expr block END
     | IF expr block ELSE block END
-    | WHILE expr DO block END
+    | WHILE expr block END
     | INPUT REG
     | OUTPUT expr
 
@@ -96,3 +96,4 @@ W plikach `.pop` zapisano końcowe populacje. W plikach `.txt` można zobaczyć 
     - jako funkcję fitnesu znowu użyto `diff_first_promote_single`
     - nie dało efektu, prawdopodobnie problemem był wcześniejszy brak możliwości tworzenia nowych statementów poza krosowaniem
     - podczas mutacji statementu, dodano szansę na wygenerowanie w tym miejscu dodatkowego statementu zamiast zmieniania istniejącego. Szansa jest określana w parametrach jako `p_insertion`
+    - udało się wygenerować program liczący średnią dla 3 liczb z fitnessem rzędu -3

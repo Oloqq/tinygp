@@ -71,7 +71,7 @@ impl<'a> Runtime<'a> {
 }
 
 pub fn execute(program: &Program, runtime: Runtime) -> Vec<Number> {
-    log::info!("executing {:?}", program);
+    log::info!("executing {}", serialize(program));
     let mut runtime = runtime;
     return match eval_block(program, 0, &mut runtime) {
         Ok(_pos) => {
