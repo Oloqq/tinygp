@@ -1,3 +1,5 @@
+use std::fmt::Display;
+
 use rand_derive::Rand;
 use serde_derive::{Deserialize, Serialize};
 
@@ -90,7 +92,7 @@ pub fn get_node_end(program: &Program, index: usize) -> usize {
         // parentheses counting
         Token::Stat(Stat::IF | Stat::WHILE) | Token::ELSE => {
             let mut level = 1;
-            let mut i = index;
+            let mut i = index + 1;
             while i < program.len() && level > 0 {
                 match program[i] {
                     Token::Stat(Stat::IF | Stat::WHILE) => level += 1,
@@ -109,6 +111,10 @@ pub fn get_node_end(program: &Program, index: usize) -> usize {
 
 pub fn variant_eq(a: &Token, b: &Token) -> bool {
     std::mem::discriminant(a) == std::mem::discriminant(b)
+}
+
+pub fn serialize(program: &Program) -> String {
+    serde_lexpr::to_string(&program).unwrap()
 }
 
 #[cfg(test)]
@@ -182,6 +188,27 @@ mod tests {
             Token::END
         ];
         assert_eq!(get_node_end(&program, 0), 16);
+        assert_eq!(get_node_end(&program, 4), 13);
+    }
+
+    #[test]
+    fn test_expression_end_nested_while() {
+        #[rustfmt::skip]
+        let program = vec![
+            Token::Stat(Stat::WHILE),
+                Token::Expr(Expr::Num(12)),
+                Token::Stat(Stat::OUTPUT), Token::Reg(0),
+                Token::Stat(Stat::WHILE),
+                    Token::Expr(Expr::Num(12)),
+                    Token::Stat(Stat::OUTPUT), Token::Reg(0),
+                    Token::Stat(Stat::OUTPUT), Token::Reg(0),
+                    Token::Stat(Stat::OUTPUT), Token::Reg(0),
+                Token::END,
+                Token::Stat(Stat::OUTPUT), Token::Reg(0),
+            Token::END
+        ];
+        assert_eq!(get_node_end(&program, 0), 16);
+        assert_eq!(get_node_end(&program, 4), 13);
     }
 
     #[test]

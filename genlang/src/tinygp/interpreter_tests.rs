@@ -469,3 +469,40 @@ fn test_expr_not() {
     ];
     run_cases(&program, memsize, cases);
 }
+
+
+#[test]
+#[rustfmt::skip]
+#[ignore]
+fn test_while_faulty() {
+    let memsize = 3;
+    const ADD: Token = Token::Expr(Expr::ADD);
+    let program = vec![
+        INPUT, Reg(0),
+        WHILE,
+                ADD,
+                    ADD,
+                        Reg(2),
+                        Reg(2),
+                    Reg(4),
+            LOAD, Reg(2), ADD,
+                Reg(2),
+                Reg(4),
+            INPUT, Reg(2),
+            WHILE, Reg(4),
+                INPUT, Reg(1),
+            END,
+            LOAD, Reg(3), num(8),
+            WHILE, Reg(2),
+                LOAD, Reg(0), Reg(0),
+            END,
+            OUTPUT, Reg(0)
+    ];
+    let cases: Vec<(Vec<Number>, Vec<Number>)> = vec![
+        (vec![0], vec![]),
+        (vec![1], vec![1]),
+        (vec![2], vec![2, 1]),
+        (vec![3], vec![3, 2, 1]),
+    ];
+    run_cases(&program, memsize, cases);
+}

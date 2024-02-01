@@ -1,6 +1,6 @@
 pub mod common;
 mod evolution;
-mod execution;
+pub mod execution;
 pub mod fitness_funcs;
 mod growing;
 
@@ -196,7 +196,16 @@ impl TinyGP {
                 );
                 let father = &self.population[father_id];
                 let mother = &self.population[mother_id];
-                child_program = crossover(father, mother, &mut self.rand);
+                let mby_overgrown = crossover(father, mother, &mut self.rand);
+                if mby_overgrown.len() < self.params.max_size {
+                    child_program = mby_overgrown;
+                } else {
+                    if self.rand.gen_bool(0.5) {
+                        child_program = father.clone();
+                    } else {
+                        child_program = mother.clone();
+                    }
+                }
             } else {
                 let parent_id = tournament(
                     &self.fitness_normalized,
@@ -211,12 +220,17 @@ impl TinyGP {
                 self.params.tournament_size,
                 &mut self.rand,
             );
+            let mut meminit = if self.params.random_initial_memory {
+                Some(&mut self.rand)
+            } else {
+                None
+            };
             self.fitness[child_index] = run_and_rank(
                 &child_program,
                 &self.params,
                 &self.cases,
                 fitness_func,
-                &mut Some(&mut self.rand),
+                &mut meminit,
             );
             self.population[child_index] = child_program;
         }
@@ -257,7 +271,7 @@ Avg Size={}",
         writeln!(self.writer.borrow_mut(), "Best Individual: ").unwrap();
         // writeln!(self.writer.borrow_mut(), "{:?}", self.population[best]);
         // pprint(&self.population[best]);
-        writeln!(self.writer.borrow_mut(), "{:?}\n", &self.population[best]).unwrap();
+        writeln!(self.writer.borrow_mut(), "{:?}\n", serde_lexpr::to_string(&self.population[best]).unwrap()).unwrap();
 
         (best_fitness, best)
     }
@@ -278,6 +292,7 @@ pub fn random_population(
     //     None
     // };
 
+
     for i in 0..params.popsize {
         population.push(create_random_indiv(params, rand));
         fitness.push(run_and_rank(
@@ -285,7 +300,11 @@ pub fn random_population(
             params,
             cases,
             fitness_func,
-            &mut Some(rand),
+            &mut if params.random_initial_memory {
+                Some(rand)
+            } else {
+                None
+            },
         ));
     }
 

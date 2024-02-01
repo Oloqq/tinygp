@@ -17,7 +17,12 @@ pub struct GrowingParams {
     pub p_expression_plug: Probability,
     /// When plugging, affinity towards Reg vs Num
     pub p_prefer_reg_over_num: Probability,
+    /// Weights used when growing expressions
     pub d_expr: Vec<(Expr, i32)>,
+    /// Weights used when growing statements
+    pub d_stat: Vec<(Stat, i32)>,
+    /// Probability of inserting a brand new statement when mutating one
+    pub p_insertion: Probability
 }
 
 #[derive(Clone)]
@@ -88,6 +93,7 @@ impl Default for GrowingParams {
             max_const: 100,
             p_expression_plug: 0.8,// TODO this should really be replaced by a function that increases in value as expression get longer
             p_prefer_reg_over_num: 0.5,
+            p_insertion: 0.1,
             d_expr: vec![
                 (Expr::ADD, 1),
                 (Expr::SUB, 1),
@@ -101,6 +107,13 @@ impl Default for GrowingParams {
                 (Expr::NOT, 1),
                 (Expr::Num(PLACEHOLDER as i32), 1),
                 (Expr::Reg(PLACEHOLDER), 1),
+            ],
+            d_stat: vec![
+                (Stat::LOAD, 1),
+                (Stat::IF, 1),
+                (Stat::WHILE, 0),
+                (Stat::INPUT, 1),
+                (Stat::OUTPUT, 1)
             ]
         }
     }

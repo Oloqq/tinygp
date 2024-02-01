@@ -2,9 +2,11 @@ use super::execution::*;
 use super::fitness_funcs::*;
 use super::growing::rand_const;
 use crate::params::{Case, Params};
+use crate::tinygp::growing::grow_stat;
 
 use super::common::*;
 use super::growing::rand_reg;
+use rand::distributions::WeightedIndex;
 use rand::prelude::*;
 
 pub fn run_and_rank(
@@ -33,7 +35,7 @@ pub fn crossover(father: &Program, mother: &Program, rand: &mut StdRng) -> Progr
     let mother_start = match mother
         .iter()
         .enumerate()
-        .filter(|(_i, v)| variant_eq(&father_kind, &v))
+        .filter(|(_i, v)| variant_eq(&father_kind, &v) && !matches!(father_kind, Token::Stat(Stat::IF | Stat::WHILE)))
         .choose(rand)
     {
         Some((i, _v)) => i,
@@ -59,9 +61,11 @@ fn mutate_expression(source: Expr, params: &Params, rand: &mut StdRng) -> Token 
     // TODO implement reductive mutation (allow mutating with different argnum) (truncate the rest of the tree)
     // and also expansive mutation
     let candidate: Expr = {
-        let mut cand: Expr = rand.gen();
+        let items = &params.growing.d_expr;
+        let dist2 = WeightedIndex::new(items.iter().map(|item| item.1)).unwrap();
+        let mut cand: Expr = items[dist2.sample(rand)].0;
         while source.argnum() != cand.argnum() {
-            cand = rand.gen();
+            cand = items[dist2.sample(rand)].0;
         }
         cand
     };
@@ -77,16 +81,32 @@ fn mutate_expression(source: Expr, params: &Params, rand: &mut StdRng) -> Token 
 }
 
 pub fn mutation(parent: &Program, params: &Params, rand: &mut StdRng) -> Program {
-    log::debug!("mutation");
+    log::debug!("mutation of {}", serialize(parent));
     let mut child = Vec::with_capacity(parent.len());
+    let mut skip_till: Option<usize> = None;
     for i in 0..parent.len() {
+        if let Some(border) = skip_till {
+            if i < border {
+                continue;
+            }
+            skip_till = None
+        }
         let replacement: Token;
         if rand.gen_bool(params.p_mut_per_node as f64) {
             replacement = match parent[i] {
                 Token::Expr(e) => mutate_expression(e, params, rand),
                 Token::Reg(_) => Token::Reg(rand.gen_range(0, params.memsize)),
-                Token::Stat(stat) => Token::Stat(stat),
-                _ => unimplemented!(),
+                Token::Stat(_) => {
+                    if rand.gen_bool(params.growing.p_insertion) {
+                        child.extend(grow_stat(params.max_size - parent.len(), params, rand));
+                    }
+                    let end = get_node_end(parent, i);
+                    skip_till = Some(end);
+                    child.extend(grow_stat(params.max_size - parent.len(), params, rand));
+                    continue;
+                },
+                Token::ELSE => Token::ELSE,
+                Token::END => Token::END,
             }
         } else {
             replacement = parent[i];
@@ -161,4 +181,72 @@ mod tests {
             _ => panic!("mutation went wrong, got: {got:?}, seed = {seed}"),
         }
     }
+
+    // #[test]
+    // crossover at if and while was disabled because of this crossover producing an incorrect program with a certain rand
+    // fn test_bugfix_crossover() {
+    //     let params = Params {
+    //         ..Default::default()
+    //     };
+    //     let seed = StdRng::from_entropy().next_u64();
+    //     let mut rand = StdRng::seed_from_u64(seed);
+    //     let prog1 = [Stat(INPUT), Reg(0), Stat(INPUT), Reg(2), Stat(IF), Reg(4), Stat(IF), Reg(2), Stat(IF), Expr(Num(-91)), Stat(LOAD), Reg(1), Expr(Num(-25)), ELSE, Stat(
+    //             IF), Reg(0), ELSE, Stat(LOAD), Reg(0), Expr(Num(-58)), END, END, ELSE, Stat(IF), Expr(Num(20)), ELSE, Stat(OUTPUT), Expr(Num(59)), END, END, ELSE, Stat(OUTPUT), Reg(3),
+    //             END, Stat(OUTPUT), Reg(0)];
+    // }
+    //  x [Stat(INPUT), Reg(0), Stat(LOAD), Reg(4), Reg(4), Stat(OUTPUT), Reg(0)]
+    //     TRACE:  -> [Stat(INPUT), Reg(0), Stat(INPUT), Reg(2), Stat(IF), Reg(4), Stat(IF), Reg(2), Stat(LOAD), Reg(4), Reg(4), ELSE, Stat(OUTPUT), Reg(3), END, Stat(OUTPUT), Reg(
+    //     0)]
+
+    // #[test]
+    // fn test_bugfix_mutation() {
+    //     let params = Params {
+    //         ..Default::default()
+    //     };
+
+    //     const INPUT: Token = Token::Stat(Stat::INPUT);
+    //     const OUTPUT: Token = Token::Stat(Stat::OUTPUT);
+    //     const LOAD: Token = Token::Stat(Stat::LOAD);
+    //     const IF: Token = Token::Stat(Stat::IF);
+    //     const WHILE: Token = Token::Stat(Stat::WHILE);
+    //     const ADD: Token = Token::Expr(Expr::ADD);
+    //     const ELSE: Token = Token::ELSE;
+    //     const END: Token = Token::END;
+    //     use Token::Reg;
+
+
+    //     let seed = StdRng::from_entropy().next_u64();
+    //     // let mut rand = StdRng::seed_from_u64(seed);
+
+    //     let program = vec![INPUT, Reg(0), WHILE, Reg(2),
+    //     WHILE, ADD,
+    //     ADD, Reg(0), Reg(4), Reg(1), LOAD, Reg(0), Reg(0),
+    //     END,
+    //     INPUT, Reg(4), OUTPUT, Reg(0),
+    //     END,
+    //     INPUT, Reg(1), INPUT, Reg(4)];
+
+    //     println!("node end {}", get_node_end(&program, 4));
+    //     assert!(false);
+
+    //     let result = vec![
+    //         INPUT, Reg(0), WHILE, Reg(2),
+    //         INPUT, Reg(3),
+    //         INPUT, Reg(4),
+    //         INPUT, Reg(1), INPUT, Reg(4),
+    //     ];
+
+
+    //     let i = vec![1, 2, 3, 4];
+    //     let runtime = Runtime::new(8, &i, &mut None);
+    //     let output = execute(&program, runtime);
+    // }
+
+
+
+
+//= ((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 2)
+// (Stat . INPUT) (Reg . 3)
+// (Stat . INPUT) (Reg . 4)
+//=  (Stat . INPUT) (Reg . 1) (Stat . INPUT) (Reg . 4))
 }

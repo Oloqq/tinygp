@@ -48,7 +48,10 @@ pub fn grow_stat(
     params: &Params,
     rand: &mut StdRng,
 ) -> Vec<Token> {
-    let stat: Stat = rand.gen();
+    let items = &params.growing.d_stat;
+    let dist2 = WeightedIndex::new(items.iter().map(|item| item.1)).unwrap();
+    let stat: Stat = items[dist2.sample(rand)].0;
+
     let mut code: Vec<Token> = vec![];
     code.push(Token::Stat(stat));
     match stat {
@@ -70,9 +73,36 @@ pub fn grow_stat(
             }
             code.append(&mut expr);
         }
-        _ => {
-            log::error!("growing logic unfinished");
-            return vec![];
+        Stat::IF => {
+            code.append(&mut grow_expr(params, rand));
+            let mut space = size_left - code.len();
+
+            code.append(&mut grow_stat(space, params, rand));
+            space = size_left - code.len();
+            // code.append(&mut grow_stat(space, params, rand));
+            // space = size_left - code.len();
+
+            if space < 8 && rand.gen_bool(0.5) {
+                code.push(Token::END);
+            } else {
+                code.push(Token::ELSE);
+                code.append(&mut grow_stat(space, params, rand));
+                code.push(Token::END);
+            }
+        }
+        Stat::WHILE => {
+            code.append(&mut grow_expr(params, rand));
+            // let mut space = size_left - code.len();
+
+            code.push(Token::Stat(Stat::LOAD));
+            code.push(Token::Reg(0));
+            code.push(Token::Reg(0));
+
+            // code.append(&mut grow_stat(space, params, rand));
+            // space = size_left - code.len();
+            // code.append(&mut grow_stat(space, params, rand));
+
+            code.push(Token::END);
         }
     }
     return if size_left > code.len() { code } else { vec![] };

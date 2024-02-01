@@ -94,6 +94,7 @@ pub fn bench_1_2_d(args: &Args) {
     let params = Params {
         popsize: 10000,
         random_initial_memory: true,
+        max_size: 12,
         ..Default::default()
     };
     let cases: Vec<Case> = vec![
