@@ -28,7 +28,7 @@ pub fn diff_only(expected: &Vec<Number>, actual: &Vec<Number>) -> f32 {
     if actual.len() != 1 {
         return f32::MIN;
     }
-    return diff_first(expected, actual);
+    diff_first(expected, actual)
 }
 
 pub fn diff_first_promote_single(expected: &Vec<Number>, actual: &Vec<Number>) -> f32 {
@@ -52,6 +52,16 @@ pub fn fit_arithmetic_series(expected: &Vec<Number>, actual: &Vec<Number>) -> f3
     }
     error += 10000.0 * (expected.len() as f32 - actual.len() as f32).abs();
     -error
+}
+
+pub fn fit_bool(expected: &Vec<Number>, actual: &Vec<Number>) -> f32 {
+    if actual.len() != 1 {
+        return 1.0;
+    }
+    if expected[0] != 0 && actual[0] != 0 || expected[0] == 0 && actual[0] == 0 {
+        return 0.0;
+    }
+    return 1.0;
 }
 
 pub static FITNESS_FUNCS: Lazy<HashMap<String, FitnessFunc>> = Lazy::new(|| {
