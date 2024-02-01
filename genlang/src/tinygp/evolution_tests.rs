@@ -1,6 +1,6 @@
 use std::io::{self, Write};
 
-use crate::{params::{Params, Case, GrowingParams}, tinygp::fitness_funcs::diff_first};
+use crate::{params::{Params, Case, GrowingParams}, tinygp::{diff_best, fitness_funcs::diff_first}};
 
 use super::{
     common::*,
@@ -48,7 +48,7 @@ fn test_e2e_gen_1() { // 1.1.A, 1.1.D, 1.1.F
         p_crossover: 0.9,
         p_mut_per_node: 0.05,
         tournament_size: 2,
-        acceptable_error: 0.1,
+        acceptable_error: -0.1,
         growing: GrowingParams {
             p_prefer_reg_over_num: 0.2,
             ..Default::default()
@@ -62,8 +62,8 @@ fn test_e2e_gen_1() { // 1.1.A, 1.1.D, 1.1.F
     ];
     let writer: Box<dyn Write> = Box::new(io::stdout());
     let seed = Some(0);
-    let mut tgp = TinyGP::new(params, cases, seed, writer.into(), diff_first);
-    let (program, fitness) = tgp.evolve(3, diff_first);
+    let mut tgp = TinyGP::new(params, cases, seed, writer.into(), diff_best);
+    let (program, fitness) = tgp.evolve(3, diff_best);
     println!("{:?}", program);
     println!("{:?}", fitness);
     assert_eq!(fitness, 0.0);

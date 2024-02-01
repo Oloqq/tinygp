@@ -1,18 +1,1418 @@
-Loading population
+Creating population
 -- TINY GP (Rust version) --
-GENERATIONS=100
-SEED=4
-POPSIZE=10000
+GENERATIONS=200
+SEED=0
+POPSIZE=1000
 CROSSOVER_PROB=0.9
-PMUT_PER_NODE=0.05
-TSIZE=2
+PMUT_PER_NODE=0.5
+TSIZE=5
 ----------------------------------
 
 Generation=0
-Avg Fitness=-134599600
-Best Fitness=0
+Avg Fitness=-inf
+Best Fitness=-22487
 Avg Size=7
 Best Individual: 
-[Stat(INPUT), Reg(4), Stat(INPUT), Reg(0), Stat(OUTPUT), Expr(ADD), Reg(0), Reg(4)]
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(2), Stat(OUTPUT), Reg(0)]
 
-PROBLEM SOLVED
+Generation=1
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(2), Stat(OUTPUT), Reg(0)]
+
+Generation=2
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(2), Stat(OUTPUT), Reg(0)]
+
+Generation=3
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(2), Stat(OUTPUT), Reg(0)]
+
+Generation=4
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(2), Stat(OUTPUT), Reg(0)]
+
+Generation=5
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(2), Stat(OUTPUT), Reg(0)]
+
+Generation=6
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(2), Stat(OUTPUT), Reg(0)]
+
+Generation=7
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(2), Stat(OUTPUT), Reg(0)]
+
+Generation=8
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(2), Stat(OUTPUT), Reg(0)]
+
+Generation=9
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(2), Stat(OUTPUT), Reg(0)]
+
+Generation=10
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(2), Stat(OUTPUT), Reg(0)]
+
+Generation=11
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(INPUT), Reg(2), Stat(OUTPUT), Reg(0)]
+
+Generation=12
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=13
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=14
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=15
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=16
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=17
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=18
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=19
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(2), Reg(0), Stat(OUTPUT), Reg(2)]
+
+Generation=20
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(2), Reg(0), Stat(OUTPUT), Reg(2)]
+
+Generation=21
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(2), Reg(0), Stat(OUTPUT), Reg(2)]
+
+Generation=22
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(2), Reg(0), Stat(OUTPUT), Reg(2)]
+
+Generation=23
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(2), Reg(0), Stat(OUTPUT), Reg(2)]
+
+Generation=24
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(2), Reg(0), Stat(OUTPUT), Reg(2)]
+
+Generation=25
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(2), Reg(0), Stat(OUTPUT), Reg(2)]
+
+Generation=26
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=27
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=28
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(1), Reg(1), Stat(LOAD), Reg(1), Reg(1), Stat(OUTPUT), Reg(0)]
+
+Generation=29
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(1), Reg(1), Stat(LOAD), Reg(1), Reg(1), Stat(OUTPUT), Reg(0)]
+
+Generation=30
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=31
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=32
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=33
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=34
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=35
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=36
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=37
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=38
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=39
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=40
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=41
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=42
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(2), Reg(0), Stat(OUTPUT), Reg(2)]
+
+Generation=43
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(2), Reg(0), Stat(OUTPUT), Reg(2)]
+
+Generation=44
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=45
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=46
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=47
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=48
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=49
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=50
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=51
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=52
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=53
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=54
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=55
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=56
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=57
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=58
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=59
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=60
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=61
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=62
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=63
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=64
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=65
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(1), Reg(2), Stat(OUTPUT), Reg(0)]
+
+Generation=66
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(1), Reg(2), Stat(OUTPUT), Reg(0)]
+
+Generation=67
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(1), Reg(2), Stat(OUTPUT), Reg(0)]
+
+Generation=68
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(1), Reg(2), Stat(OUTPUT), Reg(0)]
+
+Generation=69
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=70
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=71
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=72
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=73
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=74
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=75
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=76
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=77
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=78
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=79
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=80
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=81
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(1), Expr(Num(50)), Stat(OUTPUT), Reg(0)]
+
+Generation=82
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=83
+Avg Fitness=-inf
+Best Fitness=-22487
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=84
+Avg Fitness=-inf
+Best Fitness=-22485
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(MUL), Reg(1), Expr(Num(-59)), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=85
+Avg Fitness=-inf
+Best Fitness=-22484
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(MUL), Reg(1), Expr(Num(-59)), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=86
+Avg Fitness=-inf
+Best Fitness=-22484
+Avg Size=8
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(MUL), Reg(1), Expr(Num(-59)), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=87
+Avg Fitness=-inf
+Best Fitness=-22483
+Avg Size=9
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(MUL), Reg(0), Reg(1), Reg(2), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=88
+Avg Fitness=-inf
+Best Fitness=-22482
+Avg Size=9
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(AND), Expr(GT), Expr(MUL), Reg(1), Expr(Num(-59)), Reg(1), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=89
+Avg Fitness=-inf
+Best Fitness=-22482
+Avg Size=10
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(AND), Expr(GT), Expr(MUL), Reg(1), Expr(Num(-59)), Reg(1), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=90
+Avg Fitness=-inf
+Best Fitness=-22481
+Avg Size=10
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(MUL), Reg(1), Expr(Num(-59)), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=91
+Avg Fitness=-inf
+Best Fitness=-22481
+Avg Size=12
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(LT), Reg(2), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=92
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=13
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=93
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=13
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=94
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=13
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=95
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=13
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=96
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=13
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=97
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=13
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=98
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=13
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=99
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=13
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=100
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=13
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=101
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=13
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=102
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=13
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=103
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=13
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=104
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=13
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=105
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=13
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=106
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=13
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=107
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=13
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=108
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=13
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=109
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=13
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=110
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=13
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=111
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=13
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=112
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=14
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=113
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=14
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=114
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=14
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=115
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=14
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=116
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=14
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=117
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=14
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=118
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=14
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=119
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=14
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=120
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=14
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=121
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=14
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=122
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=14
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=123
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=14
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=124
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=15
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=125
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=15
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=126
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=15
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=127
+Avg Fitness=-inf
+Best Fitness=-22479
+Avg Size=15
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(GT), Expr(LT), Reg(0), Reg(1), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=128
+Avg Fitness=-inf
+Best Fitness=-22147
+Avg Size=15
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=129
+Avg Fitness=-inf
+Best Fitness=-22147
+Avg Size=15
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=130
+Avg Fitness=-inf
+Best Fitness=-22147
+Avg Size=15
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=131
+Avg Fitness=-inf
+Best Fitness=-22147
+Avg Size=15
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=132
+Avg Fitness=-inf
+Best Fitness=-22147
+Avg Size=15
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=133
+Avg Fitness=-inf
+Best Fitness=-22147
+Avg Size=15
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=134
+Avg Fitness=-inf
+Best Fitness=-22147
+Avg Size=15
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=135
+Avg Fitness=-inf
+Best Fitness=-19659
+Avg Size=15
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(AND), Expr(AND), Reg(2), Expr(Num(15)), Reg(1), Reg(2), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=136
+Avg Fitness=-inf
+Best Fitness=-19659
+Avg Size=15
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(AND), Expr(AND), Reg(2), Expr(Num(15)), Reg(1), Reg(2), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=137
+Avg Fitness=-inf
+Best Fitness=-19640
+Avg Size=15
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(ADD), Expr(GT), Expr(Num(-59)), Reg(1), Reg(0), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=138
+Avg Fitness=-inf
+Best Fitness=-19628
+Avg Size=16
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(2), Expr(Num(-59)), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=139
+Avg Fitness=-inf
+Best Fitness=-19628
+Avg Size=16
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(2), Expr(Num(-59)), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=140
+Avg Fitness=-inf
+Best Fitness=-19628
+Avg Size=16
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(2), Expr(Num(-59)), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=141
+Avg Fitness=-inf
+Best Fitness=-19628
+Avg Size=17
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(2), Expr(Num(-59)), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=142
+Avg Fitness=-inf
+Best Fitness=-19628
+Avg Size=17
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(2), Expr(Num(-59)), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=143
+Avg Fitness=-inf
+Best Fitness=-19628
+Avg Size=17
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(2), Expr(Num(-59)), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=144
+Avg Fitness=-inf
+Best Fitness=-19628
+Avg Size=18
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(2), Expr(Num(-59)), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=145
+Avg Fitness=-inf
+Best Fitness=-19628
+Avg Size=18
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(2), Expr(Num(-59)), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=146
+Avg Fitness=-inf
+Best Fitness=-19414
+Avg Size=18
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(AND), Expr(LT), Reg(2), Reg(0), Reg(0), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=147
+Avg Fitness=-inf
+Best Fitness=-19414
+Avg Size=18
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(AND), Expr(LT), Reg(2), Reg(0), Reg(0), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=148
+Avg Fitness=-inf
+Best Fitness=-19414
+Avg Size=19
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(AND), Expr(LT), Reg(2), Reg(0), Reg(0), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=149
+Avg Fitness=-inf
+Best Fitness=-19414
+Avg Size=19
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(AND), Expr(LT), Reg(2), Reg(0), Reg(0), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=150
+Avg Fitness=-inf
+Best Fitness=-19414
+Avg Size=19
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(AND), Expr(LT), Reg(2), Reg(0), Reg(0), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=151
+Avg Fitness=-inf
+Best Fitness=-19414
+Avg Size=19
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(AND), Expr(LT), Reg(2), Reg(0), Reg(0), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=152
+Avg Fitness=-inf
+Best Fitness=-19414
+Avg Size=19
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(AND), Expr(LT), Reg(2), Reg(0), Reg(0), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=153
+Avg Fitness=-inf
+Best Fitness=-19374
+Avg Size=19
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(1), Expr(GT), Expr(MUL), Reg(0), Expr(GT), Expr(GT), Expr(MUL), Reg(0), Reg(1), Reg(0), Reg(0), Reg(2), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=154
+Avg Fitness=-inf
+Best Fitness=-19374
+Avg Size=20
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(1), Expr(GT), Expr(MUL), Reg(0), Expr(GT), Expr(GT), Expr(MUL), Reg(0), Reg(1), Reg(0), Reg(0), Reg(2), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=155
+Avg Fitness=-inf
+Best Fitness=-19374
+Avg Size=20
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(1), Expr(GT), Expr(MUL), Reg(0), Expr(GT), Expr(GT), Expr(MUL), Reg(0), Reg(1), Reg(0), Reg(0), Reg(2), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=156
+Avg Fitness=-inf
+Best Fitness=-19374
+Avg Size=20
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(1), Expr(GT), Expr(MUL), Reg(0), Expr(GT), Expr(GT), Expr(MUL), Reg(0), Reg(1), Reg(0), Reg(0), Reg(2), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=157
+Avg Fitness=-inf
+Best Fitness=-19374
+Avg Size=20
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(1), Expr(GT), Expr(MUL), Reg(0), Expr(GT), Expr(GT), Expr(MUL), Reg(0), Reg(1), Reg(0), Reg(0), Reg(2), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=158
+Avg Fitness=-inf
+Best Fitness=-19374
+Avg Size=20
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(1), Expr(GT), Expr(MUL), Reg(0), Expr(GT), Expr(GT), Expr(MUL), Reg(0), Reg(1), Reg(0), Reg(0), Reg(2), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=159
+Avg Fitness=-inf
+Best Fitness=-19349
+Avg Size=20
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(MUL), Reg(1), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(GT), Expr(ADD), Expr(GT), Expr(GT), Expr(Num(-59)), Reg(1), Reg(0), Reg(0), Reg(1), Reg(0), Reg(0), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=160
+Avg Fitness=-inf
+Best Fitness=-19343
+Avg Size=21
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(1), Expr(GT), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(1), Expr(MUL), Reg(0), Expr(GT), Expr(ADD), Expr(GT), Expr(GT), Expr(Num(-59)), Reg(0), Reg(0), Reg(0), Reg(1), Reg(0), Reg(0), Reg(2), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=161
+Avg Fitness=-inf
+Best Fitness=-19343
+Avg Size=21
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(1), Expr(GT), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(1), Expr(MUL), Reg(0), Expr(GT), Expr(ADD), Expr(GT), Expr(GT), Expr(Num(-59)), Reg(0), Reg(0), Reg(0), Reg(1), Reg(0), Reg(0), Reg(2), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=162
+Avg Fitness=-inf
+Best Fitness=-19339
+Avg Size=21
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(MUL), Reg(1), Expr(LT), Reg(2), Reg(0), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=163
+Avg Fitness=-inf
+Best Fitness=-19339
+Avg Size=21
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(MUL), Reg(1), Expr(LT), Reg(2), Reg(0), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=164
+Avg Fitness=-inf
+Best Fitness=-19319
+Avg Size=21
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(ADD), Expr(GT), Expr(GT), Expr(MUL), Reg(1), Expr(GT), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(2), Reg(0), Reg(1), Reg(0), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=165
+Avg Fitness=-inf
+Best Fitness=-19319
+Avg Size=21
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(ADD), Expr(GT), Expr(GT), Expr(MUL), Reg(1), Expr(GT), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(2), Reg(0), Reg(1), Reg(0), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=166
+Avg Fitness=-inf
+Best Fitness=-19319
+Avg Size=22
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(ADD), Expr(GT), Expr(GT), Expr(MUL), Reg(1), Expr(GT), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(2), Reg(0), Reg(1), Reg(0), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=167
+Avg Fitness=-inf
+Best Fitness=-19319
+Avg Size=21
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(ADD), Expr(GT), Expr(GT), Expr(MUL), Reg(1), Expr(GT), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(2), Reg(0), Reg(1), Reg(0), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=168
+Avg Fitness=-inf
+Best Fitness=-19319
+Avg Size=22
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(ADD), Expr(GT), Expr(GT), Expr(MUL), Reg(1), Expr(GT), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(2), Reg(0), Reg(1), Reg(0), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=169
+Avg Fitness=-inf
+Best Fitness=-19319
+Avg Size=22
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(ADD), Expr(GT), Expr(GT), Expr(MUL), Reg(1), Expr(GT), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(2), Reg(0), Reg(1), Reg(0), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=170
+Avg Fitness=-inf
+Best Fitness=-19319
+Avg Size=22
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(ADD), Expr(GT), Expr(GT), Expr(MUL), Reg(1), Expr(GT), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(2), Reg(0), Reg(1), Reg(0), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=171
+Avg Fitness=-inf
+Best Fitness=-19319
+Avg Size=22
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(ADD), Expr(GT), Expr(GT), Expr(MUL), Reg(1), Expr(GT), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(2), Reg(0), Reg(1), Reg(0), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=172
+Avg Fitness=-inf
+Best Fitness=-19319
+Avg Size=22
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(ADD), Expr(GT), Expr(GT), Expr(MUL), Reg(1), Expr(GT), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(2), Reg(0), Reg(1), Reg(0), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=173
+Avg Fitness=-inf
+Best Fitness=-19319
+Avg Size=22
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(ADD), Expr(GT), Expr(GT), Expr(MUL), Reg(1), Expr(GT), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(2), Reg(0), Reg(1), Reg(0), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=174
+Avg Fitness=-inf
+Best Fitness=-19319
+Avg Size=22
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(ADD), Expr(GT), Expr(GT), Expr(MUL), Reg(1), Expr(GT), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(2), Reg(0), Reg(1), Reg(0), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=175
+Avg Fitness=-inf
+Best Fitness=-19319
+Avg Size=22
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(ADD), Expr(GT), Expr(GT), Expr(MUL), Reg(1), Expr(GT), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(2), Reg(0), Reg(1), Reg(0), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=176
+Avg Fitness=-inf
+Best Fitness=-19309
+Avg Size=22
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(ADD), Expr(GT), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(0), Reg(1), Reg(0), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=177
+Avg Fitness=-inf
+Best Fitness=-19309
+Avg Size=21
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(ADD), Expr(GT), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(0), Reg(1), Reg(0), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=178
+Avg Fitness=-inf
+Best Fitness=-19309
+Avg Size=21
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(ADD), Expr(GT), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(0), Reg(1), Reg(0), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=179
+Avg Fitness=-inf
+Best Fitness=-19309
+Avg Size=21
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(ADD), Expr(GT), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(0), Reg(1), Reg(0), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=180
+Avg Fitness=-inf
+Best Fitness=-19309
+Avg Size=22
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(ADD), Expr(GT), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(0), Reg(1), Reg(0), Reg(0), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=181
+Avg Fitness=-inf
+Best Fitness=-19308
+Avg Size=21
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(GT), Expr(Num(-59)), Reg(2), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=182
+Avg Fitness=-inf
+Best Fitness=-19308
+Avg Size=21
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(GT), Expr(Num(-59)), Reg(2), Reg(1), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=183
+Avg Fitness=-inf
+Best Fitness=-19308
+Avg Size=21
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(2), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=184
+Avg Fitness=-inf
+Best Fitness=-19308
+Avg Size=20
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(2), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=185
+Avg Fitness=-inf
+Best Fitness=-19308
+Avg Size=20
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(2), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=186
+Avg Fitness=-inf
+Best Fitness=-19308
+Avg Size=20
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(2), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=187
+Avg Fitness=-inf
+Best Fitness=-19308
+Avg Size=20
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(2), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=188
+Avg Fitness=-inf
+Best Fitness=-19308
+Avg Size=21
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(2), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=189
+Avg Fitness=-inf
+Best Fitness=-19308
+Avg Size=20
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(2), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=190
+Avg Fitness=-inf
+Best Fitness=-19308
+Avg Size=20
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(2), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=191
+Avg Fitness=-inf
+Best Fitness=-19308
+Avg Size=20
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(2), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=192
+Avg Fitness=-inf
+Best Fitness=-19308
+Avg Size=20
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(2), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=193
+Avg Fitness=-inf
+Best Fitness=-19308
+Avg Size=20
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(2), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=194
+Avg Fitness=-inf
+Best Fitness=-19308
+Avg Size=20
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(2), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=195
+Avg Fitness=-inf
+Best Fitness=-19308
+Avg Size=19
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(2), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=196
+Avg Fitness=-inf
+Best Fitness=-19308
+Avg Size=20
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(2), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=197
+Avg Fitness=-inf
+Best Fitness=-19308
+Avg Size=20
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(2), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=198
+Avg Fitness=-inf
+Best Fitness=-19308
+Avg Size=19
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(2), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=199
+Avg Fitness=-inf
+Best Fitness=-19308
+Avg Size=20
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(2), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=200
+Avg Fitness=-inf
+Best Fitness=-19308
+Avg Size=19
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(LOAD), Reg(0), Expr(ADD), Expr(MUL), Reg(0), Expr(GT), Expr(MUL), Reg(0), Expr(MUL), Reg(0), Expr(Num(-59)), Reg(2), Reg(0), Stat(OUTPUT), Reg(0)]
+
+PROBLEM UNSOLVED

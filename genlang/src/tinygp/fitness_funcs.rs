@@ -1,5 +1,5 @@
 use super::common::{Number, Program};
-use std::collections::HashMap;
+use std::{cmp, collections::HashMap};
 use once_cell::sync::Lazy;
 
 pub type FitnessFunc = fn(expected: &Vec<Number>, actual: &Vec<Number>) -> f32;
@@ -9,6 +9,26 @@ pub fn diff_first(expected: &Vec<Number>, actual: &Vec<Number>) -> f32 {
     let expected = expected[0];
     let error = (*output as f32 - expected as f32).abs();
     -error
+}
+
+pub fn diff_best(expected: &Vec<Number>, actual: &Vec<Number>) -> f32 {
+    let mut min_error = f32::MAX;
+    for i in 0..cmp::min(expected.len(), actual.len()) {
+        let output = actual.get(i).unwrap_or(&0);
+        let expected = expected[i];
+        let error = (*output as f32 - expected as f32).abs();
+        if error < min_error {
+            min_error = error;
+        }
+    }
+    -min_error
+}
+
+pub fn diff_only(expected: &Vec<Number>, actual: &Vec<Number>) -> f32 {
+    if actual.len() != 1 {
+        return f32::MIN;
+    }
+    return diff_first(expected, actual);
 }
 
 pub static FITNESS_FUNCS: Lazy<HashMap<String, FitnessFunc>> = Lazy::new(|| {
