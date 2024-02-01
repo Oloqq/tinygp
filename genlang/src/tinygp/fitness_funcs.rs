@@ -1,6 +1,6 @@
 use super::common::{Number, Program};
-use std::{cmp, collections::HashMap};
 use once_cell::sync::Lazy;
+use std::{cmp, collections::HashMap};
 
 pub type FitnessFunc = fn(expected: &Vec<Number>, actual: &Vec<Number>) -> f32;
 
@@ -39,6 +39,19 @@ pub fn diff_first_promote_single(expected: &Vec<Number>, actual: &Vec<Number>) -
     let expected = expected[0];
     let error = (*output as f32 - expected as f32).abs();
     -error * f32::sqrt(actual.len() as f32)
+}
+
+pub fn fit_arithmetic_series(expected: &Vec<Number>, actual: &Vec<Number>) -> f32 {
+    let mut error: f32 = 0.0;
+    for i in 0..cmp::min(expected.len(), actual.len()) {
+        let output = match actual.get(i) {
+            Some(x) => x,
+            None => return f32::MIN,
+        };
+        error += (*output as f32 - expected[i] as f32).abs();
+    }
+    error += 10000.0 * (expected.len() as f32 - actual.len() as f32).abs();
+    -error
 }
 
 pub static FITNESS_FUNCS: Lazy<HashMap<String, FitnessFunc>> = Lazy::new(|| {

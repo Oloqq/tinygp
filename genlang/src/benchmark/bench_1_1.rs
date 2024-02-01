@@ -8,7 +8,7 @@ pub fn bench_1_1_a(args: &Args) {
     let params = Params {
         memsize: 3,
         popsize: 100,
-        max_size: 4,
+        max_size: 10,
         p_crossover: 0.9,
         p_mut_per_node: 0.2,
         tournament_size: 2,
@@ -33,7 +33,7 @@ pub fn bench_1_1_b(args: &Args) {
     let params = Params {
         memsize: 3,
         popsize: 1000,
-        max_size: 4, // ignored during initial generation, low number prevents bloating
+        max_size: 10, // ignored during initial generation, low number prevents bloating
         p_crossover: 0.9,
         p_mut_per_node: 0.1,
         tournament_size: 2,
@@ -59,7 +59,7 @@ pub fn bench_1_1_c(args: &Args) {
     let params = Params {
         memsize: 3,
         popsize: 2000,
-        max_size: 4,
+        max_size: 10,
         p_crossover: 0.5,
         p_mut_per_node: 0.1,
         tournament_size: 2,
@@ -85,7 +85,7 @@ pub fn bench_1_1_d(args: &Args) {
     let params = Params {
         memsize: 3,
         popsize: 100,
-        max_size: 4,
+        max_size: 10,
         p_crossover: 0.9,
         p_mut_per_node: 0.2,
         tournament_size: 2,
@@ -110,7 +110,7 @@ pub fn bench_1_1_e(args: &Args) {
     let params = Params {
         memsize: 3,
         popsize: 1000,
-        max_size: 4, // ignored during initial generation, low number prevents bloating
+        max_size: 10, // ignored during initial generation, low number prevents bloating
         p_crossover: 0.9,
         p_mut_per_node: 0.1,
         tournament_size: 2,
@@ -134,7 +134,7 @@ pub fn bench_1_1_e(args: &Args) {
 // 1.1.F Program powinien wygenerować na wyjściu liczbę jako jedyną liczbę 1. Poza liczbą 1 NIE powinien nic więcej wygenerować.
 pub fn bench_1_1_f(args: &Args) {
     let params = Params {
-        memsize: 3,
+        memsize: 10,
         popsize: 1000,
         max_size: 4,
         p_crossover: 0.9,
