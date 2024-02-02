@@ -56,12 +56,12 @@ pub fn fit_arithmetic_series(expected: &Vec<Number>, actual: &Vec<Number>) -> f3
 
 pub fn fit_bool(expected: &Vec<Number>, actual: &Vec<Number>) -> f32 {
     if actual.len() != 1 {
-        return 1.0;
+        return -1.0;
     }
     if expected[0] != 0 && actual[0] != 0 || expected[0] == 0 && actual[0] == 0 {
         return 0.0;
     }
-    return 1.0;
+    return -1.0;
 }
 
 pub static FITNESS_FUNCS: Lazy<HashMap<String, FitnessFunc>> = Lazy::new(|| {
