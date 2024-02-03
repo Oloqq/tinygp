@@ -13,10 +13,11 @@ pub enum EvalError {
 
 pub struct Runtime<'a> {
     memory: Vec<Number>,
-    input: &'a Vec<Number>,
-    output: Vec<Number>,
-    input_cursor: usize,
+    pub input: &'a Vec<Number>,
+    pub output: Vec<Number>,
+    pub input_cursor: usize,
     max_iterations: usize,
+    pub overread: bool,
 }
 
 impl<'a> Runtime<'a> {
@@ -33,6 +34,7 @@ impl<'a> Runtime<'a> {
             output: Vec::new(),
             input_cursor: 0,
             max_iterations: 100,
+            overread: false,
         }
     }
 
@@ -42,6 +44,7 @@ impl<'a> Runtime<'a> {
             self.input_cursor += 1;
             Some(val)
         } else {
+            self.overread = true;
             None
         }
     }
@@ -70,25 +73,21 @@ impl<'a> Runtime<'a> {
     }
 }
 
-pub fn execute(program: &Program, runtime: Runtime) -> Vec<Number> {
+pub fn execute(program: &Program, runtime: &mut Runtime) {
     log::info!("executing {}", serialize(program));
-    let mut runtime = runtime;
-    return match eval_block(program, 0, &mut runtime) {
+    return match eval_block(program, 0, runtime) {
         Ok(_pos) => {
             log::trace!("program ended with output {:?}", runtime.output);
             // log::debug!("finished at pos {}/{}", pos, program.len() - 1);
-            runtime.output
         }
         Err(EvalError::Finished) => {
             log::trace!(
                 "terminated due to input end with output {:?}",
                 runtime.output
             );
-            runtime.output
         }
         Err(EvalError::MaxIteration) => {
             log::trace!("terminated due reaching max iteration {:?}", runtime.output);
-            runtime.output
         }
         Err(EvalError::Syntax(pos, reason)) => {
             log::error!("Invalid program: {program:?}");
@@ -98,7 +97,6 @@ pub fn execute(program: &Program, runtime: Runtime) -> Vec<Number> {
         Err(EvalError::Semantic(reason)) => {
             log::error!("Invalid program: {program:?}");
             log::error!("Invalid program reason: {reason}");
-            runtime.output
         }
     };
 }
@@ -420,6 +418,7 @@ mod tests {
             output: vec![],
             input_cursor: 0,
             max_iterations: 100,
+            overread: false
         };
         let res = eval_stat(&program, 0, &mut runtime);
         assert!(res.is_ok());

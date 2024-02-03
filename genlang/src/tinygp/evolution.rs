@@ -17,9 +17,9 @@ pub fn run_and_rank(
     memory_initializer: &mut Option<&mut StdRng>
 ) -> f32 {
     cases.iter().fold(0.0, |acc, (inputs, targets)| {
-        let runtime = Runtime::new(params.memsize, &inputs, memory_initializer);
-        let output = execute(program, runtime);
-        let fitness = fitness_func(targets, &output);
+        let mut runtime = Runtime::new(params.memsize, &inputs, memory_initializer);
+        execute(program, &mut runtime);
+        let fitness = fitness_func(targets, &runtime.output, &runtime);
         // log::trace!("the fitness is: {fitness}");
         acc + fitness
     })

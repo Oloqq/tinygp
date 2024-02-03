@@ -8,7 +8,7 @@ use super::util::execute_benchmark;
 pub fn bench_1_4_a(args: &Args) {
     let params = Params {
         popsize: 1000,
-        max_size: 10000,
+        max_size: 1000,
         memsize: 15,
         growing: GrowingParams {
             d_expr: vec![
@@ -26,11 +26,11 @@ pub fn bench_1_4_a(args: &Args) {
                 (Expr::Reg(0), 1),
             ],
             d_stat: vec![
-                (Stat::LOAD, 1),
+                (Stat::LOAD, 4),
                 (Stat::IF, 0),
                 (Stat::WHILE, 1),
-                (Stat::INPUT, 4),
-                (Stat::OUTPUT, 1)
+                (Stat::INPUT, 8),
+                (Stat::OUTPUT, 4)
             ],
             p_prefer_reg_over_num: 0.8,
             min_const: 1,
@@ -53,7 +53,8 @@ pub fn bench_1_4_a(args: &Args) {
         (vec![-54, -94, -64], vec![-71]),
     ];
 
-    execute_benchmark(args, params, cases, "1_4_a", diff_first_promote_single);
+    // execute_benchmark(args, params, cases, "1_4_a", fit_exact_reading);
+    execute_benchmark(args, params, cases, "1_4_a", diff_first_promote_reading);
 }
 
 

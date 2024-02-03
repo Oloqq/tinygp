@@ -90,6 +90,7 @@ W plikach `.pop` zapisano końcowe populacje. W plikach `.txt` można zobaczyć 
   - puste wyjście pozostało optymalne nawet przy dodaniu stałej jedynki do długości programu, przez przyjęcie 0 jako "domyślnej" wartości zwracanej przez program
   - po zmianie tej domyślnej wartości na $-\infty$ powstała funkcja `diff_first_promote_single`, zwracająca fitness
   $$-|actual-expected|\sqrt{len(program)}$$
+  - w późniejszym czasie zamieniono `-f32::INFINITY` na `f32::MIN`, ponieważ wystarczył jeden program o nieskończenie ujemnym fitnesie aby informacja o średniej sprawności była bezużyteczna.
 - Test 1.4
   - 1.4.A (średnia z 10 liczb)
     - do generowania przypadków testowych użyto `troublemaker.py`

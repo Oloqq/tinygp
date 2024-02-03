@@ -21,10 +21,10 @@ use pretty_assertions::assert_eq;
 fn run_cases(program: &Program, memsize: usize, cases: Vec<(Vec<Number>, Vec<Number>)>) {
     let _ = env_logger::builder().is_test(true).try_init();
     for (i, (input, expected_output)) in cases.into_iter().enumerate() {
-        let runtime = Runtime::new(memsize, &input, &mut None);
+        let mut runtime = Runtime::new(memsize, &input, &mut None);
         println!("\nCase {i}");
-        let output = execute(&program, runtime);
-        assert_eq!(output, expected_output);
+        execute(&program, &mut runtime);
+        assert_eq!(runtime.output, expected_output);
     }
 }
 
@@ -282,9 +282,10 @@ fn test_while_interrupt_infinite_loop() {
         OUTPUT, num(3)
     ];
     let v = vec![];
-    let runtime = Runtime::new(memsize, &v, &mut None);
+    let mut runtime = Runtime::new(memsize, &v, &mut None);
     println!("Entering infinite loop");
-    let output = execute(&program, runtime);
+    execute(&program, &mut runtime);
+    let output = runtime.output;
     assert!(output.len() > 3);
     assert_eq!(output[0], 1);
     assert_eq!(output[1], 2);
