@@ -3,7 +3,7 @@ use super::{
     execution::Runtime,
 };
 use once_cell::sync::Lazy;
-use std::collections::HashMap;
+use std::{collections::HashMap, cmp};
 
 pub type FitnessFunc = fn(expected: &Vec<Number>, actual: &Vec<Number>, runtime: &Runtime) -> f32;
 
@@ -12,6 +12,26 @@ pub fn diff_first(expected: &Vec<Number>, actual: &Vec<Number>, _runtime: &Runti
     let expected = expected[0];
     let error = (*output as f32 - expected as f32).abs();
     -error
+}
+
+pub fn diff_best(expected: &Vec<Number>, actual: &Vec<Number>, _runtime: &Runtime) -> f32 {
+    let mut min_error = f32::MAX;
+    for i in 0..cmp::min(expected.len(), actual.len()) {
+        let output = actual.get(i).unwrap_or(&0);
+        let expected = expected[i];
+        let error = (*output as f32 - expected as f32).abs();
+        if error < min_error {
+            min_error = error;
+        }
+    }
+    -min_error
+}
+
+pub fn diff_only(expected: &Vec<Number>, actual: &Vec<Number>, _runtime: &Runtime) -> f32 {
+    if actual.len() != 1 {
+        return f32::MIN;
+    }
+    diff_first(expected, actual, _runtime)
 }
 
 pub fn diff_first_promote_single(
@@ -28,6 +48,7 @@ pub fn diff_first_promote_single(
     -error * f32::sqrt(actual.len() as f32)
 }
 
+#[allow(unused)]
 fn distance(a: Number, b: Number) -> f32 {
     a.abs_diff(b) as f32
 }
@@ -48,7 +69,8 @@ fn punish_overreading(runtime: &Runtime) -> f32 {
     if runtime.overread { f32::MAX } else { 1.0 }
 }
 
-pub fn fit_exact_reading(expected: &Vec<Number>, actual: &Vec<Number>, runtime: &Runtime) -> f32 {
+#[allow(unused)]
+pub fn fit_exact_reading(_expected: &Vec<Number>, _actual: &Vec<Number>, runtime: &Runtime) -> f32 {
     -promote_reading(runtime) * punish_overreading(runtime)
 }
 
@@ -67,6 +89,29 @@ pub fn diff_first_promote_reading(
         * promote_reading(runtime)
         * punish_overreading(runtime);
     -error
+}
+
+pub fn fit_arithmetic_series(expected: &Vec<Number>, actual: &Vec<Number>, _runtime: &Runtime) -> f32 {
+    let mut error: f32 = 0.0;
+    for i in 0..cmp::min(expected.len(), actual.len()) {
+        let output = match actual.get(i) {
+            Some(x) => x,
+            None => return f32::MIN,
+        };
+        error += (*output as f32 - expected[i] as f32).abs();
+    }
+    error += 10000.0 * (expected.len() as f32 - actual.len() as f32).abs();
+    -error
+}
+
+pub fn fit_bool(expected: &Vec<Number>, actual: &Vec<Number>, _runtime: &Runtime) -> f32 {
+    if actual.len() != 1 {
+        return -1.0;
+    }
+    if expected[0] != 0 && actual[0] != 0 || expected[0] == 0 && actual[0] == 0 {
+        return 0.0;
+    }
+    return -1.0;
 }
 
 pub static FITNESS_FUNCS: Lazy<HashMap<String, FitnessFunc>> = Lazy::new(|| {
@@ -111,3 +156,4 @@ mod tests {
     //     assert_eq!(diff_first(&expected, &vec![-1, 0, 12512, 453333]), -2.0);
     // }
 }
+

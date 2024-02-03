@@ -1,5 +1,3 @@
-use std::fmt::Display;
-
 use rand_derive::Rand;
 use serde_derive::{Deserialize, Serialize};
 

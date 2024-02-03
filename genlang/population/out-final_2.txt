@@ -1,0 +1,718 @@
+Creating population
+-- TINY GP (Rust version) --
+GENERATIONS=100
+SEED=0
+POPSIZE=1000
+CROSSOVER_PROB=0.9
+PMUT_PER_NODE=0.05
+TSIZE=2
+----------------------------------
+
+Generation=0
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=16
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 12) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Expr . GT) (Expr Num . -50) (Expr Num . 3) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=1
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=17
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 12) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Expr . GT) (Expr Num . -50) (Expr Num . 3) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=2
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=17
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 12) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Expr . GT) (Expr Num . -50) (Expr Num . 3) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=3
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=17
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 14) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Reg . 11) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=4
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=17
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . EQ) (Reg . 6) (Expr Num . 85) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Reg . 14) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=5
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=17
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . EQ) (Reg . 6) (Expr Num . 85) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Reg . 14) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=6
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=17
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . EQ) (Reg . 6) (Expr Num . 85) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Reg . 14) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=7
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=17
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 4) (Stat . INPUT) (Reg . 0) END (Stat . WHILE) (Reg . 4) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=8
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=17
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 4) (Stat . INPUT) (Reg . 0) END (Stat . WHILE) (Reg . 4) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=9
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=17
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 4) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Reg . 2) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=10
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=17
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 5) (Stat . INPUT) (Reg . 0) END (Stat . WHILE) (Reg . 9) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=11
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=18
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 5) (Stat . INPUT) (Reg . 0) END (Stat . WHILE) (Reg . 9) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=12
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=18
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 6) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Reg . 11) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=13
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=19
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . GT) (Reg . 5) (Expr Num . 98) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Reg . 13) (Stat . LOAD) (Reg . 10) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=14
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=19
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . MUL) (Expr . OR) (Expr . MUL) (Reg . 10) (Expr . OR) (Reg . 7) (Expr . DIV) (Expr . SUB) (Reg . 0) (Expr . AND) (Reg . 0) (Expr . GT) (Expr Num . -80) (Expr Num . 43) (Reg . 5) (Reg . 1) (Reg . 0) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Expr . DIV) (Reg . 8) (Expr . AND) (Expr . GT) (Reg . 5) (Expr Num . 98) (Reg . 3) (Stat . LOAD) (Reg . 11) (Reg . 8) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=15
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=18
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . MUL) (Expr . OR) (Expr . MUL) (Reg . 10) (Expr . OR) (Reg . 7) (Expr . DIV) (Expr . SUB) (Reg . 0) (Expr . AND) (Reg . 0) (Expr . GT) (Expr Num . -80) (Expr Num . 43) (Reg . 5) (Reg . 1) (Reg . 0) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Expr . DIV) (Reg . 8) (Expr . AND) (Expr . GT) (Reg . 5) (Expr Num . 98) (Reg . 3) (Stat . LOAD) (Reg . 11) (Reg . 8) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=16
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=18
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . MUL) (Expr . OR) (Expr . MUL) (Reg . 10) (Expr . OR) (Reg . 2) (Expr . DIV) (Expr . SUB) (Reg . 11) (Expr . AND) (Reg . 0) (Expr . GT) (Expr Num . -80) (Expr Num . 43) (Reg . 5) (Reg . 1) (Reg . 0) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Expr . DIV) (Reg . 8) (Expr . AND) (Expr . GT) (Reg . 5) (Expr Num . 98) (Reg . 0) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=17
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=18
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . MUL) (Expr . OR) (Expr . MUL) (Reg . 10) (Expr . OR) (Reg . 2) (Expr . DIV) (Expr . SUB) (Reg . 11) (Expr . AND) (Reg . 0) (Expr . GT) (Expr Num . -80) (Expr Num . 43) (Reg . 5) (Reg . 1) (Reg . 0) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Expr . DIV) (Reg . 8) (Expr . AND) (Expr . GT) (Reg . 5) (Expr Num . 98) (Reg . 0) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=18
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=18
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 7) (Stat . LOAD) (Reg . 0) (Reg . 8) END (Stat . WHILE) (Expr . AND) (Expr . NOT) (Expr Num . -97) (Reg . 11) (Stat . LOAD) (Reg . 13) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=19
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=19
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 7) (Stat . LOAD) (Reg . 0) (Reg . 8) END (Stat . WHILE) (Expr . AND) (Expr . NOT) (Expr Num . -97) (Reg . 11) (Stat . LOAD) (Reg . 13) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=20
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=19
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 7) (Stat . LOAD) (Reg . 0) (Reg . 8) END (Stat . WHILE) (Expr . AND) (Expr . NOT) (Expr Num . -97) (Reg . 11) (Stat . LOAD) (Reg . 13) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=21
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=19
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 7) (Stat . LOAD) (Reg . 0) (Reg . 8) END (Stat . WHILE) (Expr . AND) (Expr . NOT) (Expr Num . -97) (Reg . 11) (Stat . LOAD) (Reg . 13) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=22
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=20
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 7) (Stat . LOAD) (Reg . 0) (Reg . 8) END (Stat . WHILE) (Expr . AND) (Expr . NOT) (Expr Num . -97) (Reg . 11) (Stat . LOAD) (Reg . 13) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=23
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=20
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 3) (Stat . LOAD) (Reg . 0) (Reg . 2) END (Stat . WHILE) (Expr . AND) (Expr . AND) (Reg . 3) (Expr . MUL) (Expr . OR) (Expr . MUL) (Reg . 10) (Expr . OR) (Reg . 7) (Expr . DIV) (Expr . SUB) (Reg . 14) (Expr . AND) (Reg . 0) (Expr . GT) (Expr Num . -80) (Expr Num . 43) (Reg . 5) (Reg . 1) (Reg . 0) (Expr . ADD) (Expr . EQ) (Reg . 7) (Reg . 5) (Expr Num . -38) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=24
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=20
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 7) (Stat . LOAD) (Reg . 0) (Reg . 8) END (Stat . WHILE) (Expr . AND) (Expr . NOT) (Expr Num . -97) (Reg . 11) (Stat . LOAD) (Reg . 13) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=25
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=20
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 7) (Stat . LOAD) (Reg . 0) (Reg . 8) END (Stat . WHILE) (Expr . AND) (Expr . NOT) (Expr Num . -97) (Reg . 11) (Stat . LOAD) (Reg . 13) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=26
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=20
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 7) (Stat . LOAD) (Reg . 0) (Reg . 8) END (Stat . WHILE) (Expr . AND) (Expr . NOT) (Expr Num . -97) (Reg . 11) (Stat . LOAD) (Reg . 13) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=27
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=21
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 7) (Stat . LOAD) (Reg . 0) (Reg . 8) END (Stat . WHILE) (Expr . AND) (Expr . NOT) (Expr Num . -97) (Reg . 11) (Stat . LOAD) (Reg . 13) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=28
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=22
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . EQ) (Expr Num . -2) (Expr . OR) (Expr . OR) (Reg . 0) (Reg . 3) (Reg . 12) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Reg . 4) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=29
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=22
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . EQ) (Expr Num . -2) (Expr . OR) (Expr . OR) (Reg . 0) (Reg . 3) (Reg . 12) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Reg . 4) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=30
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=22
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . EQ) (Expr Num . -2) (Expr . OR) (Expr . OR) (Reg . 0) (Reg . 3) (Reg . 12) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Reg . 4) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=31
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=22
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 3) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Expr . AND) (Expr . AND) (Reg . 3) (Expr . MUL) (Expr . OR) (Expr Num . -97) (Reg . 1) (Reg . 0) (Expr . ADD) (Expr . EQ) (Reg . 7) (Reg . 0) (Expr Num . -38) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=32
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=23
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 3) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Expr . AND) (Expr . AND) (Reg . 3) (Expr . MUL) (Expr . OR) (Expr Num . -97) (Reg . 1) (Reg . 0) (Expr . ADD) (Expr . EQ) (Reg . 7) (Reg . 0) (Expr Num . -38) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=33
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=23
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 5) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Expr . LT) (Reg . 3) (Reg . 13) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=34
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=24
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 5) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Expr . LT) (Reg . 3) (Reg . 13) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=35
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=24
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . MUL) (Expr . OR) (Expr . MUL) (Reg . 10) (Expr . LT) (Reg . 0) (Reg . 13) (Reg . 1) (Reg . 0) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Expr . DIV) (Reg . 8) (Expr . AND) (Expr . GT) (Reg . 5) (Expr Num . 98) (Reg . 10) (Stat . LOAD) (Reg . 5) (Reg . 8) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=36
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=24
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . MUL) (Expr . DIV) (Reg . 14) (Reg . 2) (Reg . 0) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Expr . DIV) (Reg . 8) (Expr . AND) (Expr . DIV) (Reg . 0) (Reg . 2) (Reg . 0) (Stat . LOAD) (Reg . 0) (Reg . 10) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=37
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=25
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . MUL) (Expr . DIV) (Reg . 14) (Reg . 2) (Reg . 0) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Expr . DIV) (Reg . 8) (Expr . AND) (Expr . DIV) (Reg . 0) (Reg . 2) (Reg . 0) (Stat . LOAD) (Reg . 0) (Reg . 10) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=38
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=25
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . MUL) (Expr . DIV) (Reg . 14) (Reg . 2) (Reg . 0) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Expr . DIV) (Reg . 8) (Expr . AND) (Expr . DIV) (Reg . 0) (Reg . 2) (Reg . 0) (Stat . LOAD) (Reg . 0) (Reg . 10) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=39
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=25
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . MUL) (Expr . DIV) (Reg . 14) (Reg . 2) (Reg . 0) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Expr . DIV) (Reg . 8) (Expr . AND) (Expr . DIV) (Reg . 0) (Reg . 2) (Reg . 0) (Stat . LOAD) (Reg . 0) (Reg . 10) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=40
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=25
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 14) (Stat . LOAD) (Reg . 13) (Reg . 13) END (Stat . WHILE) (Reg . 9) (Stat . LOAD) (Reg . 13) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=41
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=25
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 3) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Expr . AND) (Expr . EQ) (Reg . 0) (Expr . AND) (Reg . 0) (Expr . GT) (Expr . MUL) (Reg . 10) (Expr . OR) (Reg . 7) (Expr . DIV) (Expr . SUB) (Reg . 11) (Expr . AND) (Reg . 0) (Expr . GT) (Expr . NOT) (Expr Num . -87) (Expr . EQ) (Reg . 0) (Expr Num . 85) (Reg . 13) (Expr Num . 43) (Expr . ADD) (Expr . EQ) (Reg . 0) (Reg . 5) (Expr Num . -38) (Stat . LOAD) (Reg . 0) (Reg . 10) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=42
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=25
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 3) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Expr . AND) (Expr . EQ) (Reg . 0) (Expr . AND) (Reg . 0) (Expr . GT) (Expr . MUL) (Reg . 10) (Expr . OR) (Reg . 7) (Expr . DIV) (Expr . SUB) (Reg . 11) (Expr . AND) (Reg . 0) (Expr . GT) (Expr . NOT) (Expr Num . -87) (Expr . EQ) (Reg . 0) (Expr Num . 85) (Reg . 13) (Expr Num . 43) (Expr . ADD) (Expr . EQ) (Reg . 0) (Reg . 5) (Expr Num . -38) (Stat . LOAD) (Reg . 0) (Reg . 10) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=43
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=27
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 3) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Expr . AND) (Expr . EQ) (Reg . 0) (Expr . AND) (Reg . 0) (Expr . GT) (Expr . MUL) (Reg . 10) (Expr . OR) (Reg . 7) (Expr . DIV) (Expr . SUB) (Reg . 11) (Expr . AND) (Reg . 0) (Expr . GT) (Expr . NOT) (Expr Num . -87) (Expr . EQ) (Reg . 0) (Expr Num . 85) (Reg . 13) (Expr Num . 43) (Expr . ADD) (Expr . EQ) (Reg . 0) (Reg . 5) (Expr Num . -38) (Stat . LOAD) (Reg . 0) (Reg . 10) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=44
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=27
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 3) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Expr . AND) (Expr . EQ) (Reg . 0) (Expr . AND) (Reg . 0) (Expr . GT) (Expr . MUL) (Reg . 10) (Expr . OR) (Reg . 7) (Expr . DIV) (Expr . SUB) (Reg . 11) (Expr . AND) (Reg . 0) (Expr . GT) (Expr . NOT) (Expr Num . -87) (Expr . EQ) (Reg . 0) (Expr Num . 85) (Reg . 13) (Expr Num . 43) (Expr . ADD) (Expr . EQ) (Reg . 0) (Reg . 5) (Expr Num . -38) (Stat . LOAD) (Reg . 0) (Reg . 10) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=45
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=27
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 5) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Expr . AND) (Reg . 7) (Expr . MUL) (Expr . OR) (Expr . MUL) (Reg . 0) (Expr . OR) (Reg . 4) (Expr . DIV) (Expr . SUB) (Reg . 0) (Expr . AND) (Reg . 13) (Expr . GT) (Expr Num . -80) (Expr . DIV) (Reg . 8) (Expr . AND) (Expr . GT) (Reg . 5) (Expr Num . 98) (Reg . 0) (Reg . 5) (Reg . 0) (Reg . 0) (Stat . LOAD) (Reg . 0) (Reg . 10) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=46
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=28
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . MUL) (Expr . DIV) (Reg . 14) (Reg . 2) (Reg . 0) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Expr . AND) (Expr . AND) (Reg . 3) (Expr . MUL) (Expr . OR) (Expr . MUL) (Reg . 0) (Expr . SUB) (Expr Num . 4) (Expr . AND) (Expr . AND) (Reg . 8) (Reg . 10) (Reg . 0) (Reg . 3) (Reg . 7) (Expr . MUL) (Reg . 10) (Expr . LT) (Reg . 0) (Reg . 13) (Stat . LOAD) (Reg . 0) (Reg . 6) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=47
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=29
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . DIV) (Reg . 8) (Expr . AND) (Reg . 11) (Expr Num . -53) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Reg . 14) (Stat . LOAD) (Reg . 12) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=48
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=29
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 3) (Stat . OUTPUT) (Reg . 1) END (Stat . WHILE) (Expr . AND) (Expr . AND) (Reg . 3) (Expr . LT) (Expr . OR) (Expr . ADD) (Reg . 0) (Reg . 12) (Reg . 12) (Reg . 0) (Expr . ADD) (Expr . EQ) (Reg . 7) (Reg . 0) (Expr . MUL) (Reg . 0) (Expr . NOT) (Expr Num . -97) (Stat . OUTPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=49
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=28
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 3) (Stat . OUTPUT) (Reg . 1) END (Stat . WHILE) (Expr . AND) (Expr . AND) (Reg . 3) (Expr . LT) (Expr . OR) (Expr . ADD) (Reg . 0) (Reg . 12) (Reg . 12) (Reg . 0) (Expr . ADD) (Expr . EQ) (Reg . 7) (Reg . 0) (Expr . MUL) (Reg . 0) (Expr . NOT) (Expr Num . -97) (Stat . OUTPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=50
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=27
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 3) (Stat . OUTPUT) (Reg . 1) END (Stat . WHILE) (Expr . AND) (Expr . AND) (Reg . 3) (Expr . LT) (Expr . OR) (Expr . ADD) (Reg . 0) (Reg . 12) (Reg . 12) (Reg . 0) (Expr . ADD) (Expr . EQ) (Reg . 7) (Reg . 0) (Expr . MUL) (Reg . 0) (Expr . NOT) (Expr Num . -97) (Stat . OUTPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=51
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=27
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 3) (Stat . OUTPUT) (Reg . 1) END (Stat . WHILE) (Expr . AND) (Expr . AND) (Reg . 3) (Expr . LT) (Expr . OR) (Expr . ADD) (Reg . 0) (Reg . 12) (Reg . 12) (Reg . 0) (Expr . ADD) (Expr . EQ) (Reg . 7) (Reg . 0) (Expr . MUL) (Reg . 0) (Expr . NOT) (Expr Num . -97) (Stat . OUTPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=52
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=27
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 3) (Stat . OUTPUT) (Reg . 1) END (Stat . WHILE) (Expr . AND) (Expr . AND) (Reg . 3) (Expr . LT) (Expr . OR) (Expr . ADD) (Reg . 0) (Reg . 12) (Reg . 12) (Reg . 0) (Expr . ADD) (Expr . EQ) (Reg . 7) (Reg . 0) (Expr . MUL) (Reg . 0) (Expr . NOT) (Expr Num . -97) (Stat . OUTPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=53
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=28
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . MUL) (Expr . OR) (Expr . MUL) (Reg . 10) (Expr . OR) (Reg . 5) (Expr . DIV) (Expr . SUB) (Reg . 11) (Expr . AND) (Reg . 0) (Expr . GT) (Expr Num . -80) (Expr Num . 43) (Reg . 5) (Reg . 1) (Reg . 5) (Stat . LOAD) (Reg . 0) (Reg . 10) END (Stat . WHILE) (Expr . DIV) (Reg . 8) (Expr Num . -38) (Stat . LOAD) (Reg . 7) (Reg . 8) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=54
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=27
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . MUL) (Expr . OR) (Expr . MUL) (Reg . 10) (Expr . OR) (Reg . 5) (Expr . DIV) (Expr . SUB) (Reg . 11) (Expr . AND) (Reg . 0) (Expr . GT) (Expr Num . -80) (Expr Num . 43) (Reg . 5) (Reg . 1) (Reg . 5) (Stat . LOAD) (Reg . 0) (Reg . 10) END (Stat . WHILE) (Expr . DIV) (Reg . 8) (Expr Num . -38) (Stat . LOAD) (Reg . 7) (Reg . 8) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=55
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=28
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 9) (Stat . LOAD) (Reg . 0) (Reg . 7) END (Stat . WHILE) (Expr . GT) (Expr . EQ) (Reg . 0) (Reg . 5) (Reg . 0) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=56
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=28
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . MUL) (Expr . OR) (Expr . LT) (Reg . 7) (Reg . 13) (Reg . 12) (Reg . 8) (Stat . LOAD) (Reg . 0) (Reg . 7) END (Stat . WHILE) (Expr . DIV) (Reg . 8) (Expr . SUB) (Expr . AND) (Reg . 5) (Expr . AND) (Reg . 0) (Expr . MUL) (Expr . MUL) (Expr Num . -72) (Reg . 8) (Reg . 0) (Reg . 10) (Stat . LOAD) (Reg . 11) (Reg . 7) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=57
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=29
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . MUL) (Expr . OR) (Expr . LT) (Reg . 7) (Reg . 13) (Reg . 12) (Reg . 8) (Stat . LOAD) (Reg . 0) (Reg . 7) END (Stat . WHILE) (Expr . DIV) (Reg . 8) (Expr . SUB) (Expr . AND) (Reg . 5) (Expr . AND) (Reg . 0) (Expr . MUL) (Expr . MUL) (Expr Num . -72) (Reg . 8) (Reg . 0) (Reg . 10) (Stat . LOAD) (Reg . 11) (Reg . 7) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=58
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=29
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . MUL) (Expr . OR) (Expr . LT) (Reg . 7) (Reg . 13) (Reg . 12) (Reg . 8) (Stat . LOAD) (Reg . 0) (Reg . 7) END (Stat . WHILE) (Expr . DIV) (Reg . 8) (Expr . SUB) (Expr . AND) (Reg . 5) (Expr . AND) (Reg . 0) (Expr . MUL) (Expr . MUL) (Expr Num . -72) (Reg . 8) (Reg . 0) (Reg . 10) (Stat . LOAD) (Reg . 11) (Reg . 7) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=59
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=29
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . MUL) (Expr . OR) (Expr . LT) (Reg . 7) (Reg . 13) (Reg . 12) (Reg . 8) (Stat . LOAD) (Reg . 0) (Reg . 7) END (Stat . WHILE) (Expr . DIV) (Reg . 8) (Expr . SUB) (Expr . AND) (Reg . 5) (Expr . AND) (Reg . 0) (Expr . MUL) (Expr . MUL) (Expr Num . -72) (Reg . 8) (Reg . 0) (Reg . 10) (Stat . LOAD) (Reg . 11) (Reg . 7) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=60
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=29
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . MUL) (Expr . OR) (Expr . LT) (Reg . 7) (Reg . 13) (Reg . 12) (Reg . 8) (Stat . LOAD) (Reg . 0) (Reg . 7) END (Stat . WHILE) (Expr . DIV) (Reg . 8) (Expr . SUB) (Expr . AND) (Reg . 5) (Expr . AND) (Reg . 0) (Expr . MUL) (Expr . MUL) (Expr Num . -72) (Reg . 8) (Reg . 0) (Reg . 10) (Stat . LOAD) (Reg . 11) (Reg . 7) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=61
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=29
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . MUL) (Expr . OR) (Expr . LT) (Reg . 7) (Reg . 13) (Reg . 12) (Reg . 8) (Stat . LOAD) (Reg . 0) (Reg . 7) END (Stat . WHILE) (Expr . DIV) (Reg . 8) (Expr . SUB) (Expr . AND) (Reg . 5) (Expr . AND) (Reg . 0) (Expr . MUL) (Expr . MUL) (Expr Num . -72) (Reg . 8) (Reg . 0) (Reg . 10) (Stat . LOAD) (Reg . 11) (Reg . 7) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=62
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=30
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . MUL) (Expr . OR) (Expr . SUB) (Expr Num . -2) (Expr . OR) (Expr . OR) (Reg . 5) (Reg . 3) (Reg . 0) (Reg . 0) (Reg . 5) (Stat . OUTPUT) (Reg . 1) END (Stat . WHILE) (Expr . AND) (Reg . 8) (Expr . SUB) (Expr Num . -53) (Expr . AND) (Expr . AND) (Expr . AND) (Expr . GT) (Expr . AND) (Reg . 0) (Reg . 5) (Reg . 0) (Reg . 13) (Reg . 3) (Expr . LT) (Reg . 2) (Reg . 9) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=63
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=30
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . MUL) (Expr . OR) (Expr . SUB) (Expr Num . -2) (Expr . OR) (Expr . OR) (Reg . 5) (Reg . 3) (Reg . 0) (Reg . 0) (Reg . 5) (Stat . OUTPUT) (Reg . 1) END (Stat . WHILE) (Expr . AND) (Reg . 8) (Expr . SUB) (Expr Num . -53) (Expr . AND) (Expr . AND) (Expr . AND) (Expr . GT) (Expr . AND) (Reg . 0) (Reg . 5) (Reg . 0) (Reg . 13) (Reg . 3) (Expr . LT) (Reg . 2) (Reg . 9) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=64
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=30
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 3) (Stat . LOAD) (Reg . 0) (Reg . 4) END (Stat . WHILE) (Expr . AND) (Expr . AND) (Reg . 3) (Expr . MUL) (Reg . 0) (Expr . OR) (Reg . 3) (Expr . GT) (Reg . 5) (Expr Num . 98) (Expr . GT) (Reg . 3) (Reg . 0) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=65
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=30
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . MUL) (Expr . GT) (Expr . MUL) (Reg . 2) (Expr . OR) (Reg . 12) (Expr . ADD) (Reg . 1) (Reg . 10) (Reg . 1) (Reg . 10) (Stat . INPUT) (Reg . 0) END (Stat . WHILE) (Expr . LT) (Reg . 9) (Reg . 14) (Stat . LOAD) (Reg . 11) (Reg . 1) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=66
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=30
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . MUL) (Expr . GT) (Expr . MUL) (Reg . 10) (Expr . OR) (Reg . 12) (Expr . ADD) (Reg . 14) (Reg . 0) (Reg . 1) (Reg . 1) (Stat . INPUT) (Reg . 0) END (Stat . WHILE) (Expr . LT) (Reg . 0) (Reg . 13) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=67
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=30
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 11) (Stat . LOAD) (Reg . 4) (Reg . 10) END (Stat . WHILE) (Expr . MUL) (Reg . 0) (Expr . AND) (Reg . 13) (Expr . MUL) (Reg . 3) (Expr . OR) (Reg . 3) (Expr . DIV) (Reg . 14) (Reg . 0) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=68
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=30
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 11) (Stat . OUTPUT) (Reg . 0) END (Stat . WHILE) (Expr . AND) (Expr . LT) (Reg . 0) (Reg . 0) (Expr . NOT) (Expr . MUL) (Reg . 0) (Expr . LT) (Reg . 5) (Expr Num . 98) (Stat . LOAD) (Reg . 0) (Reg . 4) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=69
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=31
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 11) (Stat . OUTPUT) (Reg . 0) END (Stat . WHILE) (Expr . AND) (Expr . LT) (Reg . 0) (Reg . 0) (Expr . NOT) (Expr . MUL) (Reg . 0) (Expr . LT) (Reg . 5) (Expr Num . 98) (Stat . LOAD) (Reg . 0) (Reg . 4) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=70
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=32
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . MUL) (Expr . GT) (Expr Num . -97) (Expr Num . 43) (Reg . 0) (Stat . LOAD) (Reg . 0) (Reg . 7) END (Stat . WHILE) (Expr . SUB) (Reg . 11) (Expr . AND) (Reg . 7) (Expr . AND) (Expr Num . -38) (Expr . MUL) (Expr . DIV) (Reg . 3) (Reg . 13) (Reg . 0) (Stat . LOAD) (Reg . 11) (Reg . 7) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=71
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=32
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 3) (Stat . INPUT) (Reg . 9) END (Stat . WHILE) (Expr . AND) (Expr . AND) (Reg . 0) (Expr . MUL) (Reg . 3) (Expr . OR) (Reg . 5) (Expr . OR) (Expr . AND) (Reg . 5) (Expr Num . -38) (Reg . 2) (Expr . OR) (Reg . 0) (Reg . 10) (Stat . LOAD) (Reg . 3) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=72
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=32
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 3) (Stat . OUTPUT) (Reg . 1) END (Stat . WHILE) (Expr . MUL) (Reg . 0) (Expr . OR) (Reg . 4) (Expr . DIV) (Expr . AND) (Reg . 3) (Reg . 7) (Reg . 0) (Stat . OUTPUT) (Reg . 14) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=73
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=32
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 3) (Stat . OUTPUT) (Reg . 1) END (Stat . WHILE) (Expr . MUL) (Reg . 0) (Expr . OR) (Reg . 4) (Expr . DIV) (Expr . AND) (Reg . 3) (Reg . 7) (Reg . 0) (Stat . OUTPUT) (Reg . 14) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=74
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=33
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 3) (Stat . LOAD) (Reg . 11) (Reg . 0) END (Stat . WHILE) (Expr . GT) (Expr Num . -80) (Expr Num . 43) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=75
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=34
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 13) (Stat . LOAD) (Reg . 5) (Reg . 0) END (Stat . WHILE) (Expr . AND) (Expr . AND) (Reg . 3) (Expr . MUL) (Expr . MUL) (Reg . 0) (Expr . OR) (Expr . EQ) (Expr . ADD) (Reg . 0) (Expr . ADD) (Reg . 1) (Reg . 3) (Reg . 5) (Reg . 5) (Reg . 0) (Expr Num . -57) (Stat . LOAD) (Reg . 0) (Reg . 14) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=76
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=36
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . MUL) (Expr . OR) (Expr . MUL) (Reg . 4) (Expr . MUL) (Reg . 3) (Expr . OR) (Reg . 3) (Expr . MUL) (Reg . 5) (Expr . LT) (Expr . EQ) (Reg . 8) (Reg . 3) (Reg . 5) (Reg . 6) (Reg . 0) (Stat . INPUT) (Reg . 0) END (Stat . WHILE) (Expr . DIV) (Reg . 3) (Expr . MUL) (Expr . AND) (Expr . AND) (Reg . 3) (Expr . MUL) (Reg . 3) (Expr . OR) (Reg . 3) (Expr . MUL) (Reg . 0) (Expr . LT) (Expr . NOT) (Expr Num . 98) (Reg . 5) (Expr . AND) (Reg . 0) (Expr . OR) (Expr . ADD) (Reg . 10) (Reg . 0) (Reg . 1) (Reg . 1) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=77
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=37
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 2) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Expr . AND) (Expr . AND) (Reg . 10) (Expr . ADD) (Reg . 12) (Reg . 14) (Expr . DIV) (Expr . ADD) (Reg . 1) (Reg . 6) (Expr . OR) (Reg . 0) (Reg . 0) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=78
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=37
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 3) (Stat . LOAD) (Reg . 0) (Reg . 4) END (Stat . WHILE) (Expr . AND) (Expr . AND) (Reg . 3) (Expr . MUL) (Reg . 0) (Expr . OR) (Reg . 3) (Expr . GT) (Reg . 0) (Expr Num . 98) (Expr . AND) (Reg . 0) (Expr Num . -54) (Stat . LOAD) (Reg . 3) (Reg . 5) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=79
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=37
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 3) (Stat . LOAD) (Reg . 0) (Reg . 3) END (Stat . WHILE) (Expr . AND) (Expr . AND) (Reg . 4) (Expr . MUL) (Reg . 0) (Expr . OR) (Reg . 3) (Expr . LT) (Reg . 2) (Reg . 13) (Expr . AND) (Reg . 0) (Expr . SUB) (Reg . 11) (Expr . OR) (Reg . 13) (Expr . NOT) (Expr . ADD) (Expr . EQ) (Reg . 7) (Reg . 0) (Expr . MUL) (Reg . 0) (Expr . NOT) (Expr Num . -38) (Stat . LOAD) (Reg . 3) (Reg . 5) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=80
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=38
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 3) (Stat . LOAD) (Reg . 0) (Reg . 3) END (Stat . WHILE) (Expr . AND) (Expr . AND) (Reg . 4) (Expr . MUL) (Reg . 0) (Expr . OR) (Reg . 3) (Expr . LT) (Reg . 2) (Reg . 13) (Expr . AND) (Reg . 0) (Expr . SUB) (Reg . 11) (Expr . OR) (Reg . 13) (Expr . NOT) (Expr . ADD) (Expr . EQ) (Reg . 7) (Reg . 0) (Expr . MUL) (Reg . 0) (Expr . NOT) (Expr Num . -38) (Stat . LOAD) (Reg . 3) (Reg . 5) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=81
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=39
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 11) (Stat . INPUT) (Reg . 0) END (Stat . WHILE) (Expr . AND) (Expr . DIV) (Expr Num . -2) (Expr . AND) (Expr . AND) (Reg . 4) (Expr Num . -80) (Expr . AND) (Reg . 0) (Expr . SUB) (Reg . 11) (Expr . OR) (Reg . 13) (Expr . NOT) (Expr . ADD) (Expr . EQ) (Reg . 5) (Reg . 0) (Expr . MUL) (Reg . 0) (Expr . NOT) (Expr . MUL) (Reg . 0) (Expr . LT) (Reg . 5) (Expr Num . 98) (Expr . ADD) (Expr . EQ) (Expr Num . 64) (Reg . 13) (Expr . DIV) (Reg . 5) (Reg . 2) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=82
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=39
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . ADD) (Reg . 8) (Expr . AND) (Expr . AND) (Expr . MUL) (Expr . DIV) (Reg . 0) (Expr . AND) (Expr . GT) (Reg . 4) (Expr . MUL) (Expr . SUB) (Expr . DIV) (Reg . 14) (Reg . 0) (Expr . DIV) (Reg . 5) (Reg . 0) (Reg . 8) (Reg . 0) (Reg . 1) (Reg . 0) (Reg . 3) (Stat . OUTPUT) (Reg . 0) END (Stat . WHILE) (Reg . 2) (Stat . LOAD) (Reg . 0) (Reg . 10) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=83
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=38
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . AND) (Expr . AND) (Reg . 11) (Expr . LT) (Reg . 0) (Expr . AND) (Expr . MUL) (Reg . 10) (Expr Num . -39) (Reg . 0) (Expr . ADD) (Expr . EQ) (Reg . 0) (Reg . 5) (Expr Num . 98) (Stat . LOAD) (Reg . 0) (Reg . 3) END (Stat . WHILE) (Expr . DIV) (Reg . 8) (Expr . AND) (Expr . AND) (Reg . 0) (Expr . AND) (Reg . 3) (Expr . DIV) (Reg . 10) (Expr . AND) (Expr . AND) (Expr . AND) (Expr . AND) (Expr . DIV) (Reg . 8) (Reg . 3) (Reg . 12) (Reg . 0) (Expr . MUL) (Reg . 0) (Expr . AND) (Reg . 0) (Expr . MUL) (Reg . 3) (Expr . OR) (Reg . 3) (Expr . OR) (Expr . AND) (Expr . EQ) (Reg . 8) (Reg . 3) (Expr . ADD) (Expr . GT) (Reg . 3) (Expr Num . 98) (Reg . 7) (Reg . 5) (Reg . 3) (Reg . 5) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=84
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=39
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 4) (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . WHILE) (Expr . AND) (Expr . AND) (Reg . 10) (Expr . DIV) (Reg . 12) (Reg . 14) (Expr . DIV) (Expr . ADD) (Reg . 0) (Reg . 6) (Expr . OR) (Reg . 0) (Reg . 0) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=85
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=40
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 3) (Stat . LOAD) (Reg . 0) (Reg . 10) END (Stat . WHILE) (Expr . GT) (Expr . OR) (Reg . 3) (Expr . OR) (Expr . AND) (Expr . ADD) (Reg . 10) (Reg . 0) (Expr . ADD) (Expr . AND) (Expr . EQ) (Expr . ADD) (Reg . 10) (Reg . 14) (Reg . 0) (Reg . 0) (Reg . 14) (Reg . 3) (Expr . ADD) (Expr . EQ) (Reg . 7) (Reg . 0) (Expr . MUL) (Reg . 0) (Expr . AND) (Expr . AND) (Expr . LT) (Reg . 0) (Reg . 0) (Expr . MUL) (Reg . 0) (Expr . AND) (Reg . 0) (Expr . SUB) (Expr Num . -53) (Expr . AND) (Reg . 13) (Expr . AND) (Expr . AND) (Reg . 3) (Expr Num . -53) (Reg . 3) (Expr . OR) (Expr . OR) (Expr Num . 43) (Reg . 8) (Reg . 5) (Stat . OUTPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=86
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=41
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 7) (Stat . OUTPUT) (Reg . 0) END (Stat . WHILE) (Expr . AND) (Expr . AND) (Reg . 4) (Expr . AND) (Reg . 0) (Expr Num . -54) (Expr . OR) (Expr Num . -39) (Reg . 0) (Stat . LOAD) (Reg . 3) (Reg . 3) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=87
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=41
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 7) (Stat . OUTPUT) (Reg . 0) END (Stat . WHILE) (Expr . AND) (Expr . AND) (Reg . 4) (Expr . AND) (Reg . 0) (Expr Num . -54) (Expr . OR) (Expr Num . -39) (Reg . 0) (Stat . LOAD) (Reg . 3) (Reg . 3) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=88
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=42
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 11) (Stat . OUTPUT) (Reg . 0) END (Stat . WHILE) (Expr . LT) (Expr . OR) (Expr . SUB) (Reg . 11) (Expr . AND) (Reg . 13) (Expr . AND) (Expr . AND) (Reg . 0) (Expr Num . -53) (Reg . 10) (Reg . 3) (Expr . DIV) (Expr . AND) (Reg . 3) (Expr . LT) (Reg . 1) (Reg . 1) (Reg . 14) (Stat . LOAD) (Reg . 14) (Reg . 4) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=89
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=43
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 11) (Stat . OUTPUT) (Reg . 0) END (Stat . WHILE) (Expr . LT) (Expr . OR) (Expr . SUB) (Reg . 11) (Expr . AND) (Reg . 13) (Expr . AND) (Expr . AND) (Reg . 0) (Expr Num . -53) (Reg . 10) (Reg . 3) (Expr . DIV) (Expr . AND) (Reg . 3) (Expr . LT) (Reg . 1) (Reg . 1) (Reg . 14) (Stat . LOAD) (Reg . 14) (Reg . 4) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=90
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=43
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 3) (Stat . INPUT) (Reg . 0) END (Stat . WHILE) (Expr . AND) (Expr . AND) (Reg . 4) (Expr . AND) (Reg . 0) (Expr Num . -54) (Expr . OR) (Expr . ADD) (Expr . EQ) (Reg . 0) (Reg . 0) (Expr . AND) (Expr . AND) (Reg . 3) (Expr . MUL) (Expr . OR) (Expr . ADD) (Reg . 10) (Reg . 0) (Reg . 0) (Reg . 0) (Expr . OR) (Reg . 11) (Expr . AND) (Reg . 4) (Expr . AND) (Reg . 3) (Expr . LT) (Expr . GT) (Reg . 2) (Expr . MUL) (Expr . DIV) (Reg . 10) (Reg . 3) (Reg . 11) (Reg . 0) (Reg . 0) (Stat . LOAD) (Reg . 5) (Reg . 3) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=91
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=44
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 3) (Stat . OUTPUT) (Reg . 1) END (Stat . WHILE) (Expr . AND) (Expr . OR) (Reg . 3) (Expr . OR) (Expr . LT) (Expr . OR) (Expr . SUB) (Reg . 11) (Expr . AND) (Reg . 0) (Expr . AND) (Expr . AND) (Reg . 0) (Expr Num . -53) (Reg . 0) (Reg . 4) (Expr . DIV) (Expr . AND) (Reg . 3) (Expr . LT) (Reg . 1) (Reg . 1) (Reg . 0) (Reg . 0) (Expr . ADD) (Expr . EQ) (Reg . 7) (Reg . 0) (Expr . MUL) (Reg . 0) (Expr . NOT) (Expr . MUL) (Reg . 0) (Expr . LT) (Reg . 8) (Expr Num . 98) (Stat . LOAD) (Reg . 5) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=92
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=44
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . MUL) (Expr . AND) (Expr . AND) (Expr . MUL) (Reg . 11) (Expr . OR) (Reg . 5) (Expr . SUB) (Expr . OR) (Reg . 7) (Reg . 0) (Reg . 10) (Reg . 0) (Reg . 3) (Reg . 1) (Stat . OUTPUT) (Reg . 0) END (Stat . WHILE) (Expr . AND) (Expr . OR) (Expr . AND) (Reg . 7) (Reg . 13) (Reg . 13) (Reg . 5) (Stat . LOAD) (Reg . 5) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=93
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=44
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Expr . MUL) (Expr . AND) (Expr . AND) (Expr . MUL) (Reg . 11) (Expr . OR) (Reg . 5) (Expr . SUB) (Expr . OR) (Reg . 7) (Reg . 0) (Reg . 10) (Reg . 0) (Reg . 3) (Reg . 1) (Stat . OUTPUT) (Reg . 0) END (Stat . WHILE) (Expr . AND) (Expr . OR) (Expr . AND) (Reg . 7) (Reg . 13) (Reg . 13) (Reg . 5) (Stat . LOAD) (Reg . 5) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=94
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=46
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 3) (Stat . LOAD) (Reg . 0) (Reg . 10) END (Stat . WHILE) (Expr . GT) (Expr . OR) (Reg . 5) (Expr . OR) (Expr . AND) (Expr . ADD) (Reg . 10) (Reg . 0) (Expr . ADD) (Expr . AND) (Expr . OR) (Expr . AND) (Expr . AND) (Reg . 3) (Expr . LT) (Reg . 0) (Expr . AND) (Expr . MUL) (Reg . 10) (Expr . OR) (Reg . 9) (Expr . AND) (Expr . ADD) (Expr . GT) (Reg . 11) (Expr . AND) (Expr . OR) (Reg . 11) (Reg . 10) (Reg . 7) (Reg . 0) (Expr . ADD) (Expr . EQ) (Reg . 5) (Reg . 5) (Expr . AND) (Expr . SUB) (Reg . 11) (Expr . MUL) (Expr . OR) (Expr . AND) (Reg . 5) (Reg . 0) (Reg . 13) (Reg . 11) (Reg . 7) (Reg . 0) (Expr . ADD) (Expr . EQ) (Reg . 0) (Reg . 5) (Expr Num . -38) (Expr . AND) (Expr . AND) (Expr . AND) (Reg . 0) (Expr . AND) (Reg . 3) (Expr . OR) (Expr . OR) (Expr . LT) (Reg . 10) (Reg . 0) (Reg . 13) (Reg . 3) (Expr . ADD) (Expr . GT) (Reg . 11) (Expr Num . -80) (Reg . 0) (Reg . 11) (Reg . 0) (Reg . 14) (Reg . 3) (Expr . ADD) (Expr . EQ) (Reg . 7) (Reg . 0) (Expr . MUL) (Reg . 0) (Expr . AND) (Expr . MUL) (Reg . 11) (Expr . EQ) (Reg . 8) (Reg . 0) (Reg . 0) (Stat . OUTPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=95
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=48
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 3) (Stat . LOAD) (Reg . 0) (Reg . 10) END (Stat . WHILE) (Expr . GT) (Expr . OR) (Reg . 5) (Expr . OR) (Expr . AND) (Expr . ADD) (Reg . 10) (Reg . 0) (Expr . ADD) (Expr . AND) (Expr . OR) (Expr . AND) (Expr . AND) (Reg . 3) (Expr . LT) (Reg . 0) (Expr . AND) (Expr . MUL) (Reg . 10) (Expr . OR) (Reg . 9) (Expr . AND) (Expr . ADD) (Expr . GT) (Reg . 11) (Expr . AND) (Expr . OR) (Reg . 11) (Reg . 10) (Reg . 7) (Reg . 0) (Expr . ADD) (Expr . EQ) (Reg . 5) (Reg . 5) (Expr . AND) (Expr . SUB) (Reg . 11) (Expr . MUL) (Expr . OR) (Expr . AND) (Reg . 5) (Reg . 0) (Reg . 13) (Reg . 11) (Reg . 7) (Reg . 0) (Expr . ADD) (Expr . EQ) (Reg . 0) (Reg . 5) (Expr Num . -38) (Expr . AND) (Expr . AND) (Expr . AND) (Reg . 0) (Expr . AND) (Reg . 3) (Expr . OR) (Expr . OR) (Expr . LT) (Reg . 10) (Reg . 0) (Reg . 13) (Reg . 3) (Expr . ADD) (Expr . GT) (Reg . 11) (Expr Num . -80) (Reg . 0) (Reg . 11) (Reg . 0) (Reg . 14) (Reg . 3) (Expr . ADD) (Expr . EQ) (Reg . 7) (Reg . 0) (Expr . MUL) (Reg . 0) (Expr . AND) (Expr . MUL) (Reg . 11) (Expr . EQ) (Reg . 8) (Reg . 0) (Reg . 0) (Stat . OUTPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=96
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=46
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 3) (Stat . LOAD) (Reg . 0) (Reg . 4) END (Stat . WHILE) (Expr . AND) (Expr . AND) (Reg . 5) (Expr . MUL) (Reg . 0) (Expr . OR) (Reg . 0) (Expr . OR) (Expr . AND) (Expr . AND) (Reg . 10) (Expr . LT) (Reg . 0) (Expr . AND) (Expr . MUL) (Reg . 10) (Expr . OR) (Reg . 9) (Expr . MUL) (Reg . 3) (Expr . AND) (Expr . MUL) (Reg . 11) (Expr . OR) (Reg . 5) (Expr . AND) (Expr . OR) (Reg . 7) (Reg . 0) (Reg . 10) (Reg . 0) (Reg . 5) (Expr . ADD) (Expr . EQ) (Reg . 0) (Reg . 5) (Reg . 4) (Expr . AND) (Expr . AND) (Expr . AND) (Reg . 0) (Expr . AND) (Reg . 3) (Expr . EQ) (Expr . OR) (Expr . LT) (Reg . 10) (Reg . 14) (Reg . 13) (Reg . 3) (Expr . ADD) (Expr . OR) (Reg . 11) (Expr Num . -80) (Reg . 0) (Reg . 10) (Expr . AND) (Reg . 0) (Expr . SUB) (Reg . 11) (Expr . OR) (Reg . 13) (Expr . GT) (Expr . AND) (Reg . 13) (Expr . SUB) (Expr Num . -53) (Expr . AND) (Expr . AND) (Expr . AND) (Expr . GT) (Expr . GT) (Reg . 0) (Reg . 5) (Reg . 0) (Reg . 13) (Reg . 3) (Expr . AND) (Expr . AND) (Reg . 5) (Expr . OR) (Expr . EQ) (Expr . ADD) (Reg . 0) (Expr . AND) (Expr . GT) (Reg . 1) (Expr . MUL) (Expr Num . -72) (Reg . 8) (Reg . 0) (Reg . 0) (Reg . 5) (Reg . 1) (Expr . AND) (Expr . ADD) (Reg . 5) (Expr . OR) (Expr . AND) (Reg . 5) (Expr . ADD) (Reg . 10) (Reg . 12) (Reg . 5) (Reg . 2) (Stat . LOAD) (Reg . 3) (Reg . 11) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=97
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=49
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 11) (Stat . LOAD) (Reg . 0) (Reg . 10) END (Stat . WHILE) (Expr . AND) (Expr . AND) (Expr . AND) (Expr . AND) (Reg . 10) (Expr . AND) (Expr . MUL) (Expr . OR) (Expr . LT) (Reg . 8) (Reg . 0) (Reg . 5) (Reg . 14) (Reg . 0) (Reg . 0) (Reg . 7) (Expr . AND) (Reg . 0) (Expr . GT) (Expr . AND) (Reg . 0) (Expr Num . -53) (Expr Num . 43) (Stat . LOAD) (Reg . 0) (Reg . 2) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=98
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=51
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 11) (Stat . LOAD) (Reg . 0) (Reg . 10) END (Stat . WHILE) (Expr . AND) (Expr . AND) (Expr . AND) (Expr . AND) (Reg . 10) (Expr . AND) (Expr . MUL) (Expr . OR) (Expr . LT) (Reg . 8) (Reg . 0) (Reg . 5) (Reg . 14) (Reg . 0) (Reg . 0) (Reg . 7) (Expr . AND) (Reg . 0) (Expr . GT) (Expr . AND) (Reg . 0) (Expr Num . -53) (Expr Num . 43) (Stat . LOAD) (Reg . 0) (Reg . 2) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=99
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=53
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 11) (Stat . INPUT) (Reg . 13) END (Stat . WHILE) (Expr . AND) (Expr . DIV) (Reg . 13) (Expr . AND) (Expr . AND) (Reg . 5) (Expr Num . -53) (Reg . 0) (Expr . ADD) (Expr . EQ) (Expr . GT) (Expr . DIV) (Reg . 10) (Reg . 3) (Expr . AND) (Reg . 5) (Expr . AND) (Reg . 0) (Expr Num . -38) (Reg . 5) (Expr . OR) (Reg . 11) (Expr . AND) (Expr . AND) (Reg . 10) (Expr . DIV) (Reg . 12) (Reg . 14) (Expr . AND) (Expr . OR) (Expr . AND) (Expr . EQ) (Reg . 8) (Reg . 0) (Expr . OR) (Expr . ADD) (Reg . 10) (Reg . 0) (Reg . 0) (Reg . 11) (Reg . 0) (Stat . LOAD) (Reg . 13) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=100
+Avg Fitness=-inf
+Best Fitness=-3099
+Avg Size=54
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . WHILE) (Reg . 11) (Stat . INPUT) (Reg . 13) END (Stat . WHILE) (Expr . AND) (Expr . DIV) (Reg . 13) (Expr . AND) (Expr . AND) (Reg . 5) (Expr Num . -53) (Reg . 0) (Expr . ADD) (Expr . EQ) (Expr . GT) (Expr . DIV) (Reg . 10) (Reg . 3) (Expr . AND) (Reg . 5) (Expr . AND) (Reg . 0) (Expr Num . -38) (Reg . 5) (Expr . OR) (Reg . 11) (Expr . AND) (Expr . AND) (Reg . 10) (Expr . DIV) (Reg . 12) (Reg . 14) (Expr . AND) (Expr . OR) (Expr . AND) (Expr . EQ) (Reg . 8) (Reg . 0) (Expr . OR) (Expr . ADD) (Reg . 10) (Reg . 0) (Reg . 0) (Reg . 11) (Reg . 0) (Stat . LOAD) (Reg . 13) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+PROBLEM UNSOLVED

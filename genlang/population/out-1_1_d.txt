@@ -1,0 +1,18 @@
+Creating population
+-- TINY GP (Rust version) --
+GENERATIONS=100
+SEED=0
+POPSIZE=100
+CROSSOVER_PROB=0.9
+PMUT_PER_NODE=0.2
+TSIZE=2
+----------------------------------
+
+Generation=0
+Avg Fitness=-89655380
+Best Fitness=0
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Expr(Num(1)), Stat(OUTPUT), Reg(0)]
+
+PROBLEM SOLVED

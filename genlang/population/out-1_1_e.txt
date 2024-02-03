@@ -1,0 +1,634 @@
+Creating population
+-- TINY GP (Rust version) --
+GENERATIONS=100
+SEED=0
+POPSIZE=1000
+CROSSOVER_PROB=0.9
+PMUT_PER_NODE=0.1
+TSIZE=2
+----------------------------------
+
+Generation=0
+Avg Fitness=-102236360
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Reg(0)]
+
+Generation=1
+Avg Fitness=-112083624
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Reg(0)]
+
+Generation=2
+Avg Fitness=-83025420
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Reg(0)]
+
+Generation=3
+Avg Fitness=-68818680
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(672)), Stat(INPUT), Reg(1), Stat(OUTPUT), Reg(0)]
+
+Generation=4
+Avg Fitness=-108890930
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(695)), Stat(INPUT), Reg(2), Stat(INPUT), Reg(0)]
+
+Generation=5
+Avg Fitness=-74807610
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(695)), Stat(INPUT), Reg(2), Stat(INPUT), Reg(0)]
+
+Generation=6
+Avg Fitness=-90908430
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=7
+Avg Fitness=-72736664
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=8
+Avg Fitness=-102719550
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Reg(0), Stat(OUTPUT), Reg(0)]
+
+Generation=9
+Avg Fitness=-65164670
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(929))]
+
+Generation=10
+Avg Fitness=-63649510
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(695))]
+
+Generation=11
+Avg Fitness=-88160880
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(695))]
+
+Generation=12
+Avg Fitness=-128054860
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(695))]
+
+Generation=13
+Avg Fitness=-101378870
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(695))]
+
+Generation=14
+Avg Fitness=-96354380
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(695))]
+
+Generation=15
+Avg Fitness=-114376580
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(695))]
+
+Generation=16
+Avg Fitness=-64397980
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(LOAD), Reg(2), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(889))]
+
+Generation=17
+Avg Fitness=-67938000
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(LOAD), Reg(2), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(889))]
+
+Generation=18
+Avg Fitness=-69608120
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(LOAD), Reg(2), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(889))]
+
+Generation=19
+Avg Fitness=-84475140
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(LOAD), Reg(2), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(889))]
+
+Generation=20
+Avg Fitness=-107621380
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(LOAD), Reg(2), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(889))]
+
+Generation=21
+Avg Fitness=-154420100
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(LOAD), Reg(2), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(889))]
+
+Generation=22
+Avg Fitness=-99433880
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Reg(0)]
+
+Generation=23
+Avg Fitness=-90495900
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(INPUT), Reg(0)]
+
+Generation=24
+Avg Fitness=-86850696
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=25
+Avg Fitness=-95176260
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Reg(0)]
+
+Generation=26
+Avg Fitness=-42664492
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=27
+Avg Fitness=-53115736
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=28
+Avg Fitness=-65977788
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=29
+Avg Fitness=-72412530
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Reg(0), Stat(OUTPUT), Expr(Num(480))]
+
+Generation=30
+Avg Fitness=-45603330
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=31
+Avg Fitness=-77871540
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Reg(0), Stat(INPUT), Reg(2)]
+
+Generation=32
+Avg Fitness=-53879868
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Reg(2), Stat(OUTPUT), Reg(2)]
+
+Generation=33
+Avg Fitness=-51993548
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Reg(2), Stat(OUTPUT), Reg(2)]
+
+Generation=34
+Avg Fitness=-68461500
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Reg(0), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=35
+Avg Fitness=-58995840
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Reg(0), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=36
+Avg Fitness=-38089776
+Best Fitness=-6
+Avg Size=6
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(554)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=37
+Avg Fitness=-84669370
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Reg(0), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=38
+Avg Fitness=-70975850
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(INPUT), Reg(0), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=39
+Avg Fitness=-86862690
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(INPUT), Reg(0), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=40
+Avg Fitness=-54724510
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(INPUT), Reg(0), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=41
+Avg Fitness=-82159144
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(INPUT), Reg(0), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=42
+Avg Fitness=-49603292
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=43
+Avg Fitness=-38315484
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(LOAD), Reg(0), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=44
+Avg Fitness=-51653680
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(LOAD), Reg(0), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=45
+Avg Fitness=-40454450
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(LOAD), Reg(0), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=46
+Avg Fitness=-39810904
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(LOAD), Reg(0), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(LOAD), Reg(2), Expr(Num(791))]
+
+Generation=47
+Avg Fitness=-60730076
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=48
+Avg Fitness=-45860216
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=49
+Avg Fitness=-26962788
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(LOAD), Reg(2), Reg(2), Stat(OUTPUT), Expr(Num(791)), Stat(LOAD), Reg(2), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=50
+Avg Fitness=-30004734
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(INPUT), Reg(0), Stat(OUTPUT), Expr(Num(791)), Stat(INPUT), Reg(1)]
+
+Generation=51
+Avg Fitness=-33760964
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(INPUT), Reg(0), Stat(OUTPUT), Expr(Num(791)), Stat(INPUT), Reg(1)]
+
+Generation=52
+Avg Fitness=-46377124
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=53
+Avg Fitness=-38176030
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(INPUT), Reg(0), Stat(INPUT), Reg(0)]
+
+Generation=54
+Avg Fitness=-108585620
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(INPUT), Reg(0), Stat(INPUT), Reg(0)]
+
+Generation=55
+Avg Fitness=-52857790
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(LOAD), Reg(0), Expr(Num(791)), Stat(OUTPUT), Reg(2)]
+
+Generation=56
+Avg Fitness=-19810372
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Reg(2), Stat(OUTPUT), Expr(Num(897))]
+
+Generation=57
+Avg Fitness=-67703896
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(INPUT), Reg(0), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=58
+Avg Fitness=-51813160
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(LOAD), Reg(0), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=59
+Avg Fitness=-18086200
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=60
+Avg Fitness=-27942860
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=61
+Avg Fitness=-62378452
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=62
+Avg Fitness=-34270124
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=63
+Avg Fitness=-61271720
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=64
+Avg Fitness=-51375652
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=65
+Avg Fitness=-31728306
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Reg(1), Stat(OUTPUT), Reg(1)]
+
+Generation=66
+Avg Fitness=-30621516
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(LOAD), Reg(1), Expr(Num(791)), Stat(LOAD), Reg(2), Expr(Num(791)), Stat(LOAD), Reg(0), Expr(Num(791))]
+
+Generation=67
+Avg Fitness=-24667336
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(LOAD), Reg(1), Expr(Num(791)), Stat(LOAD), Reg(2), Expr(Num(791)), Stat(LOAD), Reg(0), Expr(Num(791))]
+
+Generation=68
+Avg Fitness=-42111100
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=69
+Avg Fitness=-35731100
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=70
+Avg Fitness=-38763836
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=71
+Avg Fitness=-38826540
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=72
+Avg Fitness=-73360660
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(LOAD), Reg(0), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(LOAD), Reg(0), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=73
+Avg Fitness=-22286438
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(LOAD), Reg(0), Expr(Num(791)), Stat(OUTPUT), Expr(Num(593))]
+
+Generation=74
+Avg Fitness=-47823020
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=75
+Avg Fitness=-44576260
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=76
+Avg Fitness=-31145560
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=77
+Avg Fitness=-52483656
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=78
+Avg Fitness=-44018840
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=79
+Avg Fitness=-43599064
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=80
+Avg Fitness=-46740410
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=81
+Avg Fitness=-25360870
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(LOAD), Reg(0), Expr(Num(496)), Stat(LOAD), Reg(0), Expr(Num(751)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=82
+Avg Fitness=-54696996
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(LOAD), Reg(0), Expr(Num(496)), Stat(LOAD), Reg(0), Expr(Num(751)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=83
+Avg Fitness=-44006268
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(LOAD), Reg(0), Expr(Num(496)), Stat(LOAD), Reg(0), Expr(Num(751)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=84
+Avg Fitness=-34500000
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(LOAD), Reg(0), Expr(Num(496)), Stat(LOAD), Reg(0), Expr(Num(751)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=85
+Avg Fitness=-71864250
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=86
+Avg Fitness=-45922444
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=87
+Avg Fitness=-83638090
+Best Fitness=-6
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Reg(0), Stat(OUTPUT), Expr(Num(791))]
+
+Generation=88
+Avg Fitness=-71092730
+Best Fitness=0
+Avg Size=7
+Best Individual: 
+[Stat(OUTPUT), Expr(Num(789)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(791)), Stat(OUTPUT), Expr(Num(842))]
+
+PROBLEM SOLVED
