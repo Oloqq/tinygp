@@ -28,6 +28,12 @@ pub fn run_and_rank(
 pub fn crossover(father: &Program, mother: &Program, rand: &mut StdRng) -> Program {
     log::debug!("crossover {father:?} x {mother:?}");
 
+    if father.len() == 0 {
+        return mother.clone()
+    }
+    if mother.len() == 0 {
+        return father.clone()
+    }
     let father_start = rand.gen_range(0, father.len());
     let father_kind = father[father_start];
     let father_end = get_node_end(father, father_start);
@@ -98,11 +104,11 @@ pub fn mutation(parent: &Program, params: &Params, rand: &mut StdRng) -> Program
                 Token::Reg(_) => Token::Reg(rand.gen_range(0, params.memsize)),
                 Token::Stat(_) => {
                     if rand.gen_bool(params.growing.p_insertion) {
-                        child.extend(grow_stat(params.max_size - parent.len(), params, rand));
+                        child.extend(grow_stat(params.max_size as i32 - parent.len() as i32, params, rand));
                     }
                     let end = get_node_end(parent, i);
                     skip_till = Some(end);
-                    child.extend(grow_stat(params.max_size - parent.len(), params, rand));
+                    child.extend(grow_stat(params.max_size as i32 - parent.len() as i32, params, rand));
                     continue;
                 },
                 Token::ELSE => Token::ELSE,

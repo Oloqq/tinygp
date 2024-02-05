@@ -44,7 +44,7 @@ pub fn grow_expr(params: &Params, rand: &mut StdRng) -> Vec<Token> {
 }
 
 pub fn grow_stat(
-    size_left: usize,
+    size_left: i32,
     params: &Params,
     rand: &mut StdRng,
 ) -> Vec<Token> {
@@ -60,7 +60,7 @@ pub fn grow_stat(
         }
         Stat::OUTPUT => {
             let mut expr = grow_expr(params, rand);
-            if code.len() + expr.len() > size_left {
+            if (code.len() + expr.len()) as i32 > size_left {
                 return vec![];
             }
             code.append(&mut expr);
@@ -68,21 +68,26 @@ pub fn grow_stat(
         Stat::LOAD => {
             code.push(rand_reg(params, rand));
             let mut expr = grow_expr(params, rand);
-            if code.len() + expr.len() > size_left {
+            if (code.len() + expr.len()) as i32 > size_left {
                 return vec![];
             }
             code.append(&mut expr);
         }
         Stat::IF => {
             code.append(&mut grow_expr(params, rand));
-            let mut space = size_left - code.len();
+            let mut space: i32 = size_left as i32 - code.len() as i32;
 
-            code.append(&mut grow_stat(space, params, rand));
-            space = size_left - code.len();
+            let mut inside = grow_stat(space, params, rand);
+            if inside.len() == 0 {
+                return vec![];
+            }
+
+            code.append(&mut inside);
+            space = size_left as i32 - code.len() as i32;
             // code.append(&mut grow_stat(space, params, rand));
             // space = size_left - code.len();
 
-            if space < 8 && rand.gen_bool(0.5) {
+            if space < 8 || rand.gen_bool(0.5) {
                 code.push(Token::END);
             } else {
                 code.push(Token::ELSE);
@@ -105,14 +110,14 @@ pub fn grow_stat(
             code.push(Token::END);
         }
     }
-    return if size_left > code.len() { code } else { vec![] };
+    return if size_left > code.len() as i32 { code } else { vec![] };
 }
 
 pub fn create_random_indiv(params: &Params, rand: &mut StdRng) -> Program {
     let mut program: Program = Vec::with_capacity(50);
     program.append(&mut vec![Token::Stat(Stat::INPUT), Token::Reg(0)]);
-    program.append(&mut grow_stat(params.max_size, params, rand));
-    program.append(&mut grow_stat(params.max_size, params, rand));
+    program.append(&mut grow_stat(params.max_size as i32, params, rand));
+    program.append(&mut grow_stat(params.max_size as i32, params, rand));
     program.append(&mut vec![Token::Stat(Stat::OUTPUT), Token::Reg(0)]);
     program
 }

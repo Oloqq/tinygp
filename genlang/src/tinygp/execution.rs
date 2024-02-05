@@ -161,6 +161,13 @@ fn handle_if_false(
 fn skip_block(program: &Program, pos: usize) -> usize {
     let mut level = 1;
     let mut cursor = pos;
+    match program[cursor] {
+        Token::Stat(Stat::IF | Stat::WHILE) => (),
+        Token::END => return cursor,
+        Token::ELSE => return cursor,
+        _ => (),
+    }
+
     while cursor < program.len() && level > 0 {
         cursor += 1;
         match program[cursor] {
