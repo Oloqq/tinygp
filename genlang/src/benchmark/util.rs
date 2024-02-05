@@ -6,7 +6,7 @@ use std::{
 
 use crate::{
     params::{Case, Params},
-    tinygp::{fitness_funcs::FitnessFunc, TinyGP},
+    tinygp::{common::Token, fitness_funcs::FitnessFunc, TinyGP},
     Args,
 };
 

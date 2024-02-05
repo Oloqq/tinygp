@@ -1,5 +1,7 @@
 use super::util::execute_benchmark;
 use crate::params::{Case, GrowingParams, Params};
+use crate::tinygp::common::Expr;
+use crate::tinygp::common::Stat;
 use crate::tinygp::fitness_funcs::*;
 use crate::Args;
 
@@ -8,9 +10,30 @@ use crate::Args;
 pub fn bench_final_bool_1(args: &Args) {
     let params = Params {
         popsize: 1000,
-        max_size: 10000,
+        max_size: 250,
         memsize: 15,
         growing: GrowingParams {
+            d_expr: vec![
+                (Expr::ADD, 0),
+                (Expr::SUB, 0),
+                (Expr::MUL, 0),
+                (Expr::DIV, 0),
+                (Expr::EQ, 1),
+                (Expr::LT, 1),
+                (Expr::GT, 1),
+                (Expr::OR, 1),
+                (Expr::AND, 1),
+                (Expr::NOT, 1),
+                (Expr::Num(0 as i32), 1),
+                (Expr::Reg(0), 1),
+            ],
+            d_stat: vec![
+                (Stat::LOAD, 1),
+                (Stat::IF, 1),
+                (Stat::WHILE, 0),
+                (Stat::INPUT, 8),
+                (Stat::OUTPUT, 1),
+            ],
             ..Default::default()
         },
         ..Default::default()
@@ -23,9 +46,30 @@ pub fn bench_final_bool_1(args: &Args) {
 pub fn bench_final_bool_2(args: &Args) {
     let params = Params {
         popsize: 1000,
-        max_size: 10000,
+        max_size: 250,
         memsize: 15,
         growing: GrowingParams {
+            d_expr: vec![
+                (Expr::ADD, 0),
+                (Expr::SUB, 0),
+                (Expr::MUL, 0),
+                (Expr::DIV, 0),
+                (Expr::EQ, 1),
+                (Expr::LT, 1),
+                (Expr::GT, 1),
+                (Expr::OR, 1),
+                (Expr::AND, 1),
+                (Expr::NOT, 1),
+                (Expr::Num(0 as i32), 1),
+                (Expr::Reg(0), 1),
+            ],
+            d_stat: vec![
+                (Stat::LOAD, 1),
+                (Stat::IF, 1),
+                (Stat::WHILE, 0),
+                (Stat::INPUT, 8),
+                (Stat::OUTPUT, 1),
+            ],
             ..Default::default()
         },
         ..Default::default()
@@ -43,9 +87,30 @@ pub fn bench_final_bool_2(args: &Args) {
 pub fn bench_final_bool_3(args: &Args) {
     let params = Params {
         popsize: 1000,
-        max_size: 10000,
+        max_size: 250,
         memsize: 15,
         growing: GrowingParams {
+            d_expr: vec![
+                (Expr::ADD, 0),
+                (Expr::SUB, 0),
+                (Expr::MUL, 0),
+                (Expr::DIV, 0),
+                (Expr::EQ, 1),
+                (Expr::LT, 1),
+                (Expr::GT, 1),
+                (Expr::OR, 1),
+                (Expr::AND, 1),
+                (Expr::NOT, 1),
+                (Expr::Num(0 as i32), 1),
+                (Expr::Reg(0), 1),
+            ],
+            d_stat: vec![
+                (Stat::LOAD, 1),
+                (Stat::IF, 1),
+                (Stat::WHILE, 0),
+                (Stat::INPUT, 8),
+                (Stat::OUTPUT, 1),
+            ],
             ..Default::default()
         },
         ..Default::default()
@@ -67,9 +132,30 @@ pub fn bench_final_bool_3(args: &Args) {
 pub fn bench_final_bool_4(args: &Args) {
     let params = Params {
         popsize: 1000,
-        max_size: 10000,
+        max_size: 250,
         memsize: 15,
         growing: GrowingParams {
+            d_expr: vec![
+                (Expr::ADD, 0),
+                (Expr::SUB, 0),
+                (Expr::MUL, 0),
+                (Expr::DIV, 0),
+                (Expr::EQ, 1),
+                (Expr::LT, 1),
+                (Expr::GT, 1),
+                (Expr::OR, 1),
+                (Expr::AND, 1),
+                (Expr::NOT, 1),
+                (Expr::Num(0 as i32), 1),
+                (Expr::Reg(0), 1),
+            ],
+            d_stat: vec![
+                (Stat::LOAD, 1),
+                (Stat::IF, 1),
+                (Stat::WHILE, 0),
+                (Stat::INPUT, 8),
+                (Stat::OUTPUT, 1),
+            ],
             ..Default::default()
         },
         ..Default::default()
@@ -99,9 +185,30 @@ pub fn bench_final_bool_4(args: &Args) {
 pub fn bench_final_bool_5(args: &Args) {
     let params = Params {
         popsize: 1000,
-        max_size: 10000,
+        max_size: 250,
         memsize: 15,
         growing: GrowingParams {
+            d_expr: vec![
+                (Expr::ADD, 0),
+                (Expr::SUB, 0),
+                (Expr::MUL, 0),
+                (Expr::DIV, 0),
+                (Expr::EQ, 1),
+                (Expr::LT, 1),
+                (Expr::GT, 1),
+                (Expr::OR, 1),
+                (Expr::AND, 1),
+                (Expr::NOT, 1),
+                (Expr::Num(0 as i32), 1),
+                (Expr::Reg(0), 1),
+            ],
+            d_stat: vec![
+                (Stat::LOAD, 1),
+                (Stat::IF, 1),
+                (Stat::WHILE, 0),
+                (Stat::INPUT, 8),
+                (Stat::OUTPUT, 1),
+            ],
             ..Default::default()
         },
         ..Default::default()
@@ -147,9 +254,30 @@ pub fn bench_final_bool_5(args: &Args) {
 pub fn bench_final_bool_6(args: &Args) {
     let params = Params {
         popsize: 1000,
-        max_size: 10000,
+        max_size: 250,
         memsize: 15,
         growing: GrowingParams {
+            d_expr: vec![
+                (Expr::ADD, 0),
+                (Expr::SUB, 0),
+                (Expr::MUL, 0),
+                (Expr::DIV, 0),
+                (Expr::EQ, 1),
+                (Expr::LT, 1),
+                (Expr::GT, 1),
+                (Expr::OR, 1),
+                (Expr::AND, 1),
+                (Expr::NOT, 1),
+                (Expr::Num(0 as i32), 1),
+                (Expr::Reg(0), 1),
+            ],
+            d_stat: vec![
+                (Stat::LOAD, 1),
+                (Stat::IF, 1),
+                (Stat::WHILE, 0),
+                (Stat::INPUT, 8),
+                (Stat::OUTPUT, 1),
+            ],
             ..Default::default()
         },
         ..Default::default()
@@ -227,9 +355,30 @@ pub fn bench_final_bool_6(args: &Args) {
 pub fn bench_final_bool_7(args: &Args) {
     let params = Params {
         popsize: 1000,
-        max_size: 10000,
+        max_size: 250,
         memsize: 15,
         growing: GrowingParams {
+            d_expr: vec![
+                (Expr::ADD, 0),
+                (Expr::SUB, 0),
+                (Expr::MUL, 0),
+                (Expr::DIV, 0),
+                (Expr::EQ, 1),
+                (Expr::LT, 1),
+                (Expr::GT, 1),
+                (Expr::OR, 1),
+                (Expr::AND, 1),
+                (Expr::NOT, 1),
+                (Expr::Num(0 as i32), 1),
+                (Expr::Reg(0), 1),
+            ],
+            d_stat: vec![
+                (Stat::LOAD, 1),
+                (Stat::IF, 1),
+                (Stat::WHILE, 0),
+                (Stat::INPUT, 8),
+                (Stat::OUTPUT, 1),
+            ],
             ..Default::default()
         },
         ..Default::default()
@@ -371,9 +520,30 @@ pub fn bench_final_bool_7(args: &Args) {
 pub fn bench_final_bool_8(args: &Args) {
     let params = Params {
         popsize: 1000,
-        max_size: 10000,
+        max_size: 250,
         memsize: 15,
         growing: GrowingParams {
+            d_expr: vec![
+                (Expr::ADD, 0),
+                (Expr::SUB, 0),
+                (Expr::MUL, 0),
+                (Expr::DIV, 0),
+                (Expr::EQ, 1),
+                (Expr::LT, 1),
+                (Expr::GT, 1),
+                (Expr::OR, 1),
+                (Expr::AND, 1),
+                (Expr::NOT, 1),
+                (Expr::Num(0 as i32), 1),
+                (Expr::Reg(0), 1),
+            ],
+            d_stat: vec![
+                (Stat::LOAD, 1),
+                (Stat::IF, 1),
+                (Stat::WHILE, 0),
+                (Stat::INPUT, 8),
+                (Stat::OUTPUT, 1),
+            ],
             ..Default::default()
         },
         ..Default::default()
@@ -643,9 +813,30 @@ pub fn bench_final_bool_8(args: &Args) {
 pub fn bench_final_bool_9(args: &Args) {
     let params = Params {
         popsize: 1000,
-        max_size: 10000,
+        max_size: 250,
         memsize: 15,
         growing: GrowingParams {
+            d_expr: vec![
+                (Expr::ADD, 0),
+                (Expr::SUB, 0),
+                (Expr::MUL, 0),
+                (Expr::DIV, 0),
+                (Expr::EQ, 1),
+                (Expr::LT, 1),
+                (Expr::GT, 1),
+                (Expr::OR, 1),
+                (Expr::AND, 1),
+                (Expr::NOT, 1),
+                (Expr::Num(0 as i32), 1),
+                (Expr::Reg(0), 1),
+            ],
+            d_stat: vec![
+                (Stat::LOAD, 1),
+                (Stat::IF, 1),
+                (Stat::WHILE, 0),
+                (Stat::INPUT, 8),
+                (Stat::OUTPUT, 1),
+            ],
             ..Default::default()
         },
         ..Default::default()
@@ -1171,9 +1362,30 @@ pub fn bench_final_bool_9(args: &Args) {
 pub fn bench_final_bool_10(args: &Args) {
     let params = Params {
         popsize: 1000,
-        max_size: 10000,
+        max_size: 250,
         memsize: 15,
         growing: GrowingParams {
+            d_expr: vec![
+                (Expr::ADD, 0),
+                (Expr::SUB, 0),
+                (Expr::MUL, 0),
+                (Expr::DIV, 0),
+                (Expr::EQ, 1),
+                (Expr::LT, 1),
+                (Expr::GT, 1),
+                (Expr::OR, 1),
+                (Expr::AND, 1),
+                (Expr::NOT, 1),
+                (Expr::Num(0 as i32), 1),
+                (Expr::Reg(0), 1),
+            ],
+            d_stat: vec![
+                (Stat::LOAD, 1),
+                (Stat::IF, 1),
+                (Stat::WHILE, 0),
+                (Stat::INPUT, 8),
+                (Stat::OUTPUT, 1),
+            ],
             ..Default::default()
         },
         ..Default::default()

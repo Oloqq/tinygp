@@ -100,7 +100,7 @@ pub fn fit_arithmetic_series(expected: &Vec<Number>, actual: &Vec<Number>, _runt
         };
         error += (*output as f32 - expected[i] as f32).abs();
     }
-    error += 10000.0 * (expected.len() as f32 - actual.len() as f32).abs();
+    error += 1000.0 * (expected.len() as f32 - actual.len() as f32).abs();
     -error
 }
 

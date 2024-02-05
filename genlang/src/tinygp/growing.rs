@@ -115,10 +115,10 @@ pub fn grow_stat(
 
 pub fn create_random_indiv(params: &Params, rand: &mut StdRng) -> Program {
     let mut program: Program = Vec::with_capacity(50);
-    program.append(&mut vec![Token::Stat(Stat::INPUT), Token::Reg(0)]);
+    program.append(&mut params.prefix.clone());
     program.append(&mut grow_stat(params.max_size as i32, params, rand));
     program.append(&mut grow_stat(params.max_size as i32, params, rand));
-    program.append(&mut vec![Token::Stat(Stat::OUTPUT), Token::Reg(0)]);
+    program.append(&mut params.suffix.clone());
     program
 }
 

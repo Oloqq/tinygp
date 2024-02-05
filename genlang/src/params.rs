@@ -38,7 +38,9 @@ pub struct Params {
     /// Minimum fitness required to consider the program fitted. Must be negative.
     pub acceptable_error: f32,
     pub growing: GrowingParams,
-    pub random_initial_memory: bool
+    pub random_initial_memory: bool,
+    pub prefix: Vec<Token>,
+    pub suffix: Vec<Token>
 }
 
 impl Params {
@@ -131,7 +133,9 @@ impl Default for Params {
             tournament_size: 2,
             acceptable_error: -1e-3,
             random_initial_memory: false,
-            growing: Default::default()
+            growing: Default::default(),
+            prefix: vec![Token::Stat(Stat::INPUT), Token::Reg(0)],
+            suffix: vec![Token::Stat(Stat::OUTPUT), Token::Reg(0)]
         }
     }
 }

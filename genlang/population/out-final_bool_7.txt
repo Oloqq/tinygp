@@ -1,0 +1,1418 @@
+Creating population
+-- TINY GP (Rust version) --
+GENERATIONS=200
+SEED=0
+POPSIZE=1000
+CROSSOVER_PROB=0.9
+PMUT_PER_NODE=0.05
+TSIZE=2
+----------------------------------
+
+Generation=0
+Avg Fitness=-82.331
+Best Fitness=-62
+Avg Size=9
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . IF) (Expr Num . -43) (Stat . INPUT) (Reg . 0) END (Stat . INPUT) (Reg . 1) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=1
+Avg Fitness=-75.84
+Best Fitness=-62
+Avg Size=9
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . IF) (Expr Num . -43) (Stat . INPUT) (Reg . 0) END (Stat . INPUT) (Reg . 1) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=2
+Avg Fitness=-70.726
+Best Fitness=-62
+Avg Size=9
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . IF) (Expr Num . -43) (Stat . INPUT) (Reg . 0) END (Stat . INPUT) (Reg . 1) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=3
+Avg Fitness=-70.098
+Best Fitness=-56
+Avg Size=9
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=4
+Avg Fitness=-70.198
+Best Fitness=-56
+Avg Size=10
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=5
+Avg Fitness=-69.275
+Best Fitness=-56
+Avg Size=10
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=6
+Avg Fitness=-68.11
+Best Fitness=-56
+Avg Size=10
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=7
+Avg Fitness=-69.422
+Best Fitness=-56
+Avg Size=10
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=8
+Avg Fitness=-68.26
+Best Fitness=-56
+Avg Size=11
+Best Individual: 
+"((Stat . INPUT) (Reg . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 6) (Stat . INPUT) (Reg . 11) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=9
+Avg Fitness=-68.712
+Best Fitness=-56
+Avg Size=11
+Best Individual: 
+"((Stat . INPUT) (Reg . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 6) (Stat . INPUT) (Reg . 11) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=10
+Avg Fitness=-67.505
+Best Fitness=-56
+Avg Size=11
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=11
+Avg Fitness=-68.041
+Best Fitness=-56
+Avg Size=11
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=12
+Avg Fitness=-65.366
+Best Fitness=-56
+Avg Size=11
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=13
+Avg Fitness=-64.642
+Best Fitness=-56
+Avg Size=10
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=14
+Avg Fitness=-63.652
+Best Fitness=-56
+Avg Size=10
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=15
+Avg Fitness=-62.859
+Best Fitness=-56
+Avg Size=10
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=16
+Avg Fitness=-63.547
+Best Fitness=-56
+Avg Size=11
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=17
+Avg Fitness=-63.565
+Best Fitness=-56
+Avg Size=11
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=18
+Avg Fitness=-64.113
+Best Fitness=-56
+Avg Size=11
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=19
+Avg Fitness=-64.549
+Best Fitness=-56
+Avg Size=11
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=20
+Avg Fitness=-63.407
+Best Fitness=-56
+Avg Size=11
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=21
+Avg Fitness=-64.112
+Best Fitness=-56
+Avg Size=12
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=22
+Avg Fitness=-64.588
+Best Fitness=-56
+Avg Size=12
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=23
+Avg Fitness=-63.867
+Best Fitness=-56
+Avg Size=12
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=24
+Avg Fitness=-64.458
+Best Fitness=-56
+Avg Size=12
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=25
+Avg Fitness=-65.304
+Best Fitness=-56
+Avg Size=12
+Best Individual: 
+"((Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=26
+Avg Fitness=-65.509
+Best Fitness=-56
+Avg Size=13
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=27
+Avg Fitness=-64.79
+Best Fitness=-56
+Avg Size=13
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=28
+Avg Fitness=-64.683
+Best Fitness=-56
+Avg Size=13
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . IF) (Expr Num . 33) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END (Stat . INPUT) (Reg . 10) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=29
+Avg Fitness=-64.656
+Best Fitness=-56
+Avg Size=13
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=30
+Avg Fitness=-63.746
+Best Fitness=-56
+Avg Size=13
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 5) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=31
+Avg Fitness=-64.27
+Best Fitness=-56
+Avg Size=14
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 5) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=32
+Avg Fitness=-62.889
+Best Fitness=-56
+Avg Size=14
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 5) END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=33
+Avg Fitness=-63.441
+Best Fitness=-56
+Avg Size=14
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=34
+Avg Fitness=-63.242
+Best Fitness=-56
+Avg Size=15
+Best Individual: 
+"((Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 5) END (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=35
+Avg Fitness=-62.767
+Best Fitness=-56
+Avg Size=15
+Best Individual: 
+"((Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 5) END (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=36
+Avg Fitness=-61.89
+Best Fitness=-56
+Avg Size=15
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=37
+Avg Fitness=-62.29
+Best Fitness=-56
+Avg Size=15
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=38
+Avg Fitness=-61.878
+Best Fitness=-56
+Avg Size=16
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=39
+Avg Fitness=-61.38
+Best Fitness=-56
+Avg Size=16
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 14) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END (Stat . INPUT) (Reg . 10) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=40
+Avg Fitness=-62.228
+Best Fitness=-56
+Avg Size=17
+Best Individual: 
+"((Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=41
+Avg Fitness=-62.276
+Best Fitness=-56
+Avg Size=17
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=42
+Avg Fitness=-61.024
+Best Fitness=-56
+Avg Size=17
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=43
+Avg Fitness=-61.738
+Best Fitness=-56
+Avg Size=18
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END (Stat . INPUT) (Reg . 10) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=44
+Avg Fitness=-61.221
+Best Fitness=-56
+Avg Size=17
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END (Stat . INPUT) (Reg . 10) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=45
+Avg Fitness=-62.143
+Best Fitness=-56
+Avg Size=18
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END (Stat . INPUT) (Reg . 10) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=46
+Avg Fitness=-61.938
+Best Fitness=-56
+Avg Size=18
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END (Stat . INPUT) (Reg . 10) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=47
+Avg Fitness=-61.686
+Best Fitness=-56
+Avg Size=19
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=48
+Avg Fitness=-62.392
+Best Fitness=-56
+Avg Size=19
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END (Stat . INPUT) (Reg . 10) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=49
+Avg Fitness=-61.747
+Best Fitness=-56
+Avg Size=20
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END (Stat . INPUT) (Reg . 10) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=50
+Avg Fitness=-61.338
+Best Fitness=-56
+Avg Size=20
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END (Stat . INPUT) (Reg . 10) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=51
+Avg Fitness=-61.759
+Best Fitness=-56
+Avg Size=21
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 1) END (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 11) END (Stat . INPUT) (Reg . 3) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=52
+Avg Fitness=-60.834
+Best Fitness=-56
+Avg Size=22
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 1) END (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 11) END (Stat . INPUT) (Reg . 3) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=53
+Avg Fitness=-61.709
+Best Fitness=-56
+Avg Size=22
+Best Individual: 
+"((Stat . IF) (Expr Num . 6) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 8) END ELSE (Stat . INPUT) (Reg . 9) END ELSE (Stat . INPUT) (Reg . 0) END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=54
+Avg Fitness=-61.435
+Best Fitness=-56
+Avg Size=22
+Best Individual: 
+"((Stat . IF) (Expr Num . 6) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 8) END ELSE (Stat . INPUT) (Reg . 9) END ELSE (Stat . INPUT) (Reg . 0) END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=55
+Avg Fitness=-61.169
+Best Fitness=-56
+Avg Size=22
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=56
+Avg Fitness=-61.683
+Best Fitness=-56
+Avg Size=23
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=57
+Avg Fitness=-61.118
+Best Fitness=-56
+Avg Size=24
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=58
+Avg Fitness=-61.938
+Best Fitness=-56
+Avg Size=24
+Best Individual: 
+"((Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=59
+Avg Fitness=-60.714
+Best Fitness=-56
+Avg Size=24
+Best Individual: 
+"((Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=60
+Avg Fitness=-59.692
+Best Fitness=-56
+Avg Size=25
+Best Individual: 
+"((Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Reg . 0) END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=61
+Avg Fitness=-60.723
+Best Fitness=-56
+Avg Size=25
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . INPUT) (Reg . 6) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=62
+Avg Fitness=-60.812
+Best Fitness=-56
+Avg Size=26
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END (Stat . IF) (Expr . NOT) (Reg . 2) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=63
+Avg Fitness=-60.434
+Best Fitness=-56
+Avg Size=26
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 2) END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 10) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=64
+Avg Fitness=-61.582
+Best Fitness=-56
+Avg Size=27
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 2) END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 10) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=65
+Avg Fitness=-60.317
+Best Fitness=-56
+Avg Size=27
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 2) END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 10) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=66
+Avg Fitness=-60.59
+Best Fitness=-56
+Avg Size=29
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 2) END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 10) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=67
+Avg Fitness=-59.599
+Best Fitness=-56
+Avg Size=29
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 3) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 0) END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 10) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=68
+Avg Fitness=-60.067
+Best Fitness=-56
+Avg Size=29
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 2) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . OUTPUT) (Reg . 0) END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 10) (Stat . OUTPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=69
+Avg Fitness=-60.164
+Best Fitness=-56
+Avg Size=31
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 2) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . OUTPUT) (Reg . 0) END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 10) (Stat . OUTPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=70
+Avg Fitness=-60.584
+Best Fitness=-56
+Avg Size=31
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 3) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 0) END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=71
+Avg Fitness=-60.563
+Best Fitness=-56
+Avg Size=31
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 3) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 0) END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=72
+Avg Fitness=-60.878
+Best Fitness=-56
+Avg Size=32
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 3) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 0) END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=73
+Avg Fitness=-59.998
+Best Fitness=-56
+Avg Size=33
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 8) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 10) END (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=74
+Avg Fitness=-60.306
+Best Fitness=-56
+Avg Size=33
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 2) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . OUTPUT) (Reg . 0) END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 10) (Stat . OUTPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=75
+Avg Fitness=-59.287
+Best Fitness=-56
+Avg Size=35
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 2) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . OUTPUT) (Reg . 0) END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 10) (Stat . OUTPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=76
+Avg Fitness=-59.92
+Best Fitness=-56
+Avg Size=35
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 2) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . OUTPUT) (Reg . 0) END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 10) (Stat . OUTPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=77
+Avg Fitness=-60.045
+Best Fitness=-56
+Avg Size=36
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 2) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . OUTPUT) (Reg . 0) END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 10) (Stat . OUTPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=78
+Avg Fitness=-60.818
+Best Fitness=-56
+Avg Size=37
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 10) END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 0) END END (Stat . INPUT) (Reg . 10) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=79
+Avg Fitness=-59.476
+Best Fitness=-56
+Avg Size=36
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 10) END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 0) END END (Stat . INPUT) (Reg . 10) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=80
+Avg Fitness=-60.338
+Best Fitness=-56
+Avg Size=37
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 10) END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 0) END END (Stat . INPUT) (Reg . 10) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=81
+Avg Fitness=-61.042
+Best Fitness=-56
+Avg Size=39
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 10) END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 0) END END (Stat . INPUT) (Reg . 10) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=82
+Avg Fitness=-59.742
+Best Fitness=-56
+Avg Size=40
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 10) END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 0) END END (Stat . INPUT) (Reg . 10) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=83
+Avg Fitness=-59.98
+Best Fitness=-56
+Avg Size=40
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 10) END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 0) END END (Stat . INPUT) (Reg . 10) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=84
+Avg Fitness=-60.212
+Best Fitness=-56
+Avg Size=41
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 10) END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 0) END END (Stat . INPUT) (Reg . 10) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=85
+Avg Fitness=-59.935
+Best Fitness=-56
+Avg Size=42
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 3) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr Num . 6) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 10) END END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END (Stat . INPUT) (Reg . 3) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=86
+Avg Fitness=-58.718
+Best Fitness=-56
+Avg Size=42
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 3) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr Num . 6) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 10) END END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END (Stat . INPUT) (Reg . 3) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=87
+Avg Fitness=-59.322
+Best Fitness=-56
+Avg Size=42
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . OUTPUT) (Reg . 2) END END (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=88
+Avg Fitness=-60.587
+Best Fitness=-56
+Avg Size=44
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . OUTPUT) (Reg . 2) END END (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=89
+Avg Fitness=-60.118
+Best Fitness=-56
+Avg Size=45
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . OUTPUT) (Reg . 2) END END (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=90
+Avg Fitness=-59.094
+Best Fitness=-56
+Avg Size=47
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END (Stat . IF) (Reg . 10) (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . IF) (Expr . NOT) (Reg . 10) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END)"
+
+Generation=91
+Avg Fitness=-59.978
+Best Fitness=-56
+Avg Size=48
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 9) (Expr . NOT) (Reg . 13) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 12) END END END ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=92
+Avg Fitness=-59.052
+Best Fitness=-56
+Avg Size=48
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 9) (Expr . NOT) (Reg . 13) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 12) END END END ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=93
+Avg Fitness=-60.39
+Best Fitness=-56
+Avg Size=47
+Best Individual: 
+"((Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 14) ELSE (Stat . OUTPUT) (Reg . 8) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 1) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=94
+Avg Fitness=-60.421
+Best Fitness=-56
+Avg Size=49
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END (Stat . IF) (Reg . 10) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . IF) (Expr Num . -53) (Stat . LOAD) (Reg . 0) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END)"
+
+Generation=95
+Avg Fitness=-59.941
+Best Fitness=-56
+Avg Size=49
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END (Stat . IF) (Reg . 10) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . IF) (Expr Num . -53) (Stat . LOAD) (Reg . 0) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END)"
+
+Generation=96
+Avg Fitness=-59.593
+Best Fitness=-56
+Avg Size=51
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 4) (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . INPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . INPUT) (Reg . 10))"
+
+Generation=97
+Avg Fitness=-59.898
+Best Fitness=-56
+Avg Size=52
+Best Individual: 
+"((Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 5) (Stat . INPUT) (Reg . 2) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr Num . -53) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END END END END (Stat . IF) (Expr . NOT) (Reg . 4) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END (Stat . IF) (Reg . 10) (Stat . INPUT) (Reg . 8) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=98
+Avg Fitness=-59.332
+Best Fitness=-56
+Avg Size=54
+Best Individual: 
+"((Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 4) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) END ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END END (Stat . INPUT) (Reg . 3) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=99
+Avg Fitness=-59.097
+Best Fitness=-56
+Avg Size=56
+Best Individual: 
+"((Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 4) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) END ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END END (Stat . INPUT) (Reg . 3) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=100
+Avg Fitness=-59.634
+Best Fitness=-56
+Avg Size=56
+Best Individual: 
+"((Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 4) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) END ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END END (Stat . INPUT) (Reg . 3) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=101
+Avg Fitness=-59.07
+Best Fitness=-56
+Avg Size=58
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 6) ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 1) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=102
+Avg Fitness=-58.903
+Best Fitness=-56
+Avg Size=59
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 6) ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 1) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=103
+Avg Fitness=-59.528
+Best Fitness=-56
+Avg Size=60
+Best Individual: 
+"((Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 5) (Stat . INPUT) (Reg . 2) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr Num . -53) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . -97) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 7) (Reg . 3) ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END END END END END END (Stat . IF) (Expr . NOT) (Reg . 4) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END (Stat . IF) (Reg . 10) (Stat . INPUT) (Reg . 8) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=104
+Avg Fitness=-59.038
+Best Fitness=-56
+Avg Size=63
+Best Individual: 
+"((Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 5) (Stat . INPUT) (Reg . 2) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr Num . -53) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . -97) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 7) (Reg . 3) ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END END END END END END (Stat . IF) (Expr . NOT) (Reg . 4) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END (Stat . IF) (Reg . 10) (Stat . INPUT) (Reg . 8) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=105
+Avg Fitness=-58.587
+Best Fitness=-56
+Avg Size=63
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 2) (Stat . INPUT) (Reg . 6) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr Num . 6) ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . OUTPUT) (Reg . 2) END END ELSE (Stat . INPUT) (Reg . 0) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 2) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) END ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . INPUT) (Reg . 0))"
+
+Generation=106
+Avg Fitness=-59.364
+Best Fitness=-56
+Avg Size=66
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 4) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 12) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 12) (Expr . EQ) (Expr . LT) (Expr Num . -67) (Reg . 6) (Reg . 6) END ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 6) (Expr . NOT) (Reg . 0) END ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr Num . -53) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 12) END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 10) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=107
+Avg Fitness=-59.194
+Best Fitness=-56
+Avg Size=65
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 4) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 12) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 12) (Expr . EQ) (Expr . LT) (Expr Num . -67) (Reg . 6) (Reg . 6) END ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 6) (Expr . NOT) (Reg . 0) END ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr Num . -53) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 12) END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 10) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=108
+Avg Fitness=-58.649
+Best Fitness=-56
+Avg Size=66
+Best Individual: 
+"((Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 2) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . IF) (Expr Num . -97) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END END END END END (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 3) ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Reg . 8) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END ELSE (Stat . OUTPUT) (Reg . 0) END END END (Stat . LOAD) (Reg . 10) (Reg . 5) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=109
+Avg Fitness=-58.765
+Best Fitness=-56
+Avg Size=67
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 4) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 12) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 12) (Expr . EQ) (Expr . LT) (Expr Num . -67) (Reg . 6) (Reg . 6) END ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 6) (Expr . NOT) (Reg . 0) END ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 9) (Expr . NOT) (Reg . 8) ELSE (Stat . INPUT) (Reg . 13) END ELSE (Stat . IF) (Expr Num . -53) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 12) END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 10) (Stat . INPUT) (Reg . 10) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=110
+Avg Fitness=-59.495
+Best Fitness=-56
+Avg Size=67
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 12) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 4) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 0) END END END END (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 3) ELSE (Stat . INPUT) (Reg . 6) END END (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=111
+Avg Fitness=-59.29
+Best Fitness=-56
+Avg Size=69
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 12) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 5) (Expr . EQ) (Expr . LT) (Expr Num . -67) (Reg . 0) (Reg . 6) END ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 6) (Expr . NOT) (Reg . 0) END ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 9) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 10) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=112
+Avg Fitness=-59.992
+Best Fitness=-56
+Avg Size=69
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 12) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 5) (Expr . EQ) (Expr . LT) (Expr Num . -67) (Reg . 0) (Reg . 6) END ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 6) (Expr . NOT) (Reg . 0) END ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 9) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 10) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=113
+Avg Fitness=-58.866
+Best Fitness=-56
+Avg Size=72
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 26) (Stat . IF) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 2) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 14) ELSE (Stat . INPUT) (Reg . 6) END ELSE (Stat . IF) (Expr Num . -53) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 12) END END END END END END ELSE (Stat . IF) (Reg . 11) (Stat . INPUT) (Reg . 8) END END ELSE (Stat . IF) (Reg . 9) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 9) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 10) (Stat . OUTPUT) (Expr . NOT) (Reg . 2) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=114
+Avg Fitness=-59.155
+Best Fitness=-56
+Avg Size=73
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 26) (Stat . IF) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 2) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 14) ELSE (Stat . INPUT) (Reg . 6) END ELSE (Stat . IF) (Expr Num . -53) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 12) END END END END END END ELSE (Stat . IF) (Reg . 11) (Stat . INPUT) (Reg . 8) END END ELSE (Stat . IF) (Reg . 9) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 9) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 10) (Stat . OUTPUT) (Expr . NOT) (Reg . 2) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=115
+Avg Fitness=-58.728
+Best Fitness=-56
+Avg Size=75
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 26) (Stat . IF) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 2) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 14) ELSE (Stat . INPUT) (Reg . 6) END ELSE (Stat . IF) (Expr Num . -53) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 12) END END END END END END ELSE (Stat . IF) (Reg . 11) (Stat . INPUT) (Reg . 8) END END ELSE (Stat . IF) (Reg . 9) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 9) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 10) (Stat . OUTPUT) (Expr . NOT) (Reg . 2) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=116
+Avg Fitness=-58.863
+Best Fitness=-56
+Avg Size=76
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 26) (Stat . IF) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 2) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 14) ELSE (Stat . INPUT) (Reg . 6) END ELSE (Stat . IF) (Expr Num . -53) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 12) END END END END END END ELSE (Stat . IF) (Reg . 11) (Stat . INPUT) (Reg . 8) END END ELSE (Stat . IF) (Reg . 9) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 9) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 10) (Stat . OUTPUT) (Expr . NOT) (Reg . 2) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=117
+Avg Fitness=-59.21
+Best Fitness=-56
+Avg Size=77
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 11) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr Num . -53) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 5) ELSE (Stat . IF) (Expr . NOT) (Reg . 11) (Stat . INPUT) (Reg . 10) ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . IF) (Expr Num . -53) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END)"
+
+Generation=118
+Avg Fitness=-58.671
+Best Fitness=-56
+Avg Size=80
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0))"
+
+Generation=119
+Avg Fitness=-58.452
+Best Fitness=-56
+Avg Size=80
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 1) END ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . OUTPUT) (Reg . 14) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 14) ELSE (Stat . INPUT) (Reg . 13) END ELSE (Stat . IF) (Expr Num . -53) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END END END END END END END ELSE (Stat . IF) (Reg . 11) (Stat . INPUT) (Reg . 8) END END ELSE (Stat . INPUT) (Reg . 14) END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 10) (Stat . LOAD) (Reg . 2) (Reg . 5) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=120
+Avg Fitness=-58.713
+Best Fitness=-56
+Avg Size=80
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 1) END ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . OUTPUT) (Reg . 14) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 14) ELSE (Stat . INPUT) (Reg . 13) END ELSE (Stat . IF) (Expr Num . -53) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END END END END END END END ELSE (Stat . IF) (Reg . 11) (Stat . INPUT) (Reg . 8) END END ELSE (Stat . INPUT) (Reg . 14) END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 10) (Stat . LOAD) (Reg . 2) (Reg . 5) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=121
+Avg Fitness=-58.236
+Best Fitness=-56
+Avg Size=80
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 1) END ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . OUTPUT) (Reg . 14) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 14) ELSE (Stat . INPUT) (Reg . 13) END ELSE (Stat . IF) (Expr Num . -53) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END END END END END END END ELSE (Stat . IF) (Reg . 11) (Stat . INPUT) (Reg . 8) END END ELSE (Stat . INPUT) (Reg . 14) END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 10) (Stat . LOAD) (Reg . 2) (Reg . 5) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=122
+Avg Fitness=-57.618
+Best Fitness=-56
+Avg Size=82
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 2) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 10) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . LOAD) (Reg . 13) (Expr Num . 6) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 12) END END END END END END ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 13) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 12) END END END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 10) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=123
+Avg Fitness=-58.514
+Best Fitness=-56
+Avg Size=84
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Expr . EQ) (Expr . LT) (Expr . NOT) (Reg . 0) (Reg . 6) (Reg . 6) END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . LOAD) (Reg . 13) (Expr . NOT) (Reg . 0))"
+
+Generation=124
+Avg Fitness=-58.622
+Best Fitness=-56
+Avg Size=85
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 13) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 7) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 10) (Expr . NOT) (Reg . 10) END END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . IF) (Expr Num . -53) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr Num . 6) (Stat . IF) (Reg . 7) (Stat . INPUT) (Reg . 7) END ELSE (Stat . IF) (Expr Num . 6) (Stat . OUTPUT) (Reg . 11) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 4) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 10) END END END END END ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=125
+Avg Fitness=-58.359
+Best Fitness=-56
+Avg Size=85
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 13) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 7) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 10) (Expr . NOT) (Reg . 10) END END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . IF) (Expr Num . -53) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr Num . 6) (Stat . IF) (Reg . 7) (Stat . INPUT) (Reg . 7) END ELSE (Stat . IF) (Expr Num . 6) (Stat . OUTPUT) (Reg . 11) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 4) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 10) END END END END END ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=126
+Avg Fitness=-58.331
+Best Fitness=-56
+Avg Size=85
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 12) ELSE (Stat . OUTPUT) (Reg . 2) END END ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 12) (Stat . OUTPUT) (Reg . 9) ELSE (Stat . OUTPUT) (Reg . 9) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 7) (Reg . 3) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END END END ELSE (Stat . LOAD) (Reg . 6) (Expr . AND) (Reg . 14) (Expr Num . 96) END END (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 9) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 10) END END END (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=127
+Avg Fitness=-58.468
+Best Fitness=-56
+Avg Size=83
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 12) ELSE (Stat . OUTPUT) (Reg . 2) END END ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 12) (Stat . OUTPUT) (Reg . 9) ELSE (Stat . OUTPUT) (Reg . 9) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 7) (Reg . 3) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END END END ELSE (Stat . LOAD) (Reg . 6) (Expr . AND) (Reg . 14) (Expr Num . 96) END END (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 9) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 10) END END END (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=128
+Avg Fitness=-58.312
+Best Fitness=-56
+Avg Size=83
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 13) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . -64) (Stat . IF) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . OUTPUT) (Expr Num . -83) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . OUTPUT) (Reg . 12) ELSE (Stat . INPUT) (Reg . 0) END END END END ELSE (Stat . OUTPUT) (Expr . NOT) (Reg . 4) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 2) (Stat . INPUT) (Reg . 6) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr Num . 6) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 11) ELSE (Stat . IF) (Expr Num . 50) (Stat . IF) (Reg . 0) (Stat . IF) (Expr Num . -53) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr Num . 6) (Stat . IF) (Reg . 7) (Stat . INPUT) (Reg . 7) END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 4) (Expr . NOT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 7) (Reg . 10) END END END END END ELSE (Stat . OUTPUT) (Reg . 0) END END ELSE (Stat . INPUT) (Reg . 0) END END END END END ELSE (Stat . INPUT) (Reg . 0) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=129
+Avg Fitness=-57.951
+Best Fitness=-56
+Avg Size=86
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 5) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 12) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . OUTPUT) (Reg . 10) ELSE (Stat . INPUT) (Reg . 0) END END END ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 6) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 6) END END (Stat . IF) (Reg . 10) (Stat . INPUT) (Reg . 8) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=130
+Avg Fitness=-57.948
+Best Fitness=-56
+Avg Size=85
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 11) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) ELSE (Stat . LOAD) (Reg . 10) (Expr . NOT) (Reg . 10) END END END END ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 2) (Stat . INPUT) (Reg . 9) ELSE (Stat . INPUT) (Reg . 6) END ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 0) END END (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 3) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 10) END END END (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=131
+Avg Fitness=-58.03
+Best Fitness=-56
+Avg Size=87
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 11) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) ELSE (Stat . LOAD) (Reg . 10) (Expr . NOT) (Reg . 10) END END END END ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 2) (Stat . INPUT) (Reg . 9) ELSE (Stat . INPUT) (Reg . 6) END ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 0) END END (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 3) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 10) END END END (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=132
+Avg Fitness=-58.167
+Best Fitness=-56
+Avg Size=90
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 4) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 50) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 6) (Expr . NOT) (Reg . 12) END ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Reg . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 9) ELSE (Stat . IF) (Expr Num . -53) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 10) END END END END ELSE (Stat . IF) (Expr Num . -53) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 12) END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 9) (Stat . INPUT) (Reg . 10) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=133
+Avg Fitness=-59.867
+Best Fitness=-56
+Avg Size=88
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 4) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 50) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 6) (Expr . NOT) (Reg . 12) END ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Reg . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 9) ELSE (Stat . IF) (Expr Num . -53) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 10) END END END END ELSE (Stat . IF) (Expr Num . -53) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 12) END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 9) (Stat . INPUT) (Reg . 10) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=134
+Avg Fitness=-58.132
+Best Fitness=-56
+Avg Size=92
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 8) END ELSE (Stat . IF) (Expr . NOT) (Reg . 13) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 7) ELSE (Stat . IF) (Expr . NOT) (Reg . 3) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . -97) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . INPUT) (Reg . 10) ELSE (Stat . IF) (Expr . NOT) (Reg . 11) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END ELSE (Stat . INPUT) (Reg . 9) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . OUTPUT) (Reg . 11) ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) ELSE (Stat . IF) (Expr Num . -55) (Stat . INPUT) (Reg . 3) ELSE (Stat . LOAD) (Reg . 5) (Expr Num . -40) END END END ELSE (Stat . INPUT) (Reg . 0) END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 7) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=135
+Avg Fitness=-58.634
+Best Fitness=-56
+Avg Size=92
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 1) (Stat . IF) (Expr . NOT) (Reg . 3) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 3) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 3) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 7) END ELSE (Stat . INPUT) (Reg . 0) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 10) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=136
+Avg Fitness=-58.324
+Best Fitness=-56
+Avg Size=91
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 8) END ELSE (Stat . IF) (Expr . NOT) (Reg . 13) (Stat . INPUT) (Reg . 2) ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 7) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . -97) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . INPUT) (Reg . 10) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) ELSE (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 11) ELSE (Stat . OUTPUT) (Reg . 0) END END END END ELSE (Stat . INPUT) (Reg . 0) END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 10) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=137
+Avg Fitness=-58.738
+Best Fitness=-56
+Avg Size=92
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . -85) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 10) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) ELSE (Stat . OUTPUT) (Reg . 8) END END END ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 8) ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . INPUT) (Reg . 14) END ELSE (Stat . IF) (Expr Num . 50) (Stat . IF) (Reg . 0) (Stat . IF) (Reg . 5) (Stat . INPUT) (Reg . 4) ELSE (Stat . OUTPUT) (Reg . 0) END END ELSE (Stat . OUTPUT) (Reg . 13) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=138
+Avg Fitness=-58.518
+Best Fitness=-56
+Avg Size=94
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 8) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 11) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . INPUT) (Reg . 8) END ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 1) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 10) (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . INPUT) (Reg . 10) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 9) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 9) END END END END ELSE (Stat . OUTPUT) (Reg . 0) END END ELSE (Stat . INPUT) (Reg . 0) END END END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=139
+Avg Fitness=-58.841
+Best Fitness=-56
+Avg Size=98
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 8) END ELSE (Stat . IF) (Expr . NOT) (Reg . 13) (Stat . INPUT) (Reg . 2) ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 7) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 12) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . INPUT) (Reg . 10) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 14) (Stat . INPUT) (Reg . 11) ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . INPUT) (Reg . 0) END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 10) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=140
+Avg Fitness=-58.04
+Best Fitness=-56
+Avg Size=99
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) ELSE (Stat . LOAD) (Reg . 10) (Expr . NOT) (Reg . 0) END END END END ELSE (Stat . IF) (Reg . 11) (Stat . INPUT) (Reg . 8) END END ELSE (Stat . OUTPUT) (Reg . 0) END END ELSE (Stat . IF) (Expr Num . 50) (Stat . IF) (Reg . 0) (Stat . IF) (Reg . 5) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr Num . 6) (Stat . IF) (Reg . 7) (Stat . IF) (Expr Num . 50) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Expr Num . 68) (Stat . INPUT) (Reg . 0) END END END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 4) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 10) END END END END END ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=141
+Avg Fitness=-58.701
+Best Fitness=-56
+Avg Size=98
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 4) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 12) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 2) (Stat . INPUT) (Reg . 9) ELSE (Stat . INPUT) (Reg . 0) END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 13) (Stat . INPUT) (Reg . 8) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) ELSE (Stat . LOAD) (Reg . 10) (Expr . NOT) (Reg . 10) END END END END END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . INPUT) (Reg . 10))"
+
+Generation=142
+Avg Fitness=-57.9
+Best Fitness=-56
+Avg Size=100
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 4) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 12) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 2) (Stat . INPUT) (Reg . 9) ELSE (Stat . INPUT) (Reg . 0) END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 13) (Stat . INPUT) (Reg . 8) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) ELSE (Stat . LOAD) (Reg . 10) (Expr . NOT) (Reg . 10) END END END END END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . INPUT) (Reg . 10))"
+
+Generation=143
+Avg Fitness=-58.229
+Best Fitness=-56
+Avg Size=102
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 4) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 12) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 2) (Stat . INPUT) (Reg . 9) ELSE (Stat . INPUT) (Reg . 0) END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 13) (Stat . INPUT) (Reg . 8) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) ELSE (Stat . LOAD) (Reg . 10) (Expr . NOT) (Reg . 10) END END END END END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . INPUT) (Reg . 10))"
+
+Generation=144
+Avg Fitness=-58.028
+Best Fitness=-56
+Avg Size=99
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 8) END ELSE (Stat . IF) (Expr . NOT) (Reg . 13) (Stat . INPUT) (Reg . 2) ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 7) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 6) (Stat . IF) (Expr Num . -97) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr Num . 78) (Stat . INPUT) (Reg . 10) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 6) (Stat . INPUT) (Reg . 8) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 11) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 10) (Expr . NOT) (Reg . 10) ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 4) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END END END END END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 10) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=145
+Avg Fitness=-58.214
+Best Fitness=-56
+Avg Size=99
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 12) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 10) END ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Reg . 10) (Stat . LOAD) (Reg . 2) (Reg . 10) ELSE (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 3) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 3) (Stat . INPUT) (Reg . 9) ELSE (Stat . INPUT) (Reg . 0) END END END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 9) (Stat . OUTPUT) (Expr Num . 6) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=146
+Avg Fitness=-58.907
+Best Fitness=-56
+Avg Size=101
+Best Individual: 
+"((Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 5) ELSE (Stat . INPUT) (Reg . 0) END END (Stat . IF) (Expr Num . -96) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END (Stat . IF) (Reg . 9) (Stat . INPUT) (Reg . 8) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=147
+Avg Fitness=-57.481
+Best Fitness=-56
+Avg Size=97
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 3) END ELSE (Stat . LOAD) (Reg . 9) (Reg . 0) END ELSE (Stat . OUTPUT) (Reg . 0) END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 10) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=148
+Avg Fitness=-57.988
+Best Fitness=-56
+Avg Size=98
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 4) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 13) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END END END ELSE (Stat . INPUT) (Reg . 12) END ELSE (Stat . LOAD) (Reg . 6) (Expr . NOT) (Reg . 0) END ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 10) (Reg . 4) ELSE (Stat . OUTPUT) (Expr . AND) (Expr Num . -72) (Expr . NOT) (Reg . 5) END ELSE (Stat . IF) (Reg . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Reg . 8) (Stat . INPUT) (Reg . 12) (Stat . LOAD) (Reg . 5) (Expr Num . 73) ELSE (Stat . LOAD) (Reg . 12) (Expr . EQ) (Expr . LT) (Expr . NOT) (Reg . 0) (Reg . 4) (Reg . 6) END ELSE (Stat . OUTPUT) (Reg . 0) END END END ELSE (Stat . INPUT) (Reg . 11) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 6) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=149
+Avg Fitness=-58.13
+Best Fitness=-56
+Avg Size=99
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 10) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 9) END END END (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 78) (Stat . INPUT) (Reg . 12) ELSE (Stat . INPUT) (Reg . 12) END ELSE (Stat . IF) (Reg . 7) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 5) ELSE (Stat . IF) (Reg . 10) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END END END END (Stat . INPUT) (Reg . 3) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=150
+Avg Fitness=-58.51
+Best Fitness=-56
+Avg Size=99
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 12) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . -85) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . -53) (Stat . INPUT) (Reg . 7) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 2) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 12) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 13) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END END END ELSE (Stat . OUTPUT) (Reg . 0) END END END ELSE (Stat . INPUT) (Reg . 8) (Stat . INPUT) (Reg . 11) END ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 6) ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 14) (Expr Num . 7) ELSE (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 4) (Stat . INPUT) (Reg . 8) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=151
+Avg Fitness=-59.411
+Best Fitness=-56
+Avg Size=99
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 12) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . -85) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . -53) (Stat . INPUT) (Reg . 7) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 2) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 12) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 13) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END END END ELSE (Stat . OUTPUT) (Reg . 0) END END END ELSE (Stat . INPUT) (Reg . 8) (Stat . INPUT) (Reg . 11) END ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 6) ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 14) (Expr Num . 7) ELSE (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 4) (Stat . INPUT) (Reg . 8) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=152
+Avg Fitness=-58.285
+Best Fitness=-56
+Avg Size=103
+Best Individual: 
+"((Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . -67) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . -53) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 12) END END ELSE (Stat . INPUT) (Reg . 6) END ELSE (Stat . IF) (Reg . 0) (Stat . OUTPUT) (Reg . 12) END END ELSE (Stat . IF) (Reg . 9) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 9) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 2) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=153
+Avg Fitness=-57.848
+Best Fitness=-56
+Avg Size=103
+Best Individual: 
+"((Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . -67) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . -53) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 12) END END ELSE (Stat . INPUT) (Reg . 6) END ELSE (Stat . IF) (Reg . 0) (Stat . OUTPUT) (Reg . 12) END END ELSE (Stat . IF) (Reg . 9) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 9) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 2) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=154
+Avg Fitness=-58.222
+Best Fitness=-56
+Avg Size=103
+Best Individual: 
+"((Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . -67) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . -53) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 12) END END ELSE (Stat . INPUT) (Reg . 6) END ELSE (Stat . IF) (Reg . 0) (Stat . OUTPUT) (Reg . 12) END END ELSE (Stat . IF) (Reg . 9) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 9) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 2) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=155
+Avg Fitness=-58.273
+Best Fitness=-56
+Avg Size=105
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . -53) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 1) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 6) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . OUTPUT) (Expr Num . -86) ELSE (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . INPUT) (Reg . 11) ELSE (Stat . IF) (Expr . NOT) (Reg . 6) (Stat . INPUT) (Reg . 8) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr Num . -97) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 13) ELSE (Stat . INPUT) (Reg . 14) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 1) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 6) END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 3) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . -42) (Stat . IF) (Expr . NOT) (Reg . 2) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 9) (Reg . 0) END ELSE (Stat . IF) (Reg . 10) (Stat . OUTPUT) (Expr . NOT) (Reg . 6) END END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 0) END END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) ELSE (Stat . INPUT) (Reg . 11) END END END ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 13) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 1) ELSE (Stat . IF) (Expr . NOT) (Reg . 5) (Stat . INPUT) (Reg . 2) ELSE (Stat . IF) (Expr . NOT) (Reg . 13) (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 6) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 7) (Reg . 8) ELSE (Stat . INPUT) (Reg . 10) END END END ELSE (Stat . INPUT) (Reg . 6) END END END END END END END END END ELSE (Stat . INPUT) (Reg . 3) END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 12) (Stat . INPUT) (Reg . 10) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=156
+Avg Fitness=-58.851
+Best Fitness=-56
+Avg Size=106
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 4) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 8) END ELSE (Stat . IF) (Reg . 11) (Stat . IF) (Expr . NOT) (Reg . 14) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 7) ELSE (Stat . IF) (Expr Num . -97) (Stat . OUTPUT) (Reg . 11) ELSE (Stat . IF) (Expr Num . 6) (Stat . OUTPUT) (Expr . NOT) (Expr Num . -42) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END END END END END ELSE (Stat . OUTPUT) (Reg . 0) END END ELSE (Stat . IF) (Expr Num . 50) (Stat . IF) (Reg . 0) (Stat . IF) (Reg . 5) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr Num . 6) (Stat . IF) (Reg . 7) (Stat . IF) (Expr Num . 50) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Expr Num . 68) (Stat . INPUT) (Reg . 0) END END END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 12) ELSE (Stat . INPUT) (Reg . 10) END END END END END ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=157
+Avg Fitness=-58.323
+Best Fitness=-56
+Avg Size=104
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 4) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 8) END ELSE (Stat . IF) (Reg . 11) (Stat . IF) (Expr . NOT) (Reg . 14) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 7) ELSE (Stat . IF) (Expr Num . -97) (Stat . OUTPUT) (Reg . 11) ELSE (Stat . IF) (Expr Num . 6) (Stat . OUTPUT) (Expr . NOT) (Expr Num . -42) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END END END END END ELSE (Stat . OUTPUT) (Reg . 0) END END ELSE (Stat . IF) (Expr Num . 50) (Stat . IF) (Reg . 0) (Stat . IF) (Reg . 5) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr Num . 6) (Stat . IF) (Reg . 7) (Stat . IF) (Expr Num . 50) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Expr Num . 68) (Stat . INPUT) (Reg . 0) END END END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 12) ELSE (Stat . INPUT) (Reg . 10) END END END END END ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=158
+Avg Fitness=-58.038
+Best Fitness=-56
+Avg Size=108
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 4) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 8) END ELSE (Stat . IF) (Reg . 11) (Stat . IF) (Expr . NOT) (Reg . 14) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 7) ELSE (Stat . IF) (Expr Num . -97) (Stat . OUTPUT) (Reg . 11) ELSE (Stat . IF) (Expr Num . 6) (Stat . OUTPUT) (Expr . NOT) (Expr Num . -42) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END END END END END ELSE (Stat . OUTPUT) (Reg . 0) END END ELSE (Stat . IF) (Expr Num . 50) (Stat . IF) (Reg . 0) (Stat . IF) (Reg . 5) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr Num . 6) (Stat . IF) (Reg . 7) (Stat . IF) (Expr Num . 50) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Expr Num . 68) (Stat . INPUT) (Reg . 0) END END END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 12) ELSE (Stat . INPUT) (Reg . 10) END END END END END ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=159
+Avg Fitness=-57.456
+Best Fitness=-56
+Avg Size=107
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 4) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 8) END ELSE (Stat . IF) (Reg . 11) (Stat . IF) (Expr . NOT) (Reg . 14) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 7) ELSE (Stat . IF) (Expr Num . -97) (Stat . OUTPUT) (Reg . 11) ELSE (Stat . IF) (Expr Num . 6) (Stat . OUTPUT) (Expr . NOT) (Expr Num . -42) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END END END END END ELSE (Stat . OUTPUT) (Reg . 0) END END ELSE (Stat . IF) (Expr Num . 50) (Stat . IF) (Reg . 0) (Stat . IF) (Reg . 5) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr Num . 6) (Stat . IF) (Reg . 7) (Stat . IF) (Expr Num . 50) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Expr Num . 68) (Stat . INPUT) (Reg . 0) END END END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 12) ELSE (Stat . INPUT) (Reg . 10) END END END END END ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=160
+Avg Fitness=-58.157
+Best Fitness=-56
+Avg Size=107
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 4) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 8) END ELSE (Stat . IF) (Reg . 11) (Stat . IF) (Expr . NOT) (Reg . 14) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 7) ELSE (Stat . IF) (Expr Num . -97) (Stat . OUTPUT) (Reg . 11) ELSE (Stat . IF) (Expr Num . 6) (Stat . OUTPUT) (Expr . NOT) (Expr Num . -42) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END END END END END ELSE (Stat . OUTPUT) (Reg . 0) END END ELSE (Stat . IF) (Expr Num . 50) (Stat . IF) (Reg . 0) (Stat . IF) (Reg . 5) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr Num . 6) (Stat . IF) (Reg . 7) (Stat . IF) (Expr Num . 50) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Expr Num . 68) (Stat . INPUT) (Reg . 0) END END END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 12) ELSE (Stat . INPUT) (Reg . 10) END END END END END ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=161
+Avg Fitness=-59.068
+Best Fitness=-56
+Avg Size=109
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 2) (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 14) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr Num . 6) ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END END END END ELSE (Stat . OUTPUT) (Reg . 14) END END END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 14) END ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 6) (Expr . NOT) (Reg . 12) ELSE (Stat . IF) (Reg . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 7) (Expr . EQ) (Expr . LT) (Expr . NOT) (Reg . 0) (Reg . 0) (Reg . 0) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 10) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=162
+Avg Fitness=-58.232
+Best Fitness=-56
+Avg Size=114
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 4) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 12) ELSE (Stat . IF) (Expr Num . -97) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 10) (Expr Num . 6) END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 9) ELSE (Stat . IF) (Expr . NOT) (Reg . 2) (Stat . IF) (Expr Num . -1) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) ELSE (Stat . IF) (Reg . 7) (Stat . IF) (Reg . 2) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 5) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 1) END END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END END ELSE (Stat . INPUT) (Reg . 0) END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 13) (Stat . INPUT) (Reg . 8) ELSE (Stat . LOAD) (Reg . 12) (Reg . 4) END END END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . INPUT) (Reg . 10))"
+
+Generation=163
+Avg Fitness=-57.749
+Best Fitness=-56
+Avg Size=115
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 4) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 12) ELSE (Stat . IF) (Expr Num . -97) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 10) (Expr Num . 6) END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 9) ELSE (Stat . IF) (Expr . NOT) (Reg . 2) (Stat . IF) (Expr Num . -1) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) ELSE (Stat . IF) (Reg . 7) (Stat . IF) (Reg . 2) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 5) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 1) END END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END END ELSE (Stat . INPUT) (Reg . 0) END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 13) (Stat . INPUT) (Reg . 8) ELSE (Stat . LOAD) (Reg . 12) (Reg . 4) END END END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . INPUT) (Reg . 10))"
+
+Generation=164
+Avg Fitness=-58.142
+Best Fitness=-56
+Avg Size=116
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 4) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 12) ELSE (Stat . IF) (Expr Num . -97) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 10) (Expr Num . 6) END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 9) ELSE (Stat . IF) (Expr . NOT) (Reg . 2) (Stat . IF) (Expr Num . -1) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) ELSE (Stat . IF) (Reg . 7) (Stat . IF) (Reg . 2) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 5) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 1) END END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END END ELSE (Stat . INPUT) (Reg . 0) END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 13) (Stat . INPUT) (Reg . 8) ELSE (Stat . LOAD) (Reg . 12) (Reg . 4) END END END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . INPUT) (Reg . 10))"
+
+Generation=165
+Avg Fitness=-57.673
+Best Fitness=-56
+Avg Size=117
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 4) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 12) ELSE (Stat . IF) (Expr Num . -97) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 10) (Expr Num . 6) END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 9) ELSE (Stat . IF) (Expr Num . 58) (Stat . IF) (Expr Num . -1) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) ELSE (Stat . IF) (Reg . 7) (Stat . IF) (Reg . 2) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 5) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 1) END END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END END ELSE (Stat . INPUT) (Reg . 0) END END END ELSE (Stat . INPUT) (Reg . 0) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . INPUT) (Reg . 10))"
+
+Generation=166
+Avg Fitness=-58.03
+Best Fitness=-56
+Avg Size=120
+Best Individual: 
+"((Stat . IF) (Expr Num . 6) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 14) END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . IF) (Reg . 1) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 9) (Stat . INPUT) (Reg . 8) ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 3) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Reg . 2) (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 7) END ELSE (Stat . IF) (Expr Num . -53) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 14) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=167
+Avg Fitness=-58.105
+Best Fitness=-56
+Avg Size=122
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 12) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 2) (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 7) (Stat . IF) (Reg . 2) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 5) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 1) END END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 11) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 10) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 7) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 4) END ELSE (Stat . LOAD) (Reg . 2) (Expr . NOT) (Reg . 10) END END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 3) (Stat . LOAD) (Reg . 7) (Reg . 3) ELSE (Stat . INPUT) (Reg . 9) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . OUTPUT) (Reg . 0) END END END ELSE (Stat . INPUT) (Reg . 8) END END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 14) (Stat . INPUT) (Reg . 3) END ELSE (Stat . IF) (Expr . NOT) (Reg . 13) (Stat . INPUT) (Reg . 2) ELSE (Stat . INPUT) (Reg . 6) END END END ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 6) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 13) (Stat . OUTPUT) (Expr . NOT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=168
+Avg Fitness=-57.646
+Best Fitness=-56
+Avg Size=128
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 85) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 7) (Stat . IF) (Expr . NOT) (Reg . 14) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 11) (Expr Num . -10) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 4) (Expr . NOT) (Reg . 9) END END END ELSE (Stat . LOAD) (Reg . 14) (Expr . NOT) (Reg . 0) END ELSE (Stat . OUTPUT) (Reg . 0) END END END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 14) END ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 6) (Expr . NOT) (Reg . 12) ELSE (Stat . IF) (Reg . 6) (Stat . INPUT) (Reg . 3) ELSE (Stat . INPUT) (Reg . 2) END END ELSE (Stat . IF) (Expr Num . 33) (Stat . INPUT) (Reg . 2) END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 10) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=169
+Avg Fitness=-58.322
+Best Fitness=-56
+Avg Size=126
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 85) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 7) (Stat . IF) (Expr . NOT) (Reg . 14) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 11) (Expr Num . -10) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 4) (Expr . NOT) (Reg . 9) END END END ELSE (Stat . LOAD) (Reg . 14) (Expr . NOT) (Reg . 0) END ELSE (Stat . OUTPUT) (Reg . 0) END END END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 14) END ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 6) (Expr . NOT) (Reg . 12) ELSE (Stat . IF) (Reg . 6) (Stat . INPUT) (Reg . 3) ELSE (Stat . INPUT) (Reg . 2) END END ELSE (Stat . IF) (Expr Num . 33) (Stat . INPUT) (Reg . 2) END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 10) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=170
+Avg Fitness=-57.968
+Best Fitness=-56
+Avg Size=125
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 85) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 7) (Stat . IF) (Expr . NOT) (Reg . 14) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 11) (Expr Num . -10) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 4) (Expr . NOT) (Reg . 9) END END END ELSE (Stat . LOAD) (Reg . 14) (Expr . NOT) (Reg . 0) END ELSE (Stat . OUTPUT) (Reg . 0) END END END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 14) END ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 6) (Expr . NOT) (Reg . 12) ELSE (Stat . IF) (Reg . 6) (Stat . INPUT) (Reg . 3) ELSE (Stat . INPUT) (Reg . 2) END END ELSE (Stat . IF) (Expr Num . 33) (Stat . INPUT) (Reg . 2) END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 10) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=171
+Avg Fitness=-57.585
+Best Fitness=-56
+Avg Size=123
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 14) (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 10) (Expr Num . -53) ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . -67) (Stat . LOAD) (Reg . 6) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Reg . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 7) (Expr . EQ) (Expr . LT) (Expr . NOT) (Reg . 0) (Reg . 0) (Reg . 0) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END END END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 3) (Stat . LOAD) (Reg . 10) (Reg . 3) ELSE (Stat . INPUT) (Reg . 9) END END (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 3) ELSE (Stat . INPUT) (Reg . 10) END END (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=172
+Avg Fitness=-58.071
+Best Fitness=-56
+Avg Size=124
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 14) (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 10) (Expr Num . -53) ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . -67) (Stat . LOAD) (Reg . 6) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Reg . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 7) (Expr . EQ) (Expr . LT) (Expr . NOT) (Reg . 0) (Reg . 0) (Reg . 0) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END END END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 3) (Stat . LOAD) (Reg . 10) (Reg . 3) ELSE (Stat . INPUT) (Reg . 9) END END (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 3) ELSE (Stat . INPUT) (Reg . 10) END END (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=173
+Avg Fitness=-58.105
+Best Fitness=-56
+Avg Size=125
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 11) (Expr . EQ) (Expr . NOT) (Reg . 0) (Reg . 4) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 1) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END ELSE (Stat . IF) (Reg . 13) (Stat . OUTPUT) (Reg . 12) END END ELSE (Stat . IF) (Reg . 9) (Stat . OUTPUT) (Reg . 3) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) ELSE (Stat . IF) (Reg . 7) (Stat . IF) (Reg . 2) (Stat . INPUT) (Reg . 6) ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 3) END END ELSE (Stat . OUTPUT) (Reg . 0) END END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 2) (Stat . OUTPUT) (Reg . 0) END (Stat . IF) (Expr Num . 6) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 3) END)"
+
+Generation=174
+Avg Fitness=-58.275
+Best Fitness=-56
+Avg Size=124
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 3) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 2) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 12) ELSE (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 7) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 12) ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr Num . 6) (Stat . IF) (Reg . 7) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 2) (Expr . NOT) (Reg . 10) END END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 0) END END END ELSE (Stat . IF) (Expr Num . 6) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 10) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 9) END ELSE (Stat . LOAD) (Reg . 0) (Expr . EQ) (Expr . LT) (Expr . NOT) (Reg . 0) (Reg . 5) (Reg . 6) END ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . OUTPUT) (Reg . 0) END END END END (Stat . IF) (Expr Num . -1) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 13) END (Stat . INPUT) (Reg . 12) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=175
+Avg Fitness=-58.452
+Best Fitness=-56
+Avg Size=128
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . IF) (Expr . NOT) (Reg . 4) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 10) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 78) (Stat . INPUT) (Reg . 2) ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Reg . 7) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 6) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 3) ELSE (Stat . IF) (Expr . NOT) (Reg . 2) (Stat . INPUT) (Reg . 1) ELSE (Stat . INPUT) (Reg . 0) END END END END ELSE (Stat . INPUT) (Reg . 0) END END END END END ELSE (Stat . IF) (Reg . 2) (Stat . INPUT) (Reg . 8) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 8) END ELSE (Stat . IF) (Expr Num . 50) (Stat . IF) (Reg . 10) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 1) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 13) (Stat . IF) (Reg . 9) (Stat . INPUT) (Reg . 4) END ELSE (Stat . INPUT) (Reg . 12) END END END END END END ELSE (Stat . IF) (Expr Num . -83) (Stat . IF) (Reg . 0) (Stat . IF) (Reg . 5) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . IF) (Reg . 7) (Stat . INPUT) (Reg . 9) END ELSE (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr Num . 43) (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 8) END ELSE (Stat . IF) (Reg . 10) (Stat . INPUT) (Reg . 8) END END END ELSE (Stat . OUTPUT) (Reg . 1) END END END ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=176
+Avg Fitness=-58.04
+Best Fitness=-56
+Avg Size=128
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . IF) (Expr . NOT) (Reg . 4) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 10) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 78) (Stat . INPUT) (Reg . 2) ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Reg . 7) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 6) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 3) ELSE (Stat . IF) (Expr . NOT) (Reg . 2) (Stat . INPUT) (Reg . 1) ELSE (Stat . INPUT) (Reg . 0) END END END END ELSE (Stat . INPUT) (Reg . 0) END END END END END ELSE (Stat . IF) (Reg . 2) (Stat . INPUT) (Reg . 8) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 8) END ELSE (Stat . IF) (Expr Num . 50) (Stat . IF) (Reg . 10) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 1) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 13) (Stat . IF) (Reg . 9) (Stat . INPUT) (Reg . 4) END ELSE (Stat . INPUT) (Reg . 12) END END END END END END ELSE (Stat . IF) (Expr Num . -83) (Stat . IF) (Reg . 0) (Stat . IF) (Reg . 5) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . IF) (Reg . 7) (Stat . INPUT) (Reg . 9) END ELSE (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr Num . 43) (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 8) END ELSE (Stat . IF) (Reg . 10) (Stat . INPUT) (Reg . 8) END END END ELSE (Stat . OUTPUT) (Reg . 1) END END END ELSE (Stat . OUTPUT) (Reg . 0) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=177
+Avg Fitness=-57.696
+Best Fitness=-56
+Avg Size=127
+Best Individual: 
+"((Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 4) END ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) (Stat . INPUT) (Reg . 2) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 10) (Stat . INPUT) (Reg . 8) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 3) ELSE (Stat . LOAD) (Reg . 0) (Expr Num . -40) END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 2) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 6) END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr Num . -53) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 33) (Stat . INPUT) (Reg . 2) END END ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . IF) (Reg . 1) (Stat . OUTPUT) (Reg . 0) END END ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 6) END END ELSE (Stat . INPUT) (Reg . 1) END END END (Stat . IF) (Expr . NOT) (Reg . 14) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 9) ELSE (Stat . IF) (Expr . NOT) (Reg . 11) (Stat . IF) (Expr Num . 6) (Stat . OUTPUT) (Reg . 11) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . OUTPUT) (Reg . 0) END END END (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=178
+Avg Fitness=-57.534
+Best Fitness=-56
+Avg Size=125
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 3) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 2) (Stat . LOAD) (Reg . 4) (Expr . NOT) (Reg . 12) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 9) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 3) ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr Num . 6) (Stat . IF) (Reg . 8) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 9) ELSE (Stat . LOAD) (Reg . 2) (Expr . NOT) (Reg . 10) END END ELSE (Stat . IF) (Reg . 10) (Stat . LOAD) (Reg . 2) (Reg . 10) ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . INPUT) (Reg . 1) END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 12) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 12) (Stat . INPUT) (Reg . 1) END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 12) (Expr . NOT) (Reg . 0) END END ELSE (Stat . OUTPUT) (Reg . 0) END END END END (Stat . IF) (Expr Num . -1) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 4) END (Stat . INPUT) (Reg . 14) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=179
+Avg Fitness=-58.102
+Best Fitness=-56
+Avg Size=127
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 2) (Stat . IF) (Expr . NOT) (Reg . 1) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 14) END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 6) (Expr . NOT) (Reg . 12) END ELSE (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 8) END ELSE (Stat . OUTPUT) (Reg . 10) END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 14) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=180
+Avg Fitness=-57.898
+Best Fitness=-56
+Avg Size=130
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 8) END ELSE (Stat . IF) (Expr . NOT) (Reg . 13) (Stat . INPUT) (Reg . 2) ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 14) END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 6) (Expr . NOT) (Reg . 12) END END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 13) (Expr . EQ) (Expr Num . -24) (Expr Num . 6) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . -97) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . INPUT) (Reg . 10) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 2) (Reg . 8) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . INPUT) (Reg . 11) ELSE (Stat . IF) (Expr . NOT) (Reg . 4) (Stat . IF) (Expr Num . 6) (Stat . OUTPUT) (Expr Num . 6) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 11) ELSE (Stat . INPUT) (Reg . 2) END END END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 7) (Stat . IF) (Expr Num . 6) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . OUTPUT) (Reg . 0) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . INPUT) (Reg . 0) END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 7) (Expr . NOT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=181
+Avg Fitness=-58.062
+Best Fitness=-56
+Avg Size=131
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 8) END ELSE (Stat . IF) (Expr . NOT) (Reg . 13) (Stat . INPUT) (Reg . 2) ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 14) END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 6) (Expr . NOT) (Reg . 12) END END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 13) (Expr . EQ) (Expr Num . -24) (Expr Num . 6) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . -97) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . INPUT) (Reg . 10) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 2) (Reg . 8) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . INPUT) (Reg . 11) ELSE (Stat . IF) (Expr . NOT) (Reg . 4) (Stat . IF) (Expr Num . 6) (Stat . OUTPUT) (Expr Num . 6) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 11) ELSE (Stat . INPUT) (Reg . 2) END END END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 7) (Stat . IF) (Expr Num . 6) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . OUTPUT) (Reg . 0) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 8) ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . INPUT) (Reg . 0) END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 7) (Expr . NOT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=182
+Avg Fitness=-58.168
+Best Fitness=-56
+Avg Size=132
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 4) END ELSE (Stat . IF) (Expr Num . 50) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 2) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 2) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=183
+Avg Fitness=-58.045
+Best Fitness=-56
+Avg Size=133
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 8) END ELSE (Stat . IF) (Expr . NOT) (Reg . 13) (Stat . INPUT) (Reg . 2) ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 2) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 6) (Expr . NOT) (Reg . 12) END END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 6) (Stat . INPUT) (Reg . 9) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 13) (Expr . EQ) (Expr Num . -24) (Expr Num . 6) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . -97) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . INPUT) (Reg . 10) ELSE (Stat . INPUT) (Reg . 9) END ELSE (Stat . IF) (Expr . NOT) (Reg . 14) (Stat . INPUT) (Reg . 11) ELSE (Stat . IF) (Expr . NOT) (Reg . 4) (Stat . IF) (Reg . 12) (Stat . OUTPUT) (Expr Num . 6) ELSE (Stat . INPUT) (Reg . 12) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 11) ELSE (Stat . INPUT) (Reg . 13) END END END END END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 12) END ELSE (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . INPUT) (Reg . 8) ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . INPUT) (Reg . 14) END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=184
+Avg Fitness=-58.208
+Best Fitness=-56
+Avg Size=132
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 12) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 6) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 14) (Stat . INPUT) (Reg . 3) END ELSE (Stat . IF) (Expr . NOT) (Reg . 13) (Stat . INPUT) (Reg . 2) ELSE (Stat . INPUT) (Reg . 0) END END END ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 6) END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 8) (Stat . OUTPUT) (Expr . NOT) (Reg . 2) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=185
+Avg Fitness=-57.764
+Best Fitness=-56
+Avg Size=139
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 6) (Stat . INPUT) (Reg . 8) ELSE (Stat . INPUT) (Reg . 8) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . IF) (Reg . 8) (Stat . INPUT) (Reg . 8) END END END END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 2) END ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 4) (Stat . LOAD) (Reg . 6) (Expr . NOT) (Reg . 12) ELSE (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 8) ELSE (Stat . OUTPUT) (Reg . 0) END END ELSE (Stat . IF) (Expr Num . 33) (Stat . INPUT) (Reg . 2) END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=186
+Avg Fitness=-58.131
+Best Fitness=-56
+Avg Size=140
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 6) (Stat . INPUT) (Reg . 8) ELSE (Stat . INPUT) (Reg . 8) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . IF) (Reg . 8) (Stat . INPUT) (Reg . 8) END END END END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 2) END ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 4) (Stat . LOAD) (Reg . 6) (Expr . NOT) (Reg . 12) ELSE (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 8) ELSE (Stat . OUTPUT) (Reg . 0) END END ELSE (Stat . IF) (Expr Num . 33) (Stat . INPUT) (Reg . 2) END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=187
+Avg Fitness=-58.166
+Best Fitness=-56
+Avg Size=139
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 10) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 14) ELSE (Stat . INPUT) (Reg . 0) END END END ELSE (Stat . INPUT) (Reg . 14) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 10) (Stat . INPUT) (Reg . 2) ELSE (Stat . OUTPUT) (Reg . 0) END END END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 14) END ELSE (Stat . IF) (Reg . 7) (Stat . IF) (Reg . 2) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 5) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 7) (Stat . INPUT) (Reg . 2) END END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=188
+Avg Fitness=-58.179
+Best Fitness=-56
+Avg Size=141
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 10) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 14) ELSE (Stat . INPUT) (Reg . 0) END END END ELSE (Stat . INPUT) (Reg . 14) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 10) (Stat . INPUT) (Reg . 2) ELSE (Stat . OUTPUT) (Reg . 0) END END END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 14) END ELSE (Stat . IF) (Reg . 7) (Stat . IF) (Reg . 2) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 5) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 7) (Stat . INPUT) (Reg . 2) END END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=189
+Avg Fitness=-58.649
+Best Fitness=-56
+Avg Size=140
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 10) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 14) ELSE (Stat . INPUT) (Reg . 0) END END END ELSE (Stat . INPUT) (Reg . 14) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 10) (Stat . INPUT) (Reg . 2) ELSE (Stat . OUTPUT) (Reg . 0) END END END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 14) END ELSE (Stat . IF) (Reg . 7) (Stat . IF) (Reg . 2) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 5) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 7) (Stat . INPUT) (Reg . 2) END END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=190
+Avg Fitness=-57.317
+Best Fitness=-56
+Avg Size=139
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 6) (Stat . INPUT) (Reg . 8) ELSE (Stat . INPUT) (Reg . 8) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . IF) (Reg . 8) (Stat . INPUT) (Reg . 8) END END END END ELSE (Stat . INPUT) (Reg . 10) END ELSE (Stat . INPUT) (Reg . 2) END ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 4) (Stat . LOAD) (Reg . 6) (Expr . NOT) (Reg . 12) ELSE (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 8) ELSE (Stat . LOAD) (Reg . 9) (Expr . NOT) (Reg . 0) END END ELSE (Stat . IF) (Expr Num . 33) (Stat . INPUT) (Reg . 2) END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=191
+Avg Fitness=-57.846
+Best Fitness=-56
+Avg Size=139
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 8) END ELSE (Stat . IF) (Expr . NOT) (Reg . 13) (Stat . INPUT) (Reg . 2) ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 2) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 6) (Expr . NOT) (Reg . 12) END END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 6) (Stat . INPUT) (Reg . 9) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 13) (Expr . EQ) (Expr Num . -24) (Expr Num . 6) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 10) ELSE (Stat . INPUT) (Reg . 9) END ELSE (Stat . IF) (Expr . NOT) (Reg . 14) (Stat . INPUT) (Reg . 11) ELSE (Stat . INPUT) (Reg . 8) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 1) (Stat . INPUT) (Reg . 1) ELSE (Stat . OUTPUT) (Reg . 0) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 2) ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . INPUT) (Reg . 14) END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 7) (Expr . NOT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=192
+Avg Fitness=-57.898
+Best Fitness=-56
+Avg Size=141
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 2) (Stat . INPUT) (Reg . 9) ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 9) (Reg . 0) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 10) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 8) (Expr . NOT) (Reg . 3) ELSE (Stat . INPUT) (Reg . 0) END END END END (Stat . IF) (Expr Num . -1) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Reg . 9) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 78) (Stat . INPUT) (Reg . 6) ELSE (Stat . IF) (Reg . 7) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 13) END (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 5) ELSE (Stat . IF) (Reg . 10) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END END END ELSE (Stat . IF) (Reg . 7) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr Num . 53) (Stat . LOAD) (Reg . 10) (Expr Num . 6) END (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Reg . 6) (Stat . INPUT) (Reg . 12) ELSE (Stat . LOAD) (Reg . 9) (Expr . EQ) (Expr . LT) (Expr . NOT) (Reg . 0) (Reg . 6) (Reg . 1) END END ELSE (Stat . LOAD) (Reg . 7) (Expr . NOT) (Reg . 0) END END END END END (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=193
+Avg Fitness=-57.681
+Best Fitness=-56
+Avg Size=143
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 6) (Stat . INPUT) (Reg . 8) ELSE (Stat . INPUT) (Reg . 6) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 2) END ELSE (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 8) END END END END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 2) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 4) (Stat . INPUT) (Reg . 9) ELSE (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 8) ELSE (Stat . LOAD) (Reg . 9) (Expr . NOT) (Reg . 0) END END ELSE (Stat . IF) (Reg . 9) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=194
+Avg Fitness=-57.7
+Best Fitness=-56
+Avg Size=146
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 6) (Stat . INPUT) (Reg . 8) ELSE (Stat . INPUT) (Reg . 6) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 2) END ELSE (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 8) END END END END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 2) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 4) (Stat . INPUT) (Reg . 9) ELSE (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 8) ELSE (Stat . LOAD) (Reg . 9) (Expr . NOT) (Reg . 0) END END ELSE (Stat . IF) (Reg . 9) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 0) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=195
+Avg Fitness=-57.372
+Best Fitness=-56
+Avg Size=147
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 14) (Stat . IF) (Reg . 7) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 2) (Expr . NOT) (Reg . 10) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 10) (Stat . OUTPUT) (Reg . 5) ELSE (Stat . LOAD) (Reg . 2) (Expr . NOT) (Reg . 10) END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 13) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 2) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 8) END ELSE (Stat . INPUT) (Reg . 0) END END END ELSE (Stat . IF) (Reg . 11) (Stat . INPUT) (Reg . 0) END END ELSE (Stat . IF) (Reg . 9) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr Num . 6) (Stat . OUTPUT) (Expr Num . -53) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 5) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 11) (Stat . OUTPUT) (Expr Num . -34) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . -1) (Stat . LOAD) (Reg . 0) (Reg . 14) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 1) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END ELSE (Stat . OUTPUT) (Reg . 0) END END ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 11) ELSE (Stat . INPUT) (Reg . 0) END END END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 6) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=196
+Avg Fitness=-57.526
+Best Fitness=-56
+Avg Size=147
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 14) (Stat . IF) (Reg . 7) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 2) (Expr . NOT) (Reg . 10) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 10) (Stat . OUTPUT) (Reg . 5) ELSE (Stat . LOAD) (Reg . 2) (Expr . NOT) (Reg . 10) END END END ELSE (Stat . IF) (Expr . NOT) (Reg . 13) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 2) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 8) END ELSE (Stat . INPUT) (Reg . 0) END END END ELSE (Stat . IF) (Reg . 11) (Stat . INPUT) (Reg . 0) END END ELSE (Stat . IF) (Reg . 9) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 9) (Stat . IF) (Expr Num . 6) (Stat . OUTPUT) (Expr Num . -53) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . OUTPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 5) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 11) (Stat . OUTPUT) (Expr Num . -34) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . -1) (Stat . LOAD) (Reg . 0) (Reg . 14) ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 1) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END END ELSE (Stat . OUTPUT) (Reg . 0) END END ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 11) ELSE (Stat . INPUT) (Reg . 0) END END END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 6) END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=197
+Avg Fitness=-57.552
+Best Fitness=-56
+Avg Size=145
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 7) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 3) ELSE (Stat . OUTPUT) (Reg . 10) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . IF) (Reg . 10) (Stat . INPUT) (Reg . 2) ELSE (Stat . INPUT) (Reg . 8) END END END END ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . INPUT) (Reg . 7) END ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 6) (Expr . NOT) (Reg . 5) ELSE (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 14) ELSE (Stat . INPUT) (Reg . 2) END END ELSE (Stat . IF) (Expr Num . 33) (Stat . INPUT) (Reg . 6) END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 13) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=198
+Avg Fitness=-57.531
+Best Fitness=-56
+Avg Size=149
+Best Individual: 
+"((Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 7) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 3) ELSE (Stat . OUTPUT) (Reg . 10) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . IF) (Reg . 10) (Stat . INPUT) (Reg . 2) ELSE (Stat . INPUT) (Reg . 8) END END END END ELSE (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . INPUT) (Reg . 7) END ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . LOAD) (Reg . 6) (Expr . NOT) (Reg . 5) ELSE (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 14) ELSE (Stat . INPUT) (Reg . 2) END END ELSE (Stat . IF) (Expr Num . 33) (Stat . INPUT) (Reg . 6) END END END (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 13) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=199
+Avg Fitness=-57.764
+Best Fitness=-56
+Avg Size=147
+Best Individual: 
+"((Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 3) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 8) END ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 7) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 27) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 8) END ELSE (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 10) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . IF) (Expr . NOT) (Reg . 6) (Stat . IF) (Expr . NOT) (Reg . 5) (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . -47) (Stat . IF) (Reg . 12) (Stat . INPUT) (Reg . 7) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 7) ELSE (Stat . IF) (Expr . NOT) (Reg . 3) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 5) (Stat . INPUT) (Reg . 9) END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 1) (Reg . 11) END END END END ELSE (Stat . OUTPUT) (Reg . 12) END ELSE (Stat . IF) (Reg . 10) (Stat . OUTPUT) (Reg . 0) END END ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . INPUT) (Reg . 3) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 11) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 3) (Stat . INPUT) (Reg . 8) ELSE (Stat . INPUT) (Reg . 6) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . IF) (Reg . 8) (Stat . INPUT) (Reg . 8) END END END END ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . INPUT) (Reg . 0) END END END (Stat . IF) (Expr . NOT) (Reg . 14) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Expr . EQ) (Expr . NOT) (Reg . 0) (Reg . 0) END (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=200
+Avg Fitness=-58.346
+Best Fitness=-56
+Avg Size=149
+Best Individual: 
+"((Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 3) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 8) END ELSE (Stat . IF) (Expr Num . 6) (Stat . LOAD) (Reg . 7) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 27) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . INPUT) (Reg . 8) END ELSE (Stat . IF) (Reg . 0) (Stat . INPUT) (Reg . 10) END END ELSE (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . IF) (Expr . NOT) (Reg . 6) (Stat . IF) (Expr . NOT) (Reg . 5) (Stat . IF) (Expr . NOT) (Reg . 8) (Stat . INPUT) (Reg . 0) ELSE (Stat . OUTPUT) (Reg . 0) END ELSE (Stat . IF) (Expr Num . 6) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Expr Num . -47) (Stat . IF) (Reg . 12) (Stat . INPUT) (Reg . 7) END ELSE (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . INPUT) (Reg . 7) ELSE (Stat . IF) (Expr . NOT) (Reg . 3) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 5) (Stat . INPUT) (Reg . 9) END ELSE (Stat . INPUT) (Reg . 0) END ELSE (Stat . LOAD) (Reg . 1) (Reg . 11) END END END END ELSE (Stat . OUTPUT) (Reg . 12) END ELSE (Stat . IF) (Reg . 10) (Stat . OUTPUT) (Reg . 0) END END ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . INPUT) (Reg . 3) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr Num . 6) (Stat . INPUT) (Reg . 0) ELSE (Stat . IF) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 11) (Stat . IF) (Expr . NOT) (Reg . 0) (Stat . IF) (Expr . NOT) (Reg . 3) (Stat . INPUT) (Reg . 8) ELSE (Stat . INPUT) (Reg . 6) END ELSE (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) END ELSE (Stat . IF) (Reg . 8) (Stat . INPUT) (Reg . 8) END END END END ELSE (Stat . INPUT) (Reg . 0) END END ELSE (Stat . INPUT) (Reg . 0) END END END (Stat . IF) (Expr . NOT) (Reg . 14) (Stat . LOAD) (Reg . 0) (Expr . NOT) (Reg . 0) ELSE (Stat . LOAD) (Reg . 0) (Expr . EQ) (Expr . NOT) (Reg . 0) (Reg . 0) END (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Reg . 0))"
+
+PROBLEM UNSOLVED

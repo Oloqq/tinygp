@@ -1,6 +1,27 @@
-from random import randint
+from random import randint, sample
 from math import floor
 from itertools import product
+
+# arithmetic series
+def prob_series(n: int):
+    for i in range(n):
+        start = randint(-100, 100)
+        step = randint(-20, 20)
+        if step == 0:
+            step = 1
+        stop = randint(start, 100) if step > 0 else randint(-100, start)
+        case = [start, stop, step]
+        print(f"(vec!{case}, vec!{list(range(start, stop, step))}),")
+
+prob_series(50)
+
+# minimum of four
+def prob_final_3(n: int):
+    for i in range(n):
+        case = sample(range(-100, 100), 4)
+        print(f"(vec!{case}, vec![{floor(min(case))}]),")
+
+# prob_final_3(100)
 
 # Boolean regression
 def prob_bool(k: int):
@@ -8,8 +29,8 @@ def prob_bool(k: int):
     with open(f"problems/{k}", "w") as f:
         f.writelines(",\n".join(["(vec![" + ", ".join([str(val) for val in case]) + f"], vec![{randint(0, 1)}])" for case in cases]))
 
-for i in range(1, 11):
-    prob_bool(i)
+# for i in range(1, 11):
+#     prob_bool(i)
 
 # 1.4.A Program powinien odczytać dziesięć pierwszych liczy z wejścia i zwrócić na wyjściu (jedynie) ich średnią arytmetyczną (zaokrągloną do pełnej liczby całkowitej). Na wejściu mogą być tylko całkowite liczby w zakresie [-99,99]
 def prob_1_4_a():

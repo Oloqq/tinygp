@@ -38,6 +38,8 @@ pub fn run_benchmark(suite: &str, args: &Args) {
 
         "final_1" => bench_final_1(args),
         "final_2" => bench_final_2(args),
+        "final_2_sum" => bench_sum(args),
+        "final_2_square" => bench_square(args),
         "final_3" => bench_final_3(args),
         "final_bool_1" => bench_final_bool_1(args),
         "final_bool_2" => bench_final_bool_2(args),

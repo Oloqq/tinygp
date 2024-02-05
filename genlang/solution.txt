@@ -1,1 +1,1 @@
-[Stat(INPUT), Reg(6), Stat(LOAD), Reg(0), Expr(Num(1)), Stat(OUTPUT), Reg(0)]
+[Stat(INPUT), Reg(0), Stat(IF), Reg(0), Stat(IF), Expr(Num(-1)), Stat(INPUT), Reg(0), ELSE, Stat(IF), Expr(AND), Expr(Num(68)), Reg(10), Stat(INPUT), Reg(0), ELSE, Stat(OUTPUT), Expr(Num(-37)), END, END, END, Stat(LOAD), Reg(5), Expr(OR), Expr(Num(-25)), Expr(Num(-91)), Stat(OUTPUT), Reg(0)]
