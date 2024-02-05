@@ -1,3 +1,5 @@
+# Genetic programming system started for AGH's genetic programming course
+
 # Design
 
 ## [Grammar and tokens](../genlang/src/tinygp/common.rs)
