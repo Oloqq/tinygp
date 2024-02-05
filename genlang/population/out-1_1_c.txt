@@ -1,1 +1,1418 @@
 Creating population
+-- TINY GP (Rust version) --
+GENERATIONS=200
+SEED=3
+POPSIZE=2000
+CROSSOVER_PROB=0.5
+PMUT_PER_NODE=0.1
+TSIZE=2
+----------------------------------
+
+Generation=0
+Avg Fitness=-inf
+Best Fitness=-45
+Avg Size=10
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr Num . 40694) (Stat . IF) (Expr Num . 21250) (Stat . IF) (Expr Num . 97078) (Stat . LOAD) (Reg . 0) (Expr Num . 31430) END END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=1
+Avg Fitness=-inf
+Best Fitness=-45
+Avg Size=10
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr Num . 40694) (Stat . IF) (Expr Num . 21250) (Stat . IF) (Expr Num . 97078) (Stat . LOAD) (Reg . 0) (Expr Num . 31430) END END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=2
+Avg Fitness=-inf
+Best Fitness=-45
+Avg Size=9
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr Num . 40694) (Stat . IF) (Expr Num . 21250) (Stat . IF) (Expr Num . 97078) (Stat . LOAD) (Reg . 0) (Expr Num . 31430) END END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=3
+Avg Fitness=-inf
+Best Fitness=-45
+Avg Size=9
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr Num . 40694) (Stat . IF) (Expr Num . 21250) (Stat . IF) (Expr Num . 97078) (Stat . LOAD) (Reg . 0) (Expr Num . 31430) END END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=4
+Avg Fitness=-inf
+Best Fitness=-45
+Avg Size=8
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr Num . 40694) (Stat . IF) (Expr Num . 21250) (Stat . IF) (Expr Num . 97078) (Stat . LOAD) (Reg . 0) (Expr Num . 31430) END END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=5
+Avg Fitness=-inf
+Best Fitness=-45
+Avg Size=8
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Expr Num . 31430) (Stat . INPUT) (Reg . 0))"
+
+Generation=6
+Avg Fitness=-inf
+Best Fitness=-45
+Avg Size=8
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 0) (Expr Num . 40694) (Stat . IF) (Expr Num . 21250) (Stat . IF) (Expr Num . 97078) (Stat . LOAD) (Reg . 0) (Expr Num . 31430) END END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=7
+Avg Fitness=-inf
+Best Fitness=-45
+Avg Size=8
+Best Individual: 
+"((Stat . LOAD) (Reg . 0) (Expr Num . 40694) (Stat . IF) (Expr Num . 21250) (Stat . IF) (Expr Num . 97078) (Stat . LOAD) (Reg . 0) (Expr Num . 31430) END END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=8
+Avg Fitness=-inf
+Best Fitness=-45
+Avg Size=8
+Best Individual: 
+"((Stat . LOAD) (Reg . 0) (Expr Num . 40694) (Stat . IF) (Expr Num . 21250) (Stat . IF) (Expr Num . 97078) (Stat . LOAD) (Reg . 0) (Expr Num . 31430) END END (Stat . OUTPUT) (Reg . 0))"
+
+Generation=9
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=8
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Expr Num . 31408) (Stat . LOAD) (Reg . 0) (Expr Num . 46895))"
+
+Generation=10
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=9
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Expr Num . 31408) (Stat . LOAD) (Reg . 0) (Expr Num . 46895))"
+
+Generation=11
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=10
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Reg . 2) (Stat . INPUT) (Reg . 2))"
+
+Generation=12
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=10
+Best Individual: 
+"((Stat . INPUT) (Reg . 1) (Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 24022))"
+
+Generation=13
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=9
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31430) (Stat . INPUT) (Reg . 0))"
+
+Generation=14
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=8
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Expr Num . 31408) (Stat . LOAD) (Reg . 0) (Expr Num . 40694))"
+
+Generation=15
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=7
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Expr Num . 31408) (Stat . LOAD) (Reg . 0) (Expr Num . 40694))"
+
+Generation=16
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=6
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Expr Num . 31408) (Stat . LOAD) (Reg . 0) (Expr Num . 40694))"
+
+Generation=17
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=6
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31430) (Stat . OUTPUT) (Expr Num . 95975))"
+
+Generation=18
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31430) (Stat . OUTPUT) (Expr Num . 95975))"
+
+Generation=19
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31430) (Stat . OUTPUT) (Expr Num . 95975))"
+
+Generation=20
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31430) (Stat . OUTPUT) (Expr Num . 95975))"
+
+Generation=21
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31430) (Stat . OUTPUT) (Expr Num . 95975))"
+
+Generation=22
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31430) (Stat . OUTPUT) (Expr Num . 95975))"
+
+Generation=23
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . LOAD) (Reg . 0) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408) (Stat . INPUT) (Reg . 2))"
+
+Generation=24
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . LOAD) (Reg . 0) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408) (Stat . INPUT) (Reg . 2))"
+
+Generation=25
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . LOAD) (Reg . 0) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408) (Stat . INPUT) (Reg . 2))"
+
+Generation=26
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 24022))"
+
+Generation=27
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 24022))"
+
+Generation=28
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Expr Num . 31408) (Stat . LOAD) (Reg . 0) (Expr Num . 88412) END)"
+
+Generation=29
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Expr Num . 31408) (Stat . LOAD) (Reg . 0) (Expr Num . 88412) END)"
+
+Generation=30
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Expr Num . 31408) (Stat . LOAD) (Reg . 0) (Expr Num . 88412) END)"
+
+Generation=31
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 25161) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=32
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=33
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . LOAD) (Reg . 2) (Expr Num . 37939))"
+
+Generation=34
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . LOAD) (Reg . 2) (Expr Num . 37939))"
+
+Generation=35
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . LOAD) (Reg . 2) (Expr Num . 37939))"
+
+Generation=36
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . LOAD) (Reg . 2) (Expr Num . 37939))"
+
+Generation=37
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=38
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . INPUT) (Reg . 1) (Stat . INPUT) (Reg . 0))"
+
+Generation=39
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=40
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=41
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=42
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Expr Num . 31408) (Stat . INPUT) (Reg . 0))"
+
+Generation=43
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Expr Num . 31408) (Stat . INPUT) (Reg . 0))"
+
+Generation=44
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 38151) (Stat . LOAD) (Reg . 0) (Expr Num . 2650))"
+
+Generation=45
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 38151) (Stat . LOAD) (Reg . 0) (Expr Num . 2650))"
+
+Generation=46
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=47
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Reg . 2))"
+
+Generation=48
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . INPUT) (Reg . 2))"
+
+Generation=49
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . INPUT) (Reg . 2))"
+
+Generation=50
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . LOAD) (Reg . 1) (Reg . 1) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=51
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . LOAD) (Reg . 1) (Expr Num . 39096) (Stat . IF) (Expr Num . 80770) END (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=52
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . LOAD) (Reg . 1) (Expr Num . 39096) (Stat . IF) (Expr Num . 80770) END (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=53
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . INPUT) (Reg . 1) (Stat . IF) (Reg . 1) END)"
+
+Generation=54
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=55
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=56
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 85194))"
+
+Generation=57
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . LOAD) (Reg . 0) (Expr Num . 54273) (Stat . INPUT) (Reg . 0))"
+
+Generation=58
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=59
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=60
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=61
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . LOAD) (Reg . 2) (Expr Num . 34912))"
+
+Generation=62
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . LOAD) (Reg . 2) (Expr Num . 34912))"
+
+Generation=63
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=64
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . LOAD) (Reg . 1) (Expr Num . 53212))"
+
+Generation=65
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . LOAD) (Reg . 1) (Expr Num . 53212))"
+
+Generation=66
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . LOAD) (Reg . 1) (Expr Num . 53212))"
+
+Generation=67
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . LOAD) (Reg . 1) (Expr Num . 53212))"
+
+Generation=68
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=69
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=70
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Expr Num . 31408) END)"
+
+Generation=71
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Expr Num . 31408) END)"
+
+Generation=72
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Expr Num . 31408) END)"
+
+Generation=73
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=74
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=75
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=76
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=77
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . INPUT) (Reg . 2) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=78
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=79
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 54589) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=80
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=81
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . LOAD) (Reg . 0) (Reg . 2))"
+
+Generation=82
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . LOAD) (Reg . 0) (Reg . 2))"
+
+Generation=83
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr . SUB) (Expr Num . 31408) (Reg . 2) (Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Reg . 1))"
+
+Generation=84
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr . SUB) (Expr Num . 31408) (Reg . 2) (Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Reg . 1))"
+
+Generation=85
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr . SUB) (Expr Num . 31408) (Reg . 2) (Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Reg . 1))"
+
+Generation=86
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . LOAD) (Reg . 1) (Expr Num . 4271) (Stat . OUTPUT) (Expr Num . 31408) (Stat . INPUT) (Reg . 2))"
+
+Generation=87
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=88
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=89
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=90
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . LOAD) (Reg . 1) (Expr Num . 31408))"
+
+Generation=91
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . LOAD) (Reg . 2) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=92
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . LOAD) (Reg . 2) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=93
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . LOAD) (Reg . 2) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=94
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . LOAD) (Reg . 2) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=95
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . LOAD) (Reg . 2) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=96
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=97
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . IF) (Reg . 2) END (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=98
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . IF) (Reg . 2) END (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=99
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 1) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=100
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . INPUT) (Reg . 1) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=101
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=102
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 1) END)"
+
+Generation=103
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 1) END)"
+
+Generation=104
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=105
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=106
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=107
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Expr Num . 31408) (Stat . INPUT) (Reg . 0) END)"
+
+Generation=108
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Expr Num . 31408) END)"
+
+Generation=109
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 2) END)"
+
+Generation=110
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 2) END)"
+
+Generation=111
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 2) END)"
+
+Generation=112
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 2) END)"
+
+Generation=113
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 2) END)"
+
+Generation=114
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . INPUT) (Reg . 2))"
+
+Generation=115
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . LOAD) (Reg . 0) (Expr Num . 31408))"
+
+Generation=116
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . LOAD) (Reg . 1) (Expr Num . 4046))"
+
+Generation=117
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=118
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 0) END)"
+
+Generation=119
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 0) END (Stat . IF) (Reg . 0) END)"
+
+Generation=120
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Reg . 2))"
+
+Generation=121
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 2) END)"
+
+Generation=122
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 0) END)"
+
+Generation=123
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 0) END)"
+
+Generation=124
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 0) END)"
+
+Generation=125
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 0) END)"
+
+Generation=126
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 0) END)"
+
+Generation=127
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=128
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 0) END)"
+
+Generation=129
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 1) END)"
+
+Generation=130
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=131
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . IF) (Reg . 2) END (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=132
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=133
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=134
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . IF) (Reg . 1) END (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=135
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408) (Stat . INPUT) (Reg . 0))"
+
+Generation=136
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=137
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 0) END)"
+
+Generation=138
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 0) END)"
+
+Generation=139
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=140
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=141
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . INPUT) (Reg . 1))"
+
+Generation=142
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 0) END)"
+
+Generation=143
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 0) END)"
+
+Generation=144
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 0) END)"
+
+Generation=145
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 0) END)"
+
+Generation=146
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 0) END)"
+
+Generation=147
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=148
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=149
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=150
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . INPUT) (Reg . 0))"
+
+Generation=151
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=152
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=153
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . IF) (Reg . 2) (Stat . OUTPUT) (Expr Num . 31408) END (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=154
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . LOAD) (Reg . 0) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=155
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 2) END)"
+
+Generation=156
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Expr Num . 31408) END (Stat . IF) (Reg . 1) END)"
+
+Generation=157
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 0) END)"
+
+Generation=158
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 0) END)"
+
+Generation=159
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 2) (Stat . OUTPUT) (Expr Num . 31408) END)"
+
+Generation=160
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 2) (Stat . OUTPUT) (Expr Num . 31408) END)"
+
+Generation=161
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 2) END)"
+
+Generation=162
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Expr Num . 31408) (Stat . IF) (Reg . 2) END END)"
+
+Generation=163
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=164
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=165
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . IF) (Expr Num . 31408) END (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=166
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . IF) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408) END)"
+
+Generation=167
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 0) END)"
+
+Generation=168
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=169
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . IF) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408) END)"
+
+Generation=170
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 0) END)"
+
+Generation=171
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 0) END)"
+
+Generation=172
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 30778))"
+
+Generation=173
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 30778))"
+
+Generation=174
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 30778))"
+
+Generation=175
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . IF) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408) END)"
+
+Generation=176
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . IF) (Reg . 1) END (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=177
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . IF) (Reg . 1) END (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=178
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . IF) (Reg . 1) END (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=179
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=5
+Best Individual: 
+"((Stat . IF) (Reg . 1) END (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=180
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . IF) (Reg . 1) END (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=181
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . IF) (Reg . 1) END (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=182
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . IF) (Reg . 1) END (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=183
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Expr Num . 31408) END)"
+
+Generation=184
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Expr Num . 31408) END)"
+
+Generation=185
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . IF) (Expr Num . 31408) END (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=186
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=187
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . IF) (Reg . 0) END (Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 0) END)"
+
+Generation=188
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=189
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 2) END)"
+
+Generation=190
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 0) END)"
+
+Generation=191
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=192
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=193
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=194
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . OUTPUT) (Expr Num . 31408))"
+
+Generation=195
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Expr Num . 31408) END)"
+
+Generation=196
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 0) END)"
+
+Generation=197
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 0) END)"
+
+Generation=198
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 0) END)"
+
+Generation=199
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 0) END)"
+
+Generation=200
+Avg Fitness=-inf
+Best Fitness=-21
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr Num . 31408) (Stat . IF) (Reg . 0) END)"
+
+PROBLEM UNSOLVED

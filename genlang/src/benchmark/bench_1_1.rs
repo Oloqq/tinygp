@@ -137,10 +137,11 @@ pub fn bench_1_1_f(args: &Args) {
         memsize: 10,
         popsize: 1000,
         max_size: 4,
-        p_crossover: 0.9,
-        p_mut_per_node: 0.2,
+        p_crossover: 0.2,
+        p_mut_per_node: 0.5,
         tournament_size: 2,
         random_initial_memory: true,
+        acceptable_error: -1e-3,
         growing: GrowingParams {
             p_prefer_reg_over_num: 0.2,
             ..Default::default()
@@ -150,7 +151,11 @@ pub fn bench_1_1_f(args: &Args) {
     let cases: Vec<Case> = vec![
         (vec![0], vec![1]),
         (vec![1], vec![1]),
-        (vec![1, 2], vec![1]),
+        (vec![3, 2], vec![1]),
+        (vec![5, 2], vec![1]),
+        (vec![6, 4], vec![1]),
+        (vec![8, 5], vec![1]),
+        (vec![865, 6], vec![1]),
     ];
 
     execute_benchmark(args, params, cases, "1_1_f", diff_only);

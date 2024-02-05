@@ -1,1 +1,298 @@
-Creating population
+Loading population
+-- TINY GP (Rust version) --
+GENERATIONS=200
+SEED=14969860275736018652
+POPSIZE=100
+CROSSOVER_PROB=0.9
+PMUT_PER_NODE=0.2
+TSIZE=2
+----------------------------------
+
+Generation=0
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=6
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=1
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=5
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=2
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=5
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=3
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=5
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=4
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=5
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 2) (Expr Num . 6) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=6
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=7
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=8
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=9
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 2) (Expr Num . -43) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=10
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 2) (Expr Num . -43) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=11
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 2) (Expr Num . -43) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=12
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . LOAD) (Reg . 2) (Expr Num . -43) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=13
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=14
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=15
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=16
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=17
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=18
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=19
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=20
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=21
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=22
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=23
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=24
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=25
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=26
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=27
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=28
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=29
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=30
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=31
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=32
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=33
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=34
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=35
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=36
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=37
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=38
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=39
+Avg Fitness=-inf
+Best Fitness=-1
+Avg Size=4
+Best Individual: 
+"((Stat . INPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+Generation=40
+Avg Fitness=-inf
+Best Fitness=0
+Avg Size=4
+Best Individual: 
+"((Stat . OUTPUT) (Expr . LT) (Reg . 0) (Expr Num . -95) (Stat . OUTPUT) (Reg . 0) (Stat . OUTPUT) (Reg . 0))"
+
+PROBLEM SOLVED
